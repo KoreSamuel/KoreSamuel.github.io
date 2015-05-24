@@ -4,22 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Accompany</title>
+    <title>高性能JavaScript | Accompany</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xiao Jie">
     
 
     
-    <meta name="description" content="随笔 心情 笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Accompany">
-<meta property="og:url" content="http://yoursite.com/index.html">
+    <meta name="description" content="javascript加载和运行1. 脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)
+2. 组织脚本每个&amp;lt;script&amp;gt;标签初始下载都会阻塞页面渲染，所以减">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高性能JavaScript">
+<meta property="og:url" content="http://yoursite.com/2015/05/24/高性能JavaScript/index.html">
 <meta property="og:site_name" content="Accompany">
-<meta property="og:description" content="随笔 心情 笔记">
+<meta property="og:description" content="javascript加载和运行1. 脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)
+2. 组织脚本每个&amp;lt;script&amp;gt;标签初始下载都会阻塞页面渲染，所以减">
+<meta property="og:updated_time" content="2015-05-24T11:39:00.378Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Accompany">
-<meta name="twitter:description" content="随笔 心情 笔记">
+<meta name="twitter:title" content="高性能JavaScript">
+<meta name="twitter:description" content="javascript加载和运行1. 脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)
+2. 组织脚本每个&amp;lt;script&amp;gt;标签初始下载都会阻塞页面渲染，所以减">
 
     
     <link rel="alternative" href="/atom.xml" title="Accompany" type="application/atom+xml">
@@ -73,12 +77,10 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
   <h1 itemprop="name">
     
       <a href="/2015/05/24/高性能JavaScript/" title="高性能JavaScript" itemprop="url">高性能JavaScript</a>
@@ -92,9 +94,16 @@
     
   </p>
 </header>
-    <div class="article-content">
-        
-        <h2 id="javascript加载和运行">javascript加载和运行</h2><h3 id="1-_脚本位置">1. 脚本位置</h3><p>尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（<code>&lt;/body&gt;</code>之前)</p>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript加载和运行"><span class="toc-number">1.</span> <span class="toc-text">javascript加载和运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_脚本位置"><span class="toc-number">1.1.</span> <span class="toc-text">1. 脚本位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_组织脚本"><span class="toc-number">1.2.</span> <span class="toc-text">2. 组织脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_无阻塞的脚本"><span class="toc-number">1.3.</span> <span class="toc-text">3. 无阻塞的脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_无阻塞脚本加载工具"><span class="toc-number">1.4.</span> <span class="toc-text">4. 无阻塞脚本加载工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理作用域"><span class="toc-number">2.</span> <span class="toc-text">管理作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_作用域链和标识符解析"><span class="toc-number">2.1.</span> <span class="toc-text">1. 作用域链和标识符解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_标识符解析的性能"><span class="toc-number">2.2.</span> <span class="toc-text">2. 标识符解析的性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_闭包，作用域和内存"><span class="toc-number">2.3.</span> <span class="toc-text">3. 闭包，作用域和内存</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="javascript加载和运行">javascript加载和运行</h2><h3 id="1-_脚本位置">1. 脚本位置</h3><p>尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（<code>&lt;/body&gt;</code>之前)</p>
 <h3 id="2-_组织脚本">2. 组织脚本</h3><p>每个<code>&lt;script&gt;</code>标签初始下载都会阻塞页面渲染，所以减少页面包含的<code>&lt;script&gt;</code>标签数量有助于改善这一情况。考虑到到HTTP请求会额外带来性能的开销。下载单个100B的文件比下载4个25B的文件更快。所以，减少页面中外链脚本文件的数量会改善性能。</p>
 <h3 id="3-_无阻塞的脚本">3. 无阻塞的脚本</h3><ul>
 <li>延迟的脚本：带有defer属性的<code>&lt;script&gt;</code>标签，需要浏览器支持</li>
@@ -111,14 +120,9 @@
 <p>DOM</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initHtml1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">15000</span>;i++)&#123;</span><br><span class="line">     <span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML+=<span class="string">'a'</span>;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initHtml2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> html = <span class="string">""</span>;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">15000</span>;i++)&#123;</span><br><span class="line">     html+=<span class="string">'a'</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML = html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>initHtml1()比initHtml2()速度慢很多，initHtml2()使用局部变量存储更新后的内容，减少了DOM访问，因此，减少DOM访问次数，讲运算尽量留在ECMAScript这端处理。</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
+  
+	</div>
+		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
 
@@ -126,24 +130,30 @@
 
 
 
-
-<div class="comments-count">
+	<div class="article-share" id="share">
 	
-</div>
+	  <div data-url="http://yoursite.com/2015/05/24/高性能JavaScript/" data-title="高性能JavaScript | Accompany" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
 
 </footer>
 
+   	       
+	</article>
+	
+	
 
-    </article>
-
-
-
-
-
-
-
-</div>
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript加载和运行"><span class="toc-number">1.</span> <span class="toc-text">javascript加载和运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_脚本位置"><span class="toc-number">1.1.</span> <span class="toc-text">1. 脚本位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_组织脚本"><span class="toc-number">1.2.</span> <span class="toc-text">2. 组织脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_无阻塞的脚本"><span class="toc-number">1.3.</span> <span class="toc-text">3. 无阻塞的脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_无阻塞脚本加载工具"><span class="toc-number">1.4.</span> <span class="toc-text">4. 无阻塞脚本加载工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理作用域"><span class="toc-number">2.</span> <span class="toc-text">管理作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_作用域链和标识符解析"><span class="toc-number">2.1.</span> <span class="toc-text">1. 作用域链和标识符解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_标识符解析的性能"><span class="toc-number">2.2.</span> <span class="toc-text">2. 标识符解析的性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_闭包，作用域和内存"><span class="toc-number">2.3.</span> <span class="toc-text">3. 闭包，作用域和内存</span></a></li></ol></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -262,12 +272,69 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
 
 
 
@@ -328,4 +395,4 @@ $(document).ready(function(){
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
