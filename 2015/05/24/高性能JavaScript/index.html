@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="随遇而安">
 <meta property="og:description" content="javascript加载和运行1. 脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)
 2. 组织脚本每个&amp;lt;script&amp;gt;标签初始下载都会阻塞页面渲染，所以减">
-<meta property="og:updated_time" content="2015-05-25T09:10:13.762Z">
+<meta property="og:updated_time" content="2015-05-25T12:27:40.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高性能JavaScript">
 <meta name="twitter:description" content="javascript加载和运行1. 脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)
@@ -49,7 +49,7 @@
 			
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="随遇而安">随遇而安</a></h1>
-				<h2 class="blog-motto">writing several words a day changed my life.</h2>
+				<h2 class="blog-motto">一场雨的时间里，你没看我，我没看雨。</h2>
 			</div>
 			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
@@ -110,26 +110,31 @@
 <li>延迟的脚本：带有defer属性的<code>&lt;script&gt;</code>标签，需要浏览器支持</li>
 <li>动态脚本元素:在跨浏览器兼容性和易用的优势，是最通用的无阻塞加载解决方案</li>
 <li><p>XMLHttpRequest注入：先创建一个XHR对象，然后用她下载javascript文件，最后通过创建动态<code>&lt;script&gt;</code>元素将代码注入页面中</p>
- <figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest<span class="params">()</span>;</span><br><span class="line">xhr.open<span class="params">(<span class="string">"get"</span>,<span class="string">"file.js"</span>,<span class="literal">true</span>)</span>;</span><br><span class="line">xhr.onreadystatechange = funtion<span class="params">()</span>&#123;</span><br><span class="line">     <span class="keyword">if</span><span class="params">(xhr.readyState == <span class="number">4</span>)</span>&#123;</span><br><span class="line">          <span class="keyword">if</span><span class="params">(xhr.status&gt;=<span class="number">200</span>&amp;&amp;xhr.status&lt;<span class="number">300</span>||xhr.status==<span class="number">304</span>)</span>&#123;</span><br><span class="line">               var script = document.creatElement<span class="params">(<span class="string">"script"</span>)</span>;</span><br><span class="line">               script.type=<span class="string">"text/javascript"</span>;</span><br><span class="line">               script.<span class="built_in">text</span>=xhr.responseText;</span><br><span class="line">               document.body.appendChild<span class="params">(script)</span>;</span><br><span class="line">               &#125;</span><br><span class="line">          &#125;    </span><br><span class="line">&#125;;</span><br><span class="line">xhr.send<span class="params">(null)</span>;</span><br><span class="line"><span class="comment">//由于代码是在&lt;script&gt;标签之前返回的，因此它下载后不会自动执行。</span></span><br><span class="line"><span class="comment">//同样的代码在所有主流浏览器中无一例外都能正常工作</span></span><br><span class="line"><span class="comment">//局限性在于：javascript文件必须与请求的页面处于相同的域，即javascript不能从CDN下载</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight openscad"><table><tr><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest<span class="params">()</span>;</span><br><span class="line">xhr.open<span class="params">(<span class="string">"get"</span>,<span class="string">"file.js"</span>,<span class="literal">true</span>)</span>;</span><br><span class="line">xhr.onreadystatechange = funtion<span class="params">()</span>&#123;</span><br><span class="line">     <span class="keyword">if</span><span class="params">(xhr.readyState == <span class="number">4</span>)</span>&#123;</span><br><span class="line">          <span class="keyword">if</span><span class="params">(xhr.status&gt;=<span class="number">200</span>&amp;&amp;xhr.status&lt;<span class="number">300</span>||xhr.status==<span class="number">304</span>)</span>&#123;</span><br><span class="line">               var script = document.creatElement<span class="params">(<span class="string">"script"</span>)</span>;</span><br><span class="line">               script.type=<span class="string">"text/javascript"</span>;</span><br><span class="line">               script.<span class="built_in">text</span>=xhr.responseText;</span><br><span class="line">               document.body.appendChild<span class="params">(script)</span>;</span><br><span class="line">               &#125;</span><br><span class="line">          &#125;    </span><br><span class="line">&#125;;</span><br><span class="line">xhr.send<span class="params">(null)</span>;</span><br><span class="line"><span class="comment">//由于代码是在&lt;script&gt;标签之前返回的，因此它下载后不会自动执行。</span></span><br><span class="line"><span class="comment">//同样的代码在所有主流浏览器中无一例外都能正常工作</span></span><br><span class="line"><span class="comment">//局限性在于：javascript文件必须与请求的页面处于相同的域，即javascript不能从CDN下载</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="4-_无阻塞脚本加载工具">4. 无阻塞脚本加载工具</h3><p>lazyLoad类库、LABjs等等</p>
 <h2 id="管理作用域">管理作用域</h2><h3 id="1-_作用域链和标识符解析">1. 作用域链和标识符解析</h3><p>在函数执行的过程中，没遇到一个变量，都会经历一次标识符解析过程以决定从哪里获取或存储数据。该过程搜索运行期上下文的作用域链，查找同名的标识符。搜索过程从作用域链头部开始也就是当前运行函数的活动对象，如果找到了，就使用这个标示符对应的变量；如果没有找到，继续搜索作用域链中的下一个对象，直到标识符被找到，或者没有可用于搜索的对象为止，这种情况下标识符被认为是未定义的。正是这个搜索过程影响了性能。</p>
 <h3 id="2-_标识符解析的性能">2. 标识符解析的性能</h3><p>一个标识符所在的位置越深，他的读写速度就越慢，因此读写局部变量总是最快的，而读写全局变量通常是最慢的。全局变量总是存在于运行期上下文作用域链的最末端，因此是最远的。在没有优化javascript引擎的浏览器中，尽量使用局部变量，如果某个跨作用域的值在函数中被引用了多次，就把他存储到局部变量里。</p>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> doc = <span class="built_in">document</span>,</span><br><span class="line">      bd = doc.body,</span><br><span class="line">      links = doc.getElementByTagName(<span class="string">'a'</span>);</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span>,</span><br><span class="line">      len = links.length;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; len) &#123;</span><br><span class="line">      update(links[i++]);</span><br><span class="line">  &#125;</span><br><span class="line">  doc.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      start();</span><br><span class="line">  &#125;;</span><br><span class="line">     bd.className = <span class="string">'active'</span></span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//首先将document对象引用存储到局部变量doc中，全局变量的访问减少，当有很多全局变量</span></span><br><span class="line">    <span class="comment">//被反复访问时，这种方法对性能的改善是很明显的。</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> doc = <span class="built_in">document</span>,</span><br><span class="line">      bd = doc.body,</span><br><span class="line">      links = doc.getElementByTagName(<span class="string">'a'</span>);</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span>,</span><br><span class="line">      len = links.length;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; len) &#123;</span><br><span class="line">      update(links[i++]);</span><br><span class="line">  &#125;</span><br><span class="line">  doc.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      start();</span><br><span class="line">  &#125;;</span><br><span class="line">     bd.className = <span class="string">'active'</span></span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//首先将document对象引用存储到局部变量doc中，全局变量的访问减少，当有很多全局变量</span></span><br><span class="line">    <span class="comment">//被反复访问时，这种方法对性能的改善是很明显的。</span></span><br></pre></td></tr></table></figure>
 <h3 id="3-_闭包，作用域和内存">3. 闭包，作用域和内存</h3><p>将常用的跨作用域变量存储在局部变量中，然后访问局部变量嵌套的对象成员会明显影响性能，尽量少用<br>通常来说，把常用的对象成员、数组元素、跨域变量保存在局部变量中来改善javascript性能，因为局部变量访问速度更快。</p>
 <p>DOM</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initHtml1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">15000</span>;i++)&#123;</span><br><span class="line">     <span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML+=<span class="string">'a'</span>;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initHtml2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> html = <span class="string">""</span>;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">15000</span>;i++)&#123;</span><br><span class="line">     html+=<span class="string">'a'</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML = html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initHtml1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">15000</span>;i++)&#123;</span><br><span class="line">     <span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML+=<span class="string">'a'</span>;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initHtml2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> html = <span class="string">""</span>;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">15000</span>;i++)&#123;</span><br><span class="line">     html+=<span class="string">'a'</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML = html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>initHtml1()比initHtml2()速度慢很多，initHtml2()使用局部变量存储更新后的内容，减少了DOM访问，因此，减少DOM访问次数，讲运算尽量留在ECMAScript这端处理。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
+</div>
+
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/javascript/">javascript</a>
+  <span></span> <a href="/tags/javascript-性能优化/">javascript 性能优化</a>
   </div>
 
 </div>
@@ -149,6 +154,19 @@
    	       
 	</article>
 	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/" title="两个iframe框滚动条联动以及iframe窗口高宽自适应">
+  <strong>上一篇：</strong><br/>
+  <span>
+  两个iframe框滚动条联动以及iframe窗口高宽自适应</span>
+</a>
+</div>
+
+
+</nav>
+
 	
 <section id="comments" class="comment">
 	<div class="ds-thread" data-thread-key="2015/05/24/高性能JavaScript/" data-title="高性能JavaScript" data-url="http://yoursite.com/2015/05/24/高性能JavaScript/"></div>
@@ -170,6 +188,25 @@
 <aside class="clearfix">
 
   
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/前端积累/" title="前端积累">前端积累<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/学习笔记/" title="学习笔记">学习笔记<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/笔试-面试/" title="笔试&amp;面试">笔试&amp;面试<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
 
   
 <div class="tagslist">
@@ -177,7 +214,15 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+				<li><a href="/tags/web前端-笔试/" title="web前端 笔试">web前端 笔试<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript-性能优化/" title="javascript 性能优化">javascript 性能优化<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/iframe-scroll/" title="iframe scroll">iframe scroll<sup>1</sup></a></li>
 			
 		
 		</ul>
