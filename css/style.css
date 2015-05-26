@@ -594,7 +594,7 @@ header nav ul li a:hover {
 @media only screen and (min-width: 1024px) {
   #main {
     margin: 2em 0 0;
-    width: 75%;
+    width: 74%;
     float: left;
     -webkit-transition: margin 0.5s ease-out;
     -moz-transition: margin 0.5s ease-out;
@@ -1670,7 +1670,7 @@ section.comment {
   #asidepart {
     position: relative;
     float: left;
-    width: 18%;
+    width: 19%;
     margin: 2em 0 0 3%;
   }
 }
