@@ -74,6 +74,73 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/05/28/web前端笔试练习/" title="web前端笔试练习" itemprop="url">web前端笔试练习</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Xiao Jie" target="_blank" itemprop="author">Xiao Jie</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-27T16:50:13.000Z" itemprop="datePublished"> 发表于 2015-05-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数</p>
+</blockquote>
+<figure class="highlight openscad"><table><tr><td class="code"><pre><span class="line"><span class="comment">//res1</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">reverseB</span><span class="params">(num)</span> &#123;</span></span><br><span class="line"> 		var bits = num.toString<span class="params">(<span class="number">2</span>)</span>;</span><br><span class="line">var len = <span class="number">32</span> - bits.length;</span><br><span class="line">  	bits = bits.split<span class="params">(<span class="string">""</span>)</span>.reverse<span class="params">()</span>.join<span class="params">(<span class="string">""</span>)</span>;</span><br><span class="line">  	while<span class="params">(len--)</span> &#123;</span><br><span class="line">  		bits+=<span class="string">"0"</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">  	return parseInt<span class="params">(bits,<span class="number">2</span>)</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  console.<span class="built_in">log</span><span class="params">(reverseB<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192  </span></span><br><span class="line">  <span class="comment">//res2</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">reverseBs</span><span class="params">(n)</span>&#123;</span></span><br><span class="line">    var m = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="params">(var i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++)</span> &#123;</span><br><span class="line">      m|=<span class="params">(n&amp;<span class="number">1</span>)</span>;</span><br><span class="line">      n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">      m &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    m|=<span class="params">(n&amp;<span class="number">01</span>)</span>;</span><br><span class="line">    return m;</span><br><span class="line">  &#125;</span><br><span class="line">  console.<span class="built_in">log</span><span class="params">(reverseBs<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192</span></span><br></pre></td></tr></table></figure>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/05/28/web前端笔试练习/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/笔试-面试/">笔试&面试</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/web前端/">web前端</a><a href="/tags/笔试/">笔试</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/05/28/web前端笔试练习/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/05/28/web前端笔试练习/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/05/26/淡淡的友情、浅浅的爱/" title="淡淡的友情、浅浅的爱" itemprop="url">淡淡的友情、浅浅的爱</a>
   </h1>
   <p class="article-author">By
@@ -288,8 +355,9 @@
     <div class="article-content">
         
         <blockquote>
-<p>1、给定一个随机数组，数组可能包含数组（也就是说数组元素可能为数组）。要求用js实现一个函数，返回该数组中所有元素。例如，例如：数组[2,3,[4,6,[1,8]],12,10]，返回结果为：[2,3,4,6,1,8,12,10]<br>  <figure class="highlight openscad"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getArray</span><span class="params">(arr)</span> &#123;</span></span><br><span class="line">  var arrs = [];</span><br><span class="line">  <span class="keyword">for</span><span class="params">(var i=<span class="number">0</span>,l=arr.length;i &lt; l;i++)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span><span class="params">(!Array.isArray<span class="params">(arr[i])</span>)</span> arrs.push<span class="params">(arr[i])</span>;</span><br><span class="line">      <span class="keyword">else</span> arrs = arrs.<span class="built_in">concat</span><span class="params">( getArray<span class="params">(arr[i])</span> )</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  return arrs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>1.给定一个随机数组，数组可能包含数组（也就是说数组元素可能为数组）。要求用js实现一个函数，返回该数组中所有元素。例如，例如：数组[2,3,[4,6,[1,8]],12,10]，返回结果为：[2,3,4,6,1,8,12,10]</p>
 </blockquote>
+  <figure class="highlight openscad"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getArray</span><span class="params">(arr)</span> &#123;</span></span><br><span class="line">  var arrs = [];</span><br><span class="line">  <span class="keyword">for</span><span class="params">(var i=<span class="number">0</span>,l=arr.length;i &lt; l;i++)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span><span class="params">(!Array.isArray<span class="params">(arr[i])</span>)</span> arrs.push<span class="params">(arr[i])</span>;</span><br><span class="line">      <span class="keyword">else</span> arrs = arrs.<span class="built_in">concat</span><span class="params">( getArray<span class="params">(arr[i])</span> )</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  return arrs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
         
         <p class="article-more-link">
@@ -489,7 +557,7 @@
 		  
 		
 		  
-			<li><a href="/categories/笔试-面试/" title="笔试&amp;面试">笔试&amp;面试<sup>1</sup></a></li>
+			<li><a href="/categories/笔试-面试/" title="笔试&amp;面试">笔试&amp;面试<sup>2</sup></a></li>
 		  
 		
 		</ul>
@@ -502,15 +570,15 @@
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/笔试/" title="笔试">笔试<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/iframe/" title="iframe">iframe<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/web前端/" title="web前端">web前端<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/笔试/" title="笔试">笔试<sup>1</sup></a></li>
 			
 		
 			
