@@ -90,7 +90,7 @@
         <blockquote>
 <p>1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数</p>
 </blockquote>
-<figure class="highlight openscad"><table><tr><td class="code"><pre><span class="line"><span class="comment">//res1</span></span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">reverseB</span><span class="params">(num)</span> &#123;</span></span><br><span class="line"> 		var bits = num.toString<span class="params">(<span class="number">2</span>)</span>;</span><br><span class="line">var len = <span class="number">32</span> - bits.length;</span><br><span class="line">  	bits = bits.split<span class="params">(<span class="string">""</span>)</span>.reverse<span class="params">()</span>.join<span class="params">(<span class="string">""</span>)</span>;</span><br><span class="line">  	while<span class="params">(len--)</span> &#123;</span><br><span class="line">  		bits+=<span class="string">"0"</span>;</span><br><span class="line">  	&#125;</span><br><span class="line">  	return parseInt<span class="params">(bits,<span class="number">2</span>)</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  console.<span class="built_in">log</span><span class="params">(reverseB<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192  </span></span><br><span class="line">  <span class="comment">//res2</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">reverseBs</span><span class="params">(n)</span>&#123;</span></span><br><span class="line">    var m = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> <span class="params">(var i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++)</span> &#123;</span><br><span class="line">      m|=<span class="params">(n&amp;<span class="number">1</span>)</span>;</span><br><span class="line">      n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">      m &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    m|=<span class="params">(n&amp;<span class="number">01</span>)</span>;</span><br><span class="line">    return m;</span><br><span class="line">  &#125;</span><br><span class="line">  console.<span class="built_in">log</span><span class="params">(reverseBs<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight openscad"><table><tr><td class="code"><pre><span class="line"><span class="comment">//res1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseB</span><span class="params">(num)</span> &#123;</span></span><br><span class="line">  var bits = num.toString<span class="params">(<span class="number">2</span>)</span>;</span><br><span class="line">  var len = <span class="number">32</span> - bits.length;</span><br><span class="line">  bits = bits.split<span class="params">(<span class="string">""</span>)</span>.reverse<span class="params">()</span>.join<span class="params">(<span class="string">""</span>)</span>;</span><br><span class="line">  while<span class="params">(len--)</span> &#123;</span><br><span class="line">  	bits+=<span class="string">"0"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  	return parseInt<span class="params">(bits,<span class="number">2</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line">console.<span class="built_in">log</span><span class="params">(reverseB<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192  </span></span><br><span class="line">  <span class="comment">//res2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseBs</span><span class="params">(n)</span>&#123;</span></span><br><span class="line">  var m = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> <span class="params">(var i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++)</span> &#123;</span><br><span class="line">    m|=<span class="params">(n&amp;<span class="number">1</span>)</span>;</span><br><span class="line">    n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    m &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">    m|=<span class="params">(n&amp;<span class="number">01</span>)</span>;</span><br><span class="line">    return m;</span><br><span class="line">  &#125;</span><br><span class="line">console.<span class="built_in">log</span><span class="params">(reverseBs<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192</span></span><br></pre></td></tr></table></figure>
         
         
         <p class="article-more-link">
@@ -357,7 +357,7 @@
         <blockquote>
 <p>1.给定一个随机数组，数组可能包含数组（也就是说数组元素可能为数组）。要求用js实现一个函数，返回该数组中所有元素。例如，例如：数组[2,3,[4,6,[1,8]],12,10]，返回结果为：[2,3,4,6,1,8,12,10]</p>
 </blockquote>
-  <figure class="highlight openscad"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getArray</span><span class="params">(arr)</span> &#123;</span></span><br><span class="line">  var arrs = [];</span><br><span class="line">  <span class="keyword">for</span><span class="params">(var i=<span class="number">0</span>,l=arr.length;i &lt; l;i++)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span><span class="params">(!Array.isArray<span class="params">(arr[i])</span>)</span> arrs.push<span class="params">(arr[i])</span>;</span><br><span class="line">      <span class="keyword">else</span> arrs = arrs.<span class="built_in">concat</span><span class="params">( getArray<span class="params">(arr[i])</span> )</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  return arrs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getArray</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> arrs = [];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,l=arr.length;i &lt; l;i++) &#123;</span><br><span class="line">      <span class="keyword">if</span>(!<span class="built_in">Array</span>.isArray(arr[i])) arrs.push(arr[i]);</span><br><span class="line">      <span class="keyword">else</span> arrs = arrs.concat( getArray(arr[i]) );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arrs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
         
         <p class="article-more-link">
@@ -402,135 +402,10 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/" title="两个iframe框滚动条联动以及iframe窗口高宽自适应" itemprop="url">两个iframe框滚动条联动以及iframe窗口高宽自适应</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Xiao Jie" target="_blank" itemprop="author">Xiao Jie</a>
-		
-  <p class="article-time">
-    <time datetime="2015-05-25T12:03:05.000Z" itemprop="datePublished"> 发表于 2015-05-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。<br>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/前端积累/">前端积累</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/iframe/">iframe</a><a href="/tags/scroll/">scroll</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/05/24/高性能JavaScript/" title="高性能JavaScript" itemprop="url">高性能JavaScript</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Xiao Jie" target="_blank" itemprop="author">Xiao Jie</a>
-		
-  <p class="article-time">
-    <time datetime="2015-05-24T11:12:54.000Z" itemprop="datePublished"> 发表于 2015-05-24</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="javascript加载和运行">javascript加载和运行</h2><h3 id="1-_脚本位置">1. 脚本位置</h3><p>尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（<code>&lt;/body&gt;</code>之前)</p>
-<h3 id="2-_组织脚本">2. 组织脚本</h3><p>每个<code>&lt;script&gt;</code>标签初始下载都会阻塞页面渲染，所以减少页面包含的<code>&lt;script&gt;</code>标签数量有助于改善这一情况。考虑到到HTTP请求会额外带来性能的开销。下载单个100B的文件比下载4个25B的文件更快。所以，减少页面中外链脚本文件的数量会改善性能。</p>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/05/24/高性能JavaScript/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/性能优化/">性能优化</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/05/24/高性能JavaScript/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/05/24/高性能JavaScript/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
+  <nav id="page-nav" class="clearfix">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+  </nav>
 
 </div>
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
