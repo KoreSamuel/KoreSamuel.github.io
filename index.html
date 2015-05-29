@@ -74,6 +74,70 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2015/05/29/XMLHttpRequest学习笔记/" title="XMLHttpRequest学习笔记" itemprop="url">XMLHttpRequest学习笔记</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Xiao Jie" target="_blank" itemprop="author">Xiao Jie</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-29T09:16:54.000Z" itemprop="datePublished"> 发表于 2015-05-29</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>对于xhr的学习后的一个例子<br>
+        
+        
+        <p class="article-more-link">
+          
+            <a href="/2015/05/29/XMLHttpRequest学习笔记/#more">Read More</a>
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/XMLHttpRequest/">XMLHttpRequest</a><a href="/tags/学习笔记/">学习笔记</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+	  	<span></span>
+		<a href="/2015/05/29/XMLHttpRequest学习笔记/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/05/29/XMLHttpRequest学习笔记/" data-count-type="comments">&nbsp;</a>
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2015/05/28/web前端笔试练习/" title="web前端笔试练习" itemprop="url">web前端笔试练习</a>
   </h1>
   <p class="article-author">By
@@ -90,7 +154,7 @@
         <blockquote>
 <p>1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数</p>
 </blockquote>
-<figure class="highlight openscad"><table><tr><td class="code"><pre><span class="line"><span class="comment">//res1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseB</span><span class="params">(num)</span> &#123;</span></span><br><span class="line">  var bits = num.toString<span class="params">(<span class="number">2</span>)</span>;</span><br><span class="line">  var len = <span class="number">32</span> - bits.length;</span><br><span class="line">  bits = bits.split<span class="params">(<span class="string">""</span>)</span>.reverse<span class="params">()</span>.join<span class="params">(<span class="string">""</span>)</span>;</span><br><span class="line">  while<span class="params">(len--)</span> &#123;</span><br><span class="line">  	bits+=<span class="string">"0"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  	return parseInt<span class="params">(bits,<span class="number">2</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line">console.<span class="built_in">log</span><span class="params">(reverseB<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192  </span></span><br><span class="line">  <span class="comment">//res2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseBs</span><span class="params">(n)</span>&#123;</span></span><br><span class="line">  var m = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> <span class="params">(var i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++)</span> &#123;</span><br><span class="line">    m|=<span class="params">(n&amp;<span class="number">1</span>)</span>;</span><br><span class="line">    n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    m &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">    m|=<span class="params">(n&amp;<span class="number">01</span>)</span>;</span><br><span class="line">    return m;</span><br><span class="line">  &#125;</span><br><span class="line">console.<span class="built_in">log</span><span class="params">(reverseBs<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//res1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseB</span><span class="params">(num)</span> &#123;</span></span><br><span class="line">  var bits = num.toString<span class="params">(<span class="number">2</span>)</span>;</span><br><span class="line">  var len = <span class="number">32</span> - bits.length;</span><br><span class="line">  bits = bits.split<span class="params">(<span class="string">""</span>)</span>.reverse<span class="params">()</span>.join<span class="params">(<span class="string">""</span>)</span>;</span><br><span class="line">  while<span class="params">(len--)</span> &#123;</span><br><span class="line">  	bits+=<span class="string">"0"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  	return parseInt<span class="params">(bits,<span class="number">2</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line">console.<span class="built_in">log</span><span class="params">(reverseB<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192  </span></span><br><span class="line">  <span class="comment">//res2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseBs</span><span class="params">(n)</span>&#123;</span></span><br><span class="line">  var m = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> <span class="params">(var i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++)</span> &#123;</span><br><span class="line">    m|=<span class="params">(n&amp;<span class="number">1</span>)</span>;</span><br><span class="line">    n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    m &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">    m|=<span class="params">(n&amp;<span class="number">01</span>)</span>;</span><br><span class="line">    return m;</span><br><span class="line">  &#125;</span><br><span class="line">console.<span class="built_in">log</span><span class="params">(reverseBs<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192</span></span><br></pre></td></tr></table></figure>
         
         
         <p class="article-more-link">
@@ -335,73 +399,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/05/25/2015阿里web前端笔试题（部分）/" title="2015阿里web前端笔试题（部分）" itemprop="url">2015阿里web前端笔试题（部分）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Xiao Jie" target="_blank" itemprop="author">Xiao Jie</a>
-		
-  <p class="article-time">
-    <time datetime="2015-05-25T12:14:35.000Z" itemprop="datePublished"> 发表于 2015-05-25</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p>1.给定一个随机数组，数组可能包含数组（也就是说数组元素可能为数组）。要求用js实现一个函数，返回该数组中所有元素。例如，例如：数组[2,3,[4,6,[1,8]],12,10]，返回结果为：[2,3,4,6,1,8,12,10]</p>
-</blockquote>
-  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getArray</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> arrs = [];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,l=arr.length;i &lt; l;i++) &#123;</span><br><span class="line">      <span class="keyword">if</span>(!<span class="built_in">Array</span>.isArray(arr[i])) arrs.push(arr[i]);</span><br><span class="line">      <span class="keyword">else</span> arrs = arrs.concat( getArray(arr[i]) );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arrs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-            <a href="/2015/05/25/2015阿里web前端笔试题（部分）/#more">Read More</a>
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/笔试-面试/">笔试&面试</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/web前端/">web前端</a><a href="/tags/笔试/">笔试</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/05/25/2015阿里web前端笔试题（部分）/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/05/25/2015阿里web前端笔试题（部分）/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -424,7 +421,7 @@
 		  
 		
 		  
-			<li><a href="/categories/学习笔记/" title="学习笔记">学习笔记<sup>2</sup></a></li>
+			<li><a href="/categories/学习笔记/" title="学习笔记">学习笔记<sup>3</sup></a></li>
 		  
 		
 		  
@@ -445,19 +442,15 @@
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/iframe/" title="iframe">iframe<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/笔试/" title="笔试">笔试<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/iframe/" title="iframe">iframe<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
 			
 		
 			
@@ -469,11 +462,23 @@
 			
 		
 			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/scroll/" title="scroll">scroll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XMLHttpRequest/" title="XMLHttpRequest">XMLHttpRequest<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>1</sup></a></li>
 			
 		
 			

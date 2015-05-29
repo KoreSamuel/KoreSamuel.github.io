@@ -94,7 +94,7 @@
 		</div>
 		
 		<p>由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。<br><a id="more"></a></p>
-   <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"div1"</span>  <span class="attribute">style</span>=<span class="value">"width:620px;height:500px ; float:left;overflow:scroll"</span> <span class="attribute">onscroll</span>=<span class="value">"funcsrcoll1()"</span>&gt;</span></span><br><span class="line">	   <span class="tag">&lt;<span class="title">iframe</span> <span class="attribute">name</span>=<span class="value">"left"</span> <span class="attribute">id</span>=<span class="value">"left"</span> <span class="attribute">scrolling</span>=<span class="value">"no"</span> <span class="attribute">width</span>=<span class="value">"600px"</span> <span class="attribute">height</span>=<span class="value">"500px"</span> <span class="attribute">src</span>=<span class="value">"2.html"</span>&gt;</span><span class="tag">&lt;/<span class="title">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"div2"</span> <span class="attribute">style</span>=<span class="value">"width:620px; height:500px ;float:left;overflow:scroll"</span> <span class="attribute">onscroll</span>=<span class="value">"funcsrcoll2()"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">iframe</span> <span class="attribute">name</span>=<span class="value">"right"</span> <span class="attribute">id</span>=<span class="value">"right"</span> <span class="attribute">scrolling</span>=<span class="value">"no"</span> <span class="attribute">width</span>=<span class="value">"600px"</span> <span class="attribute">height</span>=<span class="value">"500px"</span> <span class="attribute">src</span>=<span class="value">"3.html"</span>&gt;</span><span class="tag">&lt;/<span class="title">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript"></span><br><span class="line">	<span class="comment">//控制两个div的滚动条联动，便于页面对比</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">funcsrcoll1</span><span class="params">()</span></span><br><span class="line">	  </span>&#123;</span><br><span class="line">	      div2.scrollLeft = div1.scrollLeft;</span><br><span class="line">	      div2.scrollTop = div1.scrollTop;</span><br><span class="line">	  &#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">funcsrcoll2</span><span class="params">()</span></span><br><span class="line">	  </span>&#123;</span><br><span class="line">	      div1.scrollLeft = div2.scrollLeft;</span><br><span class="line">	      div1.scrollTop = div2.scrollTop;</span><br><span class="line">	  &#125;</span><br><span class="line">	  <span class="comment">//调整iframe窗口大小适应src链接的页面</span></span><br><span class="line">	  <span class="function"><span class="keyword">function</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">	  $(<span class="string">'iframe'</span>).<span class="keyword">each</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	      <span class="keyword">this</span>.style.height = <span class="keyword">this</span>.contentWindow.document.body.scrollHeight+<span class="number">20</span> + <span class="string">'px'</span>;</span><br><span class="line">	        <span class="comment">//为了显示完整，额外加了20px的宽度</span></span><br><span class="line">	      <span class="keyword">this</span>.style.width = <span class="keyword">this</span>.contentWindow.document.body.scrollWidth+<span class="number">20</span> + <span class="string">'px'</span>;</span><br><span class="line">	  &#125;);    </span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>  
+   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"div1"</span>  <span class="attribute">style</span>=<span class="value">"width:620px;height:500px ; float:left;overflow:scroll"</span> <span class="attribute">onscroll</span>=<span class="value">"funcsrcoll1()"</span>&gt;</span></span><br><span class="line">	   <span class="tag">&lt;<span class="title">iframe</span> <span class="attribute">name</span>=<span class="value">"left"</span> <span class="attribute">id</span>=<span class="value">"left"</span> <span class="attribute">scrolling</span>=<span class="value">"no"</span> <span class="attribute">width</span>=<span class="value">"600px"</span> <span class="attribute">height</span>=<span class="value">"500px"</span> <span class="attribute">src</span>=<span class="value">"2.html"</span>&gt;</span><span class="tag">&lt;/<span class="title">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"div2"</span> <span class="attribute">style</span>=<span class="value">"width:620px; height:500px ;float:left;overflow:scroll"</span> <span class="attribute">onscroll</span>=<span class="value">"funcsrcoll2()"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">iframe</span> <span class="attribute">name</span>=<span class="value">"right"</span> <span class="attribute">id</span>=<span class="value">"right"</span> <span class="attribute">scrolling</span>=<span class="value">"no"</span> <span class="attribute">width</span>=<span class="value">"600px"</span> <span class="attribute">height</span>=<span class="value">"500px"</span> <span class="attribute">src</span>=<span class="value">"3.html"</span>&gt;</span><span class="tag">&lt;/<span class="title">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript"></span><br><span class="line">	<span class="comment">//控制两个div的滚动条联动，便于页面对比</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">funcsrcoll1</span><span class="params">()</span></span><br><span class="line">	  </span>&#123;</span><br><span class="line">	      div2.scrollLeft = div1.scrollLeft;</span><br><span class="line">	      div2.scrollTop = div1.scrollTop;</span><br><span class="line">	  &#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">funcsrcoll2</span><span class="params">()</span></span><br><span class="line">	  </span>&#123;</span><br><span class="line">	      div1.scrollLeft = div2.scrollLeft;</span><br><span class="line">	      div1.scrollTop = div2.scrollTop;</span><br><span class="line">	  &#125;</span><br><span class="line">	  <span class="comment">//调整iframe窗口大小适应src链接的页面</span></span><br><span class="line">	  <span class="function"><span class="keyword">function</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">	  $(<span class="string">'iframe'</span>).<span class="keyword">each</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">	      <span class="keyword">this</span>.style.height = <span class="keyword">this</span>.contentWindow.document.body.scrollHeight+<span class="number">20</span> + <span class="string">'px'</span>;</span><br><span class="line">	        <span class="comment">//为了显示完整，额外加了20px的宽度</span></span><br><span class="line">	      <span class="keyword">this</span>.style.width = <span class="keyword">this</span>.contentWindow.document.body.scrollWidth+<span class="number">20</span> + <span class="string">'px'</span>;</span><br><span class="line">	  &#125;);    </span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -178,7 +178,7 @@
 		  
 		
 		  
-			<li><a href="/categories/学习笔记/" title="学习笔记">学习笔记<sup>2</sup></a></li>
+			<li><a href="/categories/学习笔记/" title="学习笔记">学习笔记<sup>3</sup></a></li>
 		  
 		
 		  
@@ -199,19 +199,15 @@
 		<ul class="clearfix">
 		
 			
+				<li><a href="/tags/iframe/" title="iframe">iframe<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/web前端/" title="web前端">web前端<sup>2</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/笔试/" title="笔试">笔试<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/iframe/" title="iframe">iframe<sup>2</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
 			
 		
 			
@@ -223,11 +219,23 @@
 			
 		
 			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/html/" title="html">html<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/scroll/" title="scroll">scroll<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/XMLHttpRequest/" title="XMLHttpRequest">XMLHttpRequest<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习笔记/" title="学习笔记">学习笔记<sup>1</sup></a></li>
 			
 		
 			
