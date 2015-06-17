@@ -12,19 +12,19 @@
     
 
     
-    <meta name="description" content="javascript加载和运行1. 脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)
-2. 组织脚本每个&amp;lt;script&amp;gt;标签初始下载都会阻塞页面渲染，所以减">
+    <meta name="description" content="javascript加载和运行脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)
+组织脚本每个&amp;lt;script&amp;gt;标签初始下载都会阻塞页面渲染，所以减少页面包含的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高性能JavaScript">
 <meta property="og:url" content="http://xiaojwithu.info/2015/05/24/高性能JavaScript/index.html">
 <meta property="og:site_name" content="随遇而安">
-<meta property="og:description" content="javascript加载和运行1. 脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)
-2. 组织脚本每个&amp;lt;script&amp;gt;标签初始下载都会阻塞页面渲染，所以减">
-<meta property="og:updated_time" content="2015-05-25T15:09:58.583Z">
+<meta property="og:description" content="javascript加载和运行脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)
+组织脚本每个&amp;lt;script&amp;gt;标签初始下载都会阻塞页面渲染，所以减少页面包含的">
+<meta property="og:updated_time" content="2015-06-17T03:59:54.372Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高性能JavaScript">
-<meta name="twitter:description" content="javascript加载和运行1. 脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)
-2. 组织脚本每个&amp;lt;script&amp;gt;标签初始下载都会阻塞页面渲染，所以减">
+<meta name="twitter:description" content="javascript加载和运行脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)
+组织脚本每个&amp;lt;script&amp;gt;标签初始下载都会阻塞页面渲染，所以减少页面包含的">
 
     
     <link rel="alternative" href="/atom.xml" title="随遇而安" type="application/atom+xml">
@@ -66,10 +66,11 @@
 					
 					<li>
  					
-						<form class="search" action="http://znsv.baidu.com/customer_search/api/js" target="_blank">
-							<label>Search</label>
-						<input name="s" type="hidden" value= 581572110249281300 ><input type="text" name="q" size="30" placeholder="搜索"><br>
-						</form>
+					<form class="search" action="//baidu.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:xiaojwithu.info">
+					</form>
 					
 					</li>
 				</ul>
@@ -99,25 +100,25 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript加载和运行"><span class="toc-number">1.</span> <span class="toc-text">javascript加载和运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_脚本位置"><span class="toc-number">1.1.</span> <span class="toc-text">1. 脚本位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_组织脚本"><span class="toc-number">1.2.</span> <span class="toc-text">2. 组织脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_无阻塞的脚本"><span class="toc-number">1.3.</span> <span class="toc-text">3. 无阻塞的脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_无阻塞脚本加载工具"><span class="toc-number">1.4.</span> <span class="toc-text">4. 无阻塞脚本加载工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理作用域"><span class="toc-number">2.</span> <span class="toc-text">管理作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_作用域链和标识符解析"><span class="toc-number">2.1.</span> <span class="toc-text">1. 作用域链和标识符解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_标识符解析的性能"><span class="toc-number">2.2.</span> <span class="toc-text">2. 标识符解析的性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_闭包，作用域和内存"><span class="toc-number">2.3.</span> <span class="toc-text">3. 闭包，作用域和内存</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript加载和运行"><span class="toc-number">1.</span> <span class="toc-text">javascript加载和运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#脚本位置"><span class="toc-number">1.1.</span> <span class="toc-text">脚本位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组织脚本"><span class="toc-number">1.2.</span> <span class="toc-text">组织脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无阻塞的脚本"><span class="toc-number">1.3.</span> <span class="toc-text">无阻塞的脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无阻塞脚本加载工具"><span class="toc-number">1.4.</span> <span class="toc-text">无阻塞脚本加载工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理作用域"><span class="toc-number">2.</span> <span class="toc-text">管理作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域链和标识符解析"><span class="toc-number">2.1.</span> <span class="toc-text">作用域链和标识符解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标识符解析的性能"><span class="toc-number">2.2.</span> <span class="toc-text">标识符解析的性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包，作用域和内存"><span class="toc-number">2.3.</span> <span class="toc-text">闭包，作用域和内存</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="javascript加载和运行">javascript加载和运行</h2><h3 id="1-_脚本位置">1. 脚本位置</h3><p>尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（<code>&lt;/body&gt;</code>之前)</p>
-<h3 id="2-_组织脚本">2. 组织脚本</h3><p>每个<code>&lt;script&gt;</code>标签初始下载都会阻塞页面渲染，所以减少页面包含的<code>&lt;script&gt;</code>标签数量有助于改善这一情况。考虑到到HTTP请求会额外带来性能的开销。下载单个100B的文件比下载4个25B的文件更快。所以，减少页面中外链脚本文件的数量会改善性能。</p>
+		<h2 id="javascript加载和运行">javascript加载和运行</h2><h3 id="脚本位置">脚本位置</h3><p>尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（<code>&lt;/body&gt;</code>之前)</p>
+<h3 id="组织脚本">组织脚本</h3><p>每个<code>&lt;script&gt;</code>标签初始下载都会阻塞页面渲染，所以减少页面包含的<code>&lt;script&gt;</code>标签数量有助于改善这一情况。考虑到到HTTP请求会额外带来性能的开销。下载单个100B的文件比下载4个25B的文件更快。所以，减少页面中外链脚本文件的数量会改善性能。</p>
 <a id="more"></a>
-<h3 id="3-_无阻塞的脚本">3. 无阻塞的脚本</h3><ul>
+<h3 id="无阻塞的脚本">无阻塞的脚本</h3><ul>
 <li>延迟的脚本：带有defer属性的<code>&lt;script&gt;</code>标签，需要浏览器支持</li>
 <li>动态脚本元素:在跨浏览器兼容性和易用的优势，是最通用的无阻塞加载解决方案</li>
 <li><p>XMLHttpRequest注入：先创建一个XHR对象，然后用她下载javascript文件，最后通过创建动态<code>&lt;script&gt;</code>元素将代码注入页面中</p>
  <figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest<span class="params">()</span>;</span><br><span class="line">xhr.open<span class="params">(<span class="string">"get"</span>,<span class="string">"file.js"</span>,<span class="literal">true</span>)</span>;</span><br><span class="line">xhr.onreadystatechange = funtion<span class="params">()</span>&#123;</span><br><span class="line">     <span class="keyword">if</span><span class="params">(xhr.readyState == <span class="number">4</span>)</span>&#123;</span><br><span class="line">          <span class="keyword">if</span><span class="params">(xhr.status&gt;=<span class="number">200</span>&amp;&amp;xhr.status&lt;<span class="number">300</span>||xhr.status==<span class="number">304</span>)</span>&#123;</span><br><span class="line">               var script = document.creatElement<span class="params">(<span class="string">"script"</span>)</span>;</span><br><span class="line">               script.type=<span class="string">"text/javascript"</span>;</span><br><span class="line">               script.<span class="built_in">text</span>=xhr.responseText;</span><br><span class="line">               document.body.appendChild<span class="params">(script)</span>;</span><br><span class="line">               &#125;</span><br><span class="line">          &#125;    </span><br><span class="line">&#125;;</span><br><span class="line">xhr.send<span class="params">(null)</span>;</span><br><span class="line"><span class="comment">//由于代码是在&lt;script&gt;标签之前返回的，因此它下载后不会自动执行。</span></span><br><span class="line"><span class="comment">//同样的代码在所有主流浏览器中无一例外都能正常工作</span></span><br><span class="line"><span class="comment">//局限性在于：javascript文件必须与请求的页面处于相同的域，即javascript不能从CDN下载</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="4-_无阻塞脚本加载工具">4. 无阻塞脚本加载工具</h3><p>lazyLoad类库、LABjs等等</p>
-<h2 id="管理作用域">管理作用域</h2><h3 id="1-_作用域链和标识符解析">1. 作用域链和标识符解析</h3><p>在函数执行的过程中，没遇到一个变量，都会经历一次标识符解析过程以决定从哪里获取或存储数据。该过程搜索运行期上下文的作用域链，查找同名的标识符。搜索过程从作用域链头部开始也就是当前运行函数的活动对象，如果找到了，就使用这个标示符对应的变量；如果没有找到，继续搜索作用域链中的下一个对象，直到标识符被找到，或者没有可用于搜索的对象为止，这种情况下标识符被认为是未定义的。正是这个搜索过程影响了性能。</p>
-<h3 id="2-_标识符解析的性能">2. 标识符解析的性能</h3><p>一个标识符所在的位置越深，他的读写速度就越慢，因此读写局部变量总是最快的，而读写全局变量通常是最慢的。全局变量总是存在于运行期上下文作用域链的最末端，因此是最远的。在没有优化javascript引擎的浏览器中，尽量使用局部变量，如果某个跨作用域的值在函数中被引用了多次，就把他存储到局部变量里。</p>
+<h3 id="无阻塞脚本加载工具">无阻塞脚本加载工具</h3><p>lazyLoad类库、LABjs等等</p>
+<h2 id="管理作用域">管理作用域</h2><h3 id="作用域链和标识符解析">作用域链和标识符解析</h3><p>在函数执行的过程中，没遇到一个变量，都会经历一次标识符解析过程以决定从哪里获取或存储数据。该过程搜索运行期上下文的作用域链，查找同名的标识符。搜索过程从作用域链头部开始也就是当前运行函数的活动对象，如果找到了，就使用这个标示符对应的变量；如果没有找到，继续搜索作用域链中的下一个对象，直到标识符被找到，或者没有可用于搜索的对象为止，这种情况下标识符被认为是未定义的。正是这个搜索过程影响了性能。</p>
+<h3 id="标识符解析的性能">标识符解析的性能</h3><p>一个标识符所在的位置越深，他的读写速度就越慢，因此读写局部变量总是最快的，而读写全局变量通常是最慢的。全局变量总是存在于运行期上下文作用域链的最末端，因此是最远的。在没有优化javascript引擎的浏览器中，尽量使用局部变量，如果某个跨作用域的值在函数中被引用了多次，就把他存储到局部变量里。</p>
   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> doc = <span class="built_in">document</span>,</span><br><span class="line">      bd = doc.body,</span><br><span class="line">      links = doc.getElementByTagName(<span class="string">'a'</span>);</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span>,</span><br><span class="line">      len = links.length;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; len) &#123;</span><br><span class="line">      update(links[i++]);</span><br><span class="line">  &#125;</span><br><span class="line">  doc.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      start();</span><br><span class="line">  &#125;;</span><br><span class="line">     bd.className = <span class="string">'active'</span></span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//首先将document对象引用存储到局部变量doc中，全局变量的访问减少，当有很多全局变量</span></span><br><span class="line">    <span class="comment">//被反复访问时，这种方法对性能的改善是很明显的。</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-_闭包，作用域和内存">3. 闭包，作用域和内存</h3><p>将常用的跨作用域变量存储在局部变量中，然后访问局部变量嵌套的对象成员会明显影响性能，尽量少用<br>通常来说，把常用的对象成员、数组元素、跨域变量保存在局部变量中来改善javascript性能，因为局部变量访问速度更快。</p>
+<h3 id="闭包，作用域和内存">闭包，作用域和内存</h3><p>将常用的跨作用域变量存储在局部变量中，然后访问局部变量嵌套的对象成员会明显影响性能，尽量少用<br>通常来说，把常用的对象成员、数组元素、跨域变量保存在局部变量中来改善javascript性能，因为局部变量访问速度更快。</p>
 <p>DOM</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initHtml1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">15000</span>;i++)&#123;</span><br><span class="line">     <span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML+=<span class="string">'a'</span>;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initHtml2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="keyword">var</span> html = <span class="string">""</span>;</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">15000</span>;i++)&#123;</span><br><span class="line">     html+=<span class="string">'a'</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML = html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>initHtml1()比initHtml2()速度慢很多，initHtml2()使用局部变量存储更新后的内容，减少了DOM访问，因此，减少DOM访问次数，讲运算尽量留在ECMAScript这端处理。</p>
@@ -179,7 +180,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript加载和运行"><span class="toc-number">1.</span> <span class="toc-text">javascript加载和运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_脚本位置"><span class="toc-number">1.1.</span> <span class="toc-text">1. 脚本位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_组织脚本"><span class="toc-number">1.2.</span> <span class="toc-text">2. 组织脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_无阻塞的脚本"><span class="toc-number">1.3.</span> <span class="toc-text">3. 无阻塞的脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_无阻塞脚本加载工具"><span class="toc-number">1.4.</span> <span class="toc-text">4. 无阻塞脚本加载工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理作用域"><span class="toc-number">2.</span> <span class="toc-text">管理作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_作用域链和标识符解析"><span class="toc-number">2.1.</span> <span class="toc-text">1. 作用域链和标识符解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_标识符解析的性能"><span class="toc-number">2.2.</span> <span class="toc-text">2. 标识符解析的性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_闭包，作用域和内存"><span class="toc-number">2.3.</span> <span class="toc-text">3. 闭包，作用域和内存</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#javascript加载和运行"><span class="toc-number">1.</span> <span class="toc-text">javascript加载和运行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#脚本位置"><span class="toc-number">1.1.</span> <span class="toc-text">脚本位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#组织脚本"><span class="toc-number">1.2.</span> <span class="toc-text">组织脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无阻塞的脚本"><span class="toc-number">1.3.</span> <span class="toc-text">无阻塞的脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无阻塞脚本加载工具"><span class="toc-number">1.4.</span> <span class="toc-text">无阻塞脚本加载工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管理作用域"><span class="toc-number">2.</span> <span class="toc-text">管理作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域链和标识符解析"><span class="toc-number">2.1.</span> <span class="toc-text">作用域链和标识符解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标识符解析的性能"><span class="toc-number">2.2.</span> <span class="toc-text">标识符解析的性能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包，作用域和内存"><span class="toc-number">2.3.</span> <span class="toc-text">闭包，作用域和内存</span></a></li></ol></li></ol>
  
   </div>
 
@@ -314,7 +315,7 @@
 		
 
 		<p class="copyright">
-		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> © 2015 
+		 © 2015 
 		
 		<a href="/about" target="_blank" title="Xiao Jie">Xiao Jie</a>
 		
