@@ -5,38 +5,29 @@
   <meta charset="UTF-8">
   <meta name="baidu-site-verification" content="ryiU3WYae7" />
   
-    <title>CSS选择器 | 随遇而安</title>
+    <title>javascript性能优化小知识 | 随遇而安</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xiao Jie">
     
 
     
-    <meta name="description" content="层次选择器
-$(“body &amp;gt; div”)   body中子元素中的div
-$(“#one + div”)   id为one的下一个紧挨着的div(兄弟)
-$(“#two ~ div”)   id为two的后面的所有div(兄弟)拓展
-$(“#one”).sibling(“div”)  id为one的所有div兄弟元素
-$(“#one”).nextAll(“span”)  id为one的后面">
+    <meta name="description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。
+避免全局查找在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些。
+字符串的连接如果要连接多个字符串，应该少使用+=，如s+=a;s+=b;s+=c;应该">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS选择器">
-<meta property="og:url" content="http://xiaojwithu.info/2015/05/26/CSS选择器/index.html">
+<meta property="og:title" content="javascript性能优化小知识">
+<meta property="og:url" content="http://xiaojwithu.info/2015/07/27/javascript性能优化小知识/index.html">
 <meta property="og:site_name" content="随遇而安">
-<meta property="og:description" content="层次选择器
-$(“body &amp;gt; div”)   body中子元素中的div
-$(“#one + div”)   id为one的下一个紧挨着的div(兄弟)
-$(“#two ~ div”)   id为two的后面的所有div(兄弟)拓展
-$(“#one”).sibling(“div”)  id为one的所有div兄弟元素
-$(“#one”).nextAll(“span”)  id为one的后面">
-<meta property="og:updated_time" content="2015-06-15T09:01:58.000Z">
+<meta property="og:description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。
+避免全局查找在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些。
+字符串的连接如果要连接多个字符串，应该少使用+=，如s+=a;s+=b;s+=c;应该">
+<meta property="og:updated_time" content="2015-07-27T02:48:33.398Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS选择器">
-<meta name="twitter:description" content="层次选择器
-$(“body &amp;gt; div”)   body中子元素中的div
-$(“#one + div”)   id为one的下一个紧挨着的div(兄弟)
-$(“#two ~ div”)   id为two的后面的所有div(兄弟)拓展
-$(“#one”).sibling(“div”)  id为one的所有div兄弟元素
-$(“#one”).nextAll(“span”)  id为one的后面">
+<meta name="twitter:title" content="javascript性能优化小知识">
+<meta name="twitter:description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。
+避免全局查找在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些。
+字符串的连接如果要连接多个字符串，应该少使用+=，如s+=a;s+=b;s+=c;应该">
 
     
     <link rel="alternative" href="/atom.xml" title="随遇而安" type="application/atom+xml">
@@ -88,14 +79,14 @@ $(“#one”).nextAll(“span”)  id为one的后面">
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/05/26/CSS选择器/" title="CSS选择器" itemprop="url">CSS选择器</a>
+      <a href="/2015/07/27/javascript性能优化小知识/" title="javascript性能优化小知识" itemprop="url">javascript性能优化小知识</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xiao Jie" target="_blank" itemprop="author">Xiao Jie</a>
 		
   <p class="article-time">
-    <time datetime="2015-05-26T05:17:00.000Z" itemprop="datePublished"> 发表于 2015-05-26</time>
+    <time datetime="2015-07-27T02:22:26.000Z" itemprop="datePublished"> 发表于 2015-07-27</time>
     
   </p>
 </header>
@@ -104,71 +95,19 @@ $(“#one”).nextAll(“span”)  id为one的后面">
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#层次选择器"><span class="toc-number">1.</span> <span class="toc-text">层次选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤选择器：以”:”开头"><span class="toc-number">2.</span> <span class="toc-text">过滤选择器：以”:”开头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容过滤选择器"><span class="toc-number">3.</span> <span class="toc-text">内容过滤选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可见性过滤选择器"><span class="toc-number">4.</span> <span class="toc-text">可见性过滤选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性过滤选择器"><span class="toc-number">5.</span> <span class="toc-text">属性过滤选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）"><span class="toc-number">6.</span> <span class="toc-text">子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单对象属性过滤选择器"><span class="toc-number">7.</span> <span class="toc-text">表单对象属性过滤选择器</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#避免全局查找"><span class="toc-number">1.</span> <span class="toc-text">避免全局查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串的连接"><span class="toc-number">2.</span> <span class="toc-text">字符串的连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字转换成字符串"><span class="toc-number">3.</span> <span class="toc-text">数字转换成字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点数转换成整型"><span class="toc-number">4.</span> <span class="toc-text">浮点数转换成整型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用DocumentFragment优化多次append"><span class="toc-number">5.</span> <span class="toc-text">使用DocumentFragment优化多次append</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用一次innerHTML赋值代替构建dom元素"><span class="toc-number">6.</span> <span class="toc-text">使用一次innerHTML赋值代替构建dom元素</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="层次选择器">层次选择器</h2><ul>
-<li>$(“body &gt; div”)   body中子元素中的div</li>
-<li>$(“#one + div”)   id为one的下一个紧挨着的div(兄弟)</li>
-<li>$(“#two ~ div”)   id为two的后面的所有div(兄弟)<br>拓展</li>
-<li>$(“#one”).sibling(“div”)  id为one的所有div兄弟元素</li>
-<li>$(“#one”).nextAll(“span”)  id为one的后面所有span元素</li>
-<li>$(“#one”).prevAll(“div”)  id为one的前面的所有的div</li>
-<li>$(“#one”).nextAll(“span:first”)  id为one的后面所有span元素的第一个</li>
-</ul>
-<a id="more"></a>
-<h2 id="过滤选择器：以”:”开头">过滤选择器：以”:”开头</h2><ul>
-<li>$(“div:first”) 第一个div</li>
-<li>$(“div:last”)   最后一个div</li>
-<li>$(“div:not(.one)”)  class不为one的div</li>
-<li>$(“div:even”) 索引值偶数div</li>
-<li>$(“div:nod”)   索引值奇数div</li>
-<li>$(“div:gt(3)”)   索引值大于3的div</li>
-<li>$(“div:eq(3)”)   索引值等于3的div</li>
-<li>$(“div:lt(3)”)   索引值小于3的div</li>
-<li>$(“li:gt(1):lt(4)”)  不是第2个到第5个，而是在第二个的基础上增加4    *</li>
-<li>$(“:header”)  所有的标题元素</li>
-<li>$(“:animated”) 正在执行动画的所有元素</li>
-<li>$(“#one”).nextAll(“span:first”)  id为one的后面第一个span元素</li>
-</ul>
-<h2 id="内容过滤选择器">内容过滤选择器</h2><ul>
-<li>$(“div:contains(‘ss’)”)   文本含有ss的div元素</li>
-<li>$(“div:empty”)   文本为空的div元素</li>
-<li>$(“div:has(.mini)”)  含有class为mini的所有div元素</li>
-<li>$(div:parent)  或者 $(“div:not(:empty)”)  所有非空的div元素</li>
-</ul>
-<h2 id="可见性过滤选择器">可见性过滤选择器</h2><ul>
-<li>$(“div:visible”) 所有可见的div</li>
-<li>$(“div:hidden”).show(time)  所有不可见的div元素显示，time为时间，单位为毫秒</li>
-<li>$(“input:hidden”).val()   所有不可见的input元素的value</li>
-</ul>
-<h2 id="属性过滤选择器">属性过滤选择器</h2><ul>
-<li>$(“div:[title]”)  含有属性title的div元素</li>
-<li>$(“div:[title==’test’]”) title属性等于test的div元素</li>
-<li>$(“div:[title!=’test’]”) title属性不等于test的div元素，包括没有title属性的元素</li>
-<li>$(“div:[title^=’te’]”)  title属性以te开始的div元素</li>
-<li>$(“div:[title$=’est’]”)  title属性以est结束的div元素</li>
-<li>$(“div:[title*=’es’]”)   title属性值含有es的div元素</li>
-<li>$(“div:[id][title*=’es’]”)  有id属性的div元素中的title属性值中含有es的div元素</li>
-<li>$(“div:[title][title!=’test’]”)  含有title属性，且title属性值不为test的div元素</li>
-</ul>
-<h2 id="子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）">子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）</h2><ul>
-<li>$(“.one :nth-child(2)”)  class为one的第二个子元素，不是索引值为2</li>
-<li>$(“.one :first-child”)   class为one的第一个子元素</li>
-<li>$(“.one :last-child”)    class为one的最后一个子元素</li>
-<li>$(“.one :only-child”)    class为one的只有一个节点的节点元素</li>
-<li>$(“div.one :nth-child(2)”)   class为one的第二个div子元素</li>
-</ul>
-<h2 id="表单对象属性过滤选择器">表单对象属性过滤选择器</h2><ul>
-<li>$(“:text:enabled”).val(“hello”)   使所有可用的单行文本框的value值变为hello</li>
-<li>$(“:text:disabled”).val(“hello”)   设置所有不可用单行文本框value值为hello</li>
-<li>$(“:checkbox[name=’haha’]:checked”).length    多选框name为haha的被选中的个数</li>
-<li>$(“select :selected”).length   select的option子节点，冒号前加空格，下拉选择框的选中的长度</li>
-<li>$(“select :selected”).val()   因为$(“select :selected”)选中的是一个数组，当有多个元素时，.val()获取的是第一个选中的值。<br>可使用each遍历：</li>
-<li>$(“select :selected”).each(function(){<br>   alert(this.value);//this是正在得到的DOM对象，不是jQuery对象<br>})</li>
-<li>$(“checkbox[name==’haha’]:checked”).each(function(){<br>   alert(this.value);//获取多选框中选中的内容。<br>});</li>
-</ul>
+		<p>前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。</p>
+<h3 id="避免全局查找">避免全局查找</h3><p>在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些。</p>
+<h3 id="字符串的连接">字符串的连接</h3><p>如果要连接多个字符串，应该少使用+=，如<br>s+=a;<br>s+=b;<br>s+=c;<br>应该写成s+=a + b + c；<br>而如果是收集字符串，比如多次对同一个字符串进行+=操作的话，最好使用一个缓存，使用JavaScript数组来收集，最后使用join方法连接起来。</p>
+<h3 id="数字转换成字符串">数字转换成字符串</h3><p>(“” +) &gt; String() &gt; .toString() &gt; new String()<br>字符串如’1322’转换成数字的时候可以在前面加’+’,如“var str = ‘123’;var num = +str”,那么’typeof num’为number</p>
+<h3 id="浮点数转换成整型">浮点数转换成整型</h3><p>很多人喜欢使用parseInt()，其实parseInt()是用于将字符串转换成数字，而不是浮点数和整型之间的转换，我们应该使用Math.floor()或者Math.round()。</p>
+<h3 id="使用DocumentFragment优化多次append">使用DocumentFragment优化多次append</h3><p>一旦需要更新DOM,请考虑使用文档碎片来构建DOM结构，然后再将其添加到现存的文档中。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">          <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">          el.innerHTML = i;</span><br><span class="line">          <span class="built_in">document</span>.body.appendChild(el);</span><br><span class="line">      &#125;       </span><br><span class="line">       <span class="comment">//可以替换为：</span></span><br><span class="line">      <span class="keyword">var</span> frag = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;  </span><br><span class="line">              <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">          	el.innerHTML = i;</span><br><span class="line">          	frag.appendChild(el);</span><br><span class="line">      	&#125;</span><br><span class="line">      <span class="built_in">document</span>.body.appendChild(frag);</span><br></pre></td></tr></table></figure>
+<h3 id="使用一次innerHTML赋值代替构建dom元素">使用一次innerHTML赋值代替构建dom元素</h3><p>对于大的DOM更改，使用innerHTML要比使用标准的DOM方法创建同样的DOM结构快得多。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> frag = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">         <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">         el.innerHTML = i;</span><br><span class="line">         frag.appendChild(el);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">document</span>.body.appendChild(frag);</span><br><span class="line">         <span class="comment">//可以替换为：</span></span><br><span class="line">     <span class="keyword">var</span> html = [];</span><br><span class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">         html.push(<span class="string">'&lt;p&gt;'</span> + i + <span class="string">'&lt;/p&gt;'</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="built_in">document</span>.body.innerHTML = html.join(<span class="string">''</span>);</span><br></pre></td></tr></table></figure>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -182,7 +121,7 @@ $(“#one”).nextAll(“span”)  id为one的后面">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CSS/">CSS</a>
+  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/性能优化/">性能优化</a>
   </div>
 
 </div>
@@ -191,7 +130,7 @@ $(“#one”).nextAll(“span”)  id为one的后面">
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://xiaojwithu.info/2015/05/26/CSS选择器/" data-title="CSS选择器 | 随遇而安" data-tsina="2881789662" class="share clearfix">
+	  <div data-url="http://xiaojwithu.info/2015/07/27/javascript性能优化小知识/" data-title="javascript性能优化小知识 | 随遇而安" data-tsina="2881789662" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -204,19 +143,11 @@ $(“#one”).nextAll(“span”)  id为one的后面">
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/05/26/淡淡的友情、浅浅的爱/" title="淡淡的友情、浅浅的爱">
-  <strong>上一篇：</strong><br/>
-  <span>
-  淡淡的友情、浅浅的爱</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/"  title="数据库中的html源代码返还到页面的iframe中">
+<a href="/2015/06/27/jQuery常用方法归纳总结/"  title="jQuery常用方法归纳">
  <strong>下一篇：</strong><br/> 
- <span>数据库中的html源代码返还到页面的iframe中
+ <span>jQuery常用方法归纳
 </span>
 </a>
 </div>
@@ -225,7 +156,7 @@ $(“#one”).nextAll(“span”)  id为one的后面">
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/05/26/CSS选择器/" data-title="CSS选择器" data-url="http://xiaojwithu.info/2015/05/26/CSS选择器/"></div>
+	<div class="ds-thread" data-thread-key="2015/07/27/javascript性能优化小知识/" data-title="javascript性能优化小知识" data-url="http://xiaojwithu.info/2015/07/27/javascript性能优化小知识/"></div>
 </section>
 
 
@@ -235,7 +166,7 @@ $(“#one”).nextAll(“span”)  id为one的后面">
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#层次选择器"><span class="toc-number">1.</span> <span class="toc-text">层次选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤选择器：以”:”开头"><span class="toc-number">2.</span> <span class="toc-text">过滤选择器：以”:”开头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容过滤选择器"><span class="toc-number">3.</span> <span class="toc-text">内容过滤选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可见性过滤选择器"><span class="toc-number">4.</span> <span class="toc-text">可见性过滤选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性过滤选择器"><span class="toc-number">5.</span> <span class="toc-text">属性过滤选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）"><span class="toc-number">6.</span> <span class="toc-text">子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单对象属性过滤选择器"><span class="toc-number">7.</span> <span class="toc-text">表单对象属性过滤选择器</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#避免全局查找"><span class="toc-number">1.</span> <span class="toc-text">避免全局查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串的连接"><span class="toc-number">2.</span> <span class="toc-text">字符串的连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字转换成字符串"><span class="toc-number">3.</span> <span class="toc-text">数字转换成字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点数转换成整型"><span class="toc-number">4.</span> <span class="toc-text">浮点数转换成整型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用DocumentFragment优化多次append"><span class="toc-number">5.</span> <span class="toc-text">使用DocumentFragment优化多次append</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用一次innerHTML赋值代替构建dom元素"><span class="toc-number">6.</span> <span class="toc-text">使用一次innerHTML赋值代替构建dom元素</span></a></li></ol>
  
   </div>
 
