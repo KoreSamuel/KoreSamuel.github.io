@@ -28,7 +28,7 @@ $(“#one + div”)   id为one的下一个紧挨着的div(兄弟)
 $(“#two ~ div”)   id为two的后面的所有div(兄弟)拓展
 $(“#one”).sibling(“div”)  id为one的所有div兄弟元素
 $(“#one”).nextAll(“span”)  id为one的后面">
-<meta property="og:updated_time" content="2015-06-15T09:01:58.000Z">
+<meta property="og:updated_time" content="2015-07-29T02:24:51.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS选择器">
 <meta name="twitter:description" content="层次选择器
@@ -123,14 +123,13 @@ $(“#one”).nextAll(“span”)  id为one的后面">
 <li>$(“div:last”)   最后一个div</li>
 <li>$(“div:not(.one)”)  class不为one的div</li>
 <li>$(“div:even”) 索引值偶数div</li>
-<li>$(“div:nod”)   索引值奇数div</li>
+<li>$(“div:odd”)   索引值奇数div</li>
 <li>$(“div:gt(3)”)   索引值大于3的div</li>
 <li>$(“div:eq(3)”)   索引值等于3的div</li>
 <li>$(“div:lt(3)”)   索引值小于3的div</li>
 <li>$(“li:gt(1):lt(4)”)  不是第2个到第5个，而是在第二个的基础上增加4    *</li>
 <li>$(“:header”)  所有的标题元素</li>
 <li>$(“:animated”) 正在执行动画的所有元素</li>
-<li>$(“#one”).nextAll(“span:first”)  id为one的后面第一个span元素</li>
 </ul>
 <h2 id="内容过滤选择器">内容过滤选择器</h2><ul>
 <li>$(“div:contains(‘ss’)”)   文本含有ss的div元素</li>
