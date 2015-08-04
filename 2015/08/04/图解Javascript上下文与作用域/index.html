@@ -1,0 +1,535 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="baidu-site-verification" content="ryiU3WYae7" />
+  
+    <title>图解Javascript上下文与作用域 | 随遇而安</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Xiao Jie">
+    
+
+    
+    <meta name="description" content="本文尝试阐述Javascript中的上下文与作用域背后的机制，主要涉及到执行上下文（execution context）、作用域链（scope chain）、闭包（closure）、this等概念。
+Execution context执行上下文（简称上下文）决定了Js执行过程中可以获取哪些变量、函数、数据，一段程序可能被分割成许多不同的上下文，每一个上下文都会绑定一个变量对象（variable o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图解Javascript上下文与作用域">
+<meta property="og:url" content="http://xiaojwithu.info/2015/08/04/图解Javascript上下文与作用域/index.html">
+<meta property="og:site_name" content="随遇而安">
+<meta property="og:description" content="本文尝试阐述Javascript中的上下文与作用域背后的机制，主要涉及到执行上下文（execution context）、作用域链（scope chain）、闭包（closure）、this等概念。
+Execution context执行上下文（简称上下文）决定了Js执行过程中可以获取哪些变量、函数、数据，一段程序可能被分割成许多不同的上下文，每一个上下文都会绑定一个变量对象（variable o">
+<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai1.jpg">
+<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai2.jpg">
+<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai3.jpg">
+<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai4.jpg">
+<meta property="og:updated_time" content="2015-08-04T07:26:47.411Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图解Javascript上下文与作用域">
+<meta name="twitter:description" content="本文尝试阐述Javascript中的上下文与作用域背后的机制，主要涉及到执行上下文（execution context）、作用域链（scope chain）、闭包（closure）、this等概念。
+Execution context执行上下文（简称上下文）决定了Js执行过程中可以获取哪些变量、函数、数据，一段程序可能被分割成许多不同的上下文，每一个上下文都会绑定一个变量对象（variable o">
+
+    
+    <link rel="alternative" href="/atom.xml" title="随遇而安" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logos.png" alt="随遇而安" title="随遇而安"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="随遇而安">随遇而安</a></h1>
+				<h2 class="blog-motto">一场雨的时间里，你没看我，我没看雨。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于我</a></li>
+					
+                        <li><a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&&s.height<n&&s.width>t&&s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&&!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&&t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//7xjp74.com1.z0.glb.clouddn.com/The%20Beast.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>High一下!</a></li>
+				</ul>
+			</nav>					
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/08/04/图解Javascript上下文与作用域/" title="图解Javascript上下文与作用域" itemprop="url">图解Javascript上下文与作用域</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Xiao Jie" target="_blank" itemprop="author">Xiao Jie</a>
+		
+  <p class="article-time">
+    <time datetime="2015-08-04T06:54:54.000Z" itemprop="datePublished"> 发表于 2015-08-04</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Execution_context"><span class="toc-number">1.</span> <span class="toc-text">Execution context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this"><span class="toc-number">2.</span> <span class="toc-text">this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scope_chain"><span class="toc-number">3.</span> <span class="toc-text">Scope chain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Closure"><span class="toc-number">4.</span> <span class="toc-text">Closure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this_in_closure"><span class="toc-number">5.</span> <span class="toc-text">this in closure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">7.</span> <span class="toc-text">References</span></a></li></ol>
+		
+		</div>
+		
+		<p>本文尝试阐述Javascript中的上下文与作用域背后的机制，主要涉及到执行上下文（<code>execution context</code>）、作用域链（<code>scope chain</code>）、闭包（<code>closure</code>）、<code>this</code>等概念。</p>
+<h2 id="Execution_context">Execution context</h2><p>执行上下文（简称上下文）决定了Js执行过程中可以获取哪些变量、函数、数据，一段程序可能被分割成许多不同的上下文，每一个上下文都会绑定一个变量对象（<code>variable object</code>），它就像一个容器，用来存储当前上下文中所有已定义或可获取的变量、函数等。位于最顶端或最外层的上下文称为全局上下文（<code>global context</code>），全局上下文取决于执行环境，如Node中的<code>global</code>和Browser中的<code>window</code>：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai1.jpg" alt=""><br>需要注意的是，上下文与作用域（<code>scope</code>）是不同的概念。Js本身是单线程的，每当有<code>function</code>被执行时，就会产生一个新的上下文，这一上下文会被压入Js的上下文堆栈（<code>context stack</code>）中，<code>function</code>执行结束后则被弹出，因此Js解释器总是在栈顶上下文中执行。在生成新的上下文时，首先会绑定该上下文的变量对象，其中包括<code>arguments</code>和该函数中定义的变量；之后会创建属于该上下文的作用域链（<code>scope chain</code>），最后将<code>this</code>赋予这一<code>function</code>所属的<code>Object</code>，这一过程可以通过下图表示：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai2.jpg" alt=""></p>
+<h2 id="this">this</h2><p>上文提到<code>this</code>被赋予<code>function</code>所属的<code>Object</code>，具体来说，当<code>function</code>是定义在<code>global</code>对中时，<code>this</code>指向<code>global</code>；当<code>function</code>作为<code>Object</code>的方法时，<code>this</code>指向该<code>Object</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;  </span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line"> 		<span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line">f();  <span class="comment">// -&gt; 1</span></span><br><span class="line"><span class="keyword">var</span> ff = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line"> 		<span class="keyword">this</span>.x = <span class="number">2</span>;</span><br><span class="line"> 		<span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line">ff(); <span class="comment">// -&gt; 2  </span></span><br><span class="line">x     <span class="comment">// -&gt; 2</span></span><br><span class="line"><span class="keyword">var</span> o = &#123;x: <span class="string">"o's x"</span>, f: f&#125;;  </span><br><span class="line">o.f(); <span class="comment">// "o's x"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Scope_chain">Scope chain</h2><p>上文提到，在<code>function</code>被执行时生成新的上下文时会先绑定当前上下文的变量对象，再创建作用域链。我们知道<code>function</code>的定义是可以嵌套在其他<code>function</code>所创建的上下文中，也可以并列地定义在同一个上下文中（如<code>global</code>）。作用域链实际上就是自下而上地将所有嵌套定义的上下文所绑定的变量对象串接到一起，使嵌套的<code>function</code>可以“继承”上层上下文的变量，而并列的<code>function</code>之间互不干扰：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai3.jpg" alt=""></p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var x = 'global';  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">()</span>&#123;</span>  </span><br><span class="line"> 		var x = <span class="string">"a's x"</span>;</span><br><span class="line">   	<span class="function"><span class="keyword">function</span> <span class="title">b</span><span class="params">()</span>&#123;</span></span><br><span class="line">   		var y = <span class="string">"b's y"</span>;</span><br><span class="line">   		console.<span class="built_in">log</span><span class="params">(x)</span>;</span><br><span class="line"> 		&#125;;</span><br><span class="line"> 		b<span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span><span class="params">()</span>&#123;</span>  </span><br><span class="line"> 		var x = <span class="string">"c's x"</span>;</span><br><span class="line"> 		<span class="function"><span class="keyword">function</span> <span class="title">d</span><span class="params">()</span>&#123;</span></span><br><span class="line">   		console.<span class="built_in">log</span><span class="params">(y)</span>;</span><br><span class="line"> 		&#125;;</span><br><span class="line"> 		d<span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line">a<span class="params">()</span>;  <span class="comment">// -&gt; "a's x"  </span></span><br><span class="line">c<span class="params">()</span>;  <span class="comment">// -&gt; ReferenceError: y is not defined  </span></span><br><span class="line">x     <span class="comment">// -&gt; "global"  </span></span><br><span class="line">y     <span class="comment">// -&gt; ReferenceError: y is not defined</span></span><br></pre></td></tr></table></figure>
+<h2 id="Closure">Closure</h2><p>如果理解了上文中提到的上下文与作用域链的机制，再来看闭包的概念就很清楚了。每个<code>function</code>在调用时会创建新的上下文及作用域链，而作用域链就是将外层（上层）上下文所绑定的变量对象逐一串连起来，使当前<code>function</code>可以获取外层上下文的变量、数据等。如果我们在<code>function</code>中定义新的<code>function</code>，同时将内层<code>function</code>作为值返回，那么内层<code>function</code>所包含的作用域链将会一起返回，即使内层<code>function</code>在其他上下文中执行，其内部的作用域链仍然保持着原有的数据，而当前的上下文可能无法获取原先外层<code>function</code>中的数据，使得<code>function</code>内部的作用域链被保护起来，从而形成“闭包”。看下面的例子：</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var x = <span class="number">100</span>;  </span><br><span class="line">var inc = <span class="function"><span class="keyword">function</span><span class="params">()</span>&#123;</span>  </span><br><span class="line">		var x = <span class="number">0</span>;</span><br><span class="line"> 		return <span class="function"><span class="keyword">function</span><span class="params">()</span>&#123;</span></span><br><span class="line">   		console.<span class="built_in">log</span><span class="params">(x++)</span>;</span><br><span class="line"> 		&#125;;</span><br><span class="line">&#125;;</span><br><span class="line">var inc1 = inc<span class="params">()</span>;  </span><br><span class="line">var inc2 = inc<span class="params">()</span>;</span><br><span class="line">inc1<span class="params">()</span>;  <span class="comment">// -&gt; 0  </span></span><br><span class="line">inc1<span class="params">()</span>;  <span class="comment">// -&gt; 1  </span></span><br><span class="line">inc2<span class="params">()</span>;  <span class="comment">// -&gt; 0  </span></span><br><span class="line">inc1<span class="params">()</span>;  <span class="comment">// -&gt; 2  </span></span><br><span class="line">inc2<span class="params">()</span>;  <span class="comment">// -&gt; 1  </span></span><br><span class="line">x;       <span class="comment">// -&gt; 100</span></span><br></pre></td></tr></table></figure>
+<p>执行过程如下图所示，<code>inc</code>内部返回的匿名<code>function</code>在创建时生成的作用域链包括了<code>inc</code>中的<code>x</code>，即使后来赋值给<code>inc1</code>和<code>inc2</code>之后，直接在<code>global context</code>下调用，它们的作用域链仍然是由定义中所处的上下文环境决定，而且由于<code>x</code>是在<code>function inc</code>中定义的，无法被外层的<code>global context</code>所改变，从而实现了闭包的效果：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai4.jpg" alt=""></p>
+<h2 id="this_in_closure">this in closure</h2><p>我们已经反复提到执行上下文和作用域实际上是通过<code>function</code>创建、分割的，而<code>function</code>中的<code>this</code>与作用域链不同，它是由执行该<code>function</code>时当前所处的<code>Object</code>环境所决定的，这也是<code>this</code>最容易被混淆用错的一点。一般情况下的例子如下：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </span><br><span class="line"><span class="keyword">var</span> o = &#123;  </span><br><span class="line">   	name: <span class="string">"o"</span>,</span><br><span class="line">   	getName: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">   		<span class="keyword">return</span> <span class="keyword">this</span>.name</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">o.getName();  <span class="comment">// -&gt; "o"</span></span><br></pre></td></tr></table></figure>
+<p>由于执行<code>o.getName()</code>时<code>getName</code>所绑定的<code>this</code>是调用它的<code>o</code>，所以此时<code>this == o</code>；更容易搞混的是在<code>closure</code>条件下：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </span><br><span class="line"><span class="keyword">var</span> oo = &#123;  </span><br><span class="line">    name: <span class="string">"oo"</span>,</span><br><span class="line">    getNameFunc: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        	<span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    	&#125;;</span><br><span class="line">  	&#125;</span><br><span class="line">&#125;</span><br><span class="line">oo.getNameFunc()();  <span class="comment">// -&gt; "global"</span></span><br></pre></td></tr></table></figure>
+<p>此时闭包函数被<code>return</code>后调用相当于：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getName = oo.getNameFunc();  </span><br><span class="line">getName();  <span class="regexp">//</span> -&gt; <span class="string">"global"</span></span><br></pre></td></tr></table></figure>
+<p>换一个更明显的例子：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> ooo</span> = &#123;  </span><br><span class="line">    name: <span class="string">"ooo"</span>,</span><br><span class="line">    getName: oo.getNameFunc() <span class="comment">// 此时闭包函数的this被绑定到新的Object</span></span><br><span class="line">&#125;;</span><br><span class="line">ooo.getName();  <span class="comment">// -&gt; "ooo"</span></span><br></pre></td></tr></table></figure>
+<p>当然，有时候为了避免闭包中的<code>this</code>在执行时被替换，可以采取下面的方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">var</span> name = <span class="string">"global"</span>;  </span><br><span class="line">	<span class="keyword">var</span> oooo = &#123;  </span><br><span class="line">	    name: <span class="string">"ox4"</span>,</span><br><span class="line">	    getNameFunc: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	        <span class="keyword">var</span> self = <span class="keyword">this</span>;</span><br><span class="line">	    	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	       		<span class="keyword">return</span> self.name;</span><br><span class="line">	    	&#125;;</span><br><span class="line">	  	&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	oooo.getNameFunc()(); <span class="comment">// -&gt; "ox4" </span></span><br><span class="line"><span class="string">``</span><span class="string">` </span><br><span class="line"></span><br><span class="line">或者是在调用时强行定义执行的`</span><span class="built_in">Object</span><span class="string">`：</span></span><br></pre></td></tr></table></figure>
+<pre><code><span class="keyword">var</span> name = <span class="string">"global"</span>;  
+<span class="keyword">var</span> oo = {  
+    name: <span class="string">"oo"</span>,
+    getNameFunc: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{
+              <span class="keyword">return</span> <span class="keyword">this</span>.name;
+        };
+      }
+}
+oo.getNameFunc()();  <span class="comment">// -&gt; "global"  </span>
+oo.getNameFunc().bind(oo)(); <span class="comment">// -&gt; "oo"  </span>
+</code></pre><p>```</p>
+<h2 id="总结">总结</h2><p>Js是一门很有趣的语言，由于它的很多特性是针对HTML中DOM的操作，因而显得随意而略失严谨，但随着前端的不断繁荣发展和Node的兴起，Js已经不再是”toy language”或是jQuery时代的”CSS扩展”，本文提到的这些概念无论是对新手还是从传统Web开发中过度过来的Js开发人员来说，都很容易被混淆或误解，希望本文可以有所帮助。</p>
+<p>写这篇总结的原因是我在Github上分享的<a href="https://github.com/coodict/javascript-in-one-pic" target="_blank" rel="external">Learn javascript in one picture</a>，刚开始有人质疑这只能算是一张语法表（syntax cheat sheet），根本不会涉及更深层的闭包、作用域等内容，但是出乎意料的是这个项目竟然获得3000多个star，所以不能虎头蛇尾，以上。</p>
+<h2 id="References">References</h2><ul>
+<li><a href="http://ryanmorr.com/understanding-scope-and-context-in-javascript/" target="_blank" rel="external">Understanding Scope and Context in JavaScript</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="external">this - JavaScript | MDN</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures" target="_blank" rel="external">闭包 - JavaScript | MDN</a></li>
+</ul>
+<p><em><a href="http://blog.rainy.im/2015/07/04/scope-chain-and-prototype-chain-in-js/" target="_blank" rel="external">原文猛戳</a></em></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/转载/">转载</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/javascript/">javascript</a><a href="/tags/概念理解/">概念理解</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://xiaojwithu.info/2015/08/04/图解Javascript上下文与作用域/" data-title="图解Javascript上下文与作用域 | 随遇而安" data-tsina="2881789662" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/07/27/javascript性能优化小知识/"  title="javascript性能优化小知识">
+ <strong>下一篇：</strong><br/> 
+ <span>javascript性能优化小知识
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/08/04/图解Javascript上下文与作用域/" data-title="图解Javascript上下文与作用域" data-url="http://xiaojwithu.info/2015/08/04/图解Javascript上下文与作用域/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Execution_context"><span class="toc-number">1.</span> <span class="toc-text">Execution context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this"><span class="toc-number">2.</span> <span class="toc-text">this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scope_chain"><span class="toc-number">3.</span> <span class="toc-text">Scope chain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Closure"><span class="toc-number">4.</span> <span class="toc-text">Closure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this_in_closure"><span class="toc-number">5.</span> <span class="toc-text">this in closure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">7.</span> <span class="toc-text">References</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/前端积累/" title="前端积累">前端积累<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/学习笔记/" title="学习笔记">学习笔记<sup>4</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/心情随笔/" title="心情随笔">心情随笔<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/未完待续/" title="未完待续">未完待续<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/笔试-面试/" title="笔试&amp;面试">笔试&amp;面试<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/转载/" title="转载">转载<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">标签云</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/XMLHttpRequest/" style="font-size: 10px;">XMLHttpRequest</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/iframe/" style="font-size: 15px;">iframe</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/scroll/" style="font-size: 10px;">scroll</a> <a href="/tags/web前端/" style="font-size: 20px;">web前端</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/挑战/" style="font-size: 10px;">挑战</a> <a href="/tags/概念理解/" style="font-size: 10px;">概念理解</a> <a href="/tags/笔试/" style="font-size: 15px;">笔试</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist categorieslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://www.cnblogs.com/rubylouvre/" target="_blank" title="司徒正美">rubylouvre</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://yoursoulismine.info/" target="_blank" title="室友">虚实</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://shimanxiang.github.io/" target="_blank" title="小笨蛋">Sophiasmx</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="120" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2881789662&verifier=3f2be490&dpc=1"></iframe>
+</div>
+
+
+<div class="sitetool categorieslist">
+  <p class="asidetitle">站长工具</p>
+  <ul>
+  <li><a href="http://tongji.baidu.com/web/10487439/overview/sole?siteId=6909761" target="_blank">
+  <img src="http://7xjp74.com1.z0.glb.clouddn.com/acc143.gif" alt="百度统计">
+  </a></li>
+  </ul>
+</div>
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Xiao Jie in swust. <br/>
+			This is my blog,record my receive.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/xiaojie0428" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/swust-xiaoj" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		<a href="https://www.facebook.com/profile.php?id=100009948548442" target="_blank" class="icon-facebook" title="facebook"></a>
+		
+		
+		
+		
+		
+		
+		<a href="mailto:xiaojie6170@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+				<div class="cc-license">
+          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
+          </a>
+        </div>
+    
+
+		<p class="copyright">
+		 © 2015 
+		
+		<a href="/about" target="_blank" title="Xiao Jie">Xiao Jie</a>
+		
+		<span id="busuanzi_container_site_pv">
+  			You are the <a href="./"><span id="busuanzi_value_site_pv"></span></a> visitor
+		</span>
+		</p>
+		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+        getSize();
+        if (myWidth >= 1024) {
+          c.click();
+        }
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"accompany"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F30fc070a379dbd7572501a63e36ae3c7' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
