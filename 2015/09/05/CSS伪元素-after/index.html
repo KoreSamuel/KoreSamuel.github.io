@@ -5,23 +5,36 @@
   <meta charset="UTF-8">
   <meta name="baidu-site-verification" content="ryiU3WYae7" />
   
-    <title>两个iframe框滚动条联动以及iframe窗口高宽自适应 | 随遇而安</title>
+    <title>CSS伪元素::after提示用法 | 随遇而安</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Xiao Jie">
     
 
     
-    <meta name="description" content="由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。">
+    <meta name="description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素
+语法
+element:after  { style properties }  / CSS2 语法 /element::after { style properties }  / CSS3 语法 /
+
+::after表示法是在CSS 3中引入的,:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="两个iframe框滚动条联动以及iframe窗口高宽自适应">
-<meta property="og:url" content="http://xiaojwithu.info/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/index.html">
+<meta property="og:title" content="CSS伪元素::after提示用法">
+<meta property="og:url" content="http://xiaojwithu.info/2015/09/05/CSS伪元素-after/index.html">
 <meta property="og:site_name" content="随遇而安">
-<meta property="og:description" content="由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。">
-<meta property="og:updated_time" content="2015-06-15T09:01:06.000Z">
+<meta property="og:description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素
+语法
+element:after  { style properties }  / CSS2 语法 /element::after { style properties }  / CSS3 语法 /
+
+::after表示法是在CSS 3中引入的,:">
+<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png">
+<meta property="og:updated_time" content="2015-09-05T13:02:17.096Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="两个iframe框滚动条联动以及iframe窗口高宽自适应">
-<meta name="twitter:description" content="由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。">
+<meta name="twitter:title" content="CSS伪元素::after提示用法">
+<meta name="twitter:description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素
+语法
+element:after  { style properties }  / CSS2 语法 /element::after { style properties }  / CSS3 语法 /
+
+::after表示法是在CSS 3中引入的,:">
 
     
     <link rel="alternative" href="/atom.xml" title="随遇而安" type="application/atom+xml">
@@ -73,21 +86,40 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/" title="两个iframe框滚动条联动以及iframe窗口高宽自适应" itemprop="url">两个iframe框滚动条联动以及iframe窗口高宽自适应</a>
+      <a href="/2015/09/05/CSS伪元素-after/" title="CSS伪元素::after提示用法" itemprop="url">CSS伪元素::after提示用法</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Xiao Jie" target="_blank" itemprop="author">Xiao Jie</a>
 		
   <p class="article-time">
-    <time datetime="2015-05-25T12:03:05.000Z" itemprop="datePublished"> 发表于 2015-05-25</time>
+    <time datetime="2015-09-05T11:40:37.000Z" itemprop="datePublished"> 发表于 2015-09-05</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
-		<p>由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。<br><a id="more"></a></p>
-   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"div1"</span>  <span class="attribute">style</span>=<span class="value">"width:620px;height:500px ; float:left;overflow:scroll"</span> <span class="attribute">onscroll</span>=<span class="value">"funcsrcoll1()"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">iframe</span> <span class="attribute">name</span>=<span class="value">"left"</span> <span class="attribute">id</span>=<span class="value">"left"</span> <span class="attribute">scrolling</span>=<span class="value">"no"</span> <span class="attribute">width</span>=<span class="value">"600px"</span> <span class="attribute">height</span>=<span class="value">"500px"</span> <span class="attribute">src</span>=<span class="value">"2.html"</span>&gt;</span><span class="tag">&lt;/<span class="title">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"div2"</span> <span class="attribute">style</span>=<span class="value">"width:620px; height:500px ;float:left;overflow:scroll"</span> <span class="attribute">onscroll</span>=<span class="value">"funcsrcoll2()"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">iframe</span> <span class="attribute">name</span>=<span class="value">"right"</span> <span class="attribute">id</span>=<span class="value">"right"</span> <span class="attribute">scrolling</span>=<span class="value">"no"</span> <span class="attribute">width</span>=<span class="value">"600px"</span> <span class="attribute">height</span>=<span class="value">"500px"</span> <span class="attribute">src</span>=<span class="value">"3.html"</span>&gt;</span><span class="tag">&lt;/<span class="title">iframe</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="actionscript"></span><br><span class="line">    <span class="comment">//控制两个div的滚动条联动，便于页面对比</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">funcsrcoll1</span><span class="params">()</span></span><br><span class="line">      </span>&#123;</span><br><span class="line">          div2.scrollLeft = div1.scrollLeft;</span><br><span class="line">          div2.scrollTop = div1.scrollTop;</span><br><span class="line">      &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">funcsrcoll2</span><span class="params">()</span></span><br><span class="line">      </span>&#123;</span><br><span class="line">          div1.scrollLeft = div2.scrollLeft;</span><br><span class="line">          div1.scrollTop = div2.scrollTop;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//调整iframe窗口大小适应src链接的页面</span></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">      $(<span class="string">'iframe'</span>).<span class="keyword">each</span>(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">          <span class="keyword">this</span>.style.height = <span class="keyword">this</span>.contentWindow.document.body.scrollHeight+<span class="number">20</span> + <span class="string">'px'</span>;</span><br><span class="line">            <span class="comment">//为了显示完整，额外加了20px的宽度</span></span><br><span class="line">          <span class="keyword">this</span>.style.width = <span class="keyword">this</span>.contentWindow.document.body.scrollWidth+<span class="number">20</span> + <span class="string">'px'</span>;</span><br><span class="line">      &#125;);    </span><br><span class="line">    &#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>  
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-number">3.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果图"><span class="toc-number">4.</span> <span class="toc-text">效果图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器兼容性"><span class="toc-number">5.</span> <span class="toc-text">浏览器兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="概述">概述</h2><p>CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素</p>
+<h2 id="语法">语法</h2><blockquote>
+<p><code>element:after  { style properties }</code>  /<em> CSS2 语法 </em>/<br><code>element::after { style properties }</code>  /<em> CSS3 语法 </em>/</p>
+</blockquote>
+<p><code>::after</code>表示法是在CSS 3中引入的,::符号是用来区分伪类和伪元素的.支持CSS3的浏览器同时也都支持CSS2中引入的表示法<code>:after</code>.</p>
+<h2 id="例子">例子</h2><p>用<code>::after</code>伪元素，<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/attr" target="_blank" rel="external">attr()</a>CSS表达式和一个<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes" target="_blank" rel="external">自定义数据属性</a> <code>data-descr</code> 创建一个纯CSS, 词汇表提示工具</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//html</span><br><span class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>这是一段并没有什么用的</span><br><span class="line">        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-descr</span>=<span class="value">'collection of words and punctuation'</span>&gt;</span>文字<span class="tag">&lt;/<span class="title">span</span>&gt;</span>，完全是为了凑数才出现的文字，实现一个</span><br><span class="line">        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-descr</span>=<span class="value">'small popups which also hide again'</span>&gt;</span>提示<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">        功能，可以吧鼠标放上去</span><br><span class="line">        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-descr</span>=<span class="value">'not to be taken literrlly'</span>&gt;</span>看看<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">span</span><span class="attr_selector">[data-descr]</span> <span class="rules">&#123;</span><br><span class="line">       <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> underline</span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#00F</span></span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">cursor</span>:<span class="value"> help</span></span>;</span><br><span class="line">   &#125;</span></span><br><span class="line">   <span class="tag">span</span><span class="attr_selector">[data-descr]</span><span class="pseudo">:hover</span><span class="pseudo">::after</span> <span class="rules">&#123;</span><br><span class="line">     <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="function">attr</span>(data-descr)</span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">24px</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">min-width</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> <span class="hexcolor">#aaaaaa</span> solid</span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#ffffcc</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">12px</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#000000</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">14px</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">z-index</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">   &#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="效果图">效果图</h2><p><img src="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png" alt="css-after"></p>
+<h2 id="浏览器兼容性">浏览器兼容性</h2><p> || <em>Feature</em> || <em>Chrome</em> || <em>FF</em> || <em>IE</em> || <em>Opera</em> || <em>Safari</em> ||<br> || :after support || Yes || 1.0 || 8.0 || 4 || 4.0 ||<br> || ::after support || Yes || 1.5 || 9.0 || 7 || 4.0 ||</p>
+<h2 id="References">References</h2><ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Aafter" target="_blank" rel="external">::after (:after)</a></li>
+</ul>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -100,7 +132,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/iframe/">iframe</a><a href="/tags/scroll/">scroll</a>
+  <span></span> <a href="/tags/CSS/">CSS</a>
   </div>
 
 </div>
@@ -109,7 +141,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://xiaojwithu.info/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/" data-title="两个iframe框滚动条联动以及iframe窗口高宽自适应 | 随遇而安" data-tsina="2881789662" class="share clearfix">
+	  <div data-url="http://xiaojwithu.info/2015/09/05/CSS伪元素-after/" data-title="CSS伪元素::after提示用法 | 随遇而安" data-tsina="2881789662" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -122,19 +154,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2015/05/25/2015阿里web前端笔试题（部分）/" title="2015阿里web前端笔试题（部分）">
-  <strong>上一篇：</strong><br/>
-  <span>
-  2015阿里web前端笔试题（部分）</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2015/05/24/高性能JavaScript/"  title="高性能JavaScript">
+<a href="/2015/08/04/图解Javascript上下文与作用域/"  title="图解Javascript上下文与作用域">
  <strong>下一篇：</strong><br/> 
- <span>高性能JavaScript
+ <span>图解Javascript上下文与作用域
 </span>
 </a>
 </div>
@@ -143,12 +167,19 @@
 
 	
 <section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/" data-title="两个iframe框滚动条联动以及iframe窗口高宽自适应" data-url="http://xiaojwithu.info/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/"></div>
+	<div class="ds-thread" data-thread-key="2015/09/05/CSS伪元素-after/" data-title="CSS伪元素::after提示用法" data-url="http://xiaojwithu.info/2015/09/05/CSS伪元素-after/"></div>
 </section>
 
 
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-number">3.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果图"><span class="toc-number">4.</span> <span class="toc-text">效果图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器兼容性"><span class="toc-number">5.</span> <span class="toc-text">浏览器兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -342,6 +373,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
