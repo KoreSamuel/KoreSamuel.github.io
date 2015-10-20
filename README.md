@@ -1,4 +1,4 @@
-﻿﻿##随遇而安（my blog）
+﻿﻿## 随遇而安（my blog）
 
 - 用[hexo](https://hexo.io/)在 `github` 上搭建的一个个人博客,修改了[jacman](https://github.com/wuchong/jacman)主题
 
