@@ -1930,6 +1930,26 @@ section.comment {
 .doubanshow div {
   padding: 0.5em 0;
 }
+.github-card {
+  margin-top: 1.5em;
+}
+@media only screen and (min-width: 768px) {
+  .github-card {
+    width: 45%;
+    float: left;
+    margin: 0 5% 0 0;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .github-card {
+    width: 100%;
+    float: none;
+    margin: 1em 0 0;
+  }
+}
+.github-card div {
+  padding: 0.5em 0;
+}
 footer {
   margin-top: 1em;
   background: #1f1f1f;
