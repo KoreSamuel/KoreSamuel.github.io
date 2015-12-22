@@ -514,6 +514,10 @@ $(document).ready(function(){
   if($.fancybox){
     $('.fancybox').fancybox();
   }
+  var aboutPage = window.location.href;
+  if(aboutPage.indexOf('about') === -1) {
+      $("#comments").hide();
+  }
 }); 
 </script>
 
