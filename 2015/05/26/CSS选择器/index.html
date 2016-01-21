@@ -47,7 +47,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Accompany Me" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Sincerely Mx" type="application/atom+xml" />
 
 
 
@@ -60,30 +60,27 @@
 
 
 <meta name="description" content="层次选择器
-$(“body &amp;gt; div”)   body中子元素中的div
-$(“#one + div”)   id为one的下一个紧挨着的div(兄弟)
-$(“#two ~ div”)   id为two的后面的所有div(兄弟)拓展
-$(“#one”).sibling(“div”)  id为one的所有div兄弟元素
-$(“#one”).nextAll(“span”)  id为one的后面">
+$(&amp;quot;body &amp;gt; div&amp;quot;)   body中子元素中的div
+$(&amp;quot;#one + div&amp;quot;)   id为one的下一个紧挨着的div(兄弟)
+$(&amp;quot;#two ~ div&amp;quot;)   id为two的后面的所有div(兄弟)拓展
+$(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS选择器">
 <meta property="og:url" content="http://xiaojwithu.info/2015/05/26/CSS选择器/index.html">
-<meta property="og:site_name" content="Accompany Me">
+<meta property="og:site_name" content="Sincerely Mx">
 <meta property="og:description" content="层次选择器
-$(“body &amp;gt; div”)   body中子元素中的div
-$(“#one + div”)   id为one的下一个紧挨着的div(兄弟)
-$(“#two ~ div”)   id为two的后面的所有div(兄弟)拓展
-$(“#one”).sibling(“div”)  id为one的所有div兄弟元素
-$(“#one”).nextAll(“span”)  id为one的后面">
-<meta property="og:updated_time" content="2016-01-20T04:49:16.202Z">
+$(&amp;quot;body &amp;gt; div&amp;quot;)   body中子元素中的div
+$(&amp;quot;#one + div&amp;quot;)   id为one的下一个紧挨着的div(兄弟)
+$(&amp;quot;#two ~ div&amp;quot;)   id为two的后面的所有div(兄弟)拓展
+$(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
+<meta property="og:updated_time" content="2016-01-21T04:53:13.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS选择器">
 <meta name="twitter:description" content="层次选择器
-$(“body &amp;gt; div”)   body中子元素中的div
-$(“#one + div”)   id为one的下一个紧挨着的div(兄弟)
-$(“#two ~ div”)   id为two的后面的所有div(兄弟)拓展
-$(“#one”).sibling(“div”)  id为one的所有div兄弟元素
-$(“#one”).nextAll(“span”)  id为one的后面">
+$(&amp;quot;body &amp;gt; div&amp;quot;)   body中子元素中的div
+$(&amp;quot;#one + div&amp;quot;)   id为one的下一个紧挨着的div(兄弟)
+$(&amp;quot;#two ~ div&amp;quot;)   id为two的后面的所有div(兄弟)拓展
+$(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
 
 
 
@@ -101,7 +98,7 @@ $(“#one”).nextAll(“span”)  id为one的后面">
   };
 </script>
 
-  <title> CSS选择器 | Accompany Me </title>
+  <title> CSS选择器 | Sincerely Mx </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -140,7 +137,7 @@ $(“#one”).nextAll(“span”)  id为one的后面">
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Accompany Me</span>
+      <span class="site-title">Sincerely Mx</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -316,64 +313,62 @@ $(“#one”).nextAll(“span”)  id为one的后面">
 
       
         <h2 id="层次选择器">层次选择器</h2><ul>
-<li>$(“body &gt; div”)   body中子元素中的div</li>
-<li>$(“#one + div”)   id为one的下一个紧挨着的div(兄弟)</li>
-<li>$(“#two ~ div”)   id为two的后面的所有div(兄弟)<br>拓展</li>
-<li>$(“#one”).sibling(“div”)  id为one的所有div兄弟元素</li>
-<li>$(“#one”).nextAll(“span”)  id为one的后面所有span元素</li>
-<li>$(“#one”).prevAll(“div”)  id为one的前面的所有的div</li>
-<li>$(“#one”).nextAll(“span:first”)  id为one的后面所有span元素的第一个</li>
+<li><code>$(&quot;body &gt; div&quot;)</code>   body中子元素中的div</li>
+<li><code>$(&quot;#one + div&quot;)</code>   id为one的下一个紧挨着的div(兄弟)</li>
+<li><code>$(&quot;#two ~ div&quot;)</code>   id为two的后面的所有div(兄弟)<br>拓展</li>
+<li><code>$(&quot;#one&quot;).sibling(&quot;div&quot;)</code>  id为one的所有div兄弟元素</li>
+<li><code>$(&quot;#one&quot;).nextAll(&quot;span&quot;)</code>  id为one的后面所有span元素</li>
+<li><code>$(&quot;#one&quot;).prevAll(&quot;div&quot;)</code>  id为one的前面的所有的div</li>
+<li><code>$(&quot;#one&quot;).nextAll(&quot;span:first&quot;)</code>  id为one的后面所有span元素的第一个</li>
 </ul>
 <a id="more"></a>
 <h2 id="过滤选择器：以”:”开头">过滤选择器：以”:”开头</h2><ul>
-<li>$(“div:first”) 第一个div</li>
-<li>$(“div:last”)   最后一个div</li>
-<li>$(“div:not(.one)”)  class不为one的div</li>
-<li>$(“div:even”) 索引值偶数div</li>
-<li>$(“div:odd”)   索引值奇数div</li>
-<li>$(“div:gt(3)”)   索引值大于3的div</li>
-<li>$(“div:eq(3)”)   索引值等于3的div</li>
-<li>$(“div:lt(3)”)   索引值小于3的div</li>
-<li>$(“li:gt(1):lt(4)”)  不是第2个到第5个，而是在第二个的基础上增加4    *</li>
-<li>$(“:header”)  所有的标题元素</li>
-<li>$(“:animated”) 正在执行动画的所有元素</li>
+<li><code>$(&quot;div:first&quot;)</code> 第一个div</li>
+<li><code>$(&quot;div:last&quot;)</code>   最后一个div</li>
+<li><code>$(&quot;div:not(.one)&quot;)</code>  class不为one的div</li>
+<li><code>$(&quot;div:even&quot;)</code> 索引值偶数div</li>
+<li><code>$(&quot;div:odd&quot;)</code>   索引值奇数div</li>
+<li><code>$(&quot;div:gt(3)&quot;)</code>   索引值大于3的div</li>
+<li><code>$(&quot;div:eq(3)&quot;)</code>   索引值等于3的div</li>
+<li><code>$(&quot;div:lt(3)&quot;)</code>   索引值小于3的div</li>
+<li><code>$(&quot;li:gt(1):lt(4)&quot;)</code>  不是第2个到第5个，而是在第二个的基础上增加4</li>
+<li><code>$(&quot;:header&quot;)</code>  所有的标题元素</li>
+<li><code>$(&quot;:animated&quot;)</code> 正在执行动画的所有元素</li>
 </ul>
 <h2 id="内容过滤选择器">内容过滤选择器</h2><ul>
-<li>$(“div:contains(‘ss’)”)   文本含有ss的div元素</li>
-<li>$(“div:empty”)   文本为空的div元素</li>
-<li>$(“div:has(.mini)”)  含有class为mini的所有div元素</li>
-<li>$(div:parent)  或者 $(“div:not(:empty)”)  所有非空的div元素</li>
+<li><code>$(&quot;div:contains(&#39;ss&#39;)&quot;)</code>   文本含有ss的div元素</li>
+<li><code>$(&quot;div:empty&quot;)</code>   文本为空的div元素</li>
+<li><code>$(&quot;div:has(.mini)&quot;)</code>  含有class为mini的所有div元素</li>
+<li><code>$(div:parent)或者$(&quot;div:not(:empty)&quot;)</code> 所有非空的div元素</li>
 </ul>
 <h2 id="可见性过滤选择器">可见性过滤选择器</h2><ul>
-<li>$(“div:visible”) 所有可见的div</li>
-<li>$(“div:hidden”).show(time)  所有不可见的div元素显示，time为时间，单位为毫秒</li>
-<li>$(“input:hidden”).val()   所有不可见的input元素的value</li>
+<li><code>$(&quot;div:visible&quot;)</code> 所有可见的div</li>
+<li><code>$(&quot;div:hidden&quot;).show(time)</code>  所有不可见的div元素显示，time为时间，单位为毫秒</li>
+<li><code>$(&quot;input:hidden&quot;).val()</code>   所有不可见的input元素的value</li>
 </ul>
 <h2 id="属性过滤选择器">属性过滤选择器</h2><ul>
-<li>$(“div:[title]”)  含有属性title的div元素</li>
-<li>$(“div:[title==’test’]”) title属性等于test的div元素</li>
-<li>$(“div:[title!=’test’]”) title属性不等于test的div元素，包括没有title属性的元素</li>
-<li>$(“div:[title^=’te’]”)  title属性以te开始的div元素</li>
-<li>$(“div:[title$=’est’]”)  title属性以est结束的div元素</li>
-<li>$(“div:[title*=’es’]”)   title属性值含有es的div元素</li>
-<li>$(“div:[id][title*=’es’]”)  有id属性的div元素中的title属性值中含有es的div元素</li>
-<li>$(“div:[title][title!=’test’]”)  含有title属性，且title属性值不为test的div元素</li>
+<li><code>$(&quot;div:[title]&quot;)</code>  含有属性title的div元素</li>
+<li><code>$(&quot;div:[title==&#39;test&#39;]&quot;)</code> title属性等于test的div元素</li>
+<li><code>$(&quot;div:[title!=&#39;test&#39;]&quot;)</code> title属性不等于test的div元素，包括没有title属性的元素</li>
+<li><code>$(&quot;div:[title^=&#39;te&#39;]&quot;)</code>  title属性以te开始的div元素</li>
+<li><code>$(&quot;div:[title$=&#39;est&#39;]&quot;)</code>  title属性以est结束的div元素</li>
+<li><code>$(&quot;div:[title*=&#39;es&#39;]&quot;)</code>   title属性值含有es的div元素</li>
+<li><code>$(&quot;div:[id][title*=&#39;es&#39;]&quot;)</code>  有id属性的div元素中的title属性值中含有es的div元素</li>
+<li><code>$(&quot;div:[title][title!=&#39;test&#39;]&quot;)</code>  含有title属性，且title属性值不为test的div元素</li>
 </ul>
 <h2 id="子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）">子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）</h2><ul>
-<li>$(“.one :nth-child(2)”)  class为one的第二个子元素，不是索引值为2</li>
-<li>$(“.one :first-child”)   class为one的第一个子元素</li>
-<li>$(“.one :last-child”)    class为one的最后一个子元素</li>
-<li>$(“.one :only-child”)    class为one的只有一个节点的节点元素</li>
-<li>$(“div.one :nth-child(2)”)   class为one的第二个div子元素</li>
+<li><code>$(&quot;.one :nth-child(2)&quot;)</code>  class为one的第二个子元素，不是索引值为2</li>
+<li><code>$(&quot;.one :first-child&quot;)</code>   class为one的第一个子元素</li>
+<li><code>$(&quot;.one :last-child&quot;)</code>    class为one的最后一个子元素</li>
+<li><code>$(&quot;.one :only-child&quot;)</code>    class为one的只有一个节点的节点元素</li>
+<li><code>$(&quot;div.one :nth-child(2)&quot;)</code>   class为one的第二个div子元素</li>
 </ul>
 <h2 id="表单对象属性过滤选择器">表单对象属性过滤选择器</h2><ul>
-<li>$(“:text:enabled”).val(“hello”)   使所有可用的单行文本框的value值变为hello</li>
-<li>$(“:text:disabled”).val(“hello”)   设置所有不可用单行文本框value值为hello</li>
-<li>$(“:checkbox[name=’haha’]:checked”).length    多选框name为haha的被选中的个数</li>
-<li>$(“select :selected”).length   select的option子节点，冒号前加空格，下拉选择框的选中的长度</li>
-<li>$(“select :selected”).val()   因为$(“select :selected”)选中的是一个数组，当有多个元素时，.val()获取的是第一个选中的值。<br>可使用each遍历：</li>
-<li>$(“select :selected”).each(function(){<br>   alert(this.value);//this是正在得到的DOM对象，不是jQuery对象<br>})</li>
-<li>$(“checkbox[name==’haha’]:checked”).each(function(){<br>   alert(this.value);//获取多选框中选中的内容。<br>});</li>
+<li><code>$(&quot;:text:enabled&quot;).val(&quot;hello&quot;)</code>  使所有可用的单行文本框的value值变为hello</li>
+<li><code>$(&quot;:text:disabled&quot;).val(&quot;hello&quot;)</code>   设置所有不可用单行文本框value值为hello</li>
+<li><code>$(&quot;:checkbox[name=&#39;haha&#39;]:checked&quot;).length</code>    多选框name为haha的被选中的个数</li>
+<li><code>$(&quot;select :selected&quot;).length</code>   select的option子节点，冒号前加空格，下拉选择框的选中的长度</li>
+<li><code>$(&quot;select :selected&quot;).val()</code>   因为$(“select :selected”)选中的是一个数组，当有多个元素时，.val()获取的是第一个选中的值。</li>
 </ul>
 
       
