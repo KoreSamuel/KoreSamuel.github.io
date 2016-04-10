@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CSS," />
+  <meta name="keywords" content="gulp," />
 
 
 
@@ -59,23 +59,25 @@
 
 
 
-<meta name="description" content="最近遇到过关于&amp;lt;img&amp;gt;标签显示一张图片在一个&amp;lt;div&amp;gt;里面，&amp;lt;div&amp;gt;的宽高由image撑起。可是在图片的底部和&amp;lt;div&amp;gt;底部之间，多出神秘的2~3px的空白。如下图：我知道&amp;lt;img&amp;gt;是个特殊的元素，为什么会出现这种现象？
-Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素默认和父级元素的basel">
+<meta name="description" content="问题在使用gulp过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:
+1405 Method Not Allowed
+解决通过自定义一个中间件来完成POST、PUT、DELETE 请求。首先，引入fs、path和connect
+123var fs = require(&apos;fs&apos;),path = require(&apos;path&apos;),connect =">
 <meta property="og:type" content="article">
-<meta property="og:title" content="remove white space below image">
-<meta property="og:url" content="http://xiaojwithu.info/2015/10/20/remove-white-space-below-image/index.html">
+<meta property="og:title" content="Gulp Connect发送post请求返回405">
+<meta property="og:url" content="http://xiaojwithu.info/2016/04/10/Gulp Connect发送post请求返回405/index.html">
 <meta property="og:site_name" content="Sincerely Mx">
-<meta property="og:description" content="最近遇到过关于&amp;lt;img&amp;gt;标签显示一张图片在一个&amp;lt;div&amp;gt;里面，&amp;lt;div&amp;gt;的宽高由image撑起。可是在图片的底部和&amp;lt;div&amp;gt;底部之间，多出神秘的2~3px的空白。如下图：我知道&amp;lt;img&amp;gt;是个特殊的元素，为什么会出现这种现象？
-Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素默认和父级元素的basel">
-<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/1.JPG">
-<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/jQaJx.png">
-<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/3.JPG">
-<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/2.JPG">
-<meta property="og:updated_time" content="2016-01-20T04:49:31.332Z">
+<meta property="og:description" content="问题在使用gulp过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:
+1405 Method Not Allowed
+解决通过自定义一个中间件来完成POST、PUT、DELETE 请求。首先，引入fs、path和connect
+123var fs = require(&apos;fs&apos;),path = require(&apos;path&apos;),connect =">
+<meta property="og:updated_time" content="2016-04-10T13:40:26.277Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="remove white space below image">
-<meta name="twitter:description" content="最近遇到过关于&amp;lt;img&amp;gt;标签显示一张图片在一个&amp;lt;div&amp;gt;里面，&amp;lt;div&amp;gt;的宽高由image撑起。可是在图片的底部和&amp;lt;div&amp;gt;底部之间，多出神秘的2~3px的空白。如下图：我知道&amp;lt;img&amp;gt;是个特殊的元素，为什么会出现这种现象？
-Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素默认和父级元素的basel">
+<meta name="twitter:title" content="Gulp Connect发送post请求返回405">
+<meta name="twitter:description" content="问题在使用gulp过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:
+1405 Method Not Allowed
+解决通过自定义一个中间件来完成POST、PUT、DELETE 请求。首先，引入fs、path和connect
+123var fs = require(&apos;fs&apos;),path = require(&apos;path&apos;),connect =">
 
 
 
@@ -93,7 +95,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
   };
 </script>
 
-  <title> remove white space below image | Sincerely Mx </title>
+  <title> Gulp Connect发送post请求返回405 | Sincerely Mx </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -243,7 +245,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
             
             
               
-                remove white space below image
+                Gulp Connect发送post请求返回405
               
             
           </h1>
@@ -255,8 +257,8 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-10-20T18:23:18+08:00" content="2015-10-20">
-              2015-10-20
+            <time itemprop="dateCreated" datetime="2016-04-10T21:29:57+08:00" content="2016-04-10">
+              2016-04-10
             </time>
           </span>
 
@@ -269,8 +271,8 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端积累/" itemprop="url" rel="index">
-                    <span itemprop="name">前端积累</span>
+                  <a href="/categories/积累/" itemprop="url" rel="index">
+                    <span itemprop="name">积累</span>
                   </a>
                 </span>
 
@@ -285,8 +287,8 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/10/20/remove-white-space-below-image/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/20/remove-white-space-below-image/" itemprop="commentsCount"></span>
+                <a href="/2016/04/10/Gulp Connect发送post请求返回405/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/10/Gulp Connect发送post请求返回405/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -307,32 +309,13 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
       
 
       
-        <p>最近遇到过关于<code>&lt;img&gt;</code>标签显示一张图片在一个<code>&lt;div&gt;</code>里面，<code>&lt;div&gt;</code>的宽高由<code>image</code>撑起。可是在图片的底部和<code>&lt;div&gt;</code>底部之间，多出神秘的2~3px的空白。如下图：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/1.JPG" alt="have white space"><br>我知道<code>&lt;img&gt;</code>是个特殊的元素，为什么会出现这种现象？</p>
-<h2 id="Reason">Reason</h2><p><code>&lt;img&gt;</code> 元素在默认情况下是inline元素，inline元素默认和父级元素的baseline对齐的，而baseline又和父级底边有一定距离，注意下面两段文字。</p>
-<blockquote>
-<p>Look at this line of text. Notice there are no letters that breach the baseline</p>
-</blockquote>
-<p>另一段：</p>
-<blockquote>
-<p>By just crossing the bridge he probably got away.</p>
-</blockquote>
-<p>注意比较上面两段文字中字母<code>y,j,p,g</code>,下图更形象的显示<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/jQaJx.png" alt="jQaJx"><br>因为浏览器提供空间低于inline元素来适应字体。这就是上面出现的白边。这不是CSS的padding或margin,所以开发中不容易发现。</p>
-<h2 id="Solution">Solution</h2><ul>
-<li>给<code>&lt;img&gt;</code>元素设置<code>display:block</code></li>
-<li>给<code>&lt;img&gt;</code>元素设置<code>vertical-align:bottom</code>或者<code>vertical-align:top</code></li>
-<li>给<code>&lt;img&gt;</code>元素设置<code>font-size:0; vertical-align:middle;</code></li>
-<li>给<code>&lt;div&gt;</code>元素设置<code>line-height:0</code></li>
-<li>给<code>&lt;div&gt;</code>元素设置<code>font-size:0</code></li>
-<li>给<code>&lt;img&gt;</code>元素设置<code>vertical-align:text-bottom</code></li>
-</ul>
-<p>以上最后一条效果并不好，设置后仍有1px的白边，如下图：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/3.JPG" alt="1px white space"><br>而正常处理后是没有白边的，如下图：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/2.JPG" alt="no white space"></p>
-<h2 id="Code_source">Code source</h2><p><a href="http://runjs.cn/code/eozhsutb" target="_blank" rel="external">源码与在线演示</a></p>
-<h2 id="References">References</h2><ul>
-<li><a href="http://stackoverflow.com/questions/31444891/mystery-white-space-underneath-image-tag/31445364#31445364" target="_blank" rel="external">Mystery white space underneath image tag</a></li>
-<li><a href="http://salman-w.blogspot.com/2012/10/remove-space-below-images-and-inline-block-elements.html" target="_blank" rel="external">How to Remove the Space Below Images and Other Inline-Block Elements</a></li>
-<li><a href="http://stackoverflow.com/questions/7774814/remove-white-space-below-image" target="_blank" rel="external">Remove white space below image</a></li>
-</ul>
-<p><em>欢迎补充</em></p>
+        <h2 id="问题">问题</h2><p>在使用<code>gulp</code>过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">405</span> <span class="function"><span class="keyword">Method</span> <span class="title">Not</span> <span class="title">Allowed</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="解决">解决</h2><p>通过自定义一个中间件来完成<code>POST</code>、<code>PUT</code>、<code>DELETE</code> 请求。<br>首先，引入<code>fs</code>、<code>path</code>和<code>connect</code></p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="reserved">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</span><br><span class="line">path = <span class="built_in">require</span>(<span class="string">'path'</span>),</span><br><span class="line">connect = <span class="built_in">require</span>(<span class="string">'gulp-connect'</span>);</span><br></pre></td></tr></table></figure>
+<p>接着，在配置中增加自己的中间件。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'server'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    connect.server(&#123;</span><br><span class="line">        middleware: <span class="function"><span class="keyword">function</span><span class="params">(connect, options)</span></span> &#123;</span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span></span> &#123;</span><br><span class="line">                var filepath = path.join(options.root, req.url);</span><br><span class="line">                <span class="keyword">if</span> (<span class="string">'POSTPUTDELETE'</span>.indexOf(req.method.toUpperCase()) &gt; -<span class="number">1</span></span><br><span class="line">                    &amp;&amp; fs.existsSync(filepath) &amp;&amp; fs.statSync(filepath).isFile()) &#123;</span><br><span class="line">                    <span class="keyword">return</span> res.<span class="keyword">end</span>(fs.readFileSync(filepath));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">next</span>();</span><br><span class="line">               &#125;</span><br><span class="line">            ];</span><br><span class="line">        &#125;,</span><br><span class="line">        hostname: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">        port: <span class="number">8090</span>,</span><br><span class="line">        livereload: <span class="keyword">true</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="References">References</h2><p><a href="http://cweili.gitcafe.io/gulp-connect-post-put-delete/" target="_blank" rel="external">让 Gulp Connect 支持 POST、PUT、DELETE 请求</a></p>
 
       
     </div>
@@ -341,7 +324,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
       
         <div class="post-tags">
           
-            <a href="/tags/CSS/" rel="tag">#CSS</a>
+            <a href="/tags/gulp/" rel="tag">#gulp</a>
           
         </div>
       
@@ -350,17 +333,13 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/09/05/CSS伪元素-after/" rel="next" title="CSS伪元素::after提示用法">
-                <i class="fa fa-chevron-left"></i> CSS伪元素::after提示用法
+              <a href="/2016/03/25/一路向北/" rel="next" title="我一路向北，离开有你的季节">
+                <i class="fa fa-chevron-left"></i> 我一路向北，离开有你的季节
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/11/23/删除node-modules不成功/" rel="prev" title="删除node_modules不成功">
-                删除node_modules不成功 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -375,10 +354,10 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2015/10/20/remove-white-space-below-image/"
-     data-title="remove white space below image"
+        <div class="ds-share flat" data-thread-key="2016/04/10/Gulp Connect发送post请求返回405/"
+     data-title="Gulp Connect发送post请求返回405"
      data-content=""
-     data-url="http://xiaojwithu.info/2015/10/20/remove-white-space-below-image/">
+     data-url="http://xiaojwithu.info/2016/04/10/Gulp Connect发送post请求返回405/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -408,8 +387,8 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/10/20/remove-white-space-below-image/"
-           data-title="remove white space below image" data-url="http://xiaojwithu.info/2015/10/20/remove-white-space-below-image/">
+      <div class="ds-thread" data-thread-key="2016/04/10/Gulp Connect发送post请求返回405/"
+           data-title="Gulp Connect发送post请求返回405" data-url="http://xiaojwithu.info/2016/04/10/Gulp Connect发送post请求返回405/">
       </div>
     
   </div>
@@ -571,7 +550,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reason"><span class="nav-number">1.</span> <span class="nav-text">Reason</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Code_source"><span class="nav-number">3.</span> <span class="nav-text">Code source</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决"><span class="nav-number">2.</span> <span class="nav-text">解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">3.</span> <span class="nav-text">References</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
