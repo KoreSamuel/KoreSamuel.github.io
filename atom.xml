@@ -584,7 +584,7 @@
     <link href="http://xiaojwithu.info/2015/05/26/CSS%E9%80%89%E6%8B%A9%E5%99%A8/"/>
     <id>http://xiaojwithu.info/2015/05/26/CSS选择器/</id>
     <published>2015-05-26T05:17:00.000Z</published>
-    <updated>2016-01-21T04:53:13.062Z</updated>
+    <updated>2016-01-21T04:53:13.933Z</updated>
     <content type="html"><![CDATA[<h2 id="层次选择器">层次选择器</h2><ul>
 <li><code>$(&quot;body &gt; div&quot;)</code>   body中子元素中的div</li>
 <li><code>$(&quot;#one + div&quot;)</code>   id为one的下一个紧挨着的div(兄弟)</li>

@@ -88,7 +88,7 @@
   <title> Sincerely Mx </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans" id="particles-js">
 
   
 
@@ -249,8 +249,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/05/28/web前端笔试练习/" itemprop="url">
-                  web前端笔试练习
+                <a class="post-title-link" href="/2015/11/23/删除node-modules不成功/" itemprop="url">
+                  删除node_modules不成功
                 </a>
               
             
@@ -263,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-28T00:50:13+08:00" content="2015-05-28">
-              2015-05-28
+            <time itemprop="dateCreated" datetime="2015-11-23T19:11:31+08:00" content="2015-11-23">
+              2015-11-23
             </time>
           </span>
 
@@ -277,8 +277,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/笔试-面试/" itemprop="url" rel="index">
-                    <span itemprop="name">笔试&面试</span>
+                  <a href="/categories/积累/" itemprop="url" rel="index">
+                    <span itemprop="name">积累</span>
                   </a>
                 </span>
 
@@ -293,8 +293,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/05/28/web前端笔试练习/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/28/web前端笔试练习/" itemprop="commentsCount"></span>
+                <a href="/2015/11/23/删除node-modules不成功/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/23/删除node-modules不成功/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -316,12 +316,16 @@
 
       
         
-          <blockquote>
-<p>1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数</p>
-</blockquote>
-<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//res1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseB</span><span class="params">(num)</span> &#123;</span></span><br><span class="line">  var bits = num.toString<span class="params">(<span class="number">2</span>)</span>;</span><br><span class="line">  var len = <span class="number">32</span> - bits.length;</span><br><span class="line">  bits = bits.split<span class="params">(<span class="string">""</span>)</span>.reverse<span class="params">()</span>.join<span class="params">(<span class="string">""</span>)</span>;</span><br><span class="line">  while<span class="params">(len--)</span> &#123;</span><br><span class="line">  	bits+=<span class="string">"0"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  	return parseInt<span class="params">(bits,<span class="number">2</span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line">console.<span class="built_in">log</span><span class="params">(reverseB<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192  </span></span><br><span class="line">  <span class="comment">//res2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseBs</span><span class="params">(n)</span>&#123;</span></span><br><span class="line">  var m = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span> <span class="params">(var i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++)</span> &#123;</span><br><span class="line">    m|=<span class="params">(n&amp;<span class="number">1</span>)</span>;</span><br><span class="line">    n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    m &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">    m|=<span class="params">(n&amp;<span class="number">01</span>)</span>;</span><br><span class="line">    return m;</span><br><span class="line">  &#125;</span><br><span class="line">console.<span class="built_in">log</span><span class="params">(reverseBs<span class="params">(<span class="number">43261596</span>)</span>)</span>;<span class="comment">//964176192</span></span><br></pre></td></tr></table></figure>
+          
+          Question
+Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：
+
+
+Reasonwindows 在文件目录的长度有限制，因为node packages 有众多dependencies，每一个dependency又有其他的dependency，
+          ...
+
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/28/web前端笔试练习/#more" rel="contents">
+            <a class="btn" href="/2015/11/23/删除node-modules不成功/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -364,8 +368,8 @@
             
               
                 
-                <a class="post-title-link" href="/2015/05/26/淡淡的友情、浅浅的爱/" itemprop="url">
-                  淡淡的友情、浅浅的爱
+                <a class="post-title-link" href="/2015/10/20/remove-white-space-below-image/" itemprop="url">
+                  remove white space below image
                 </a>
               
             
@@ -378,240 +382,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-26T13:20:13+08:00" content="2015-05-26">
-              2015-05-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/心情随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">心情随笔</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/26/淡淡的友情、浅浅的爱/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/淡淡的友情、浅浅的爱/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>　　有一种朋友,我想那是一种介乎于爱情与友情之间的感情，你会在偶尔的一时间默默地想念他，想起他时，心里暖暖的，有一份美好，有一份感动。在忧愁和烦恼的时候，你会想起他，你很希望他能在你的身边，给你安慰，给你理解，而你却从没有向他倾诉，你怕属于自己的那份忧伤会妨碍他平静的生活。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/26/淡淡的友情、浅浅的爱/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/26/CSS选择器/" itemprop="url">
-                  CSS选择器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-26T13:17:00+08:00" content="2015-05-26">
-              2015-05-26
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/26/CSS选择器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/CSS选择器/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="层次选择器">层次选择器</h2><ul>
-<li><code>$(&quot;body &gt; div&quot;)</code>   body中子元素中的div</li>
-<li><code>$(&quot;#one + div&quot;)</code>   id为one的下一个紧挨着的div(兄弟)</li>
-<li><code>$(&quot;#two ~ div&quot;)</code>   id为two的后面的所有div(兄弟)<br>拓展</li>
-<li><code>$(&quot;#one&quot;).sibling(&quot;div&quot;)</code>  id为one的所有div兄弟元素</li>
-<li><code>$(&quot;#one&quot;).nextAll(&quot;span&quot;)</code>  id为one的后面所有span元素</li>
-<li><code>$(&quot;#one&quot;).prevAll(&quot;div&quot;)</code>  id为one的前面的所有的div</li>
-<li><code>$(&quot;#one&quot;).nextAll(&quot;span:first&quot;)</code>  id为one的后面所有span元素的第一个</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/26/CSS选择器/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/" itemprop="url">
-                  数据库中的html源代码返还到页面的iframe中
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-26T12:49:56+08:00" content="2015-05-26">
-              2015-05-26
+            <time itemprop="dateCreated" datetime="2015-10-20T18:23:18+08:00" content="2015-10-20">
+              2015-10-20
             </time>
           </span>
 
@@ -640,8 +412,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/26/数据库中的html源代码返还到页面的iframe中/" itemprop="commentsCount"></span>
+                <a href="/2015/10/20/remove-white-space-below-image/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/20/remove-white-space-below-image/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -663,349 +435,13 @@
 
       
         
-          <p>思路：先将源代码返回到父页面的一个隐藏的<code>&lt;textarea&gt;</code>中，再在<code>&lt;iframe&gt;</code>的src的链接页面中用js获取<code>&lt;textarea&gt;</code>中的文本，即HTML源码，然后直接显示。注：<code>&lt;iframe&gt;</code>是其嵌入页面的子页面<br>
+          
+          最近遇到过关于&lt;img&gt;标签显示一张图片在一个&lt;div&gt;里面，&lt;div&gt;的宽高由image撑起。可是在图片的底部和&lt;div&gt;底部之间，多出神秘的2~3px的空白。如下图：我知道&lt;img&gt;是个特殊的元素，为什么会出现这种现象？
+Reason&
+          ...
+
           <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/25/2015阿里web前端笔试题（部分）/" itemprop="url">
-                  2015阿里web前端笔试题（部分）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-25T20:14:35+08:00" content="2015-05-25">
-              2015-05-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/笔试-面试/" itemprop="url" rel="index">
-                    <span itemprop="name">笔试&面试</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/25/2015阿里web前端笔试题（部分）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/25/2015阿里web前端笔试题（部分）/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>1.给定一个随机数组，数组可能包含数组（也就是说数组元素可能为数组）。要求用js实现一个函数，返回该数组中所有元素。例如，例如：数组[2,3,[4,6,[1,8]],12,10]，返回结果为：[2,3,4,6,1,8,12,10]</p>
-</blockquote>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getArray</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> arrs = [];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,l=arr.length;i &lt; l;i++) &#123;</span><br><span class="line">      <span class="keyword">if</span>(!<span class="built_in">Array</span>.isArray(arr[i])) arrs.push(arr[i]);</span><br><span class="line">      <span class="keyword">else</span> arrs = arrs.concat( getArray(arr[i]) );</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arrs;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/25/2015阿里web前端笔试题（部分）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/" itemprop="url">
-                  两个iframe框滚动条联动以及iframe窗口高宽自适应
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-25T20:03:05+08:00" content="2015-05-25">
-              2015-05-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端积累/" itemprop="url" rel="index">
-                    <span itemprop="name">前端积累</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/05/24/高性能JavaScript/" itemprop="url">
-                  高性能JavaScript
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-05-24T19:12:54+08:00" content="2015-05-24">
-              2015-05-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/05/24/高性能JavaScript/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/05/24/高性能JavaScript/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="javascript加载和运行">javascript加载和运行</h2><h3 id="脚本位置">脚本位置</h3><p>尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（<code>&lt;/body&gt;</code>之前)</p>
-<h3 id="组织脚本">组织脚本</h3><p>每个<code>&lt;script&gt;</code>标签初始下载都会阻塞页面渲染，所以减少页面包含的<code>&lt;script&gt;</code>标签数量有助于改善这一情况。考虑到到HTTP请求会额外带来性能的开销。下载单个100B的文件比下载4个25B的文件更快。所以，减少页面中外链脚本文件的数量会改善性能。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/05/24/高性能JavaScript/#more" rel="contents">
+            <a class="btn" href="/2015/10/20/remove-white-space-below-image/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1032,7 +468,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1227,6 +663,8 @@
 
   <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
 
+  <script type="text/javascript" src="/vendors/particles.js"></script>
+
   <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
@@ -1255,6 +693,8 @@
 
 
   <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/particles.conf.js?v=0.5.0"></script>
 
 
 
