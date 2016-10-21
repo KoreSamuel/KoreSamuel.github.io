@@ -1,26 +1,29 @@
-
- <!DOCTYPE HTML>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8">
-  <meta name="baidu-site-verification" content="ryiU3WYae7" />
-  
-    <title>CSS伪元素::after提示用法 | 随遇而安</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
-    
-    <meta name="author" content="Xiao Jie">
-    
 
-    
-    <meta name="description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Xiao Jie" />
+
+
+
+<meta name="description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素
 语法
 element:after  { style properties }  / CSS2 语法 /element::after { style properties }  / CSS3 语法 /
 
 ::after表示法是在CSS 3中引入的,:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS伪元素::after提示用法">
-<meta property="og:url" content="http://xiaojwithu.info/2015/09/05/CSS伪元素-after/index.html">
-<meta property="og:site_name" content="随遇而安">
+<meta property="og:url" content="http://dearxiaojie.xyz/2015/09/05/CSS伪元素-after/index.html">
+<meta property="og:site_name" content="Sincerely Mx">
 <meta property="og:description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素
 语法
 element:after  { style properties }  / CSS2 语法 /element::after { style properties }  / CSS3 语法 /
@@ -28,7 +31,7 @@ element:after  { style properties }  / CSS2 语法 /element::after { style prope
 ::after表示法是在CSS 3中引入的,:">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/table.png">
-<meta property="og:updated_time" content="2015-10-20T14:03:09.825Z">
+<meta property="og:updated_time" content="2016-01-20T04:49:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS伪元素::after提示用法">
 <meta name="twitter:description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素
@@ -36,498 +39,534 @@ element:after  { style properties }  / CSS2 语法 /element::after { style prope
 element:after  { style properties }  / CSS2 语法 /element::after { style properties }  / CSS3 语法 /
 
 ::after表示法是在CSS 3中引入的,:">
+<meta name="twitter:image" content="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png">
 
-    
-    <link rel="alternative" href="/atom.xml" title="随遇而安" type="application/atom+xml">
-    
-    
-    <link rel="icon" href="/img/favicon.ico">
-    
-    
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
-    <link rel="stylesheet" href="/css/style.css" type="text/css">
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Sincerely Mx" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/red/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>CSS伪元素::after提示用法 | Sincerely Mx</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?30fc070a379dbd7572501a63e36ae3c7";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
 </head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Xiao Jie</a></h1>
+        </hgroup>
 
-  <body>
-    <header>
-      
-<div>
-		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logos.png" alt="随遇而安" title="随遇而安"/></a>
-			</div>
-			
-			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="随遇而安">随遇而安</a></h1>
-				<h2 class="blog-motto">一场雨的时间里，你没看我，我没看雨。</h2>
-			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
-			</a></div>
-			<nav class="animated">
-				<ul>
-					<ul>
-					 
-						<li><a href="/">主页</a></li>
-					
-						<li><a href="/archives">归档</a></li>
-					
-						<li><a href="/about">关于我</a></li>
-					
-						<li><a href="/urlnav">网址导航</a></li>
-					
-                        <li><a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&&s.height<n&&s.width>t&&s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&&!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&&t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//7xjp74.com1.z0.glb.clouddn.com/zhuanzaiSamantha%20Jade%20-%20Soldier.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>High一下!</a></li>
-				</ul>
-			</nav>					
+        
+        <p class="header-subtitle">陪伴与懂得，比爱一个人更重要。</p>
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:xiaojie6170@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="http://weibo.com/xiaojie0428" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/swust-xiaoj" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 知乎" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
+                            
+                                <a class="fa Twitter" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://woodrat.xyz/">woodrat</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">MySophia</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
 </div>
-    </header>
-    <div id="container">
-      <div id="main" class="post" itemscope itemprop="blogPost">
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Xiao Jie</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Xiao Jie</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">陪伴与懂得，比爱一个人更重要。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:xiaojie6170@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/xiaojie0428" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/swust-xiaoj" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-CSS伪元素-after" class="article article-type-post" itemscope itemprop="blogPost">
   
-	<article itemprop="articleBody"> 
-		<header class="article-info clearfix">
-  <h1 itemprop="name">
+    <div class="article-meta">
+      <a href="/2015/09/05/CSS伪元素-after/" class="article-date">
+      <time datetime="2015-09-05T11:40:37.000Z" itemprop="datePublished">2015-09-05</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
     
-      <a href="/2015/09/05/CSS伪元素-after/" title="CSS伪元素::after提示用法" itemprop="url">CSS伪元素::after提示用法</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Xiao Jie" target="_blank" itemprop="author">Xiao Jie</a>
-		
-  <p class="article-time">
-    <time datetime="2015-09-05T11:40:37.000Z" itemprop="datePublished"> 发表于 2015-09-05</time>
+      <input type="hidden" class="isFancy" />
     
-  </p>
-</header>
-	<div class="article-content">
-		
-		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-number">3.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果图"><span class="toc-number">4.</span> <span class="toc-text">效果图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器兼容性"><span class="toc-number">5.</span> <span class="toc-text">浏览器兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
-		
-		</div>
-		
-		<h2 id="概述">概述</h2><p>CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素</p>
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS伪元素::after提示用法
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/前端积累/">前端积累</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h2 id="概述">概述</h2><p>CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素</p>
 <h2 id="语法">语法</h2><blockquote>
 <p><code>element:after  { style properties }</code>  /<em> CSS2 语法 </em>/<br><code>element::after { style properties }</code>  /<em> CSS3 语法 </em>/</p>
 </blockquote>
 <p><code>::after</code>表示法是在CSS 3中引入的,::符号是用来区分伪类和伪元素的.支持CSS3的浏览器同时也都支持CSS2中引入的表示法<code>:after</code>.</p>
 <h2 id="例子">例子</h2><p>用<code>::after</code>伪元素，<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/attr" target="_blank" rel="external">attr()</a>CSS表达式和一个<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes" target="_blank" rel="external">自定义数据属性</a> <code>data-descr</code> 创建一个纯CSS, 词汇表提示工具</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>这是一段并没有什么用的</span><br><span class="line">            <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-descr</span>=<span class="value">'collection of words and punctuation'</span>&gt;</span>文字<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">            ，完全是为了凑数才出现的文字，实现一个</span><br><span class="line">            <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-descr</span>=<span class="value">'small popups which also hide again'</span>&gt;</span>提示<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">            功能，可以吧鼠标放上去</span><br><span class="line">            <span class="tag">&lt;<span class="title">span</span> <span class="attribute">data-descr</span>=<span class="value">'not to be taken literrlly'</span>&gt;</span>看看<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">span</span><span class="attr_selector">[data-descr]</span> <span class="rules">&#123;</span><br><span class="line">       <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> underline</span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#00F</span></span></span>;</span><br><span class="line">       <span class="rule"><span class="attribute">cursor</span>:<span class="value"> help</span></span>;</span><br><span class="line">   &#125;</span></span><br><span class="line">   <span class="tag">span</span><span class="attr_selector">[data-descr]</span><span class="pseudo">:hover</span><span class="pseudo">::after</span> <span class="rules">&#123;</span><br><span class="line">     <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="function">attr</span>(data-descr)</span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">0</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">top</span>:<span class="value"> <span class="number">24px</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">min-width</span>:<span class="value"> <span class="number">200px</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> <span class="hexcolor">#aaaaaa</span> solid</span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#ffffcc</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">12px</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#000000</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">14px</span></span></span>;</span><br><span class="line">     <span class="rule"><span class="attribute">z-index</span>:<span class="value"> <span class="number">1</span></span></span>;</span><br><span class="line">   &#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一段并没有什么用的</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'collection of words and punctuation'</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            ，完全是为了凑数才出现的文字，实现一个</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'small popups which also hide again'</span>&gt;</span>提示<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            功能，可以吧鼠标放上去</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'not to be taken literrlly'</span>&gt;</span>看看<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span> &#123;</div><div class="line">       <span class="attribute">position</span>: relative;</div><div class="line">       <span class="attribute">text-decoration</span>: underline;</div><div class="line">       <span class="attribute">color</span>: <span class="number">#00F</span>;</div><div class="line">       <span class="attribute">cursor</span>: help;</div><div class="line">   &#125;</div><div class="line">   <span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span><span class="selector-pseudo">:hover</span><span class="selector-pseudo">::after</span> &#123;</div><div class="line">     <span class="attribute">content</span>: <span class="built_in">attr</span>(data-descr);</div><div class="line">     <span class="attribute">position</span>: absolute;</div><div class="line">     <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">     <span class="attribute">top</span>: <span class="number">24px</span>;</div><div class="line">     <span class="attribute">min-width</span>: <span class="number">200px</span>;</div><div class="line">     <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#aaaaaa</span> solid;</div><div class="line">     <span class="attribute">border-radius</span>: <span class="number">10px</span>;</div><div class="line">     <span class="attribute">background-color</span>: <span class="number">#ffffcc</span>;</div><div class="line">     <span class="attribute">padding</span>: <span class="number">12px</span>;</div><div class="line">     <span class="attribute">color</span>: <span class="number">#000000</span>;</div><div class="line">     <span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">     <span class="attribute">z-index</span>: <span class="number">1</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <p><a href="http://runjs.cn/code/hkmnji2p" target="_blank" rel="external">在线演示</a></p>
 <h2 id="效果图">效果图</h2><p><img src="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png" alt="css-after"></p>
 <h2 id="浏览器兼容性">浏览器兼容性</h2><p><img src="http://7xjp74.com1.z0.glb.clouddn.com/table.png" alt="兼容性"></p>
 <h2 id="References">References</h2><ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Aafter" target="_blank" rel="external">::after (:after)</a></li>
 </ul>
-  
-	</div>
-		<footer class="article-footer clearfix">
-<div class="article-catetags">
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/前端积累/">前端积累</a>
-</div>
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/CSS/">CSS</a>
-  </div>
-
-</div>
-
-
-
-	<div class="article-share" id="share">
-	
-	  <div data-url="http://xiaojwithu.info/2015/09/05/CSS伪元素-after/" data-title="CSS伪元素::after提示用法 | 随遇而安" data-tsina="2881789662" class="share clearfix">
-	  </div>
-	
-	</div>
-
-
-</footer>
-
-   	       
-	</article>
-	
-<nav class="article-nav clearfix">
- 
- <div class="prev" >
- <a href="/2015/10/20/remove-white-space-below-image/" title="remove white space below image">
-  <strong>上一篇：</strong><br/>
-  <span>
-  remove white space below image</span>
-</a>
-</div>
-
-
-<div class="next">
-<a href="/2015/08/04/图解Javascript上下文与作用域/"  title="图解Javascript上下文与作用域">
- <strong>下一篇：</strong><br/> 
- <span>图解Javascript上下文与作用域
-</span>
-</a>
-</div>
-
-</nav>
-
-	
-<section id="comments" class="comment">
-	<div class="ds-thread" data-thread-key="2015/09/05/CSS伪元素-after/" data-title="CSS伪元素::after提示用法" data-url="http://xiaojwithu.info/2015/09/05/CSS伪元素-after/"></div>
-</section>
-
-
-</div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
-
-  <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
- 
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-number">3.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果图"><span class="toc-number">4.</span> <span class="toc-text">效果图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器兼容性"><span class="toc-number">5.</span> <span class="toc-text">浏览器兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
- 
-  </div>
-
-<div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-<aside class="clearfix">
-
-  
-<div class="categorieslist">
-	<p class="asidetitle">分类</p>
-		<ul>
-		
-		  
-			<li><a href="/categories/前端积累/" title="前端积累">前端积累<sup>5</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/学习笔记/" title="学习笔记">学习笔记<sup>4</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/心情随笔/" title="心情随笔">心情随笔<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/未完待续/" title="未完待续">未完待续<sup>1</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/笔试-面试/" title="笔试&amp;面试">笔试&amp;面试<sup>2</sup></a></li>
-		  
-		
-		  
-			<li><a href="/categories/转载/" title="转载">转载<sup>1</sup></a></li>
-		  
-		
-		</ul>
-</div>
-
-
-  
-  <div class="tagcloudlist">
-    <p class="asidetitle">标签云</p>
-    <div class="tagcloudlist clearfix">
-       <a href="/tags/CSS/" style="font-size: 20px;">CSS</a> <a href="/tags/XMLHttpRequest/" style="font-size: 10px;">XMLHttpRequest</a> <a href="/tags/html/" style="font-size: 10px;">html</a> <a href="/tags/iframe/" style="font-size: 15px;">iframe</a> <a href="/tags/jQuery/" style="font-size: 10px;">jQuery</a> <a href="/tags/javascript/" style="font-size: 20px;">javascript</a> <a href="/tags/scroll/" style="font-size: 10px;">scroll</a> <a href="/tags/web前端/" style="font-size: 20px;">web前端</a> <a href="/tags/性能优化/" style="font-size: 15px;">性能优化</a> <a href="/tags/挑战/" style="font-size: 10px;">挑战</a> <a href="/tags/概念理解/" style="font-size: 10px;">概念理解</a> <a href="/tags/笔试/" style="font-size: 15px;">笔试</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+      
     </div>
+    
   </div>
-
-
-  <div class="linkslist categorieslist">
-  <p class="asidetitle">友情链接</p>
-    <ul>
-        
-          <li>
-            
-            	<a href="http://www.cnblogs.com/rubylouvre/" target="_blank" title="rubylouvre">rubylouvre</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://yoursoulismine.info/" target="_blank" title="虚实">虚实</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://shimanxiang.github.io/" target="_blank" title="小笨蛋">Sophiasmx</a>
-            
-          </li>
-        
-          <li>
-            
-            	<a href="http://www.dearhaoge.com/" target="_blank" title="简叶">简叶</a>
-            
-          </li>
-        
-    </ul>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="120" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=120&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=2881789662&verifier=3f2be490&dpc=1"></iframe>
-</div>
-
-
-<div class="sitetool categorieslist">
-  <p class="asidetitle">站长工具</p>
-  <ul>
-  <li><a href="http://tongji.baidu.com/web/10487439/overview/sole?siteId=6909761" target="_blank">
-  <img src="http://7xjp74.com1.z0.glb.clouddn.com/acc143.gif" alt="百度统计">
-  </a></li>
-  </ul>
-</div>
-</aside>
-</div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Xiao Jie</a></p>
+        <p><span>发布时间:</span>2015-09-05, 19:40:37</p>
+        <p><span>最后更新:</span>2016-01-20, 12:49:10</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/09/05/CSS伪元素-after/" title="CSS伪元素::after提示用法">http://dearxiaojie.xyz/2015/09/05/CSS伪元素-after/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2015/09/05/CSS伪元素-after/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
-    <footer><div id="footer" >
-	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
-	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Xiao Jie in swust. <br/>
-			This is my blog,record my receive.</p>
-	</section>
-	 
-	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/xiaojie0428" target="_blank" class="icon-weibo" title="微博"></a>
-		
-		
-		<a href="https://github.com/swust-xiaoj" target="_blank" class="icon-github" title="github"></a>
-		
-		
-		
-		
-		<a href="https://www.facebook.com/profile.php?id=100009948548442" target="_blank" class="icon-facebook" title="facebook"></a>
-		
-		
-		
-		
-		
-		
-		<a href="mailto:xiaojie6170@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
-		
-	</div>
-			
-		
-				<div class="cc-license">
-          <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-            <img src="/img/cc-by-nc-sa.svg" alt="Creative Commons" />
-          </a>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/10/20/remove-white-space-below-image/">
+                    remove white space below image
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/08/04/图解Javascript上下文与作用域/">
+                    图解Javascript上下文与作用域
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-number">3.</span> <span class="toc-text">例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果图"><span class="toc-number">4.</span> <span class="toc-text">效果图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器兼容性"><span class="toc-number">5.</span> <span class="toc-text">浏览器兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">6.</span> <span class="toc-text">References</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
         </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"CSS伪元素::after提示用法　| Sincerely Mx　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
     
 
-		<p class="copyright">
-		 © 2015 
-		
-		<a href="/about" target="_blank" title="Xiao Jie">Xiao Jie</a>
-		
-		<span id="busuanzi_container_site_pv">
-  			You are the <a href="./"><span id="busuanzi_value_site_pv"></span></a> visitor
-		</span>
-		</p>
-		<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
+    
 </div>
-</footer>
-    <script src="/js/jquery-2.0.3.min.js"></script>
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.navbar').click(function(){
-    $('header nav').toggleClass('shownav');
-  });
-  var myWidth = 0;
-  function getSize(){
-    if( typeof( window.innerWidth ) == 'number' ) {
-      myWidth = window.innerWidth;
-    } else if( document.documentElement && document.documentElement.clientWidth) {
-      myWidth = document.documentElement.clientWidth;
-    };
-  };
-  var m = $('#main'),
-      a = $('#asidepart'),
-      c = $('.closeaside'),
-      o = $('.openaside');
-  c.click(function(){
-    a.addClass('fadeOut').css('display', 'none');
-    o.css('display', 'block').addClass('fadeIn');
-    m.addClass('moveMain');
-  });
-  o.click(function(){
-    o.css('display', 'none').removeClass('beforeFadeIn');
-    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
-    m.removeClass('moveMain');
-  });
-  $(window).scroll(function(){
-    o.css("top",Math.max(80,260-$(this).scrollTop()));
-  });
-  
-        getSize();
-        if (myWidth >= 1024) {
-          c.click();
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2015/09/05/CSS伪元素-after/" data-title="CSS伪元素::after提示用法" data-url="http://dearxiaojie.xyz/2015/09/05/CSS伪元素-after/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"accompany"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
         }
-  
-  $(window).resize(function(){
-    getSize(); 
-    if (myWidth >= 1024) {
-      $('header nav').removeClass('shownav');
-    }else{
-      m.removeClass('moveMain');
-      a.css('display', 'block').removeClass('fadeOut');
-      o.css('display', 'none');
-      
-      $('#toc.toc-aside').css('display', 'none');
+
         
-    }
-  });
-});
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/10/20/remove-white-space-below-image/" title="上一篇: remove white space below image">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/08/04/图解Javascript上下文与作用域/" title="下一篇: 图解Javascript上下文与作用域">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/Gulp Connect发送post请求返回405/">Gulp Connect发送post请求返回405</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/25/一路向北/">我一路向北，离开有你的季节</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/23/删除node-modules不成功/">删除node_modules不成功</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/remove-white-space-below-image/">remove white space below image</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/27/jQuery常用方法归纳总结/">jQuery常用方法归纳</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/12/一个挑战游戏(Nazo)/">一个挑战游戏(Nazo)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/XMLHttpRequest学习笔记/">XMLHttpRequest学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/28/web前端笔试练习/">web前端笔试练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/淡淡的友情、浅浅的爱/">淡淡的友情、浅浅的爱</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/CSS选择器/">CSS选择器</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/">数据库中的html源代码返还到页面的iframe中</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/2015阿里web前端笔试题（部分）/">2015阿里web前端笔试题（部分）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/">两个iframe框滚动条联动以及iframe窗口高宽自适应</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/24/高性能JavaScript/">高性能JavaScript</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 Xiao Jie
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  c.click(function(){
-    ta.css('display', 'block').addClass('fadeIn');
-  });
-  o.click(function(){
-    ta.css('display', 'none');
-  });
-  $(window).scroll(function(){
-    ta.css("top",Math.max(140,320-$(this).scrollTop()));
-  });
-});
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
-
-
-<script type="text/javascript">
-$(document).ready(function(){ 
-  var $this = $('.share'),
-      url = $this.attr('data-url'),
-      encodedUrl = encodeURIComponent(url),
-      title = $this.attr('data-title'),
-      tsina = $this.attr('data-tsina'),
-      description = $this.attr('description');
-  var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
-  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
-  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
-  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
-  '<span title="Share to"></span>'
-  ].join('');
-  $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
-});     
-</script>
-
-
-
-<script type="text/javascript">
-  var duoshuoQuery = {short_name:"accompany"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-    || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-</script> 
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){ 
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-}); 
-</script>
-
-
-
-<!-- Analytics Begin -->
-
-
-
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F30fc070a379dbd7572501a63e36ae3c7' type='text/javascript'%3E%3C/script%3E"));
-</script>
-
-
-
-<!-- Analytics End -->
-
-<!-- Totop Begin -->
-
-	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
-	</div>
-	<script src="/js/totop.js"></script>
-
-<!-- Totop End -->
-
-<!-- MathJax Begin -->
-<!-- mathjax config similar to math.stackexchange -->
-
-
-<!-- MathJax End -->
-
-<!-- Tiny_search Begin -->
-
-<!-- Tiny_search End -->
-
-  </body>
+  </div>
+</body>
 </html>
