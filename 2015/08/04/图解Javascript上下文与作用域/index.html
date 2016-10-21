@@ -1,61 +1,17 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion">
+<!DOCTYPE html>
+<html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
 
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
-
-
-
-
-  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="javascript,概念理解," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Sincerely Mx" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico?v=0.5.0" />
-
-
-
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Xiao Jie" />
 
 
 
@@ -63,7 +19,7 @@
 Execution context执行上下文（简称上下文）决定了Js执行过程中可以获取哪些变量、函数、数据，一段程序可能被分割成许多不同的上下文，每一个上下文都会绑定一个变量对象（variable o">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图解Javascript上下文与作用域">
-<meta property="og:url" content="http://xiaojwithu.info/2015/08/04/图解Javascript上下文与作用域/index.html">
+<meta property="og:url" content="http://dearxiaojie.xyz/2015/08/04/图解Javascript上下文与作用域/index.html">
 <meta property="og:site_name" content="Sincerely Mx">
 <meta property="og:description" content="本文尝试阐述Javascript中的上下文与作用域背后的机制，主要涉及到执行上下文（execution context）、作用域链（scope chain）、闭包（closure）、this等概念。
 Execution context执行上下文（简称上下文）决定了Js执行过程中可以获取哪些变量、函数、数据，一段程序可能被分割成许多不同的上下文，每一个上下文都会绑定一个变量对象（variable o">
@@ -71,262 +27,298 @@ Execution context执行上下文（简称上下文）决定了Js执行过程中�
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai2.jpg">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai3.jpg">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai4.jpg">
-<meta property="og:updated_time" content="2016-01-20T04:48:39.796Z">
+<meta property="og:updated_time" content="2016-01-20T04:48:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解Javascript上下文与作用域">
 <meta name="twitter:description" content="本文尝试阐述Javascript中的上下文与作用域背后的机制，主要涉及到执行上下文（execution context）、作用域链（scope chain）、闭包（closure）、this等概念。
 Execution context执行上下文（简称上下文）决定了Js执行过程中可以获取哪些变量、函数、数据，一段程序可能被分割成许多不同的上下文，每一个上下文都会绑定一个变量对象（variable o">
+<meta name="twitter:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai1.jpg">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Sincerely Mx" type="application/atom+xml">
 
 
 
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"remove"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/red/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>图解Javascript上下文与作用域 | Sincerely Mx</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
     }
-  };
 </script>
 
-  <title> 图解Javascript上下文与作用域 | Sincerely Mx </title>
+
+    <script>
+        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
+    </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?30fc070a379dbd7572501a63e36ae3c7";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans" id="particles-js">
-
-  
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?30fc070a379dbd7572501a63e36ae3c7";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Sincerely Mx</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">陪伴与懂得，比爱一个人更重要。</p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu ">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-
-      
-      
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.jpg" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Xiao Jie</a></h1>
+        </hgroup>
 
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                图解Javascript上下文与作用域
-              
-            
-          </h1>
+        <p class="header-subtitle">陪伴与懂得，比爱一个人更重要。</p>
         
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-04T14:54:54+08:00" content="2015-08-04">
-              2015-08-04
-            </time>
-          </span>
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/转载/" itemprop="url" rel="index">
-                    <span itemprop="name">转载</span>
-                  </a>
-                </span>
+
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:xiaojie6170@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" href="http://weibo.com/xiaojie0428" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/swust-xiaoj" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 知乎" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
+                            
+                                <a class="fa Twitter" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://woodrat.xyz/">woodrat</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">MySophia</a>
+                    
+                    </div>
+                </section>
+                
 
                 
                 
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/08/04/图解Javascript上下文与作用域/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/08/04/图解Javascript上下文与作用域/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
         </div>
-      </header>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Xiao Jie</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.jpg" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Xiao Jie</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">陪伴与懂得，比爱一个人更重要。</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:xiaojie6170@gmail.com" title="Email"></a>
+                            
+                                <a class="fa 新浪微博" target="_blank" href="http://weibo.com/xiaojie0428" title="新浪微博"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/swust-xiaoj" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                                <a class="fa 知乎" target="_blank" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
+                            
+                                <a class="fa 豆瓣" target="_blank" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
+                            
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-图解Javascript上下文与作用域" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/04/图解Javascript上下文与作用域/" class="article-date">
+      <time datetime="2015-08-04T06:54:54.000Z" itemprop="datePublished">2015-08-04</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
     
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      图解Javascript上下文与作用域
+    </h1>
+  
 
-
-    <div class="post-body" itemprop="articleBody">
-
+      </header>
       
-      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+    </div>
 
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概念理解/">概念理解</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
       
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
         <p>本文尝试阐述Javascript中的上下文与作用域背后的机制，主要涉及到执行上下文（<code>execution context</code>）、作用域链（<code>scope chain</code>）、闭包（<code>closure</code>）、<code>this</code>等概念。</p>
 <h2 id="Execution_context">Execution context</h2><p>执行上下文（简称上下文）决定了Js执行过程中可以获取哪些变量、函数、数据，一段程序可能被分割成许多不同的上下文，每一个上下文都会绑定一个变量对象（<code>variable object</code>），它就像一个容器，用来存储当前上下文中所有已定义或可获取的变量、函数等。位于最顶端或最外层的上下文称为全局上下文（<code>global context</code>），全局上下文取决于执行环境，如Node中的<code>global</code>和Browser中的<code>window</code>：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai1.jpg" alt=""><br>需要注意的是，上下文与作用域（<code>scope</code>）是不同的概念。Js本身是单线程的，每当有<code>function</code>被执行时，就会产生一个新的上下文，这一上下文会被压入Js的上下文堆栈（<code>context stack</code>）中，<code>function</code>执行结束后则被弹出，因此Js解释器总是在栈顶上下文中执行。在生成新的上下文时，首先会绑定该上下文的变量对象，其中包括<code>arguments</code>和该函数中定义的变量；之后会创建属于该上下文的作用域链（<code>scope chain</code>），最后将<code>this</code>赋予这一<code>function</code>所属的<code>Object</code>，这一过程可以通过下图表示：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai2.jpg" alt=""></p>
 <h2 id="this">this</h2><p>上文提到<code>this</code>被赋予<code>function</code>所属的<code>Object</code>，具体来说，当<code>function</code>是定义在<code>global</code>对中时，<code>this</code>指向<code>global</code>；当<code>function</code>作为<code>Object</code>的方法时，<code>this</code>指向该<code>Object</code>：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x = <span class="number">1</span>;  </span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line">f();  <span class="comment">// -&gt; 1</span></span><br><span class="line"><span class="keyword">var</span> ff = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">    <span class="keyword">this</span>.x = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</span><br><span class="line">&#125;</span><br><span class="line">ff(); <span class="comment">// -&gt; 2  </span></span><br><span class="line">x     <span class="comment">// -&gt; 2</span></span><br><span class="line"><span class="keyword">var</span> o = &#123;x: <span class="string">"o's x"</span>, f: f&#125;;  </span><br><span class="line">o.f(); <span class="comment">// "o's x"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">1</span>;  </div><div class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</div><div class="line">&#125;</div><div class="line">f();  <span class="comment">// -&gt; 1</span></div><div class="line"><span class="keyword">var</span> ff = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="keyword">this</span>.x = <span class="number">2</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.x);</div><div class="line">&#125;</div><div class="line">ff(); <span class="comment">// -&gt; 2  </span></div><div class="line">x     <span class="comment">// -&gt; 2</span></div><div class="line"><span class="keyword">var</span> o = &#123;<span class="attr">x</span>: <span class="string">"o's x"</span>, <span class="attr">f</span>: f&#125;;  </div><div class="line">o.f(); <span class="comment">// "o's x"</span></div></pre></td></tr></table></figure>
 <h2 id="Scope_chain">Scope chain</h2><p>上文提到，在<code>function</code>被执行时生成新的上下文时会先绑定当前上下文的变量对象，再创建作用域链。我们知道<code>function</code>的定义是可以嵌套在其他<code>function</code>所创建的上下文中，也可以并列地定义在同一个上下文中（如<code>global</code>）。作用域链实际上就是自下而上地将所有嵌套定义的上下文所绑定的变量对象串接到一起，使嵌套的<code>function</code>可以“继承”上层上下文的变量，而并列的<code>function</code>之间互不干扰：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai3.jpg" alt=""></p>
-<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">var x = 'global';  </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">()</span>&#123;</span>  </span><br><span class="line">    var x = <span class="string">"a's x"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">b</span><span class="params">()</span>&#123;</span></span><br><span class="line">        var y = <span class="string">"b's y"</span>;</span><br><span class="line">        console.<span class="built_in">log</span><span class="params">(x)</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    b<span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span><span class="params">()</span>&#123;</span>  </span><br><span class="line">    var x = <span class="string">"c's x"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">d</span><span class="params">()</span>&#123;</span></span><br><span class="line">        console.<span class="built_in">log</span><span class="params">(y)</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">    d<span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line">a<span class="params">()</span>;  <span class="comment">// -&gt; "a's x"  </span></span><br><span class="line">c<span class="params">()</span>;  <span class="comment">// -&gt; ReferenceError: y is not defined  </span></span><br><span class="line">x     <span class="comment">// -&gt; "global"  </span></span><br><span class="line">y     <span class="comment">// -&gt; ReferenceError: y is not defined</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="string">'global'</span>;  </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="keyword">var</span> x = <span class="string">"a's x"</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">var</span> y = <span class="string">"b's y"</span>;</div><div class="line">        <span class="built_in">console</span>.log(x);</div><div class="line">    &#125;;</div><div class="line">    b();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="keyword">var</span> x = <span class="string">"c's x"</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">d</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(y);</div><div class="line">    &#125;;</div><div class="line">    d();</div><div class="line">&#125;</div><div class="line">a();  <span class="comment">// -&gt; "a's x"  </span></div><div class="line">c();  <span class="comment">// -&gt; ReferenceError: y is not defined  </span></div><div class="line">x     <span class="comment">// -&gt; "global"  </span></div><div class="line">y     <span class="comment">// -&gt; ReferenceError: y is not defined</span></div></pre></td></tr></table></figure>
 <h2 id="Closure">Closure</h2><p>如果理解了上文中提到的上下文与作用域链的机制，再来看闭包的概念就很清楚了。每个<code>function</code>在调用时会创建新的上下文及作用域链，而作用域链就是将外层（上层）上下文所绑定的变量对象逐一串连起来，使当前<code>function</code>可以获取外层上下文的变量、数据等。如果我们在<code>function</code>中定义新的<code>function</code>，同时将内层<code>function</code>作为值返回，那么内层<code>function</code>所包含的作用域链将会一起返回，即使内层<code>function</code>在其他上下文中执行，其内部的作用域链仍然保持着原有的数据，而当前的上下文可能无法获取原先外层<code>function</code>中的数据，使得<code>function</code>内部的作用域链被保护起来，从而形成“闭包”。看下面的例子：</p>
-<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var x = <span class="number">100</span>;  </span><br><span class="line">var inc = <span class="function"><span class="keyword">function</span><span class="params">()</span>&#123;</span>  </span><br><span class="line">    var x = <span class="number">0</span>;</span><br><span class="line">    return <span class="function"><span class="keyword">function</span><span class="params">()</span>&#123;</span></span><br><span class="line">        console.<span class="built_in">log</span><span class="params">(x++)</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">var inc1 = inc<span class="params">()</span>;  </span><br><span class="line">var inc2 = inc<span class="params">()</span>;</span><br><span class="line">inc1<span class="params">()</span>;  <span class="comment">// -&gt; 0  </span></span><br><span class="line">inc1<span class="params">()</span>;  <span class="comment">// -&gt; 1  </span></span><br><span class="line">inc2<span class="params">()</span>;  <span class="comment">// -&gt; 0  </span></span><br><span class="line">inc1<span class="params">()</span>;  <span class="comment">// -&gt; 2  </span></span><br><span class="line">inc2<span class="params">()</span>;  <span class="comment">// -&gt; 1  </span></span><br><span class="line">x;       <span class="comment">// -&gt; 100</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x = <span class="number">100</span>;  </div><div class="line"><span class="keyword">var</span> inc = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  </div><div class="line">    <span class="keyword">var</span> x = <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(x++);</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> inc1 = inc();  </div><div class="line"><span class="keyword">var</span> inc2 = inc();</div><div class="line">inc1();  <span class="comment">// -&gt; 0  </span></div><div class="line">inc1();  <span class="comment">// -&gt; 1  </span></div><div class="line">inc2();  <span class="comment">// -&gt; 0  </span></div><div class="line">inc1();  <span class="comment">// -&gt; 2  </span></div><div class="line">inc2();  <span class="comment">// -&gt; 1  </span></div><div class="line">x;       <span class="comment">// -&gt; 100</span></div></pre></td></tr></table></figure>
 <p>执行过程如下图所示，<code>inc</code>内部返回的匿名<code>function</code>在创建时生成的作用域链包括了<code>inc</code>中的<code>x</code>，即使后来赋值给<code>inc1</code>和<code>inc2</code>之后，直接在<code>global context</code>下调用，它们的作用域链仍然是由定义中所处的上下文环境决定，而且由于<code>x</code>是在<code>function inc</code>中定义的，无法被外层的<code>global context</code>所改变，从而实现了闭包的效果：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai4.jpg" alt=""></p>
 <h2 id="this_in_closure">this in closure</h2><p>我们已经反复提到执行上下文和作用域实际上是通过<code>function</code>创建、分割的，而<code>function</code>中的<code>this</code>与作用域链不同，它是由执行该<code>function</code>时当前所处的<code>Object</code>环境所决定的，这也是<code>this</code>最容易被混淆用错的一点。一般情况下的例子如下：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </span><br><span class="line"><span class="keyword">var</span> o = &#123;  </span><br><span class="line">    name: <span class="string">"o"</span>,</span><br><span class="line">    getName: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">o.getName();  <span class="comment">// -&gt; "o"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </div><div class="line"><span class="keyword">var</span> o = &#123;  </div><div class="line">    name: <span class="string">"o"</span>,</div><div class="line">    getName: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">o.getName();  <span class="comment">// -&gt; "o"</span></div></pre></td></tr></table></figure>
 <p>由于执行<code>o.getName()</code>时<code>getName</code>所绑定的<code>this</code>是调用它的<code>o</code>，所以此时<code>this == o</code>；更容易搞混的是在<code>closure</code>条件下：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </span><br><span class="line"><span class="keyword">var</span> oo = &#123;  </span><br><span class="line">    name: <span class="string">"oo"</span>,</span><br><span class="line">    getNameFunc: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">oo.getNameFunc()();  <span class="comment">// -&gt; "global"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </div><div class="line"><span class="keyword">var</span> oo = &#123;  </div><div class="line">    name: <span class="string">"oo"</span>,</div><div class="line">    getNameFunc: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">oo.getNameFunc()();  <span class="comment">// -&gt; "global"</span></div></pre></td></tr></table></figure>
 <p>此时闭包函数被<code>return</code>后调用相当于：</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">getName = oo.getNameFunc();  </span><br><span class="line">getName();  <span class="regexp">//</span> -&gt; <span class="string">"global"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">getName</span> = oo.getNameFunc()<span class="comment">;  </span></div><div class="line">getName()<span class="comment">;  // -&gt; "global"</span></div></pre></td></tr></table></figure>
 <p>换一个更明显的例子：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> ooo</span> = &#123;  </span><br><span class="line">    name: <span class="string">"ooo"</span>,</span><br><span class="line">    getName: oo.getNameFunc() <span class="comment">// 此时闭包函数的this被绑定到新的Object</span></span><br><span class="line">&#125;;</span><br><span class="line">ooo.getName();  <span class="comment">// -&gt; "ooo"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var ooo = &#123;  </div><div class="line">    <span class="keyword">name</span>: <span class="string">"ooo"</span>,</div><div class="line">    getName: oo.getNameFunc() <span class="comment">// 此时闭包函数的this被绑定到新的Object</span></div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="title">ooo</span>.getName();  // -&gt;</span> <span class="string">"ooo"</span></div></pre></td></tr></table></figure>
 <p>当然，有时候为了避免闭包中的<code>this</code>在执行时被替换，可以采取下面的方法：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </span><br><span class="line"><span class="keyword">var</span> oooo = &#123;  </span><br><span class="line">    name: <span class="string">"ox4"</span>,</span><br><span class="line">    getNameFunc: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">var</span> <span class="keyword">self</span> = this;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">self</span>.name;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">oooo.getNameFunc()(); <span class="comment">// -&gt; "ox4"</span></span><br></pre></td></tr></table></figure>
-<p>或者是在调用时强行定义执行的<code>Object</code>：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </span><br><span class="line"><span class="keyword">var</span> oo = &#123;  </span><br><span class="line">    name: <span class="string">"oo"</span>,</span><br><span class="line">    getNameFunc: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">oo.getNameFunc()();  <span class="comment">// -&gt; "global"  </span></span><br><span class="line">oo.getNameFunc().bind(oo)(); <span class="comment">// -&gt; "oo"</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </div><div class="line"><span class="keyword">var</span> oooo = &#123;  </div><div class="line">    name: <span class="string">"ox4"</span>,</div><div class="line">    getNameFunc: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">var</span> <span class="keyword">self</span> = this;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">self</span>.name;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">oooo.getNameFunc()(); <span class="comment">// -&gt; "ox4"</span></div></pre></td></tr></table></figure>
+<p>或者是在调用时强行定义执行的<code>Object</code>：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </div><div class="line"><span class="keyword">var</span> oo = &#123;  </div><div class="line">    name: <span class="string">"oo"</span>,</div><div class="line">    getNameFunc: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">oo.getNameFunc()();  <span class="comment">// -&gt; "global"  </span></div><div class="line">oo.getNameFunc().bind(oo)(); <span class="comment">// -&gt; "oo"</span></div></pre></td></tr></table></figure></p>
 <h2 id="总结">总结</h2><p>Js是一门很有趣的语言，由于它的很多特性是针对HTML中DOM的操作，因而显得随意而略失严谨，但随着前端的不断繁荣发展和Node的兴起，Js已经不再是”toy language”或是jQuery时代的”CSS扩展”，本文提到的这些概念无论是对新手还是从传统Web开发中过度过来的Js开发人员来说，都很容易被混淆或误解，希望本文可以有所帮助。</p>
 <p>写这篇总结的原因是我在Github上分享的<a href="https://github.com/coodict/javascript-in-one-pic" target="_blank" rel="external">Learn javascript in one picture</a>，刚开始有人质疑这只能算是一张语法表（syntax cheat sheet），根本不会涉及更深层的闭包、作用域等内容，但是出乎意料的是这个项目竟然获得3000多个star，所以不能虎头蛇尾，以上。</p>
 <h2 id="References">References</h2><ul>
@@ -338,550 +330,250 @@ Execution context执行上下文（简称上下文）决定了Js执行过程中�
 
       
     </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/javascript/" rel="tag">#javascript</a>
-          
-            <a href="/tags/概念理解/" rel="tag">#概念理解</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2015/07/27/javascript性能优化小知识/" rel="next" title="javascript性能优化小知识">
-                <i class="fa fa-chevron-left"></i> javascript性能优化小知识
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/09/05/CSS伪元素-after/" rel="prev" title="CSS伪元素::after提示用法">
-                CSS伪元素::after提示用法 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-        <div class="ds-share flat" data-thread-key="2015/08/04/图解Javascript上下文与作用域/"
-     data-title="图解Javascript上下文与作用域"
-     data-content=""
-     data-url="http://xiaojwithu.info/2015/08/04/图解Javascript上下文与作用域/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
-
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-  <p>热评文章</p>
-  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2015/08/04/图解Javascript上下文与作用域/"
-           data-title="图解Javascript上下文与作用域" data-url="http://xiaojwithu.info/2015/08/04/图解Javascript上下文与作用域/">
-      </div>
     
   </div>
-
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Xiao Jie</a></p>
+        <p><span>发布时间:</span>2015-08-04, 14:54:54</p>
+        <p><span>最后更新:</span>2016-01-20, 12:48:40</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2015/08/04/图解Javascript上下文与作用域/" title="图解Javascript上下文与作用域">http://dearxiaojie.xyz/2015/08/04/图解Javascript上下文与作用域/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2015/08/04/图解Javascript上下文与作用域/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
 
-      
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/img/blog.jpg"
-               alt="Xiao Jie" />
-          <p class="site-author-name" itemprop="name">Xiao Jie</p>
-          <p class="site-description motion-element" itemprop="description">Because of you</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">17</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          <div class="site-state-item site-state-categories">
-            <a href="/categories">
-              <span class="site-state-item-count">7</span>
-              <span class="site-state-item-name">分类</span>
-              </a>
-          </div>
-
-          <div class="site-state-item site-state-tags">
-            <a href="/tags">
-              <span class="site-state-item-count">15</span>
-              <span class="site-state-item-name">标签</span>
-              </a>
-          </div>
-
-        </nav>
-
+    <nav id="article-nav">
         
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/swust-xiaoj" target="_blank">
-                  
-                    <i class="fa fa-github"></i> GitHub
-                  
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2015/09/05/CSS伪元素-after/">
+                    CSS伪元素::after提示用法
                 </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://twitter.com/xiaojie61703" target="_blank">
-                  
-                    <i class="fa fa-twitter"></i> Twitter
-                  
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/xiaojie0428" target="_blank">
-                  
-                    <i class="fa fa-weibo"></i> 微博
-                  
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.douban.com/people/136995777/" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> 豆瓣
-                  
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.zhihu.com/people/xiao-xiao-37-23" target="_blank">
-                  
-                    <i class="fa fa-globe"></i> 知乎
-                  
-                </a>
-              </span>
-            
-          
-        </div>
-
+            </div>
         
         
-          <div class="cc-license motion-element" itemprop="license">
-            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
-              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
-            </a>
-          </div>
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2015/07/27/javascript性能优化小知识/">
+                    javascript性能优化小知识
+                </a>
+            </div>
         
+    </nav>
 
-        <div class="links-of-author motion-element">
-          
-            <p class="site-author-name">Links</p>
-            
-              <span class="links-of-author-item">
-                <a href="http://woodrat.xyz/" target="_blank">woodrat</a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://shimanxiang.github.io/" target="_blank">MySophia</a>
-              </span>
-            
-          
-        </div>
-        <div class="motion-element myclick-music">
-            
-              <a href='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&&s.height<n&&s.width>t&&s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&&!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&&t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//7xjp74.com1.z0.glb.clouddn.com/zhuanzaiSamantha%20Jade%20-%20Soldier.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>if you can click!</a>
-            
-        </div>
+  
+</article>
 
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc-indicator-top post-toc-indicator">
-            <i class="fa fa-angle-double-up"></i>
-          </div>
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Execution_context"><span class="nav-number">1.</span> <span class="nav-text">Execution context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this"><span class="nav-number">2.</span> <span class="nav-text">this</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Scope_chain"><span class="nav-number">3.</span> <span class="nav-text">Scope chain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure"><span class="nav-number">4.</span> <span class="nav-text">Closure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this_in_closure"><span class="nav-number">5.</span> <span class="nav-text">this in closure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">7.</span> <span class="nav-text">References</span></a></li></ol></div>
-            
-          </div>
-          <div class="post-toc-indicator-bottom post-toc-indicator">
-            <i class="fa fa-angle-double-down"></i>
-          </div>
-        </section>
-      
-
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Execution_context"><span class="toc-number">1.</span> <span class="toc-text">Execution context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this"><span class="toc-number">2.</span> <span class="toc-text">this</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Scope_chain"><span class="toc-number">3.</span> <span class="toc-text">Scope chain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Closure"><span class="toc-number">4.</span> <span class="toc-text">Closure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this_in_closure"><span class="toc-number">5.</span> <span class="toc-text">this in closure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">7.</span> <span class="toc-text">References</span></a></li></ol>
+        
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2015 - 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="icon-next-heart fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Xiao Jie</span>
-</div>
-
-
-
-      </div>
-    </footer>
-
-    <div class="back-to-top"></div>
-  </div>
-
-  
-
-
-  
-
-
-
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
-
-  <script type="text/javascript" src="/vendors/particles.js"></script>
-
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
-
-
-
-  
-  
-<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
-
-<script type="text/javascript" id="sidebar.toc.highlight">
-  $(document).ready(function () {
-    var tocSelector = '.post-toc';
-    var $tocSelector = $(tocSelector);
-    var activeCurrentSelector = '.active-current';
-
-    $tocSelector
-      .on('activate.bs.scrollspy', function () {
-        var $currentActiveElement = $(tocSelector + ' .active').last();
-
-        removeCurrentActiveClass();
-        $currentActiveElement.addClass('active-current');
-
-        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
-      })
-      .on('clear.bs.scrollspy', function () {
-        removeCurrentActiveClass();
-      });
-
-    function removeCurrentActiveClass () {
-      $(tocSelector + ' ' + activeCurrentSelector)
-        .removeClass(activeCurrentSelector.substring(1));
-    }
-
-    function processTOC () {
-      getTOCMaxHeight();
-      toggleTOCOverflowIndicators();
-    }
-
-    function getTOCMaxHeight () {
-      var height = $('.sidebar').height() -
-                   $tocSelector.position().top -
-                   $('.post-toc-indicator-bottom').height();
-
-      $tocSelector.css('height', height);
-
-      return height;
-    }
-
-    function toggleTOCOverflowIndicators () {
-      tocOverflowIndicator(
-        '.post-toc-indicator-top',
-        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
-      );
-
-      tocOverflowIndicator(
-        '.post-toc-indicator-bottom',
-        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
-      )
-    }
-
-    $(document).on('sidebar.motion.complete', function () {
-      processTOC();
-    });
-
-    $('body').scrollspy({ target: tocSelector });
-    $(window).on('resize', function () {
-      if ( $('.sidebar').hasClass('sidebar-active') ) {
-        processTOC();
-      }
-    });
-
-    onScroll($tocSelector);
-
-    function onScroll (element) {
-      element.on('mousewheel DOMMouseScroll', function (event) {
-          var oe = event.originalEvent;
-          var delta = oe.wheelDelta || -oe.detail;
-
-          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
-          event.preventDefault();
-
-          toggleTOCOverflowIndicators();
-      });
-    }
-
-    function tocOverflowIndicator (indicator, action) {
-      var $indicator = $(indicator);
-      var opacity = action === 'show' ? 1 : 0;
-      $indicator.velocity ?
-        $indicator.velocity('stop').velocity({
-          opacity: opacity
-        }, { duration: 100 }) :
-        $indicator.stop().animate({
-          opacity: opacity
-        }, 100);
-    }
-
-  });
-</script>
-
-<script type="text/javascript" id="sidebar.nav">
-  $(document).ready(function () {
-    var html = $('html');
-    var TAB_ANIMATE_DURATION = 200;
-    var hasVelocity = $.isFunction(html.velocity);
-
-    $('.sidebar-nav li').on('click', function () {
-      var item = $(this);
-      var activeTabClassName = 'sidebar-nav-active';
-      var activePanelClassName = 'sidebar-panel-active';
-      if (item.hasClass(activeTabClassName)) {
-        return;
-      }
-
-      var currentTarget = $('.' + activePanelClassName);
-      var target = $('.' + item.data('target'));
-
-      hasVelocity ?
-        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
-          target
-            .velocity('stop')
-            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
-            .addClass(activePanelClassName);
-        }) :
-        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
-          currentTarget.hide();
-          target
-            .stop()
-            .css({'opacity': 0, 'display': 'block'})
-            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
-              currentTarget.removeClass(activePanelClassName);
-              target.addClass(activePanelClassName);
-            });
-        });
-
-      item.siblings().removeClass(activeTabClassName);
-      item.addClass(activeTabClassName);
-    });
-
-    $('.post-toc a').on('click', function (e) {
-      e.preventDefault();
-      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
-      var offset = $(targetSelector).offset().top;
-      hasVelocity ?
-        html.velocity('stop').velocity('scroll', {
-          offset: offset  + 'px',
-          mobileHA: false
-        }) :
-        $('html, body').stop().animate({
-          scrollTop: offset
-        }, 500);
-    });
-
-    // Expand sidebar on post detail page by default, when post has a toc.
-    NexT.motion.middleWares.sidebar = function () {
-      var $tocContent = $('.post-toc-content');
-
-      if (CONFIG.sidebar === 'post') {
-        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
-          NexT.utils.displaySidebar();
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
         }
-      }
-    };
-  });
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"图解Javascript上下文与作用域　| Sincerely Mx　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+      <div class="duoshuo" id="comments">
+    <div id="comment-box" ></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2015/08/04/图解Javascript上下文与作用域/" data-title="图解Javascript上下文与作用域" data-url="http://dearxiaojie.xyz/2015/08/04/图解Javascript上下文与作用域/"></div>
+    <script>
+        var duoshuoQuery = {short_name:"accompany"};
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.async = true; s.charset = 'UTF-8';
+            (d.head || d.body).appendChild(s);
+        }
+
+        
+    </script>
+    
+    <script> loadComment(); </script>
+
+</div>
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2015/09/05/CSS伪元素-after/" title="上一篇: CSS伪元素::after提示用法">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2015/07/27/javascript性能优化小知识/" title="下一篇: javascript性能优化小知识">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/Gulp Connect发送post请求返回405/">Gulp Connect发送post请求返回405</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/25/一路向北/">我一路向北，离开有你的季节</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/23/删除node-modules不成功/">删除node_modules不成功</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/remove-white-space-below-image/">remove white space below image</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/27/jQuery常用方法归纳总结/">jQuery常用方法归纳</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/12/一个挑战游戏(Nazo)/">一个挑战游戏(Nazo)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/XMLHttpRequest学习笔记/">XMLHttpRequest学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/28/web前端笔试练习/">web前端笔试练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/淡淡的友情、浅浅的爱/">淡淡的友情、浅浅的爱</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/CSS选择器/">CSS选择器</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/">数据库中的html源代码返还到页面的iframe中</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/2015阿里web前端笔试题（部分）/">2015阿里web前端笔试题（部分）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/">两个iframe框滚动条联动以及iframe窗口高宽自适应</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/24/高性能JavaScript/">高性能JavaScript</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 Xiao Jie
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
 </script>
 
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
 
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
-
-  <script type="text/javascript" src="/js/src/particles.conf.js?v=0.5.0"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"accompany"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-  
-
-
-
-
-
-  
-  
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      }
-    });
-  </script>
-
-  <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
-    });
-  </script>
-
-  
-    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
-    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
-  
-
-
-  
-  
-
-
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
 </body>
 </html>
