@@ -21,7 +21,7 @@
 <meta property="og:url" content="http://dearxiaojie.xyz/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/index.html">
 <meta property="og:site_name" content="Sincerely Mx">
 <meta property="og:description" content="由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。">
-<meta property="og:updated_time" content="2016-01-20T04:48:26.000Z">
+<meta property="og:updated_time" content="2016-10-21T15:49:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两个iframe框滚动条联动以及iframe窗口高宽自适应">
 <meta name="twitter:description" content="由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。">
@@ -293,6 +293,7 @@
           
         <p>由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。<br><a id="more"></a></p>
    <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div1"</span>  <span class="attr">style</span>=<span class="string">"width:620px;height:500px ; float:left;overflow:scroll"</span> <span class="attr">onscroll</span>=<span class="string">"funcsrcoll1()"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">name</span>=<span class="string">"left"</span> <span class="attr">id</span>=<span class="string">"left"</span> <span class="attr">scrolling</span>=<span class="string">"no"</span> <span class="attr">width</span>=<span class="string">"600px"</span> <span class="attr">height</span>=<span class="string">"500px"</span> <span class="attr">src</span>=<span class="string">"2.html"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div2"</span> <span class="attr">style</span>=<span class="string">"width:620px; height:500px ;float:left;overflow:scroll"</span> <span class="attr">onscroll</span>=<span class="string">"funcsrcoll2()"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">iframe</span> <span class="attr">name</span>=<span class="string">"right"</span> <span class="attr">id</span>=<span class="string">"right"</span> <span class="attr">scrolling</span>=<span class="string">"no"</span> <span class="attr">width</span>=<span class="string">"600px"</span> <span class="attr">height</span>=<span class="string">"500px"</span> <span class="attr">src</span>=<span class="string">"3.html"</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="comment">//控制两个div的滚动条联动，便于页面对比</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">funcsrcoll1</span>(<span class="params"></span>)</span></div><div class="line">      &#123;</div><div class="line">          div2.scrollLeft = div1.scrollLeft;</div><div class="line">          div2.scrollTop = div1.scrollTop;</div><div class="line">      &#125;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">funcsrcoll2</span>(<span class="params"></span>)</span></div><div class="line">      &#123;</div><div class="line">          div1.scrollLeft = div2.scrollLeft;</div><div class="line">          div1.scrollTop = div2.scrollTop;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">//调整iframe窗口大小适应src链接的页面</span></div><div class="line">      <span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      $(<span class="string">'iframe'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">          <span class="keyword">this</span>.style.height = <span class="keyword">this</span>.contentWindow.document.body.scrollHeight+<span class="number">20</span> + <span class="string">'px'</span>;</div><div class="line">            <span class="comment">//为了显示完整，额外加了20px的宽度</span></div><div class="line">          <span class="keyword">this</span>.style.width = <span class="keyword">this</span>.contentWindow.document.body.scrollWidth+<span class="number">20</span> + <span class="string">'px'</span>;</div><div class="line">      &#125;);    </div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -303,7 +304,7 @@
         <p><span>本文标题:</span><a href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/">两个iframe框滚动条联动以及iframe窗口高宽自适应</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Xiao Jie</a></p>
         <p><span>发布时间:</span>2015-05-25, 20:03:05</p>
-        <p><span>最后更新:</span>2016-01-20, 12:48:26</p>
+        <p><span>最后更新:</span>2016-10-21, 23:49:46</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/" title="两个iframe框滚动条联动以及iframe窗口高宽自适应">http://dearxiaojie.xyz/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/</a>
             <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -373,7 +374,7 @@
         var duoshuoQuery = {short_name:"accompany"};
         var loadComment = function(){
             var d = document, s = d.createElement('script');
-            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.src = 'http://7xjp74.com1.z0.glb.clouddn.com/embed.js';
             s.async = true; s.charset = 'UTF-8';
             (d.head || d.body).appendChild(s);
         }
@@ -384,6 +385,7 @@
     <script> loadComment(); </script>
 
 </div>
+
     
 
 

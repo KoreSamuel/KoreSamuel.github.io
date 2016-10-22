@@ -15,22 +15,16 @@
 
 
 
-<meta name="description" content="1.给定一个随机数组，数组可能包含数组（也就是说数组元素可能为数组）。要求用js实现一个函数，返回该数组中所有元素。例如，例如：数组[2,3,[4,6,[1,8]],12,10]，返回结果为：[2,3,4,6,1,8,12,10]
-
-  12345678function getArray(arr) &amp;#123;  var arrs = [];  for(var i=0,l=arr.length;">
+<meta name="description" content="实习之前找工作，参加了各种面试笔试，在此过程中将遇到的笔试题整理记录下来，便于查阅和分享">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2015阿里web前端笔试题（部分）">
 <meta property="og:url" content="http://dearxiaojie.xyz/2015/05/25/2015阿里web前端笔试题（部分）/index.html">
 <meta property="og:site_name" content="Sincerely Mx">
-<meta property="og:description" content="1.给定一个随机数组，数组可能包含数组（也就是说数组元素可能为数组）。要求用js实现一个函数，返回该数组中所有元素。例如，例如：数组[2,3,[4,6,[1,8]],12,10]，返回结果为：[2,3,4,6,1,8,12,10]
-
-  12345678function getArray(arr) &amp;#123;  var arrs = [];  for(var i=0,l=arr.length;">
-<meta property="og:updated_time" content="2016-01-20T04:49:04.000Z">
+<meta property="og:description" content="实习之前找工作，参加了各种面试笔试，在此过程中将遇到的笔试题整理记录下来，便于查阅和分享">
+<meta property="og:updated_time" content="2016-10-21T15:48:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2015阿里web前端笔试题（部分）">
-<meta name="twitter:description" content="1.给定一个随机数组，数组可能包含数组（也就是说数组元素可能为数组）。要求用js实现一个函数，返回该数组中所有元素。例如，例如：数组[2,3,[4,6,[1,8]],12,10]，返回结果为：[2,3,4,6,1,8,12,10]
-
-  12345678function getArray(arr) &amp;#123;  var arrs = [];  for(var i=0,l=arr.length;">
+<meta name="twitter:description" content="实习之前找工作，参加了各种面试笔试，在此过程中将遇到的笔试题整理记录下来，便于查阅和分享">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -300,7 +294,7 @@
         <blockquote>
 <p>1.给定一个随机数组，数组可能包含数组（也就是说数组元素可能为数组）。要求用js实现一个函数，返回该数组中所有元素。例如，例如：数组[2,3,[4,6,[1,8]],12,10]，返回结果为：[2,3,4,6,1,8,12,10]</p>
 </blockquote>
-  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getArray</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> arrs = [];</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,l=arr.length;i &lt; l;i++) &#123;</div><div class="line">      <span class="keyword">if</span>(!<span class="built_in">Array</span>.isArray(arr[i])) arrs.push(arr[i]);</div><div class="line">      <span class="keyword">else</span> arrs = arrs.concat( getArray(arr[i]) );</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> arrs;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">getArray</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> arrs = [];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,l=arr.length;i &lt; l;i++) &#123;</div><div class="line">        <span class="keyword">if</span>(!<span class="built_in">Array</span>.isArray(arr[i])) arrs.push(arr[i]);</div><div class="line">        <span class="keyword">else</span> arrs = arrs.concat( getArray(arr[i]) );</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> arrs;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <blockquote>
 <p>2.用js实现随机选取10–100之间的不同的10个数字，存入一个数组，并降序排序</p>
@@ -333,7 +327,7 @@
         <p><span>本文标题:</span><a href="/2015/05/25/2015阿里web前端笔试题（部分）/">2015阿里web前端笔试题（部分）</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Xiao Jie</a></p>
         <p><span>发布时间:</span>2015-05-25, 20:14:35</p>
-        <p><span>最后更新:</span>2016-01-20, 12:49:04</p>
+        <p><span>最后更新:</span>2016-10-21, 23:48:43</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/05/25/2015阿里web前端笔试题（部分）/" title="2015阿里web前端笔试题（部分）">http://dearxiaojie.xyz/2015/05/25/2015阿里web前端笔试题（部分）/</a>
             <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2015/05/25/2015阿里web前端笔试题（部分）/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -365,6 +359,29 @@
 
   
 </article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
 
@@ -403,7 +420,7 @@
         var duoshuoQuery = {short_name:"accompany"};
         var loadComment = function(){
             var d = document, s = d.createElement('script');
-            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.src = 'http://7xjp74.com1.z0.glb.clouddn.com/embed.js';
             s.async = true; s.charset = 'UTF-8';
             (d.head || d.body).appendChild(s);
         }
@@ -414,6 +431,7 @@
     <script> loadComment(); </script>
 
 </div>
+
     
 
 

@@ -15,29 +15,23 @@
 
 
 
-<meta name="description" content="Question
-Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：
+<meta name="description" content="##Question
 
-
-Reasonwindows 在文件目录的长度有限制，因为node packages 有众多dependencies，每一个dependency又有其他的dependency，这些dependency或许还有其他的dependency，所以导致node_modules有超级复">
+Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="删除node_modules不成功">
 <meta property="og:url" content="http://dearxiaojie.xyz/2015/11/23/删除node-modules不成功/index.html">
 <meta property="og:site_name" content="Sincerely Mx">
-<meta property="og:description" content="Question
-Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：
+<meta property="og:description" content="##Question
 
-
-Reasonwindows 在文件目录的长度有限制，因为node packages 有众多dependencies，每一个dependency又有其他的dependency，这些dependency或许还有其他的dependency，所以导致node_modules有超级复">
+Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/failed.png">
-<meta property="og:updated_time" content="2016-01-20T04:48:34.000Z">
+<meta property="og:updated_time" content="2016-10-21T15:50:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="删除node_modules不成功">
-<meta name="twitter:description" content="Question
-Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：
+<meta name="twitter:description" content="##Question
 
-
-Reasonwindows 在文件目录的长度有限制，因为node packages 有众多dependencies，每一个dependency又有其他的dependency，这些dependency或许还有其他的dependency，所以导致node_modules有超级复">
+Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：">
 <meta name="twitter:image" content="http://7xjp74.com1.z0.glb.clouddn.com/failed.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -305,18 +299,22 @@ Reasonwindows 在文件目录的长度有限制，因为node packages 有众多d
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Question">Question</h2><blockquote>
-<p>Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：</p>
+        <p>##Question</p>
+<blockquote>
+<p>Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：<br><a id="more"></a><br><img src="http://7xjp74.com1.z0.glb.clouddn.com/failed.png" alt="failed"></p>
 </blockquote>
-<p><img src="http://7xjp74.com1.z0.glb.clouddn.com/failed.png" alt="failed"></p>
-<h2 id="Reason">Reason</h2><p>windows 在文件目录的长度有限制，因为node packages 有众多dependencies，每一个dependency又有其他的dependency，这些dependency或许还有其他的dependency，所以导致node_modules有超级复杂的文件目录。比如：</p>
+<p>##Reason</p>
+<p>windows 在文件目录的长度有限制，因为node packages 有众多dependencies，每一个dependency又有其他的dependency，这些dependency或许还有其他的dependency，所以导致node_modules有超级复杂的文件目录。比如：</p>
 <blockquote>
 <p>D:\codetest\node_modules\edpx-mobile\node_modules\edp-webserver\node_modules\babel\node_modules\chokidar\node_modules\anymatch\node_modules</p>
 </blockquote>
-<h2 id="Solution">Solution</h2><h3 id="install">install</h3><blockquote>
+<p>##Solution</p>
+<p>###install</p>
+<blockquote>
 <p>npm install -g rimraf</p>
 </blockquote>
-<h3 id="delete">delete</h3><blockquote>
+<p>###delete</p>
+<blockquote>
 <p>rimraf node_modules</p>
 </blockquote>
 <p><em>亲测有效</em></p>
@@ -331,7 +329,7 @@ Reasonwindows 在文件目录的长度有限制，因为node packages 有众多d
         <p><span>本文标题:</span><a href="/2015/11/23/删除node-modules不成功/">删除node_modules不成功</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Xiao Jie</a></p>
         <p><span>发布时间:</span>2015-11-23, 19:11:31</p>
-        <p><span>最后更新:</span>2016-01-20, 12:48:34</p>
+        <p><span>最后更新:</span>2016-10-21, 23:50:03</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/11/23/删除node-modules不成功/" title="删除node_modules不成功">http://dearxiaojie.xyz/2015/11/23/删除node-modules不成功/</a>
             <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2015/11/23/删除node-modules不成功/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -367,7 +365,7 @@ Reasonwindows 在文件目录的长度有限制，因为node packages 有众多d
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Question"><span class="toc-number">1.</span> <span class="toc-text">Question</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reason"><span class="toc-number">2.</span> <span class="toc-text">Reason</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">3.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install"><span class="toc-number">3.1.</span> <span class="toc-text">install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete"><span class="toc-number">3.2.</span> <span class="toc-text">delete</span></a></li></ol></li></ol>
+            
         
     </div>
     <style>
@@ -424,7 +422,7 @@ Reasonwindows 在文件目录的长度有限制，因为node packages 有众多d
         var duoshuoQuery = {short_name:"accompany"};
         var loadComment = function(){
             var d = document, s = d.createElement('script');
-            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.src = 'http://7xjp74.com1.z0.glb.clouddn.com/embed.js';
             s.async = true; s.charset = 'UTF-8';
             (d.head || d.body).appendChild(s);
         }
@@ -435,6 +433,7 @@ Reasonwindows 在文件目录的长度有限制，因为node packages 有众多d
     <script> loadComment(); </script>
 
 </div>
+
     
 
 

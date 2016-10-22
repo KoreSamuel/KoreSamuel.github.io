@@ -291,14 +291,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="问题">问题</h2><p>在使用<code>gulp</code>过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:</p>
-<figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">405 </span>Method <span class="keyword">Not</span> Allowed</div></pre></td></tr></table></figure>
-<h2 id="解决">解决</h2><p>通过自定义一个中间件来完成<code>POST</code>、<code>PUT</code>、<code>DELETE</code> 请求。<br>首先，引入<code>fs</code>、<code>path</code>和<code>connect</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</div><div class="line">path = <span class="built_in">require</span>(<span class="string">'path'</span>),</div><div class="line">connect = <span class="built_in">require</span>(<span class="string">'gulp-connect'</span>);</div></pre></td></tr></table></figure>
-<p>接着，在配置中增加自己的中间件。</p>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'server'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">    connect.server(&#123;</div><div class="line">        middleware: <span class="function"><span class="keyword">function</span><span class="params">(connect, options)</span></span> &#123;</div><div class="line">        <span class="keyword">return</span> [</div><div class="line">            <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span></span> &#123;</div><div class="line">                var filepath = path.join(options.root, req.url);</div><div class="line">                <span class="keyword">if</span> (<span class="string">'POSTPUTDELETE'</span>.indexOf(req.method.toUpperCase()) &gt; <span class="number">-1</span></div><div class="line">                    &amp;&amp; fs.existsSync(filepath) &amp;&amp; fs.statSync(filepath).isFile()) &#123;</div><div class="line">                    <span class="keyword">return</span> res.<span class="keyword">end</span>(fs.readFileSync(filepath));</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">return</span> <span class="built_in">next</span>();</div><div class="line">               &#125;</div><div class="line">            ];</div><div class="line">        &#125;,</div><div class="line">        hostname: <span class="string">'127.0.0.1'</span>,</div><div class="line">        port: <span class="number">8090</span>,</div><div class="line">        livereload: <span class="keyword">true</span></div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="References">References</h2><p><a href="http://cweili.gitcafe.io/gulp-connect-post-put-delete/" target="_blank" rel="external">让 Gulp Connect 支持 POST、PUT、DELETE 请求</a></p>
-
+              <p>##问题</p>
+<p>在使用<code>gulp</code>过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:<br>
+          
       
     </div>
     
@@ -315,6 +310,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp/">gulp</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/04/10/Gulp Connect发送post请求返回405/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -370,9 +369,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>　　每隔一段时间，总会矫情一会；每隔一段时间，总会莫名的心情不好、身体不适；每隔一段时间，总会感觉自己是个弱菜。<br>　　那一定是闲了，那一定是锻炼的少了，那一定是该学习了。<br>　　想来去年的这个时候，估计是大学以来学习最积极的时候吧。因为那时候大家都在忙着找实习，经历了几个笔试面试之后又感觉自己弱菜了。所以整天除了吃饭睡觉就是看书刷笔试题之类的，过得还算是充实。实习找好之后就开始各种玩，各种浪。于是到了假期该去公司报道了，实习了半年后回家过年，我不准备总结我的实习经验或者什么，并没有什么好说的。有收获也有失去，只是在那段时间看书看得少了。<br>　　这学期没有出去实习，一是因为需要做毕业设计，可是到现在都还没有怎么动手，二是因为某个人，想多陪陪ta，看看ta，可是却每天待在寝室。还有就是想到毕业后玩的时间就少了，这学期比较轻松，可以约三五好友出去玩玩什么的，可事实上好像除了吃饭就没有出过校门。<br>　　所以，现在我又开始矫情了，开始心情不好了，自己好弱！<br>　　抬头看看已经搁置在桌上很久的书，好像才翻开过几页，当初说好的分分钟看完呢！再看看杂乱无章的桌子，除了零食，手机，电脑，好像也没点啥。咦，我想说啥，难道是饿傻了？哦，到现在还没吃早饭。<br>　　好吧，我只是想随便敲几个文字感慨一下，也不敢给自己定什么计划，写什么todo，随遇而安还是顺其自然。<br>　　每次的晚安都伴随一丝心酸。<br>　　嗯，背景音乐不错。</p>
-<p>　　<strong>我一路向北，离开有你的季节；你说你好累，已无法在爱上谁..</strong></p>
-
+              <p>　　每隔一段时间，总会矫情一会；每隔一段时间，总会莫名的心情不好、身体不适；每隔一段时间，总会感觉自己是个弱菜。<br>　　那一定是闲了，那一定是锻炼的少了，那一定是该学习了。<br>
+          
       
     </div>
     
@@ -389,6 +387,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2016/03/25/一路向北/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -444,22 +446,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="Question">Question</h2><blockquote>
-<p>Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：</p>
-</blockquote>
-<p><img src="http://7xjp74.com1.z0.glb.clouddn.com/failed.png" alt="failed"></p>
-<h2 id="Reason">Reason</h2><p>windows 在文件目录的长度有限制，因为node packages 有众多dependencies，每一个dependency又有其他的dependency，这些dependency或许还有其他的dependency，所以导致node_modules有超级复杂的文件目录。比如：</p>
+              <p>##Question</p>
 <blockquote>
-<p>D:\codetest\node_modules\edpx-mobile\node_modules\edp-webserver\node_modules\babel\node_modules\chokidar\node_modules\anymatch\node_modules</p>
-</blockquote>
-<h2 id="Solution">Solution</h2><h3 id="install">install</h3><blockquote>
-<p>npm install -g rimraf</p>
-</blockquote>
-<h3 id="delete">delete</h3><blockquote>
-<p>rimraf node_modules</p>
-</blockquote>
-<p><em>亲测有效</em></p>
-
+<p>Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：<br>
+          
       
     </div>
     
@@ -476,6 +466,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodejs/">nodejs</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2015/11/23/删除node-modules不成功/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -531,33 +525,8 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>最近遇到过关于<code>&lt;img&gt;</code>标签显示一张图片在一个<code>&lt;div&gt;</code>里面，<code>&lt;div&gt;</code>的宽高由<code>image</code>撑起。可是在图片的底部和<code>&lt;div&gt;</code>底部之间，多出神秘的2~3px的空白。如下图：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/1.JPG" alt="have white space"><br>我知道<code>&lt;img&gt;</code>是个特殊的元素，为什么会出现这种现象？</p>
-<h2 id="Reason">Reason</h2><p><code>&lt;img&gt;</code> 元素在默认情况下是inline元素，inline元素默认和父级元素的baseline对齐的，而baseline又和父级底边有一定距离，注意下面两段文字。</p>
-<blockquote>
-<p>Look at this line of text. Notice there are no letters that breach the baseline</p>
-</blockquote>
-<p>另一段：</p>
-<blockquote>
-<p>By just crossing the bridge he probably got away.</p>
-</blockquote>
-<p>注意比较上面两段文字中字母<code>y,j,p,g</code>,下图更形象的显示<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/jQaJx.png" alt="jQaJx"><br>因为浏览器提供空间低于inline元素来适应字体。这就是上面出现的白边。这不是CSS的padding或margin,所以开发中不容易发现。</p>
-<h2 id="Solution">Solution</h2><ul>
-<li>给<code>&lt;img&gt;</code>元素设置<code>display:block</code></li>
-<li>给<code>&lt;img&gt;</code>元素设置<code>vertical-align:bottom</code>或者<code>vertical-align:top</code></li>
-<li>给<code>&lt;img&gt;</code>元素设置<code>font-size:0; vertical-align:middle;</code></li>
-<li>给<code>&lt;div&gt;</code>元素设置<code>line-height:0</code></li>
-<li>给<code>&lt;div&gt;</code>元素设置<code>font-size:0</code></li>
-<li>给<code>&lt;img&gt;</code>元素设置<code>vertical-align:text-bottom</code></li>
-</ul>
-<p>以上最后一条效果并不好，设置后仍有1px的白边，如下图：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/3.JPG" alt="1px white space"><br>而正常处理后是没有白边的，如下图：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/2.JPG" alt="no white space"></p>
-<h2 id="Code_source">Code source</h2><p><a href="http://runjs.cn/code/eozhsutb" target="_blank" rel="external">源码与在线演示</a></p>
-<h2 id="References">References</h2><ul>
-<li><a href="http://stackoverflow.com/questions/31444891/mystery-white-space-underneath-image-tag/31445364#31445364" target="_blank" rel="external">Mystery white space underneath image tag</a></li>
-<li><a href="http://salman-w.blogspot.com/2012/10/remove-space-below-images-and-inline-block-elements.html" target="_blank" rel="external">How to Remove the Space Below Images and Other Inline-Block Elements</a></li>
-<li><a href="http://stackoverflow.com/questions/7774814/remove-white-space-below-image" target="_blank" rel="external">Remove white space below image</a></li>
-</ul>
-<p><em>欢迎补充</em></p>
-
+              <p>最近遇到过关于<code>&lt;img&gt;</code>标签显示一张图片在一个<code>&lt;div&gt;</code>里面，<code>&lt;div&gt;</code>的宽高由<code>image</code>撑起。可是在图片的底部和<code>&lt;div&gt;</code>底部之间，多出神秘的2~3px的空白。如下图：<br>
+          
       
     </div>
     
@@ -574,6 +543,10 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2015/10/20/remove-white-space-below-image/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -629,21 +602,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="概述">概述</h2><p>CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素</p>
-<h2 id="语法">语法</h2><blockquote>
-<p><code>element:after  { style properties }</code>  /<em> CSS2 语法 </em>/<br><code>element::after { style properties }</code>  /<em> CSS3 语法 </em>/</p>
-</blockquote>
-<p><code>::after</code>表示法是在CSS 3中引入的,::符号是用来区分伪类和伪元素的.支持CSS3的浏览器同时也都支持CSS2中引入的表示法<code>:after</code>.</p>
-<h2 id="例子">例子</h2><p>用<code>::after</code>伪元素，<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/attr" target="_blank" rel="external">attr()</a>CSS表达式和一个<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes" target="_blank" rel="external">自定义数据属性</a> <code>data-descr</code> 创建一个纯CSS, 词汇表提示工具</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一段并没有什么用的</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'collection of words and punctuation'</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            ，完全是为了凑数才出现的文字，实现一个</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'small popups which also hide again'</span>&gt;</span>提示<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            功能，可以吧鼠标放上去</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'not to be taken literrlly'</span>&gt;</span>看看<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span> &#123;</div><div class="line">       <span class="attribute">position</span>: relative;</div><div class="line">       <span class="attribute">text-decoration</span>: underline;</div><div class="line">       <span class="attribute">color</span>: <span class="number">#00F</span>;</div><div class="line">       <span class="attribute">cursor</span>: help;</div><div class="line">   &#125;</div><div class="line">   <span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span><span class="selector-pseudo">:hover</span><span class="selector-pseudo">::after</span> &#123;</div><div class="line">     <span class="attribute">content</span>: <span class="built_in">attr</span>(data-descr);</div><div class="line">     <span class="attribute">position</span>: absolute;</div><div class="line">     <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">     <span class="attribute">top</span>: <span class="number">24px</span>;</div><div class="line">     <span class="attribute">min-width</span>: <span class="number">200px</span>;</div><div class="line">     <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#aaaaaa</span> solid;</div><div class="line">     <span class="attribute">border-radius</span>: <span class="number">10px</span>;</div><div class="line">     <span class="attribute">background-color</span>: <span class="number">#ffffcc</span>;</div><div class="line">     <span class="attribute">padding</span>: <span class="number">12px</span>;</div><div class="line">     <span class="attribute">color</span>: <span class="number">#000000</span>;</div><div class="line">     <span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">     <span class="attribute">z-index</span>: <span class="number">1</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<p><a href="http://runjs.cn/code/hkmnji2p" target="_blank" rel="external">在线演示</a></p>
-<h2 id="效果图">效果图</h2><p><img src="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png" alt="css-after"></p>
-<h2 id="浏览器兼容性">浏览器兼容性</h2><p><img src="http://7xjp74.com1.z0.glb.clouddn.com/table.png" alt="兼容性"></p>
-<h2 id="References">References</h2><ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Aafter" target="_blank" rel="external">::after (:after)</a></li>
-</ul>
-
+              <p>##概述</p>
+<p>CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素<br>
+          
       
     </div>
     
@@ -660,6 +621,395 @@
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li></ul>
     </div>
 
+      
+        <p class="article-more-link">
+          <a href="/2015/09/05/CSS伪元素-after/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-图解Javascript上下文与作用域" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/04/图解Javascript上下文与作用域/" class="article-date">
+      <time datetime="2015-08-04T06:54:54.000Z" itemprop="datePublished">2015-08-04</time>
+</a>
+
+ 
+    <a href="/2015/08/04/图解Javascript上下文与作用域/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/08/04/图解Javascript上下文与作用域/" ></span>
+        
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>本文尝试阐述Javascript中的上下文与作用域背后的机制，主要涉及到执行上下文（<code>execution context</code>）、作用域链（<code>scope chain</code>）、闭包（<code>closure</code>）、<code>this</code>等概念。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/转载/">转载</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/概念理解/">概念理解</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2015/08/04/图解Javascript上下文与作用域/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-javascript性能优化小知识" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/27/javascript性能优化小知识/" class="article-date">
+      <time datetime="2015-07-27T02:22:26.000Z" itemprop="datePublished">2015-07-27</time>
+</a>
+
+ 
+    <a href="/2015/07/27/javascript性能优化小知识/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/07/27/javascript性能优化小知识/" ></span>
+        
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>前面有一篇也是关于<code>javascript</code>性能方面的文章，是看了<a href="http://book.douban.com/subject/5362856/">《高性能javascript》</a>后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/性能优化/">性能优化</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2015/07/27/javascript性能优化小知识/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-jQuery常用方法归纳总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/27/jQuery常用方法归纳总结/" class="article-date">
+      <time datetime="2015-06-26T17:16:35.000Z" itemprop="datePublished">2015-06-27</time>
+</a>
+
+ 
+    <a href="/2015/06/27/jQuery常用方法归纳总结/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/06/27/jQuery常用方法归纳总结/" ></span>
+        
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/27/jQuery常用方法归纳总结/">jQuery常用方法归纳</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              jquery常用方法的归纳总结，不过随着jquery版本的升级，有的方法已经有新的实现方式
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/前端积累/">前端积累</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web前端/">web前端</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2015/06/27/jQuery常用方法归纳总结/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-一个挑战游戏(Nazo)" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/12/一个挑战游戏(Nazo)/" class="article-date">
+      <time datetime="2015-06-12T14:06:35.000Z" itemprop="datePublished">2015-06-12</time>
+</a>
+
+ 
+    <a href="/2015/06/12/一个挑战游戏(Nazo)/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/06/12/一个挑战游戏(Nazo)/" ></span>
+        
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/12/一个挑战游戏(Nazo)/">一个挑战游戏(Nazo)</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>今天下午在实验室群里看见一学姐发了个<a href="http://cafebabe.cc/nazo/level1.html">东西</a>，让大家去闯关，刚好自己也比较喜欢这方面的东西，于是就点进去看看。第一个页面就是<a href="http://cafebabe.cc/nazo/level1.html">第一关</a><img src="http://7xjp74.com1.z0.glb.clouddn.com/acc1pic1.png" alt="acc1pic1.png">，直接点击“此处”两个字就进入<a href="http://cafebabe.cc/nazo/level2.html">第二关</a><img src="http://7xjp74.com1.z0.glb.clouddn.com/acc1pic2.png" alt="acc1pic2.png">，仔细观察发现url最后一个数组是递增的，于是试了一下直接level3.html，真是逗，他还真是这样设计，于是进入<a href="http://cafebabe.cc/nazo/level3.html">第三关</a><img src="http://7xjp74.com1.z0.glb.clouddn.com/acc1pic3.png" alt="acc1pic3.png">，到这关之后，
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/未完待续/">未完待续</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/挑战/">挑战</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2015/06/12/一个挑战游戏(Nazo)/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-XMLHttpRequest学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/05/29/XMLHttpRequest学习笔记/" class="article-date">
+      <time datetime="2015-05-29T09:16:54.000Z" itemprop="datePublished">2015-05-29</time>
+</a>
+
+ 
+    <a href="/2015/05/29/XMLHttpRequest学习笔记/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count"  data-thread-key="2015/05/29/XMLHttpRequest学习笔记/" ></span>
+        
+        
+    </a>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/29/XMLHttpRequest学习笔记/">XMLHttpRequest学习笔记</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <p>对于xhr的学习后的一个例子<br>
+          
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XMLHttpRequest/">XMLHttpRequest</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2015/05/29/XMLHttpRequest学习笔记/#more">阅读全文 >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -679,7 +1029,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 </div>
