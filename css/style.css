@@ -538,6 +538,9 @@ a {
   #container .ua {
     display: none !important;
   }
+  #container .github-text {
+    display: none;
+  }
   #container .copyright {
     font-size: 16px;
   }
@@ -1078,18 +1081,23 @@ color
 .post-list li:hover a {
   color: #88acdb;
 }
-.ui-tooltip {
-  padding: 6px;
-  max-width: 30em;
-  -webkit-box-shadow: 0 0 0.8em rgba(0,0,0,0.6);
-  box-shadow: 0 0 0.8em rgba(0,0,0,0.6);
-  color: #fff;
-  font-family: "Lucida Grande", Verdana, "Helvetica Neue", Arial, "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
-  font-size: 0.9em;
-  background: rgba(0,0,0,0.65);
+.article-entry .github-widget h3::after {
+  content: none;
 }
-body .ui-tooltip {
-  border: 1px solid #fff;
+.article-entry .github-widget .github-box {
+  font-size: 0.8125rem;
+}
+.article-entry .github-widget .github-box .github-box-title h3 {
+  font-size: 1rem;
+}
+.article-entry .github-widget .github-box .github-box-title .github-stats {
+  font-size: 0.6875rem;
+}
+.article-entry .github-widget .github-box .updated {
+  font-size: 0.6875rem;
+}
+.article-entry .github-widget .github-box .download {
+  font-size: 0.75rem;
 }
 .article-entry ul > li,
 .share,
@@ -1498,47 +1506,49 @@ body .ui-tooltip {
   margin-right: 0.5em;
   color: #c8c8c8;
 }
-.article-entry h1 {
-  margin-top: 30px;
-}
-.article-entry h2 {
-  margin: 0.5em auto;
-  color: #66be66;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-  font-size: 1.5rem;
-}
-.article-entry h2:hover {
-  color: #88acdb;
-}
-.article-entry h2::before,
-.article-entry h2::after {
-  content: " —— ";
-  font-family: Arial;
-}
-.article-entry h3 {
-  margin: 0.5em auto;
-  color: #438aac;
-  background: rgba(243,248,253,0.6);
-  border: 1px solid #d2e8fa;
-  padding: 0.2em 0.6em;
-  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
-}
-.article-entry h3:hover a {
-  text-decoration: underline;
-}
-.article-entry h3::after {
-  content: " >";
-}
+.article-entry h1,
+.article-entry h2,
+.article-entry h3,
 .article-entry h4,
 .article-entry h5,
 .article-entry h6 {
-  margin-top: 20px;
-  color: #574c4c;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ddd;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: #333;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.article-entry h1,
+.article-entry h2 {
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eee;
+}
+.article-entry h1 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+.article-entry h2 {
+  font-size: 1.75rem;
+  line-height: 1.225;
+}
+.article-entry h3 {
+  font-size: 1.5rem;
+  line-height: 1.43;
+}
+.article-entry h4 {
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+.article-entry h1 {
+  margin: 0.67em 0;
+}
+.article-entry h5,
+.article-entry h6 {
+  font-size: 1rem;
+}
+.article-entry h6 {
+  color: #777;
 }
 .article-entry figure table {
   border: none;

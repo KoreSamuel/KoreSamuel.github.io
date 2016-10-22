@@ -19,7 +19,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="图解Javascript上下文与作用域">
 <meta property="og:url" content="http://dearxiaojie.xyz/2015/08/04/图解Javascript上下文与作用域/index.html">
-<meta property="og:site_name" content="Sincerely Mx">
+<meta property="og:site_name" content="Sincerely">
 <meta property="og:description" content="本文尝试阐述Javascript中的上下文与作用域背后的机制，主要涉及到执行上下文（execution context）、作用域链（scope chain）、闭包（closure）、this等概念。">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai1.jpg">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai2.jpg">
@@ -34,7 +34,7 @@
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
 
-    <link rel="alternate" href="/atom.xml" title="Sincerely Mx" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Sincerely" type="application/atom+xml">
 
 
 
@@ -61,7 +61,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>图解Javascript上下文与作用域 | Sincerely Mx</title>
+<title>图解Javascript上下文与作用域 | Sincerely</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -82,9 +82,7 @@
 </script>
 
 
-    <script>
-        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
-    </script>
+    <script> yiliaConfig.jquery_ui = [false]; </script>
 
 
 
@@ -180,7 +178,7 @@
                     
                       <a class="main-nav-link switch-friends-link" href="http://woodrat.xyz/">woodrat</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">MySophia</a>
+                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">Sophia</a>
                     
                     </div>
                 </section>
@@ -259,6 +257,15 @@
       <time datetime="2015-08-04T06:54:54.000Z" itemprop="datePublished">2015-08-04</time>
 </a>
 
+ 
+    <a href="/2015/08/04/图解Javascript上下文与作用域/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count" ></span>
+        
+        
+    </a>
 
     </div>
   
@@ -311,16 +318,16 @@
 <p>执行过程如下图所示，<code>inc</code>内部返回的匿名<code>function</code>在创建时生成的作用域链包括了<code>inc</code>中的<code>x</code>，即使后来赋值给<code>inc1</code>和<code>inc2</code>之后，直接在<code>global context</code>下调用，它们的作用域链仍然是由定义中所处的上下文环境决定，而且由于<code>x</code>是在<code>function inc</code>中定义的，无法被外层的<code>global context</code>所改变，从而实现了闭包的效果：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai4.jpg" alt=""></p>
 <p>##this in closure</p>
 <p>我们已经反复提到执行上下文和作用域实际上是通过<code>function</code>创建、分割的，而<code>function</code>中的<code>this</code>与作用域链不同，它是由执行该<code>function</code>时当前所处的<code>Object</code>环境所决定的，这也是<code>this</code>最容易被混淆用错的一点。一般情况下的例子如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </div><div class="line"><span class="keyword">var</span> o = &#123;  </div><div class="line">    <span class="attr">name</span>: <span class="string">"o"</span>,</div><div class="line">    <span class="attr">getName</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">o.getName();  <span class="comment">// -&gt; "o"</span></div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </div><div class="line"><span class="keyword">var</span> o = &#123;  </div><div class="line">    name: <span class="string">"o"</span>,</div><div class="line">    getName: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">o.getName();  <span class="comment">// -&gt; "o"</span></div></pre></td></tr></table></figure>
 <p>由于执行<code>o.getName()</code>时<code>getName</code>所绑定的<code>this</code>是调用它的<code>o</code>，所以此时<code>this == o</code>；更容易搞混的是在<code>closure</code>条件下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </div><div class="line"><span class="keyword">var</span> oo = &#123;  </div><div class="line">    <span class="attr">name</span>: <span class="string">"oo"</span>,</div><div class="line">    <span class="attr">getNameFunc</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">oo.getNameFunc()();  <span class="comment">// -&gt; "global"</span></div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </div><div class="line"><span class="keyword">var</span> oo = &#123;  </div><div class="line">    name: <span class="string">"oo"</span>,</div><div class="line">    getNameFunc: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">oo.getNameFunc()();  <span class="comment">// -&gt; "global"</span></div></pre></td></tr></table></figure>
 <p>此时闭包函数被<code>return</code>后调用相当于：</p>
 <figure class="highlight abnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">getName</span> = oo.getNameFunc()<span class="comment">;  </span></div><div class="line">getName()<span class="comment">;  // -&gt; "global"</span></div></pre></td></tr></table></figure>
 <p>换一个更明显的例子：</p>
 <figure class="highlight xl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var ooo = &#123;  </div><div class="line">    <span class="keyword">name</span>: <span class="string">"ooo"</span>,</div><div class="line">    getName: oo.getNameFunc() <span class="comment">// 此时闭包函数的this被绑定到新的Object</span></div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="title">ooo</span>.getName();  // -&gt;</span> <span class="string">"ooo"</span></div></pre></td></tr></table></figure>
 <p>当然，有时候为了避免闭包中的<code>this</code>在执行时被替换，可以采取下面的方法：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </div><div class="line"><span class="keyword">var</span> oooo = &#123;  </div><div class="line">    name: <span class="string">"ox4"</span>,</div><div class="line">    getNameFunc: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">var</span> <span class="keyword">self</span> = this;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">self</span>.name;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">oooo.getNameFunc()(); <span class="comment">// -&gt; "ox4"</span></div></pre></td></tr></table></figure>
-<p>或者是在调用时强行定义执行的<code>Object</code>：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </div><div class="line"><span class="keyword">var</span> oo = &#123;  </div><div class="line">    <span class="attr">name</span>: <span class="string">"oo"</span>,</div><div class="line">    <span class="attr">getNameFunc</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">oo.getNameFunc()();  <span class="comment">// -&gt; "global"  </span></div><div class="line">oo.getNameFunc().bind(oo)(); <span class="comment">// -&gt; "oo"</span></div></pre></td></tr></table></figure></p>
+<p>或者是在调用时强行定义执行的<code>Object</code>：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">"global"</span>;  </div><div class="line"><span class="keyword">var</span> oo = &#123;  </div><div class="line">    name: <span class="string">"oo"</span>,</div><div class="line">    getNameFunc: <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">oo.getNameFunc()();  <span class="comment">// -&gt; "global"  </span></div><div class="line">oo.getNameFunc().bind(oo)(); <span class="comment">// -&gt; "oo"</span></div></pre></td></tr></table></figure></p>
 <p>##总结</p>
 <p>Js是一门很有趣的语言，由于它的很多特性是针对HTML中DOM的操作，因而显得随意而略失严谨，但随着前端的不断繁荣发展和Node的兴起，Js已经不再是”toy language”或是jQuery时代的”CSS扩展”，本文提到的这些概念无论是对新手还是从传统Web开发中过度过来的Js开发人员来说，都很容易被混淆或误解，希望本文可以有所帮助。</p>
 <p>写这篇总结的原因是我在Github上分享的<a href="https://github.com/coodict/javascript-in-one-pic" target="_blank" rel="external">Learn javascript in one picture</a>，刚开始有人质疑这只能算是一张语法表（syntax cheat sheet），根本不会涉及更深层的闭包、作用域等内容，但是出乎意料的是这个项目竟然获得3000多个star，所以不能虎头蛇尾，以上。</p>
@@ -414,7 +421,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"图解Javascript上下文与作用域　| Sincerely Mx　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"图解Javascript上下文与作用域　| Sincerely　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -441,9 +448,46 @@
         }
 
         
+            // Add comment count
+            $(function(){
+                var jsonUrl = "http://api.duoshuo.com/threads/counts.jsonp?short_name=accompany&threads=2015/08/04/图解Javascript上下文与作用域/&callback=?";
+                $.getJSON(jsonUrl, function(result){
+                    $.each(result.response, function(i, field){
+                        var value = field.comments;
+                        if (value > 0) {
+                            $(".count-comment").text(value);
+                            return;
+                        }
+                    })
+                })
+            })
+        
     </script>
     
-    <script> loadComment(); </script>
+    <aside class="comment-bar">
+        <a href="javascript:void(0);">
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").hover(function(){
+            load$hide();
+        })
+        if (window.location.hash === "#comments") {
+            load$hide();
+        }
+    </script>
 
 </div>
 
@@ -481,11 +525,12 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
+                <i class="fa fa-copyright"></i>
                 2015-2016 Xiao Jie
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a title="Dark Corners" href='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&amp;&amp;s.height<n&amp;&amp;s.width>t&amp;&amp;s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&amp;&amp;!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&amp;&amp;t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//7xjp74.com1.z0.glb.clouddn.com/The%20Beast.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>Dark Corners</a>
+                <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
@@ -509,8 +554,11 @@
         
     </div>
 </footer>
+
     </div>
     
+    <script src="/js/GithubRepoWidget.js"></script>
+
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
     <script>
@@ -542,7 +590,7 @@
     // Open in New Window
     
         var oOpenInNew = {
-            
+             github: ".github-widget a", 
             
             
             
@@ -565,11 +613,11 @@
         var titleTime;
         document.addEventListener("visibilitychange", function() {
             if (document.hidden) {
-                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                document.title = "404 not find" + originTitle;
                 clearTimeout(titleTime);
             }
             else {
-                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                document.title = "骗你的啦~~" + originTitle;
                 titleTime = setTimeout(function() {
                     document.title = originTitle;
                 }, 2000);

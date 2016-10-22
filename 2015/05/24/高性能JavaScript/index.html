@@ -20,7 +20,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="高性能JavaScript">
 <meta property="og:url" content="http://dearxiaojie.xyz/2015/05/24/高性能JavaScript/index.html">
-<meta property="og:site_name" content="Sincerely Mx">
+<meta property="og:site_name" content="Sincerely">
 <meta property="og:description" content="javascript加载和运行###脚本位置
 尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)">
 <meta property="og:updated_time" content="2016-10-21T15:49:39.000Z">
@@ -32,7 +32,7 @@
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
 
-    <link rel="alternate" href="/atom.xml" title="Sincerely Mx" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Sincerely" type="application/atom+xml">
 
 
 
@@ -59,7 +59,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>高性能JavaScript | Sincerely Mx</title>
+<title>高性能JavaScript | Sincerely</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -80,9 +80,7 @@
 </script>
 
 
-    <script>
-        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
-    </script>
+    <script> yiliaConfig.jquery_ui = [false]; </script>
 
 
 
@@ -178,7 +176,7 @@
                     
                       <a class="main-nav-link switch-friends-link" href="http://woodrat.xyz/">woodrat</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">MySophia</a>
+                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">Sophia</a>
                     
                     </div>
                 </section>
@@ -257,6 +255,15 @@
       <time datetime="2015-05-24T11:12:54.000Z" itemprop="datePublished">2015-05-24</time>
 </a>
 
+ 
+    <a href="/2015/05/24/高性能JavaScript/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count" ></span>
+        
+        
+    </a>
 
     </div>
   
@@ -304,7 +311,7 @@
 <li>延迟的脚本：带有defer属性的<code>&lt;script&gt;</code>标签，需要浏览器支持</li>
 <li>动态脚本元素:在跨浏览器兼容性和易用的优势，是最通用的无阻塞加载解决方案</li>
 <li><p>XMLHttpRequest注入：先创建一个XHR对象，然后用她下载javascript文件，最后通过创建动态<code>&lt;script&gt;</code>元素将代码注入页面中</p>
- <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.open(<span class="string">"get"</span>,<span class="string">"file.js"</span>,<span class="literal">true</span>);</div><div class="line">xhr.onreadystatechange = funtion()&#123;</div><div class="line">     <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span>)&#123;</div><div class="line">          <span class="keyword">if</span>(xhr.status&gt;=<span class="number">200</span>&amp;&amp;xhr.status&lt;<span class="number">300</span>||xhr.status==<span class="number">304</span>)&#123;</div><div class="line">               <span class="keyword">var</span> script = <span class="built_in">document</span>.creatElement(<span class="string">"script"</span>);</div><div class="line">               script.type=<span class="string">"text/javascript"</span>;</div><div class="line">               script.text=xhr.responseText;</div><div class="line">               <span class="built_in">document</span>.body.appendChild(script);</div><div class="line">               &#125;</div><div class="line">          &#125;    </div><div class="line">&#125;;</div><div class="line">xhr.send(<span class="literal">null</span>);</div><div class="line"><span class="comment">//由于代码是在&lt;script&gt;标签之前返回的，因此它下载后不会自动执行。</span></div><div class="line"><span class="comment">//同样的代码在所有主流浏览器中无一例外都能正常工作</span></div><div class="line"><span class="comment">//局限性在于：javascript文件必须与请求的页面处于相同的域，即javascript不能从CDN下载</span></div></pre></td></tr></table></figure>
+ <figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.open(<span class="string">"get"</span>,<span class="string">"file.js"</span>,<span class="keyword">true</span>);</div><div class="line">xhr.onreadystatechange = funtion()&#123;</div><div class="line">     <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span>)&#123;</div><div class="line">          <span class="keyword">if</span>(xhr.status&gt;=<span class="number">200</span>&amp;&amp;xhr.status&lt;<span class="number">300</span>||xhr.status==<span class="number">304</span>)&#123;</div><div class="line">               <span class="keyword">var</span> script = <span class="built_in">document</span>.creatElement(<span class="string">"script"</span>);</div><div class="line">               script.type=<span class="string">"text/javascript"</span>;</div><div class="line">               script.text=xhr.responseText;</div><div class="line">               <span class="built_in">document</span>.body.appendChild(script);</div><div class="line">               &#125;</div><div class="line">          &#125;    </div><div class="line">&#125;;</div><div class="line">xhr.send(<span class="keyword">null</span>);</div><div class="line"><span class="comment">//由于代码是在&lt;script&gt;标签之前返回的，因此它下载后不会自动执行。</span></div><div class="line"><span class="comment">//同样的代码在所有主流浏览器中无一例外都能正常工作</span></div><div class="line"><span class="comment">//局限性在于：javascript文件必须与请求的页面处于相同的域，即javascript不能从CDN下载</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>###无阻塞脚本加载工具</p>
@@ -397,7 +404,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"高性能JavaScript　| Sincerely Mx　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"高性能JavaScript　| Sincerely　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -424,9 +431,46 @@
         }
 
         
+            // Add comment count
+            $(function(){
+                var jsonUrl = "http://api.duoshuo.com/threads/counts.jsonp?short_name=accompany&threads=2015/05/24/高性能JavaScript/&callback=?";
+                $.getJSON(jsonUrl, function(result){
+                    $.each(result.response, function(i, field){
+                        var value = field.comments;
+                        if (value > 0) {
+                            $(".count-comment").text(value);
+                            return;
+                        }
+                    })
+                })
+            })
+        
     </script>
     
-    <script> loadComment(); </script>
+    <aside class="comment-bar">
+        <a href="javascript:void(0);">
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").hover(function(){
+            load$hide();
+        })
+        if (window.location.hash === "#comments") {
+            load$hide();
+        }
+    </script>
 
 </div>
 
@@ -462,11 +506,12 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
+                <i class="fa fa-copyright"></i>
                 2015-2016 Xiao Jie
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a title="Dark Corners" href='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&amp;&amp;s.height<n&amp;&amp;s.width>t&amp;&amp;s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&amp;&amp;!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&amp;&amp;t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//7xjp74.com1.z0.glb.clouddn.com/The%20Beast.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>Dark Corners</a>
+                <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
@@ -490,8 +535,11 @@
         
     </div>
 </footer>
+
     </div>
     
+    <script src="/js/GithubRepoWidget.js"></script>
+
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
     <script>
@@ -523,7 +571,7 @@
     // Open in New Window
     
         var oOpenInNew = {
-            
+             github: ".github-widget a", 
             
             
             
@@ -546,11 +594,11 @@
         var titleTime;
         document.addEventListener("visibilitychange", function() {
             if (document.hidden) {
-                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                document.title = "404 not find" + originTitle;
                 clearTimeout(titleTime);
             }
             else {
-                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                document.title = "骗你的啦~~" + originTitle;
                 titleTime = setTimeout(function() {
                     document.title = originTitle;
                 }, 2000);
