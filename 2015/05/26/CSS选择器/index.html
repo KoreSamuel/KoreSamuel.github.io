@@ -15,33 +15,33 @@
 
 
 
-<meta name="description" content="层次选择器
+<meta name="description" content="##层次选择器
+
 $(&amp;quot;body &amp;gt; div&amp;quot;)   body中子元素中的div
 $(&amp;quot;#one + div&amp;quot;)   id为one的下一个紧挨着的div(兄弟)
-$(&amp;quot;#two ~ div&amp;quot;)   id为two的后面的所有div(兄弟)拓展
-$(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
+$(&amp;quot;#two ~ div&amp;quot;)   id为two的后面的所有div(兄弟)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS选择器">
 <meta property="og:url" content="http://dearxiaojie.xyz/2015/05/26/CSS选择器/index.html">
-<meta property="og:site_name" content="Sincerely Mx">
-<meta property="og:description" content="层次选择器
+<meta property="og:site_name" content="Sincerely">
+<meta property="og:description" content="##层次选择器
+
 $(&amp;quot;body &amp;gt; div&amp;quot;)   body中子元素中的div
 $(&amp;quot;#one + div&amp;quot;)   id为one的下一个紧挨着的div(兄弟)
-$(&amp;quot;#two ~ div&amp;quot;)   id为two的后面的所有div(兄弟)拓展
-$(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
-<meta property="og:updated_time" content="2016-01-21T04:53:14.000Z">
+$(&amp;quot;#two ~ div&amp;quot;)   id为two的后面的所有div(兄弟)">
+<meta property="og:updated_time" content="2016-10-23T09:36:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS选择器">
-<meta name="twitter:description" content="层次选择器
+<meta name="twitter:description" content="##层次选择器
+
 $(&amp;quot;body &amp;gt; div&amp;quot;)   body中子元素中的div
 $(&amp;quot;#one + div&amp;quot;)   id为one的下一个紧挨着的div(兄弟)
-$(&amp;quot;#two ~ div&amp;quot;)   id为two的后面的所有div(兄弟)拓展
-$(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
+$(&amp;quot;#two ~ div&amp;quot;)   id为two的后面的所有div(兄弟)">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
 
-    <link rel="alternate" href="/atom.xml" title="Sincerely Mx" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Sincerely" type="application/atom+xml">
 
 
 
@@ -68,7 +68,7 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>CSS选择器 | Sincerely Mx</title>
+<title>CSS选择器 | Sincerely</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -84,14 +84,12 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: true
+        search: false
     }
 </script>
 
 
-    <script>
-        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
-    </script>
+    <script> yiliaConfig.jquery_ui = [false]; </script>
 
 
 
@@ -131,13 +129,6 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
         
 
         
-            <form id="search-form">
-            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
-            <i class="fa fa-times" onclick="resetSearch()"></i>
-            </form>
-            <div id="local-search-result"></div>
-            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
-        
 
 
         
@@ -167,13 +158,13 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
                             
                                 <a class="fa GitHub" href="https://github.com/swust-xiaoj" title="GitHub"></a>
                             
+                                <a class="fa Twitter" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
                                 <a class="fa RSS" href="/atom.xml" title="RSS"></a>
                             
                                 <a class="fa 知乎" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
                             
                                 <a class="fa 豆瓣" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
-                            
-                                <a class="fa Twitter" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
                             
                         </ul>
                     </nav>
@@ -187,7 +178,7 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
                     
                       <a class="main-nav-link switch-friends-link" href="http://woodrat.xyz/">woodrat</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">MySophia</a>
+                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">Sophia</a>
                     
                     </div>
                 </section>
@@ -245,13 +236,13 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
                             
                                 <a class="fa GitHub" target="_blank" href="https://github.com/swust-xiaoj" title="GitHub"></a>
                             
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
                                 <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
                             
                                 <a class="fa 知乎" target="_blank" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
                             
                                 <a class="fa 豆瓣" target="_blank" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
-                            
-                                <a class="fa Twitter" target="_blank" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
                             
                         </ul>
             </nav>
@@ -266,6 +257,15 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
       <time datetime="2015-05-26T05:17:00.000Z" itemprop="datePublished">2015-05-26</time>
 </a>
 
+ 
+    <a href="/2015/05/26/CSS选择器/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count" ></span>
+        
+        
+    </a>
 
     </div>
   
@@ -303,17 +303,19 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="层次选择器">层次选择器</h2><ul>
+        <p> ##层次选择器</p>
+<ul>
 <li><code>$(&quot;body &gt; div&quot;)</code>   body中子元素中的div</li>
 <li><code>$(&quot;#one + div&quot;)</code>   id为one的下一个紧挨着的div(兄弟)</li>
-<li><code>$(&quot;#two ~ div&quot;)</code>   id为two的后面的所有div(兄弟)<br>拓展</li>
+<li><code>$(&quot;#two ~ div&quot;)</code>   id为two的后面的所有div(兄弟)<a id="more"></a>
+拓展</li>
 <li><code>$(&quot;#one&quot;).sibling(&quot;div&quot;)</code>  id为one的所有div兄弟元素</li>
 <li><code>$(&quot;#one&quot;).nextAll(&quot;span&quot;)</code>  id为one的后面所有span元素</li>
 <li><code>$(&quot;#one&quot;).prevAll(&quot;div&quot;)</code>  id为one的前面的所有的div</li>
 <li><code>$(&quot;#one&quot;).nextAll(&quot;span:first&quot;)</code>  id为one的后面所有span元素的第一个</li>
 </ul>
-<a id="more"></a>
-<h2 id="过滤选择器：以”:”开头">过滤选择器：以”:”开头</h2><ul>
+<p>##过滤选择器：以”:”开头</p>
+<ul>
 <li><code>$(&quot;div:first&quot;)</code> 第一个div</li>
 <li><code>$(&quot;div:last&quot;)</code>   最后一个div</li>
 <li><code>$(&quot;div:not(.one)&quot;)</code>  class不为one的div</li>
@@ -326,18 +328,21 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
 <li><code>$(&quot;:header&quot;)</code>  所有的标题元素</li>
 <li><code>$(&quot;:animated&quot;)</code> 正在执行动画的所有元素</li>
 </ul>
-<h2 id="内容过滤选择器">内容过滤选择器</h2><ul>
+<p>##内容过滤选择器</p>
+<ul>
 <li><code>$(&quot;div:contains(&#39;ss&#39;)&quot;)</code>   文本含有ss的div元素</li>
 <li><code>$(&quot;div:empty&quot;)</code>   文本为空的div元素</li>
 <li><code>$(&quot;div:has(.mini)&quot;)</code>  含有class为mini的所有div元素</li>
 <li><code>$(div:parent)或者$(&quot;div:not(:empty)&quot;)</code> 所有非空的div元素</li>
 </ul>
-<h2 id="可见性过滤选择器">可见性过滤选择器</h2><ul>
+<p>##可见性过滤选择器</p>
+<ul>
 <li><code>$(&quot;div:visible&quot;)</code> 所有可见的div</li>
 <li><code>$(&quot;div:hidden&quot;).show(time)</code>  所有不可见的div元素显示，time为时间，单位为毫秒</li>
 <li><code>$(&quot;input:hidden&quot;).val()</code>   所有不可见的input元素的value</li>
 </ul>
-<h2 id="属性过滤选择器">属性过滤选择器</h2><ul>
+<p>##属性过滤选择器</p>
+<ul>
 <li><code>$(&quot;div:[title]&quot;)</code>  含有属性title的div元素</li>
 <li><code>$(&quot;div:[title==&#39;test&#39;]&quot;)</code> title属性等于test的div元素</li>
 <li><code>$(&quot;div:[title!=&#39;test&#39;]&quot;)</code> title属性不等于test的div元素，包括没有title属性的元素</li>
@@ -347,14 +352,16 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
 <li><code>$(&quot;div:[id][title*=&#39;es&#39;]&quot;)</code>  有id属性的div元素中的title属性值中含有es的div元素</li>
 <li><code>$(&quot;div:[title][title!=&#39;test&#39;]&quot;)</code>  含有title属性，且title属性值不为test的div元素</li>
 </ul>
-<h2 id="子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）">子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）</h2><ul>
+<p>##子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）</p>
+<ul>
 <li><code>$(&quot;.one :nth-child(2)&quot;)</code>  class为one的第二个子元素，不是索引值为2</li>
 <li><code>$(&quot;.one :first-child&quot;)</code>   class为one的第一个子元素</li>
 <li><code>$(&quot;.one :last-child&quot;)</code>    class为one的最后一个子元素</li>
 <li><code>$(&quot;.one :only-child&quot;)</code>    class为one的只有一个节点的节点元素</li>
 <li><code>$(&quot;div.one :nth-child(2)&quot;)</code>   class为one的第二个div子元素</li>
 </ul>
-<h2 id="表单对象属性过滤选择器">表单对象属性过滤选择器</h2><ul>
+<p>##表单对象属性过滤选择器</p>
+<ul>
 <li><code>$(&quot;:text:enabled&quot;).val(&quot;hello&quot;)</code>  使所有可用的单行文本框的value值变为hello</li>
 <li><code>$(&quot;:text:disabled&quot;).val(&quot;hello&quot;)</code>   设置所有不可用单行文本框value值为hello</li>
 <li><code>$(&quot;:checkbox[name=&#39;haha&#39;]:checked&quot;).length</code>    多选框name为haha的被选中的个数</li>
@@ -372,7 +379,7 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
         <p><span>本文标题:</span><a href="/2015/05/26/CSS选择器/">CSS选择器</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Xiao Jie</a></p>
         <p><span>发布时间:</span>2015-05-26, 13:17:00</p>
-        <p><span>最后更新:</span>2016-01-21, 12:53:14</p>
+        <p><span>最后更新:</span>2016-10-23, 17:36:53</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/05/26/CSS选择器/" title="CSS选择器">http://dearxiaojie.xyz/2015/05/26/CSS选择器/</a>
             <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2015/05/26/CSS选择器/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -408,7 +415,7 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#层次选择器"><span class="toc-number">1.</span> <span class="toc-text">层次选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#过滤选择器：以”:”开头"><span class="toc-number">2.</span> <span class="toc-text">过滤选择器：以”:”开头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内容过滤选择器"><span class="toc-number">3.</span> <span class="toc-text">内容过滤选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可见性过滤选择器"><span class="toc-number">4.</span> <span class="toc-text">可见性过滤选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性过滤选择器"><span class="toc-number">5.</span> <span class="toc-text">属性过滤选择器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）"><span class="toc-number">6.</span> <span class="toc-text">子元素过滤选择器（冒号前面有个空格，选取子元素需要在选取器前加空格）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单对象属性过滤选择器"><span class="toc-number">7.</span> <span class="toc-text">表单对象属性过滤选择器</span></a></li></ol>
+            
         
     </div>
     <style>
@@ -444,7 +451,7 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"CSS选择器　| Sincerely Mx　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"CSS选择器　| Sincerely　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -465,17 +472,55 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
         var duoshuoQuery = {short_name:"accompany"};
         var loadComment = function(){
             var d = document, s = d.createElement('script');
-            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.src = 'http://7xjp74.com1.z0.glb.clouddn.com/embed.js';
             s.async = true; s.charset = 'UTF-8';
             (d.head || d.body).appendChild(s);
         }
 
         
+            // Add comment count
+            $(function(){
+                var jsonUrl = "http://api.duoshuo.com/threads/counts.jsonp?short_name=accompany&threads=2015/05/26/CSS选择器/&callback=?";
+                $.getJSON(jsonUrl, function(result){
+                    $.each(result.response, function(i, field){
+                        var value = field.comments;
+                        if (value > 0) {
+                            $(".count-comment").text(value);
+                            return;
+                        }
+                    })
+                })
+            })
+        
     </script>
     
-    <script> loadComment(); </script>
+    <aside class="comment-bar">
+        <a href="javascript:void(0);">
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").hover(function(){
+            load$hide();
+        })
+        if (window.location.hash === "#comments") {
+            load$hide();
+        }
+    </script>
 
 </div>
+
     
 
 
@@ -497,7 +542,7 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/Gulp Connect发送post请求返回405/">Gulp Connect发送post请求返回405</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/25/一路向北/">我一路向北，离开有你的季节</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/23/删除node-modules不成功/">删除node_modules不成功</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/remove-white-space-below-image/">remove white space below image</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/27/jQuery常用方法归纳总结/">jQuery常用方法归纳</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/12/一个挑战游戏(Nazo)/">一个挑战游戏(Nazo)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/XMLHttpRequest学习笔记/">XMLHttpRequest学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/28/web前端笔试练习/">web前端笔试练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/淡淡的友情、浅浅的爱/">淡淡的友情、浅浅的爱</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/CSS选择器/">CSS选择器</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/">数据库中的html源代码返还到页面的iframe中</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/2015阿里web前端笔试题（部分）/">2015阿里web前端笔试题（部分）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/">两个iframe框滚动条联动以及iframe窗口高宽自适应</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/24/高性能JavaScript/">高性能JavaScript</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/23/search-btn/">Show 'Search' button in iPhone/iPad Safari keyboard</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/Gulp Connect发送post请求返回405/">Gulp Connect发送post请求返回405</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/23/删除node-modules不成功/">删除node_modules不成功</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/remove-white-space-below-image/">remove white space below image</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/27/jQuery常用方法归纳总结/">jQuery常用方法归纳</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/XMLHttpRequest学习笔记/">XMLHttpRequest学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/28/web前端笔试练习/">web前端笔试练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/淡淡的友情、浅浅的爱/">淡淡的友情、浅浅的爱</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/CSS选择器/">CSS选择器</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/">数据库中的html源代码返还到页面的iframe中</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/2015阿里web前端笔试题（部分）/">2015阿里web前端笔试题（部分）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/">两个iframe框滚动条联动以及iframe窗口高宽自适应</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/24/高性能JavaScript/">高性能JavaScript</a></li></ul>
 
 
 
@@ -510,11 +555,12 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
+                <i class="fa fa-copyright"></i>
                 2015-2016 Xiao Jie
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a title="Dark Corners" href='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&amp;&amp;s.height<n&amp;&amp;s.width>t&amp;&amp;s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&amp;&amp;!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&amp;&amp;t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//7xjp74.com1.z0.glb.clouddn.com/The%20Beast.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>Dark Corners</a>
+                <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
@@ -538,8 +584,11 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
         
     </div>
 </footer>
+
     </div>
     
+    <script src="/js/GithubRepoWidget.js"></script>
+
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
     <script>
@@ -571,7 +620,7 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
     // Open in New Window
     
         var oOpenInNew = {
-            
+             github: ".github-widget a", 
             
             
             
@@ -594,11 +643,11 @@ $(&amp;quot;#one&amp;quot;).sibling(&amp;quot;div&amp;quot;)  id为">
         var titleTime;
         document.addEventListener("visibilitychange", function() {
             if (document.hidden) {
-                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                document.title = "~404 not found~" + originTitle;
                 clearTimeout(titleTime);
             }
             else {
-                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                document.title = "~骗你的啦~" + originTitle;
                 titleTime = setTimeout(function() {
                     document.title = originTitle;
                 }, 2000);

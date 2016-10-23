@@ -15,22 +15,16 @@
 
 
 
-<meta name="description" content="##概述
-CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素">
+<meta name="description" content="问题描述点击搜索框的时候，需要将软键盘的return go 前往 按键文案变成 搜索或 search，并且点击的时候发起搜索。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS伪元素::after提示用法">
-<meta property="og:url" content="http://dearxiaojie.xyz/2015/09/05/CSS伪元素-after/index.html">
+<meta property="og:title" content="Show 'Search' button in iPhone/iPad Safari keyboard">
+<meta property="og:url" content="http://dearxiaojie.xyz/2016/10/23/search-btn/index.html">
 <meta property="og:site_name" content="Sincerely">
-<meta property="og:description" content="##概述
-CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素">
-<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png">
-<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/table.png">
-<meta property="og:updated_time" content="2016-10-21T15:50:47.000Z">
+<meta property="og:description" content="问题描述点击搜索框的时候，需要将软键盘的return go 前往 按键文案变成 搜索或 search，并且点击的时候发起搜索。">
+<meta property="og:updated_time" content="2016-10-23T09:39:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS伪元素::after提示用法">
-<meta name="twitter:description" content="##概述
-CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素">
-<meta name="twitter:image" content="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png">
+<meta name="twitter:title" content="Show 'Search' button in iPhone/iPad Safari keyboard">
+<meta name="twitter:description" content="问题描述点击搜索框的时候，需要将软键盘的return go 前往 按键文案变成 搜索或 search，并且点击的时候发起搜索。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -62,7 +56,7 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>CSS伪元素::after提示用法 | Sincerely</title>
+<title>Show &#39;Search&#39; button in iPhone/iPad Safari keyboard | Sincerely</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -244,15 +238,15 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-CSS伪元素-after" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-search-btn" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/09/05/CSS伪元素-after/" class="article-date">
-      <time datetime="2015-09-05T11:40:37.000Z" itemprop="datePublished">2015-09-05</time>
+      <a href="/2016/10/23/search-btn/" class="article-date">
+      <time datetime="2016-10-23T09:36:09.000Z" itemprop="datePublished">2016-10-23</time>
 </a>
 
  
-    <a href="/2015/09/05/CSS伪元素-after/#comments" title="查看评论">
+    <a href="/2016/10/23/search-btn/#comments" title="查看评论">
         <i class="fa fa-comments-o" aria-hidden="true"></i>
         <span class="count-comment"></span>
         
@@ -272,7 +266,7 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
         
   
     <h1 class="article-title" itemprop="name">
-      CSS伪元素::after提示用法
+      Show &#39;Search&#39; button in iPhone/iPad Safari keyboard
     </h1>
   
 
@@ -281,7 +275,7 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/前端积累/">前端积累</a>
+    <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
     </div>
 
 
@@ -297,26 +291,13 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>##概述</p>
-<p>CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素<br><a id="more"></a></p>
-<p>##语法</p>
-<blockquote>
-<p><code>element:after  { style properties }</code>  /<em> CSS2 语法 </em>/<br><code>element::after { style properties }</code>  /<em> CSS3 语法 </em>/</p>
+        <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>点击搜索框的时候，需要将软键盘的<code>return</code> <code>go</code> <code>前往</code> 按键文案变成 <code>搜索</code>或 <code>search</code>，并且点击的时候发起搜索。<br><a id="more"></a><br>实现方式是将<code>input</code>框<code>type</code> 设置成 <code>search</code>，并在外层套一个<code>form</code>，在一般浏览器如QQ浏览器，uc浏览器等上能将软键盘显示成<code>搜索</code>,但是在safari浏览器上并不能正常将软键盘文案改变。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>在<code>form</code>上设置<code>action</code>,并将其值设置成<code>.</code>,但是需要控制在搜索的时候应将表单默认行为拦截，<code>form</code>上添加<code>return false</code>即可。</p>
+<h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 搜索框 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"search-top"</span> <span class="attr">action</span>=<span class="string">"."</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"search-wrap"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"search"</span> <span class="attr">name</span>=<span class="string">'key'</span> <span class="attr">id</span>=<span class="string">'search-input'</span> <span class="attr">placeholder</span>=<span class="string">"keyword..."</span> <span class="attr">autocapitalize</span>=<span class="string">"off"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span> <span class="attr">autocorrect</span>=<span class="string">"off"</span> &gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"search"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon-search"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon-reset reset"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"cancel-btn"</span>&gt;</span>取消<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><figcaption><span>&#123; .theme-peacock &#125;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'.search-top'</span>).on(<span class="string">'submit'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> text = $(<span class="string">'#search-input'</span>).val().trim();</div><div class="line">    text &amp;&amp; that.emit.emit(<span class="string">'search'</span>, text);</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><blockquote>
+<p><a href="http://stackoverflow.com/questions/4864167/show-search-button-in-iphone-ipad-safari-keyboard" target="_blank" rel="external">Show ‘Search’ button in iPhone/iPad Safari keyboard</a></p>
 </blockquote>
-<p><code>::after</code>表示法是在CSS 3中引入的,::符号是用来区分伪类和伪元素的.支持CSS3的浏览器同时也都支持CSS2中引入的表示法<code>:after</code>.</p>
-<p>##例子</p>
-<p>用<code>::after</code>伪元素，<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/attr" target="_blank" rel="external">attr()</a>CSS表达式和一个<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes" target="_blank" rel="external">自定义数据属性</a> <code>data-descr</code> 创建一个纯CSS, 词汇表提示工具</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一段并没有什么用的</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'collection of words and punctuation'</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            ，完全是为了凑数才出现的文字，实现一个</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'small popups which also hide again'</span>&gt;</span>提示<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            功能，可以吧鼠标放上去</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'not to be taken literrlly'</span>&gt;</span>看看<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span> &#123;</div><div class="line">       <span class="attribute">position</span>: relative;</div><div class="line">       <span class="attribute">text-decoration</span>: underline;</div><div class="line">       <span class="attribute">color</span>: <span class="number">#00F</span>;</div><div class="line">       <span class="attribute">cursor</span>: help;</div><div class="line">   &#125;</div><div class="line">   <span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span><span class="selector-pseudo">:hover</span><span class="selector-pseudo">::after</span> &#123;</div><div class="line">     <span class="attribute">content</span>: <span class="built_in">attr</span>(data-descr);</div><div class="line">     <span class="attribute">position</span>: absolute;</div><div class="line">     <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">     <span class="attribute">top</span>: <span class="number">24px</span>;</div><div class="line">     <span class="attribute">min-width</span>: <span class="number">200px</span>;</div><div class="line">     <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#aaaaaa</span> solid;</div><div class="line">     <span class="attribute">border-radius</span>: <span class="number">10px</span>;</div><div class="line">     <span class="attribute">background-color</span>: <span class="number">#ffffcc</span>;</div><div class="line">     <span class="attribute">padding</span>: <span class="number">12px</span>;</div><div class="line">     <span class="attribute">color</span>: <span class="number">#000000</span>;</div><div class="line">     <span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">     <span class="attribute">z-index</span>: <span class="number">1</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-<p><a href="http://runjs.cn/code/hkmnji2p" target="_blank" rel="external">在线演示</a></p>
-<p>##效果图</p>
-<p><img src="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png" alt="css-after"></p>
-<p>##浏览器兼容性</p>
-<p><img src="http://7xjp74.com1.z0.glb.clouddn.com/table.png" alt="兼容性"></p>
-<p>##References</p>
-<ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Aafter" target="_blank" rel="external">::after (:after)</a></li>
-</ul>
 
       
     </div>
@@ -325,13 +306,13 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></p>
+        <p><span>本文标题:</span><a href="/2016/10/23/search-btn/">Show &#39;Search&#39; button in iPhone/iPad Safari keyboard</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Xiao Jie</a></p>
-        <p><span>发布时间:</span>2015-09-05, 19:40:37</p>
-        <p><span>最后更新:</span>2016-10-21, 23:50:47</p>
+        <p><span>发布时间:</span>2016-10-23, 17:36:09</p>
+        <p><span>最后更新:</span>2016-10-23, 17:39:30</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2015/09/05/CSS伪元素-after/" title="CSS伪元素::after提示用法">http://dearxiaojie.xyz/2015/09/05/CSS伪元素-after/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2015/09/05/CSS伪元素-after/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2016/10/23/search-btn/" title="Show &#39;Search&#39; button in iPhone/iPad Safari keyboard">http://dearxiaojie.xyz/2016/10/23/search-btn/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2016/10/23/search-btn/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -343,16 +324,10 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2015/10/20/remove-white-space-below-image/">
-                    remove white space below image
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2015/08/04/图解Javascript上下文与作用域/">
-                    图解Javascript上下文与作用域
+                <a href="/2016/04/10/Gulp Connect发送post请求返回405/">
+                    Gulp Connect发送post请求返回405
                 </a>
             </div>
         
@@ -364,7 +339,7 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题描述"><span class="toc-number">1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决办法"><span class="toc-number">2.</span> <span class="toc-text">解决办法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#源代码"><span class="toc-number">3.</span> <span class="toc-text">源代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-number">4.</span> <span class="toc-text">reference</span></a></li></ol>
         
     </div>
     <style>
@@ -400,7 +375,7 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"CSS伪元素::after提示用法　| Sincerely　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Show 'Search' button in iPhone/iPad Safari keyboard　| Sincerely　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -416,7 +391,7 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
     
       <div class="duoshuo" id="comments">
     <div id="comment-box" ></div>
-    <div class="ds-thread" id="ds-thread" data-thread-key="2015/09/05/CSS伪元素-after/" data-title="CSS伪元素::after提示用法" data-url="http://dearxiaojie.xyz/2015/09/05/CSS伪元素-after/"></div>
+    <div class="ds-thread" id="ds-thread" data-thread-key="2016/10/23/search-btn/" data-title="Show &#39;Search&#39; button in iPhone/iPad Safari keyboard" data-url="http://dearxiaojie.xyz/2016/10/23/search-btn/"></div>
     <script>
         var duoshuoQuery = {short_name:"accompany"};
         var loadComment = function(){
@@ -429,7 +404,7 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
         
             // Add comment count
             $(function(){
-                var jsonUrl = "http://api.duoshuo.com/threads/counts.jsonp?short_name=accompany&threads=2015/09/05/CSS伪元素-after/&callback=?";
+                var jsonUrl = "http://api.duoshuo.com/threads/counts.jsonp?short_name=accompany&threads=2016/10/23/search-btn/&callback=?";
                 $.getJSON(jsonUrl, function(result){
                     $.each(result.response, function(i, field){
                         var value = field.comments;
@@ -477,15 +452,13 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2015/10/20/remove-white-space-below-image/" title="上一篇: remove white space below image">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2015/08/04/图解Javascript上下文与作用域/" title="下一篇: 图解Javascript上下文与作用域">
+            <a href="/2016/04/10/Gulp Connect发送post请求返回405/" title="下一篇: Gulp Connect发送post请求返回405">
                 <i class="fa fa-angle-right"></i>
             </a>
         

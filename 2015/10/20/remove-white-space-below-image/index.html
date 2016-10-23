@@ -15,29 +15,26 @@
 
 
 
-<meta name="description" content="最近遇到过关于&amp;lt;img&amp;gt;标签显示一张图片在一个&amp;lt;div&amp;gt;里面，&amp;lt;div&amp;gt;的宽高由image撑起。可是在图片的底部和&amp;lt;div&amp;gt;底部之间，多出神秘的2~3px的空白。如下图：我知道&amp;lt;img&amp;gt;是个特殊的元素，为什么会出现这种现象？
-Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素默认和父级元素的basel">
+<meta name="description" content="最近遇到过关于&amp;lt;img&amp;gt;标签显示一张图片在一个&amp;lt;div&amp;gt;里面，&amp;lt;div&amp;gt;的宽高由image撑起。可是在图片的底部和&amp;lt;div&amp;gt;底部之间，多出神秘的2~3px的空白。如下图：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="remove white space below image">
 <meta property="og:url" content="http://dearxiaojie.xyz/2015/10/20/remove-white-space-below-image/index.html">
-<meta property="og:site_name" content="Sincerely Mx">
-<meta property="og:description" content="最近遇到过关于&amp;lt;img&amp;gt;标签显示一张图片在一个&amp;lt;div&amp;gt;里面，&amp;lt;div&amp;gt;的宽高由image撑起。可是在图片的底部和&amp;lt;div&amp;gt;底部之间，多出神秘的2~3px的空白。如下图：我知道&amp;lt;img&amp;gt;是个特殊的元素，为什么会出现这种现象？
-Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素默认和父级元素的basel">
+<meta property="og:site_name" content="Sincerely">
+<meta property="og:description" content="最近遇到过关于&amp;lt;img&amp;gt;标签显示一张图片在一个&amp;lt;div&amp;gt;里面，&amp;lt;div&amp;gt;的宽高由image撑起。可是在图片的底部和&amp;lt;div&amp;gt;底部之间，多出神秘的2~3px的空白。如下图：">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/1.JPG">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/jQaJx.png">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/3.JPG">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/2.JPG">
-<meta property="og:updated_time" content="2016-01-20T04:49:32.000Z">
+<meta property="og:updated_time" content="2016-10-21T15:52:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="remove white space below image">
-<meta name="twitter:description" content="最近遇到过关于&amp;lt;img&amp;gt;标签显示一张图片在一个&amp;lt;div&amp;gt;里面，&amp;lt;div&amp;gt;的宽高由image撑起。可是在图片的底部和&amp;lt;div&amp;gt;底部之间，多出神秘的2~3px的空白。如下图：我知道&amp;lt;img&amp;gt;是个特殊的元素，为什么会出现这种现象？
-Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素默认和父级元素的basel">
+<meta name="twitter:description" content="最近遇到过关于&amp;lt;img&amp;gt;标签显示一张图片在一个&amp;lt;div&amp;gt;里面，&amp;lt;div&amp;gt;的宽高由image撑起。可是在图片的底部和&amp;lt;div&amp;gt;底部之间，多出神秘的2~3px的空白。如下图：">
 <meta name="twitter:image" content="http://7xjp74.com1.z0.glb.clouddn.com/1.JPG">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
 
-    <link rel="alternate" href="/atom.xml" title="Sincerely Mx" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Sincerely" type="application/atom+xml">
 
 
 
@@ -64,7 +61,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>remove white space below image | Sincerely Mx</title>
+<title>remove white space below image | Sincerely</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -80,14 +77,12 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: true
+        search: false
     }
 </script>
 
 
-    <script>
-        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
-    </script>
+    <script> yiliaConfig.jquery_ui = [false]; </script>
 
 
 
@@ -127,13 +122,6 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
         
 
         
-            <form id="search-form">
-            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
-            <i class="fa fa-times" onclick="resetSearch()"></i>
-            </form>
-            <div id="local-search-result"></div>
-            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
-        
 
 
         
@@ -163,13 +151,13 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
                             
                                 <a class="fa GitHub" href="https://github.com/swust-xiaoj" title="GitHub"></a>
                             
+                                <a class="fa Twitter" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
                                 <a class="fa RSS" href="/atom.xml" title="RSS"></a>
                             
                                 <a class="fa 知乎" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
                             
                                 <a class="fa 豆瓣" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
-                            
-                                <a class="fa Twitter" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
                             
                         </ul>
                     </nav>
@@ -183,7 +171,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
                     
                       <a class="main-nav-link switch-friends-link" href="http://woodrat.xyz/">woodrat</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">MySophia</a>
+                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">Sophia</a>
                     
                     </div>
                 </section>
@@ -241,13 +229,13 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
                             
                                 <a class="fa GitHub" target="_blank" href="https://github.com/swust-xiaoj" title="GitHub"></a>
                             
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
                                 <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
                             
                                 <a class="fa 知乎" target="_blank" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
                             
                                 <a class="fa 豆瓣" target="_blank" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
-                            
-                                <a class="fa Twitter" target="_blank" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
                             
                         </ul>
             </nav>
@@ -262,6 +250,15 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
       <time datetime="2015-10-20T10:23:18.000Z" itemprop="datePublished">2015-10-20</time>
 </a>
 
+ 
+    <a href="/2015/10/20/remove-white-space-below-image/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count" ></span>
+        
+        
+    </a>
 
     </div>
   
@@ -299,8 +296,8 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>最近遇到过关于<code>&lt;img&gt;</code>标签显示一张图片在一个<code>&lt;div&gt;</code>里面，<code>&lt;div&gt;</code>的宽高由<code>image</code>撑起。可是在图片的底部和<code>&lt;div&gt;</code>底部之间，多出神秘的2~3px的空白。如下图：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/1.JPG" alt="have white space"><br>我知道<code>&lt;img&gt;</code>是个特殊的元素，为什么会出现这种现象？</p>
-<h2 id="Reason">Reason</h2><p><code>&lt;img&gt;</code> 元素在默认情况下是inline元素，inline元素默认和父级元素的baseline对齐的，而baseline又和父级底边有一定距离，注意下面两段文字。</p>
+        <p>最近遇到过关于<code>&lt;img&gt;</code>标签显示一张图片在一个<code>&lt;div&gt;</code>里面，<code>&lt;div&gt;</code>的宽高由<code>image</code>撑起。可是在图片的底部和<code>&lt;div&gt;</code>底部之间，多出神秘的2~3px的空白。如下图：<br><a id="more"></a><br><img src="http://7xjp74.com1.z0.glb.clouddn.com/1.JPG" alt="have white space"><br>我知道<code>&lt;img&gt;</code>是个特殊的元素，为什么会出现这种现象？</p>
+<h2 id="Reason"><a href="#Reason" class="headerlink" title="Reason"></a>Reason</h2><p><code>&lt;img&gt;</code> 元素在默认情况下是inline元素，inline元素默认和父级元素的baseline对齐的，而baseline又和父级底边有一定距离，注意下面两段文字。</p>
 <blockquote>
 <p>Look at this line of text. Notice there are no letters that breach the baseline</p>
 </blockquote>
@@ -309,7 +306,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
 <p>By just crossing the bridge he probably got away.</p>
 </blockquote>
 <p>注意比较上面两段文字中字母<code>y,j,p,g</code>,下图更形象的显示<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/jQaJx.png" alt="jQaJx"><br>因为浏览器提供空间低于inline元素来适应字体。这就是上面出现的白边。这不是CSS的padding或margin,所以开发中不容易发现。</p>
-<h2 id="Solution">Solution</h2><ul>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><ul>
 <li>给<code>&lt;img&gt;</code>元素设置<code>display:block</code></li>
 <li>给<code>&lt;img&gt;</code>元素设置<code>vertical-align:bottom</code>或者<code>vertical-align:top</code></li>
 <li>给<code>&lt;img&gt;</code>元素设置<code>font-size:0; vertical-align:middle;</code></li>
@@ -318,8 +315,8 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
 <li>给<code>&lt;img&gt;</code>元素设置<code>vertical-align:text-bottom</code></li>
 </ul>
 <p>以上最后一条效果并不好，设置后仍有1px的白边，如下图：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/3.JPG" alt="1px white space"><br>而正常处理后是没有白边的，如下图：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/2.JPG" alt="no white space"></p>
-<h2 id="Code_source">Code source</h2><p><a href="http://runjs.cn/code/eozhsutb" target="_blank" rel="external">源码与在线演示</a></p>
-<h2 id="References">References</h2><ul>
+<h2 id="Code-source"><a href="#Code-source" class="headerlink" title="Code source"></a>Code source</h2><p><a href="http://runjs.cn/code/eozhsutb" target="_blank" rel="external">源码与在线演示</a></p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a href="http://stackoverflow.com/questions/31444891/mystery-white-space-underneath-image-tag/31445364#31445364" target="_blank" rel="external">Mystery white space underneath image tag</a></li>
 <li><a href="http://salman-w.blogspot.com/2012/10/remove-space-below-images-and-inline-block-elements.html" target="_blank" rel="external">How to Remove the Space Below Images and Other Inline-Block Elements</a></li>
 <li><a href="http://stackoverflow.com/questions/7774814/remove-white-space-below-image" target="_blank" rel="external">Remove white space below image</a></li>
@@ -336,7 +333,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
         <p><span>本文标题:</span><a href="/2015/10/20/remove-white-space-below-image/">remove white space below image</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Xiao Jie</a></p>
         <p><span>发布时间:</span>2015-10-20, 18:23:18</p>
-        <p><span>最后更新:</span>2016-01-20, 12:49:32</p>
+        <p><span>最后更新:</span>2016-10-21, 23:52:51</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/10/20/remove-white-space-below-image/" title="remove white space below image">http://dearxiaojie.xyz/2015/10/20/remove-white-space-below-image/</a>
             <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2015/10/20/remove-white-space-below-image/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -372,7 +369,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reason"><span class="toc-number">1.</span> <span class="toc-text">Reason</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code_source"><span class="toc-number">3.</span> <span class="toc-text">Code source</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">4.</span> <span class="toc-text">References</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reason"><span class="toc-number">1.</span> <span class="toc-text">Reason</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Code-source"><span class="toc-number">3.</span> <span class="toc-text">Code source</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">4.</span> <span class="toc-text">References</span></a></li></ol>
         
     </div>
     <style>
@@ -408,7 +405,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"remove white space below image　| Sincerely Mx　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"remove white space below image　| Sincerely　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -429,17 +426,55 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
         var duoshuoQuery = {short_name:"accompany"};
         var loadComment = function(){
             var d = document, s = d.createElement('script');
-            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.src = 'http://7xjp74.com1.z0.glb.clouddn.com/embed.js';
             s.async = true; s.charset = 'UTF-8';
             (d.head || d.body).appendChild(s);
         }
 
         
+            // Add comment count
+            $(function(){
+                var jsonUrl = "http://api.duoshuo.com/threads/counts.jsonp?short_name=accompany&threads=2015/10/20/remove-white-space-below-image/&callback=?";
+                $.getJSON(jsonUrl, function(result){
+                    $.each(result.response, function(i, field){
+                        var value = field.comments;
+                        if (value > 0) {
+                            $(".count-comment").text(value);
+                            return;
+                        }
+                    })
+                })
+            })
+        
     </script>
     
-    <script> loadComment(); </script>
+    <aside class="comment-bar">
+        <a href="javascript:void(0);">
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").hover(function(){
+            load$hide();
+        })
+        if (window.location.hash === "#comments") {
+            load$hide();
+        }
+    </script>
 
 </div>
+
     
 
 
@@ -461,7 +496,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/Gulp Connect发送post请求返回405/">Gulp Connect发送post请求返回405</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/25/一路向北/">我一路向北，离开有你的季节</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/23/删除node-modules不成功/">删除node_modules不成功</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/remove-white-space-below-image/">remove white space below image</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/27/jQuery常用方法归纳总结/">jQuery常用方法归纳</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/12/一个挑战游戏(Nazo)/">一个挑战游戏(Nazo)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/XMLHttpRequest学习笔记/">XMLHttpRequest学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/28/web前端笔试练习/">web前端笔试练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/淡淡的友情、浅浅的爱/">淡淡的友情、浅浅的爱</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/CSS选择器/">CSS选择器</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/">数据库中的html源代码返还到页面的iframe中</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/2015阿里web前端笔试题（部分）/">2015阿里web前端笔试题（部分）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/">两个iframe框滚动条联动以及iframe窗口高宽自适应</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/24/高性能JavaScript/">高性能JavaScript</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/23/search-btn/">Show 'Search' button in iPhone/iPad Safari keyboard</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/Gulp Connect发送post请求返回405/">Gulp Connect发送post请求返回405</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/23/删除node-modules不成功/">删除node_modules不成功</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/remove-white-space-below-image/">remove white space below image</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/27/jQuery常用方法归纳总结/">jQuery常用方法归纳</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/XMLHttpRequest学习笔记/">XMLHttpRequest学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/28/web前端笔试练习/">web前端笔试练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/淡淡的友情、浅浅的爱/">淡淡的友情、浅浅的爱</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/CSS选择器/">CSS选择器</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/">数据库中的html源代码返还到页面的iframe中</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/2015阿里web前端笔试题（部分）/">2015阿里web前端笔试题（部分）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/">两个iframe框滚动条联动以及iframe窗口高宽自适应</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/24/高性能JavaScript/">高性能JavaScript</a></li></ul>
 
 
 
@@ -474,11 +509,12 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
+                <i class="fa fa-copyright"></i>
                 2015-2016 Xiao Jie
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a title="Dark Corners" href='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&amp;&amp;s.height<n&amp;&amp;s.width>t&amp;&amp;s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&amp;&amp;!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&amp;&amp;t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//7xjp74.com1.z0.glb.clouddn.com/The%20Beast.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>Dark Corners</a>
+                <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
@@ -502,8 +538,11 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
         
     </div>
 </footer>
+
     </div>
     
+    <script src="/js/GithubRepoWidget.js"></script>
+
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
     <script>
@@ -535,7 +574,7 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
     // Open in New Window
     
         var oOpenInNew = {
-            
+             github: ".github-widget a", 
             
             
             
@@ -558,11 +597,11 @@ Reason&amp;lt;img&amp;gt; 元素在默认情况下是inline元素，inline元素
         var titleTime;
         document.addEventListener("visibilitychange", function() {
             if (document.hidden) {
-                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                document.title = "~404 not found~" + originTitle;
                 clearTimeout(titleTime);
             }
             else {
-                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                document.title = "~骗你的啦~" + originTitle;
                 titleTime = setTimeout(function() {
                     document.title = originTitle;
                 }, 2000);

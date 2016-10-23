@@ -15,27 +15,21 @@
 
 
 
-<meta name="description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。
-避免全局查找在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些。
-字符串的连接如果要连接多个字符串，应该少使用+=，如s+=a;s+=b;s+=c;应该">
+<meta name="description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript性能优化小知识">
 <meta property="og:url" content="http://dearxiaojie.xyz/2015/07/27/javascript性能优化小知识/index.html">
-<meta property="og:site_name" content="Sincerely Mx">
-<meta property="og:description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。
-避免全局查找在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些。
-字符串的连接如果要连接多个字符串，应该少使用+=，如s+=a;s+=b;s+=c;应该">
-<meta property="og:updated_time" content="2016-01-20T04:49:22.000Z">
+<meta property="og:site_name" content="Sincerely">
+<meta property="og:description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。">
+<meta property="og:updated_time" content="2016-10-21T15:51:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript性能优化小知识">
-<meta name="twitter:description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。
-避免全局查找在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些。
-字符串的连接如果要连接多个字符串，应该少使用+=，如s+=a;s+=b;s+=c;应该">
+<meta name="twitter:description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
 
-    <link rel="alternate" href="/atom.xml" title="Sincerely Mx" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Sincerely" type="application/atom+xml">
 
 
 
@@ -62,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>javascript性能优化小知识 | Sincerely Mx</title>
+<title>javascript性能优化小知识 | Sincerely</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -78,14 +72,12 @@
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: true
+        search: false
     }
 </script>
 
 
-    <script>
-        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
-    </script>
+    <script> yiliaConfig.jquery_ui = [false]; </script>
 
 
 
@@ -125,13 +117,6 @@
         
 
         
-            <form id="search-form">
-            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
-            <i class="fa fa-times" onclick="resetSearch()"></i>
-            </form>
-            <div id="local-search-result"></div>
-            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
-        
 
 
         
@@ -161,13 +146,13 @@
                             
                                 <a class="fa GitHub" href="https://github.com/swust-xiaoj" title="GitHub"></a>
                             
+                                <a class="fa Twitter" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
                                 <a class="fa RSS" href="/atom.xml" title="RSS"></a>
                             
                                 <a class="fa 知乎" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
                             
                                 <a class="fa 豆瓣" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
-                            
-                                <a class="fa Twitter" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
                             
                         </ul>
                     </nav>
@@ -181,7 +166,7 @@
                     
                       <a class="main-nav-link switch-friends-link" href="http://woodrat.xyz/">woodrat</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">MySophia</a>
+                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">Sophia</a>
                     
                     </div>
                 </section>
@@ -239,13 +224,13 @@
                             
                                 <a class="fa GitHub" target="_blank" href="https://github.com/swust-xiaoj" title="GitHub"></a>
                             
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
                                 <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
                             
                                 <a class="fa 知乎" target="_blank" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
                             
                                 <a class="fa 豆瓣" target="_blank" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
-                            
-                                <a class="fa Twitter" target="_blank" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
                             
                         </ul>
             </nav>
@@ -260,6 +245,15 @@
       <time datetime="2015-07-27T02:22:26.000Z" itemprop="datePublished">2015-07-27</time>
 </a>
 
+ 
+    <a href="/2015/07/27/javascript性能优化小知识/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count" ></span>
+        
+        
+    </a>
 
     </div>
   
@@ -297,18 +291,27 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>前面有一篇也是关于<code>javascript</code>性能方面的文章，是看了<a href="http://book.douban.com/subject/5362856/" target="_blank" rel="external">《高性能javascript》</a>后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。</p>
-<h3 id="避免全局查找">避免全局查找</h3><p>在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些。</p>
-<h3 id="字符串的连接">字符串的连接</h3><p>如果要连接多个字符串，应该少使用+=，如<br>s+=a;<br>s+=b;<br>s+=c;<br>应该写成s+=a + b + c；<br>而如果是收集字符串，比如多次对同一个字符串进行+=操作的话，最好使用一个缓存，使用<code>JavaScript</code>数组来收集，最后使用<code>join</code>方法连接起来。</p>
-<h3 id="数字转换成字符串">数字转换成字符串</h3><p><code>(&quot;&quot; +) &gt; String() &gt; .toString() &gt; new String()</code><br>字符串如’1322’转换成数字的时候可以在前面加’+’,如<code>var str = &#39;123&#39;;var num = +str</code>,那么<code>typeof num</code>为<code>number</code></p>
-<h3 id="浮点数转换成整型">浮点数转换成整型</h3><p>很多人喜欢使用<code>parseInt()</code>，其实<code>parseInt()</code>是用于将字符串转换成数字，而不是浮点数和整型之间的转换，我们应该使用<code>Math.floor()</code>或者<code>Math.round()</code>。</p>
-<h3 id="使用DocumentFragment优化多次append">使用DocumentFragment优化多次append</h3><p>一旦需要更新DOM,请考虑使用文档碎片来构建DOM结构，然后再将其添加到现存的文档中。</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</div><div class="line">          <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</div><div class="line">          el.innerHTML = i;</div><div class="line">          <span class="built_in">document</span>.body.appendChild(el);</div><div class="line">      &#125;       </div><div class="line">       <span class="comment">//可以替换为：</span></div><div class="line">      <span class="keyword">var</span> frag = <span class="built_in">document</span>.createDocumentFragment();</div><div class="line">          <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;  </div><div class="line">              <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</div><div class="line">          	el.innerHTML = i;</div><div class="line">          	frag.appendChild(el);</div><div class="line">      	&#125;</div><div class="line">      <span class="built_in">document</span>.body.appendChild(frag);</div></pre></td></tr></table></figure>
-<h3 id="使用一次innerHTML赋值代替构建dom元素">使用一次innerHTML赋值代替构建dom元素</h3><p>对于大的DOM更改，使用<code>innerHTML</code>要比使用标准的DOM方法创建同样的DOM结构快得多。</p>
-<figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> frag = <span class="built_in">document</span>.createDocumentFragment();</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</div><div class="line">         <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</div><div class="line">         el.innerHTML = i;</div><div class="line">         frag.appendChild(el);</div><div class="line">     &#125;</div><div class="line">     <span class="built_in">document</span>.body.appendChild(frag);</div><div class="line">         <span class="comment">//可以替换为：</span></div><div class="line">     <span class="keyword">var</span> html = [];</div><div class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</div><div class="line">         html.push(<span class="string">'&lt;p&gt;'</span> + i + <span class="string">'&lt;/p&gt;'</span>);</div><div class="line">     &#125;</div><div class="line">     <span class="built_in">document</span>.body.innerHTML = html.join(<span class="string">''</span>);</div></pre></td></tr></table></figure>
-<h3 id="使用事件代理">使用事件代理</h3><p>任何可以冒泡的事件都不仅仅可以在事件目标上进行处理，目标的任何祖先节点上也能处理，使用这个知识就可以将事件处理程序附加到更高的地方负责多个目标的事件处理，同样，对于内容动态增加并且子节点都需要相同的事件处理函数的情况，可以把事件注册提到父节点上，这样就不需要为每个子节点注册事件监听了。另外，现有的js库都采用<code>observe</code>方式来创建事件监听,其实现上隔离了DOM对象和事件处理函数之间的循环引用,所以应该尽量采用这种方式来创建事件监听</p>
-<h3 id="缩短否定检测">缩短否定检测</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (oTest != <span class="string">'#ff0000'</span>) &#123; </div><div class="line">    <span class="regexp">//</span><span class="keyword">do</span> something </div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (oTest != null) &#123; </div><div class="line">    <span class="regexp">//</span><span class="keyword">do</span> something </div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (oTest != false) &#123;</div><div class="line">    <span class="regexp">//</span><span class="keyword">do</span> something</div><div class="line">&#125;</div><div class="line">    <span class="regexp">//</span>虽然这些都正确，但用逻辑非操作符来操作也有同样的效果：</div><div class="line"><span class="keyword">if</span> (!oTest) &#123;</div><div class="line">    <span class="regexp">//</span><span class="keyword">do</span> something</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="条件分支">条件分支</h3><p>将条件分支，按可能性顺序从高到低排列：可以减少解释器对条件的探测次数<br>在同一条件子的多（&gt;2）条件分支时，使用<code>switch</code>优于<code>if</code>：<code>switch</code>分支选择的效率高于if，在IE下尤为明显。4分支的测试，IE下<code>switch</code>的执行时间约为if的一半。<br>使用三目运算符替代条件分支</p>
+        <p>前面有一篇也是关于<code>javascript</code>性能方面的文章，是看了<a href="http://book.douban.com/subject/5362856/" target="_blank" rel="external">《高性能javascript》</a>后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。<br><a id="more"></a></p>
+<p>###避免全局查找</p>
+<p>在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些。</p>
+<p>###字符串的连接</p>
+<p>如果要连接多个字符串，应该少使用+=，如<br>s+=a;<br>s+=b;<br>s+=c;<br>应该写成s+=a + b + c；<br>而如果是收集字符串，比如多次对同一个字符串进行+=操作的话，最好使用一个缓存，使用<code>JavaScript</code>数组来收集，最后使用<code>join</code>方法连接起来。</p>
+<p>###数字转换成字符串</p>
+<p><code>(&quot;&quot; +) &gt; String() &gt; .toString() &gt; new String()</code><br>字符串如’1322’转换成数字的时候可以在前面加’+’,如<code>var str = &#39;123&#39;;var num = +str</code>,那么<code>typeof num</code>为<code>number</code></p>
+<p>###浮点数转换成整型</p>
+<p>很多人喜欢使用<code>parseInt()</code>，其实<code>parseInt()</code>是用于将字符串转换成数字，而不是浮点数和整型之间的转换，我们应该使用<code>Math.floor()</code>或者<code>Math.round()</code>。</p>
+<p>###使用DocumentFragment优化多次append</p>
+<p>一旦需要更新DOM,请考虑使用文档碎片来构建DOM结构，然后再将其添加到现存的文档中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</div><div class="line">          <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</div><div class="line">          el.innerHTML = i;</div><div class="line">          <span class="built_in">document</span>.body.appendChild(el);</div><div class="line">      &#125;       </div><div class="line">       <span class="comment">//可以替换为：</span></div><div class="line">      <span class="keyword">var</span> frag = <span class="built_in">document</span>.createDocumentFragment();</div><div class="line">          <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;  </div><div class="line">              <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</div><div class="line">          	el.innerHTML = i;</div><div class="line">          	frag.appendChild(el);</div><div class="line">      	&#125;</div><div class="line">      <span class="built_in">document</span>.body.appendChild(frag);</div></pre></td></tr></table></figure>
+<p>###使用一次innerHTML赋值代替构建dom元素</p>
+<p>对于大的DOM更改，使用<code>innerHTML</code>要比使用标准的DOM方法创建同样的DOM结构快得多。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> frag = <span class="built_in">document</span>.createDocumentFragment();</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</div><div class="line">         <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</div><div class="line">         el.innerHTML = i;</div><div class="line">         frag.appendChild(el);</div><div class="line">     &#125;</div><div class="line">     <span class="built_in">document</span>.body.appendChild(frag);</div><div class="line">         <span class="comment">//可以替换为：</span></div><div class="line">     <span class="keyword">var</span> html = [];</div><div class="line">         <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</div><div class="line">         html.push(<span class="string">'&lt;p&gt;'</span> + i + <span class="string">'&lt;/p&gt;'</span>);</div><div class="line">     &#125;</div><div class="line">     <span class="built_in">document</span>.body.innerHTML = html.join(<span class="string">''</span>);</div></pre></td></tr></table></figure>
+<p>###使用事件代理</p>
+<p>任何可以冒泡的事件都不仅仅可以在事件目标上进行处理，目标的任何祖先节点上也能处理，使用这个知识就可以将事件处理程序附加到更高的地方负责多个目标的事件处理，同样，对于内容动态增加并且子节点都需要相同的事件处理函数的情况，可以把事件注册提到父节点上，这样就不需要为每个子节点注册事件监听了。另外，现有的js库都采用<code>observe</code>方式来创建事件监听,其实现上隔离了DOM对象和事件处理函数之间的循环引用,所以应该尽量采用这种方式来创建事件监听</p>
+<p>###缩短否定检测</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (oTest != <span class="string">'#ff0000'</span>) &#123;</div><div class="line">    <span class="regexp">//</span><span class="keyword">do</span> something</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (oTest != null) &#123;</div><div class="line">    <span class="regexp">//</span><span class="keyword">do</span> something</div><div class="line">&#125;</div><div class="line"><span class="keyword">if</span> (oTest != false) &#123;</div><div class="line">    <span class="regexp">//</span><span class="keyword">do</span> something</div><div class="line">&#125;</div><div class="line">    <span class="regexp">//</span>虽然这些都正确，但用逻辑非操作符来操作也有同样的效果：</div><div class="line"><span class="keyword">if</span> (!oTest) &#123;</div><div class="line">    <span class="regexp">//</span><span class="keyword">do</span> something</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###条件分支</p>
+<p>将条件分支，按可能性顺序从高到低排列：可以减少解释器对条件的探测次数<br>在同一条件子的多（&gt;2）条件分支时，使用<code>switch</code>优于<code>if</code>：<code>switch</code>分支选择的效率高于if，在IE下尤为明显。4分支的测试，IE下<code>switch</code>的执行时间约为if的一半。<br>使用三目运算符替代条件分支</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (a &gt; b) &#123;</div><div class="line">           <span class="built_in">num</span> = a;</div><div class="line">       &#125; <span class="keyword">else</span> &#123;</div><div class="line">           <span class="built_in">num</span> = b;</div><div class="line">       &#125;        <span class="comment">//可以替换为：</span></div><div class="line">       <span class="built_in">num</span> = a &gt; b ? a : b;</div></pre></td></tr></table></figure>
 <p><em>续。。。</em></p>
 
@@ -322,7 +325,7 @@
         <p><span>本文标题:</span><a href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Xiao Jie</a></p>
         <p><span>发布时间:</span>2015-07-27, 10:22:26</p>
-        <p><span>最后更新:</span>2016-01-20, 12:49:22</p>
+        <p><span>最后更新:</span>2016-10-21, 23:51:11</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/07/27/javascript性能优化小知识/" title="javascript性能优化小知识">http://dearxiaojie.xyz/2015/07/27/javascript性能优化小知识/</a>
             <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2015/07/27/javascript性能优化小知识/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -358,7 +361,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#避免全局查找"><span class="toc-number">1.</span> <span class="toc-text">避免全局查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串的连接"><span class="toc-number">2.</span> <span class="toc-text">字符串的连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字转换成字符串"><span class="toc-number">3.</span> <span class="toc-text">数字转换成字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点数转换成整型"><span class="toc-number">4.</span> <span class="toc-text">浮点数转换成整型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用DocumentFragment优化多次append"><span class="toc-number">5.</span> <span class="toc-text">使用DocumentFragment优化多次append</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用一次innerHTML赋值代替构建dom元素"><span class="toc-number">6.</span> <span class="toc-text">使用一次innerHTML赋值代替构建dom元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用事件代理"><span class="toc-number">7.</span> <span class="toc-text">使用事件代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩短否定检测"><span class="toc-number">8.</span> <span class="toc-text">缩短否定检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件分支"><span class="toc-number">9.</span> <span class="toc-text">条件分支</span></a></li></ol>
+            
         
     </div>
     <style>
@@ -394,7 +397,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"javascript性能优化小知识　| Sincerely Mx　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"javascript性能优化小知识　| Sincerely　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -415,17 +418,55 @@
         var duoshuoQuery = {short_name:"accompany"};
         var loadComment = function(){
             var d = document, s = d.createElement('script');
-            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.src = 'http://7xjp74.com1.z0.glb.clouddn.com/embed.js';
             s.async = true; s.charset = 'UTF-8';
             (d.head || d.body).appendChild(s);
         }
 
         
+            // Add comment count
+            $(function(){
+                var jsonUrl = "http://api.duoshuo.com/threads/counts.jsonp?short_name=accompany&threads=2015/07/27/javascript性能优化小知识/&callback=?";
+                $.getJSON(jsonUrl, function(result){
+                    $.each(result.response, function(i, field){
+                        var value = field.comments;
+                        if (value > 0) {
+                            $(".count-comment").text(value);
+                            return;
+                        }
+                    })
+                })
+            })
+        
     </script>
     
-    <script> loadComment(); </script>
+    <aside class="comment-bar">
+        <a href="javascript:void(0);">
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").hover(function(){
+            load$hide();
+        })
+        if (window.location.hash === "#comments") {
+            load$hide();
+        }
+    </script>
 
 </div>
+
     
 
 
@@ -447,7 +488,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/Gulp Connect发送post请求返回405/">Gulp Connect发送post请求返回405</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/25/一路向北/">我一路向北，离开有你的季节</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/23/删除node-modules不成功/">删除node_modules不成功</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/remove-white-space-below-image/">remove white space below image</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/27/jQuery常用方法归纳总结/">jQuery常用方法归纳</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/12/一个挑战游戏(Nazo)/">一个挑战游戏(Nazo)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/XMLHttpRequest学习笔记/">XMLHttpRequest学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/28/web前端笔试练习/">web前端笔试练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/淡淡的友情、浅浅的爱/">淡淡的友情、浅浅的爱</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/CSS选择器/">CSS选择器</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/">数据库中的html源代码返还到页面的iframe中</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/2015阿里web前端笔试题（部分）/">2015阿里web前端笔试题（部分）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/">两个iframe框滚动条联动以及iframe窗口高宽自适应</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/24/高性能JavaScript/">高性能JavaScript</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/23/search-btn/">Show 'Search' button in iPhone/iPad Safari keyboard</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/Gulp Connect发送post请求返回405/">Gulp Connect发送post请求返回405</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/23/删除node-modules不成功/">删除node_modules不成功</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/remove-white-space-below-image/">remove white space below image</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/27/jQuery常用方法归纳总结/">jQuery常用方法归纳</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/XMLHttpRequest学习笔记/">XMLHttpRequest学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/28/web前端笔试练习/">web前端笔试练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/淡淡的友情、浅浅的爱/">淡淡的友情、浅浅的爱</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/CSS选择器/">CSS选择器</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/">数据库中的html源代码返还到页面的iframe中</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/2015阿里web前端笔试题（部分）/">2015阿里web前端笔试题（部分）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/">两个iframe框滚动条联动以及iframe窗口高宽自适应</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/24/高性能JavaScript/">高性能JavaScript</a></li></ul>
 
 
 
@@ -460,11 +501,12 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
+                <i class="fa fa-copyright"></i>
                 2015-2016 Xiao Jie
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a title="Dark Corners" href='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&amp;&amp;s.height<n&amp;&amp;s.width>t&amp;&amp;s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&amp;&amp;!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&amp;&amp;t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//7xjp74.com1.z0.glb.clouddn.com/The%20Beast.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>Dark Corners</a>
+                <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
@@ -488,8 +530,11 @@
         
     </div>
 </footer>
+
     </div>
     
+    <script src="/js/GithubRepoWidget.js"></script>
+
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
     <script>
@@ -521,7 +566,7 @@
     // Open in New Window
     
         var oOpenInNew = {
-            
+             github: ".github-widget a", 
             
             
             
@@ -544,11 +589,11 @@
         var titleTime;
         document.addEventListener("visibilitychange", function() {
             if (document.hidden) {
-                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                document.title = "~404 not found~" + originTitle;
                 clearTimeout(titleTime);
             }
             else {
-                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                document.title = "~骗你的啦~" + originTitle;
                 titleTime = setTimeout(function() {
                     document.title = originTitle;
                 }, 2000);

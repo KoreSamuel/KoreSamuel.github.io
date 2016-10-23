@@ -15,27 +15,21 @@
 
 
 
-<meta name="description" content="1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数
-
-1234567891011121314151617181920212223//res1function reverseB(num) &amp;#123;  var bits = num.toString(2);  var len = 32 - bits.length;  bits = bits.split(&quot;&quot;).rever">
+<meta name="description" content="1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="web前端笔试练习">
 <meta property="og:url" content="http://dearxiaojie.xyz/2015/05/28/web前端笔试练习/index.html">
-<meta property="og:site_name" content="Sincerely Mx">
-<meta property="og:description" content="1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数
-
-1234567891011121314151617181920212223//res1function reverseB(num) &amp;#123;  var bits = num.toString(2);  var len = 32 - bits.length;  bits = bits.split(&quot;&quot;).rever">
-<meta property="og:updated_time" content="2016-01-20T04:49:38.000Z">
+<meta property="og:site_name" content="Sincerely">
+<meta property="og:description" content="1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数">
+<meta property="og:updated_time" content="2016-10-21T15:52:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web前端笔试练习">
-<meta name="twitter:description" content="1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数
-
-1234567891011121314151617181920212223//res1function reverseB(num) &amp;#123;  var bits = num.toString(2);  var len = 32 - bits.length;  bits = bits.split(&quot;&quot;).rever">
+<meta name="twitter:description" content="1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
 
-    <link rel="alternate" href="/atom.xml" title="Sincerely Mx" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Sincerely" type="application/atom+xml">
 
 
 
@@ -62,7 +56,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>web前端笔试练习 | Sincerely Mx</title>
+<title>web前端笔试练习 | Sincerely</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -78,14 +72,12 @@
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
-        search: true
+        search: false
     }
 </script>
 
 
-    <script>
-        yiliaConfig.jquery_ui = [true, "//cdn.bootcss.com/jqueryui/1.10.4/jquery-ui.min.js", "//cdn.bootcss.com/jqueryui/1.10.4/css/jquery-ui.min.css"];
-    </script>
+    <script> yiliaConfig.jquery_ui = [false]; </script>
 
 
 
@@ -125,13 +117,6 @@
         
 
         
-            <form id="search-form">
-            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
-            <i class="fa fa-times" onclick="resetSearch()"></i>
-            </form>
-            <div id="local-search-result"></div>
-            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
-        
 
 
         
@@ -161,13 +146,13 @@
                             
                                 <a class="fa GitHub" href="https://github.com/swust-xiaoj" title="GitHub"></a>
                             
+                                <a class="fa Twitter" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
                                 <a class="fa RSS" href="/atom.xml" title="RSS"></a>
                             
                                 <a class="fa 知乎" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
                             
                                 <a class="fa 豆瓣" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
-                            
-                                <a class="fa Twitter" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
                             
                         </ul>
                     </nav>
@@ -181,7 +166,7 @@
                     
                       <a class="main-nav-link switch-friends-link" href="http://woodrat.xyz/">woodrat</a>
                     
-                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">MySophia</a>
+                      <a class="main-nav-link switch-friends-link" href="http://shimanxiang.github.io/">Sophia</a>
                     
                     </div>
                 </section>
@@ -239,13 +224,13 @@
                             
                                 <a class="fa GitHub" target="_blank" href="https://github.com/swust-xiaoj" title="GitHub"></a>
                             
+                                <a class="fa Twitter" target="_blank" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
+                            
                                 <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
                             
                                 <a class="fa 知乎" target="_blank" href="http://www.zhihu.com/people/xiao-xiao-37-23" title="知乎"></a>
                             
                                 <a class="fa 豆瓣" target="_blank" href="http://www.douban.com/people/136995777/" title="豆瓣"></a>
-                            
-                                <a class="fa Twitter" target="_blank" href="https://twitter.com/xiaojie61703" title="Twitter"></a>
                             
                         </ul>
             </nav>
@@ -260,6 +245,15 @@
       <time datetime="2015-05-27T16:50:13.000Z" itemprop="datePublished">2015-05-28</time>
 </a>
 
+ 
+    <a href="/2015/05/28/web前端笔试练习/#comments" title="查看评论">
+        <i class="fa fa-comments-o" aria-hidden="true"></i>
+        <span class="count-comment"></span>
+        
+            <span class="ds-thread-count" ></span>
+        
+        
+    </a>
 
     </div>
   
@@ -298,22 +292,21 @@
       
           
         <blockquote>
-<p>1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数</p>
+<p>1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//res1</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseB</span>(<span class="params">num</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> bits = num.toString(<span class="number">2</span>);</div><div class="line">  <span class="keyword">var</span> len = <span class="number">32</span> - bits.length;</div><div class="line">  bits = bits.split(<span class="string">""</span>).reverse().join(<span class="string">""</span>);</div><div class="line">  <span class="keyword">while</span>(len--) &#123;</div><div class="line">  	bits+=<span class="string">"0"</span>;</div><div class="line">  &#125;</div><div class="line">  	<span class="keyword">return</span> <span class="built_in">parseInt</span>(bits,<span class="number">2</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(reverseB(<span class="number">43261596</span>));<span class="comment">//964176192  </span></div><div class="line">  <span class="comment">//res2</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseBs</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> m = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++) &#123;</div><div class="line">    m|=(n&amp;<span class="number">1</span>);</div><div class="line">    n &gt;&gt;= <span class="number">1</span>;</div><div class="line">    m &lt;&lt;= <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">    m|=(n&amp;<span class="number">01</span>);</div><div class="line">    <span class="keyword">return</span> m;</div><div class="line">  &#125;</div><div class="line"><span class="built_in">console</span>.log(reverseBs(<span class="number">43261596</span>));<span class="comment">//964176192</span></div></pre></td></tr></table></figure></p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//res1</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseB</span>(<span class="params">num</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> bits = num.toString(<span class="number">2</span>);</div><div class="line">  <span class="keyword">var</span> len = <span class="number">32</span> - bits.length;</div><div class="line">  bits = bits.split(<span class="string">""</span>).reverse().join(<span class="string">""</span>);</div><div class="line">  <span class="keyword">while</span>(len--) &#123;</div><div class="line">  	bits+=<span class="string">"0"</span>;</div><div class="line">  &#125;</div><div class="line">  	<span class="keyword">return</span> <span class="built_in">parseInt</span>(bits,<span class="number">2</span>);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(reverseB(<span class="number">43261596</span>));<span class="comment">//964176192  </span></div><div class="line">  <span class="comment">//res2</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverseBs</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> m = <span class="number">0</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">31</span>; i++) &#123;</div><div class="line">    m|=(n&amp;<span class="number">1</span>);</div><div class="line">    n &gt;&gt;= <span class="number">1</span>;</div><div class="line">    m &lt;&lt;= <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">    m|=(n&amp;<span class="number">01</span>);</div><div class="line">    <span class="keyword">return</span> m;</div><div class="line">  &#125;</div><div class="line"><span class="built_in">console</span>.log(reverseBs(<span class="number">43261596</span>));<span class="comment">//964176192</span></div></pre></td></tr></table></figure>
-<a id="more"></a>
+<!--more-->
 <blockquote>
 <p>2.罗马数组转换成十进制数字</p>
 </blockquote>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">var</span> romObj = &#123;I:<span class="number">1</span>, V:<span class="number">5</span>, X:<span class="number">10</span>, L:<span class="number">50</span>, C:<span class="number">100</span>, D:<span class="number">500</span>, M:<span class="number">1000</span>&#125;;</div><div class="line"><span class="built_in">var</span> romanToInt = function(str) &#123;</div><div class="line">    <span class="built_in">var</span> <span class="built_in">sum</span> = <span class="number">0</span>; </div><div class="line">    <span class="keyword">for</span>(<span class="built_in">var</span> i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>; i++) &#123;</div><div class="line">        rom1 = romObj[str.<span class="built_in">substring</span>(i,i+<span class="number">1</span>)];</div><div class="line">        rom2 = romObj[str.<span class="built_in">substring</span>(i+<span class="number">1</span>,i+<span class="number">2</span>)];</div><div class="line">        <span class="keyword">if</span>(str.<span class="built_in">substring</span>(i+<span class="number">1</span>,i+<span class="number">2</span>) !== <span class="string">""</span> &amp;&amp; rom1 &lt; rom2) &#123;</div><div class="line">            <span class="built_in">sum</span> += rom2 - rom1;</div><div class="line">            i++;</div><div class="line">        &#125; <span class="keyword">else</span> </div><div class="line">            <span class="built_in">sum</span> += rom1;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> <span class="built_in">sum</span>;</div><div class="line">&#125;;</div><div class="line">console.<span class="built_in">log</span>(romanToInt('II'));</div></pre></td></tr></table></figure>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">var</span> romObj = &#123;I:<span class="number">1</span>, V:<span class="number">5</span>, X:<span class="number">10</span>, L:<span class="number">50</span>, C:<span class="number">100</span>, D:<span class="number">500</span>, M:<span class="number">1000</span>&#125;;</div><div class="line"><span class="built_in">var</span> romanToInt = function(str) &#123;</div><div class="line">    <span class="built_in">var</span> <span class="built_in">sum</span> = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="built_in">var</span> i = <span class="number">0</span>; i &lt; str.<span class="built_in">length</span>; i++) &#123;</div><div class="line">        rom1 = romObj[str.<span class="built_in">substring</span>(i,i+<span class="number">1</span>)];</div><div class="line">        rom2 = romObj[str.<span class="built_in">substring</span>(i+<span class="number">1</span>,i+<span class="number">2</span>)];</div><div class="line">        <span class="keyword">if</span>(str.<span class="built_in">substring</span>(i+<span class="number">1</span>,i+<span class="number">2</span>) !== <span class="string">""</span> &amp;&amp; rom1 &lt; rom2) &#123;</div><div class="line">            <span class="built_in">sum</span> += rom2 - rom1;</div><div class="line">            i++;</div><div class="line">        &#125; <span class="keyword">else</span></div><div class="line">            <span class="built_in">sum</span> += rom1;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">return</span> <span class="built_in">sum</span>;</div><div class="line">&#125;;</div><div class="line">console.<span class="built_in">log</span>(romanToInt('II'));</div></pre></td></tr></table></figure>
 <blockquote>
 <p>3.总共有n阶楼梯，每次只能上一步或者两部，要到达楼上有多少种方式<br>分析，当列举了当n为1,2,3,4,5时得出有1,2,3,5,8种方式<br>就是一个斐波拉契数列</p>
 </blockquote>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var climbStairs = <span class="function"><span class="keyword">function</span><span class="params">(n)</span></span> &#123;</div><div class="line">    var a = <span class="number">1</span>,</div><div class="line">        b = <span class="number">2</span>,</div><div class="line">        <span class="built_in">sum</span> = <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> a;</div><div class="line">        <span class="keyword">if</span>(n == <span class="number">2</span>) <span class="keyword">return</span> b;</div><div class="line">        n -= <span class="number">2</span>; </div><div class="line">    <span class="keyword">while</span>(n--)&#123;</div><div class="line">        <span class="built_in">sum</span> = a + b; </div><div class="line">        a = b;</div><div class="line">        b = <span class="built_in">sum</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>;</div><div class="line">&#125;;</div><div class="line">console.<span class="built_in">log</span>(climbStairs(<span class="number">3</span>));</div></pre></td></tr></table></figure>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var climbStairs = <span class="function"><span class="keyword">function</span><span class="params">(n)</span></span> &#123;</div><div class="line">    var a = <span class="number">1</span>,</div><div class="line">        b = <span class="number">2</span>,</div><div class="line">        <span class="built_in">sum</span> = <span class="number">1</span>;</div><div class="line">        <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> a;</div><div class="line">        <span class="keyword">if</span>(n == <span class="number">2</span>) <span class="keyword">return</span> b;</div><div class="line">        n -= <span class="number">2</span>;</div><div class="line">    <span class="keyword">while</span>(n--)&#123;</div><div class="line">        <span class="built_in">sum</span> = a + b;</div><div class="line">        a = b;</div><div class="line">        b = <span class="built_in">sum</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>;</div><div class="line">&#125;;</div><div class="line">console.<span class="built_in">log</span>(climbStairs(<span class="number">3</span>));</div></pre></td></tr></table></figure>
 <blockquote>
 <p>4.给数组增加一种方法，可以去除数组中的重复项并返回数组</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//fun1--hash</span></div><div class="line"><span class="built_in">Array</span>.prototype.delWeight = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">var</span> n=[],r=[]; <span class="comment">//n为hash表，r为临时数组</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.length; i++) <span class="comment">//遍历当前数组</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (!n[<span class="keyword">this</span>[i]]) <span class="comment">//如果hash表中没有当前项</span></div><div class="line">        &#123;</div><div class="line">            n[<span class="keyword">this</span>[i]] = <span class="literal">true</span>; <span class="comment">//存入hash表</span></div><div class="line">            r.push(<span class="keyword">this</span>[i]); <span class="comment">//把当前数组的当前项push到临时数组里面</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> r;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">33</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">6</span>];</div><div class="line"><span class="built_in">console</span>.log(arr.delWeight());</div><div class="line"><span class="comment">//fun2--利用数组的indexOf方法</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">delWeight</span> (<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> result = []; </div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (result.indexOf(arr[i]) == <span class="number">-1</span>) result.push(arr[i]);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//fun1--hash</span></div><div class="line"><span class="built_in">Array</span>.prototype.delWeight = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">var</span> n=[],r=[]; <span class="comment">//n为hash表，r为临时数组</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="keyword">this</span>.length; i++) <span class="comment">//遍历当前数组</span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (!n[<span class="keyword">this</span>[i]]) <span class="comment">//如果hash表中没有当前项</span></div><div class="line">        &#123;</div><div class="line">            n[<span class="keyword">this</span>[i]] = <span class="literal">true</span>; <span class="comment">//存入hash表</span></div><div class="line">            r.push(<span class="keyword">this</span>[i]); <span class="comment">//把当前数组的当前项push到临时数组里面</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> r;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">33</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">5</span>,<span class="number">6</span>];</div><div class="line"><span class="built_in">console</span>.log(arr.delWeight());</div><div class="line"><span class="comment">//fun2--利用数组的indexOf方法</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">delWeight</span> (<span class="params">arr</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> result = [];</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (result.indexOf(arr[i]) == <span class="number">-1</span>) result.push(arr[i]);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>5.对不确定数量的数进行排序</p>
 </blockquote>
@@ -353,11 +346,11 @@
 <blockquote>
 <p>14.给出2*n + 1 个的数字，除其中一个数字之外其他每个数字均出现两次，找到这个数字</p>
 </blockquote>
-<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * <span class="doctag">@param</span> A: Array of integers.</div><div class="line"> * <span class="doctag">@return</span>: The single number.</div><div class="line"> */</div><div class="line"><span class="keyword">int</span> singleNumber(vector&lt;<span class="keyword">int</span>&gt; &amp;A) &#123;</div><div class="line">    <span class="keyword">if</span> (!A.size()) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> a = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;A.size();i++)</div><div class="line">    &#123;</div><div class="line">        a^=A[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> a;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * @param A: Array of integers.</div><div class="line"> * @return: The single number.</div><div class="line"> */</div><div class="line"><span class="keyword">int</span> singleNumber(<span class="keyword">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;A) &#123;</div><div class="line">    <span class="keyword">if</span> (!A.<span class="keyword">size</span>()) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">int</span> a = A[<span class="number">0</span>];</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;A.<span class="keyword">size</span>();i++)</div><div class="line">    &#123;</div><div class="line">        a^=A[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> a;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>15.给出两个整数a和b, 求他们的和, 但不能使用 + 等数学运算符。</p>
 </blockquote>
-<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * <span class="doctag">@param</span> a: The first integer</div><div class="line"> * <span class="doctag">@param</span> b: The second integer</div><div class="line"> * <span class="doctag">@return</span>: The sum of a and b</div><div class="line"> */</div><div class="line">    <span class="keyword">int</span> aplusb(<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</div><div class="line">        <span class="keyword">int</span> n1;</div><div class="line">        <span class="keyword">do</span>&#123;</div><div class="line">            n1 = a ^ b;</div><div class="line">            b = (a &amp; b) &lt;&lt; <span class="number">1</span>;</div><div class="line">            a = n1;</div><div class="line">        &#125;<span class="keyword">while</span>(b != <span class="number">0</span>);</div><div class="line">        <span class="keyword">return</span> n1;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line"> * @param a: The first integer</div><div class="line"> * @param b: The second integer</div><div class="line"> * @return: The sum of a and b</div><div class="line"> */</div><div class="line">    int aplusb(int a, int <span class="keyword">b) </span>&#123;</div><div class="line">        int n1<span class="comment">;</span></div><div class="line">        do&#123;</div><div class="line">            n1 = a ^ <span class="keyword">b;</span></div><div class="line">            <span class="keyword">b </span>= (a &amp; <span class="keyword">b) </span>&lt;&lt; <span class="number">1</span><span class="comment">;</span></div><div class="line">            a = n1<span class="comment">;</span></div><div class="line">        &#125;while(<span class="keyword">b </span>!= <span class="number">0</span>)<span class="comment">;</span></div><div class="line">        return n1<span class="comment">;</span></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>16.计算在一个 32 位的整数的二进制表式中有多少个 1.</p>
 </blockquote>
@@ -365,7 +358,7 @@
 <blockquote>
 <p>17.找到单链表倒数第n个节点，保证链表中节点的最少数量为n。</p>
 </blockquote>
-<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * <span class="type">Definition</span> <span class="keyword">of</span> <span class="type">ListNode</span></div><div class="line"> * <span class="keyword">class</span> <span class="type">ListNode</span> &#123;</div><div class="line"> * public:</div><div class="line"> *     <span class="built_in">int</span> <span class="keyword">val</span>;</div><div class="line"> *     <span class="type">ListNode</span> *next;</div><div class="line"> *     <span class="type">ListNode</span>(<span class="built_in">int</span> <span class="keyword">val</span>) &#123;</div><div class="line"> *         this-&gt;<span class="keyword">val</span> = <span class="keyword">val</span>;</div><div class="line"> *         this-&gt;next = <span class="type">NULL</span>;</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> * @param head: <span class="type">The</span> first node <span class="keyword">of</span> linked <span class="built_in">list</span>.</div><div class="line"> * @param n: <span class="type">An</span> integer.</div><div class="line"> * @return: <span class="type">Nth</span> <span class="keyword">to</span> last node <span class="keyword">of</span> a singly linked <span class="built_in">list</span>. </div><div class="line"> */</div><div class="line">    <span class="type">ListNode</span> *nthToLast(<span class="type">ListNode</span> *head, <span class="built_in">int</span> n) &#123;</div><div class="line">        <span class="keyword">if</span> (!head) return <span class="type">NULL</span>;</div><div class="line">        <span class="type">ListNode</span> *h,*d;</div><div class="line">        h = d = head;</div><div class="line">        <span class="keyword">while</span>(--n)</div><div class="line">        &#123;</div><div class="line">            h = h-&gt;next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(h-&gt;next!=<span class="type">NULL</span>)&#123;</div><div class="line">            h = h-&gt;next;</div><div class="line">            d = d-&gt;next;</div><div class="line">        &#125;</div><div class="line">        return d;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * <span class="type">Definition</span> <span class="keyword">of</span> <span class="type">ListNode</span></div><div class="line"> * <span class="keyword">class</span> <span class="type">ListNode</span> &#123;</div><div class="line"> * public:</div><div class="line"> *     <span class="built_in">int</span> <span class="keyword">val</span>;</div><div class="line"> *     <span class="type">ListNode</span> *next;</div><div class="line"> *     <span class="type">ListNode</span>(<span class="built_in">int</span> <span class="keyword">val</span>) &#123;</div><div class="line"> *         this-&gt;<span class="keyword">val</span> = <span class="keyword">val</span>;</div><div class="line"> *         this-&gt;next = <span class="type">NULL</span>;</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> * @param head: <span class="type">The</span> first node <span class="keyword">of</span> linked <span class="built_in">list</span>.</div><div class="line"> * @param n: <span class="type">An</span> integer.</div><div class="line"> * @return: <span class="type">Nth</span> <span class="keyword">to</span> last node <span class="keyword">of</span> a singly linked <span class="built_in">list</span>.</div><div class="line"> */</div><div class="line">    <span class="type">ListNode</span> *nthToLast(<span class="type">ListNode</span> *head, <span class="built_in">int</span> n) &#123;</div><div class="line">        <span class="keyword">if</span> (!head) return <span class="type">NULL</span>;</div><div class="line">        <span class="type">ListNode</span> *h,*d;</div><div class="line">        h = d = head;</div><div class="line">        <span class="keyword">while</span>(--n)</div><div class="line">        &#123;</div><div class="line">            h = h-&gt;next;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">while</span>(h-&gt;next!=<span class="type">NULL</span>)&#123;</div><div class="line">            h = h-&gt;next;</div><div class="line">            d = d-&gt;next;</div><div class="line">        &#125;</div><div class="line">        return d;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>18.写出一个高效的算法来搜索 m × n矩阵中的值。</p>
 </blockquote>
@@ -373,7 +366,7 @@
 <blockquote>
 <p>19.设计一种方法，将一个字符串中的所有空格替换成 %20 。</p>
 </blockquote>
-<figure class="highlight zephir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 你可以假设该字符串有足够的空间来加入新的字符，且你得到的是“真实的”字符长度</div><div class="line"> * <span class="doctag">@param</span> string: An array of Char</div><div class="line"> * <span class="doctag">@param</span> length: The true length of the string</div><div class="line"> * <span class="doctag">@return</span>: The true length of new string</div><div class="line"> */</div><div class="line">    <span class="keyword">int</span> replaceBlank(<span class="keyword">char</span> string[], <span class="keyword">int</span> length) &#123;</div><div class="line">        <span class="comment">// Write your code here</span></div><div class="line">      <span class="keyword">int</span> space_cnt = <span class="number">0</span>;</div><div class="line">      <span class="keyword">int</span> new_length = <span class="number">0</span>;</div><div class="line">      <span class="keyword">char</span> *p,*q;</div><div class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</div><div class="line">      &#123;</div><div class="line">        <span class="keyword">if</span> (string[i] == <span class="string">' '</span>) space_cnt++;</div><div class="line">      &#125;</div><div class="line">      new_length = space_cnt * <span class="number">2</span> +length;</div><div class="line">      p = string + (length - <span class="number">1</span>);</div><div class="line">      q = string + (new_length - <span class="number">1</span>);</div><div class="line">      <span class="keyword">while</span>(p != q)</div><div class="line">      &#123;</div><div class="line">        <span class="keyword">if</span>(*p == <span class="string">' '</span>) *q = <span class="string">'0'</span>,q--,*q = <span class="string">'2'</span>,q--,*q = <span class="string">'%'</span>;</div><div class="line">        <span class="keyword">else</span> *q = *p;</div><div class="line">        p--;</div><div class="line">        q--;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> new_length;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 你可以假设该字符串有足够的空间来加入新的字符，且你得到的是“真实的”字符长度</div><div class="line"> * @param string: An array of Char</div><div class="line"> * @param length: The true length of the string</div><div class="line"> * @return: The true length of new string</div><div class="line"> */</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">replaceBlank</span><span class="params">(<span class="keyword">char</span> <span class="built_in">string</span>[], <span class="keyword">int</span> length)</span> </span>&#123;</div><div class="line">        <span class="comment">// Write your code here</span></div><div class="line">      <span class="keyword">int</span> space_cnt = <span class="number">0</span>;</div><div class="line">      <span class="keyword">int</span> new_length = <span class="number">0</span>;</div><div class="line">      <span class="keyword">char</span> *p,*q;</div><div class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</div><div class="line">      &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">string</span>[i] == <span class="string">' '</span>) space_cnt++;</div><div class="line">      &#125;</div><div class="line">      new_length = space_cnt * <span class="number">2</span> +length;</div><div class="line">      p = <span class="built_in">string</span> + (length - <span class="number">1</span>);</div><div class="line">      q = <span class="built_in">string</span> + (new_length - <span class="number">1</span>);</div><div class="line">      <span class="keyword">while</span>(p != q)</div><div class="line">      &#123;</div><div class="line">        <span class="keyword">if</span>(*p == <span class="string">' '</span>) *q = <span class="string">'0'</span>,q--,*q = <span class="string">'2'</span>,q--,*q = <span class="string">'%'</span>;</div><div class="line">        <span class="keyword">else</span> *q = *p;</div><div class="line">        p--;</div><div class="line">        q--;</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> new_length;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>20.统计一个字符串中每个单词的个数</p>
 </blockquote>
@@ -381,7 +374,7 @@
 <blockquote>
 <p>21.给你六种面额 1、5、10、20、50、100 元的纸币，假设每种币值的数量都足够多，编写程序求组成N元（N为0~10000的非负整数）的不同组合的个数</p>
 </blockquote>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">changeDP</span> &#123;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">int</span> v [] = &#123;<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">20</span>, <span class="number">50</span>, <span class="number">100</span>&#125;;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">change</span> (<span class="params"><span class="keyword">int</span> n, <span class="keyword">int</span> i</span>)</span>&#123; </div><div class="line">    <span class="keyword">if</span> (n &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> change(n,i<span class="number">-1</span>)+change(n-v[i],i);    </div><div class="line">  &#125; </div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> (<span class="params">String[] args</span>)</span>&#123;</div><div class="line">    System.<span class="keyword">out</span>.println(change(<span class="number">100</span>,v.length<span class="number">-1</span>));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">changeDP</span> &#123;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">int</span> v [] = &#123;<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">20</span>, <span class="number">50</span>, <span class="number">100</span>&#125;;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">change</span> (<span class="params"><span class="keyword">int</span> n, <span class="keyword">int</span> i</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span> (n &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">if</span> (i &lt; <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> change(n,i<span class="number">-1</span>)+change(n-v[i],i);    </div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span> (<span class="params">String[] args</span>)</span>&#123;</div><div class="line">    System.<span class="keyword">out</span>.println(change(<span class="number">100</span>,v.length<span class="number">-1</span>));</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>22.给定非空整型数组 arr 和整数 limit ，两次从 arr 中随机抽取元素（可能抽到同一个元素），获得整数 x ,y ，得到和 s = x + y 。求所有不超过 limit 的 s 值中的最大数。</p>
 </blockquote>
@@ -398,7 +391,7 @@
         <p><span>本文标题:</span><a href="/2015/05/28/web前端笔试练习/">web前端笔试练习</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Xiao Jie</a></p>
         <p><span>发布时间:</span>2015-05-28, 00:50:13</p>
-        <p><span>最后更新:</span>2016-01-20, 12:49:38</p>
+        <p><span>最后更新:</span>2016-10-21, 23:52:57</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/05/28/web前端笔试练习/" title="web前端笔试练习">http://dearxiaojie.xyz/2015/05/28/web前端笔试练习/</a>
             <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2015/05/28/web前端笔试练习/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -447,7 +440,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"web前端笔试练习　| Sincerely Mx　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"web前端笔试练习　| Sincerely　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -468,17 +461,55 @@
         var duoshuoQuery = {short_name:"accompany"};
         var loadComment = function(){
             var d = document, s = d.createElement('script');
-            s.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+            s.src = 'http://7xjp74.com1.z0.glb.clouddn.com/embed.js';
             s.async = true; s.charset = 'UTF-8';
             (d.head || d.body).appendChild(s);
         }
 
         
+            // Add comment count
+            $(function(){
+                var jsonUrl = "http://api.duoshuo.com/threads/counts.jsonp?short_name=accompany&threads=2015/05/28/web前端笔试练习/&callback=?";
+                $.getJSON(jsonUrl, function(result){
+                    $.each(result.response, function(i, field){
+                        var value = field.comments;
+                        if (value > 0) {
+                            $(".count-comment").text(value);
+                            return;
+                        }
+                    })
+                })
+            })
+        
     </script>
     
-    <script> loadComment(); </script>
+    <aside class="comment-bar">
+        <a href="javascript:void(0);">
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").hover(function(){
+            load$hide();
+        })
+        if (window.location.hash === "#comments") {
+            load$hide();
+        }
+    </script>
 
 </div>
+
     
 
 
@@ -500,7 +531,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/Gulp Connect发送post请求返回405/">Gulp Connect发送post请求返回405</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/03/25/一路向北/">我一路向北，离开有你的季节</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/23/删除node-modules不成功/">删除node_modules不成功</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/remove-white-space-below-image/">remove white space below image</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/27/jQuery常用方法归纳总结/">jQuery常用方法归纳</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/12/一个挑战游戏(Nazo)/">一个挑战游戏(Nazo)</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/XMLHttpRequest学习笔记/">XMLHttpRequest学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/28/web前端笔试练习/">web前端笔试练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/淡淡的友情、浅浅的爱/">淡淡的友情、浅浅的爱</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/CSS选择器/">CSS选择器</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/">数据库中的html源代码返还到页面的iframe中</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/2015阿里web前端笔试题（部分）/">2015阿里web前端笔试题（部分）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/">两个iframe框滚动条联动以及iframe窗口高宽自适应</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/24/高性能JavaScript/">高性能JavaScript</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/23/search-btn/">Show 'Search' button in iPhone/iPad Safari keyboard</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/04/10/Gulp Connect发送post请求返回405/">Gulp Connect发送post请求返回405</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/11/23/删除node-modules不成功/">删除node_modules不成功</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/10/20/remove-white-space-below-image/">remove white space below image</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/04/图解Javascript上下文与作用域/">图解Javascript上下文与作用域</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/07/27/javascript性能优化小知识/">javascript性能优化小知识</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/06/27/jQuery常用方法归纳总结/">jQuery常用方法归纳</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/29/XMLHttpRequest学习笔记/">XMLHttpRequest学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/28/web前端笔试练习/">web前端笔试练习</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/淡淡的友情、浅浅的爱/">淡淡的友情、浅浅的爱</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/CSS选择器/">CSS选择器</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/26/数据库中的html源代码返还到页面的iframe中/">数据库中的html源代码返还到页面的iframe中</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/2015阿里web前端笔试题（部分）/">2015阿里web前端笔试题（部分）</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/25/两个iframe框滚动条联动以及iframe窗口高宽自适应/">两个iframe框滚动条联动以及iframe窗口高宽自适应</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/05/24/高性能JavaScript/">高性能JavaScript</a></li></ul>
 
 
 
@@ -513,11 +544,12 @@
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                <i class="fa fa-copyright"></i> 
+                <i class="fa fa-copyright"></i>
                 2015-2016 Xiao Jie
             </div>
             <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+                <a title="Dark Corners" href='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&amp;&amp;s.height<n&amp;&amp;s.width>t&amp;&amp;s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&amp;&amp;!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&amp;&amp;t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//7xjp74.com1.z0.glb.clouddn.com/The%20Beast.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>Dark Corners</a>
+                <i class="fa fa-heart animated infinite pulse"></i>
             </div>
         </div>
         
@@ -541,8 +573,11 @@
         
     </div>
 </footer>
+
     </div>
     
+    <script src="/js/GithubRepoWidget.js"></script>
+
 <script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
     <script>
@@ -574,7 +609,7 @@
     // Open in New Window
     
         var oOpenInNew = {
-            
+             github: ".github-widget a", 
             
             
             
@@ -597,11 +632,11 @@
         var titleTime;
         document.addEventListener("visibilitychange", function() {
             if (document.hidden) {
-                document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+                document.title = "~404 not found~" + originTitle;
                 clearTimeout(titleTime);
             }
             else {
-                document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+                document.title = "~骗你的啦~" + originTitle;
                 titleTime = setTimeout(function() {
                     document.title = originTitle;
                 }, 2000);
