@@ -15,21 +15,18 @@
 
 
 
-<meta name="description" content="##概述
-CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素">
+<meta name="description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSS伪元素::after提示用法">
 <meta property="og:url" content="http://dearxiaojie.xyz/2015/09/05/CSS伪元素-after/index.html">
 <meta property="og:site_name" content="Sincerely">
-<meta property="og:description" content="##概述
-CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素">
+<meta property="og:description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/table.png">
-<meta property="og:updated_time" content="2016-10-21T15:50:47.000Z">
+<meta property="og:updated_time" content="2016-10-23T09:55:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS伪元素::after提示用法">
-<meta name="twitter:description" content="##概述
-CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素">
+<meta name="twitter:description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素">
 <meta name="twitter:image" content="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -297,10 +294,8 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>##概述</p>
-<p>CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素<br><a id="more"></a></p>
-<p>##语法</p>
-<blockquote>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素<br><a id="more"></a></p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><blockquote>
 <p><code>element:after  { style properties }</code>  /<em> CSS2 语法 </em>/<br><code>element::after { style properties }</code>  /<em> CSS3 语法 </em>/</p>
 </blockquote>
 <p><code>::after</code>表示法是在CSS 3中引入的,::符号是用来区分伪类和伪元素的.支持CSS3的浏览器同时也都支持CSS2中引入的表示法<code>:after</code>.</p>
@@ -309,12 +304,9 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一段并没有什么用的</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'collection of words and punctuation'</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            ，完全是为了凑数才出现的文字，实现一个</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'small popups which also hide again'</span>&gt;</span>提示<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">            功能，可以吧鼠标放上去</div><div class="line">            <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'not to be taken literrlly'</span>&gt;</span>看看<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span> &#123;</div><div class="line">       <span class="attribute">position</span>: relative;</div><div class="line">       <span class="attribute">text-decoration</span>: underline;</div><div class="line">       <span class="attribute">color</span>: <span class="number">#00F</span>;</div><div class="line">       <span class="attribute">cursor</span>: help;</div><div class="line">   &#125;</div><div class="line">   <span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span><span class="selector-pseudo">:hover</span><span class="selector-pseudo">::after</span> &#123;</div><div class="line">     <span class="attribute">content</span>: <span class="built_in">attr</span>(data-descr);</div><div class="line">     <span class="attribute">position</span>: absolute;</div><div class="line">     <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">     <span class="attribute">top</span>: <span class="number">24px</span>;</div><div class="line">     <span class="attribute">min-width</span>: <span class="number">200px</span>;</div><div class="line">     <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#aaaaaa</span> solid;</div><div class="line">     <span class="attribute">border-radius</span>: <span class="number">10px</span>;</div><div class="line">     <span class="attribute">background-color</span>: <span class="number">#ffffcc</span>;</div><div class="line">     <span class="attribute">padding</span>: <span class="number">12px</span>;</div><div class="line">     <span class="attribute">color</span>: <span class="number">#000000</span>;</div><div class="line">     <span class="attribute">font-size</span>: <span class="number">14px</span>;</div><div class="line">     <span class="attribute">z-index</span>: <span class="number">1</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <p><a href="http://runjs.cn/code/hkmnji2p" target="_blank" rel="external">在线演示</a></p>
-<p>##效果图</p>
-<p><img src="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png" alt="css-after"></p>
-<p>##浏览器兼容性</p>
-<p><img src="http://7xjp74.com1.z0.glb.clouddn.com/table.png" alt="兼容性"></p>
-<p>##References</p>
-<ul>
+<h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png" alt="css-after"></p>
+<h2 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h2><p><img src="http://7xjp74.com1.z0.glb.clouddn.com/table.png" alt="兼容性"></p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Aafter" target="_blank" rel="external">::after (:after)</a></li>
 </ul>
 
@@ -328,7 +320,7 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
         <p><span>本文标题:</span><a href="/2015/09/05/CSS伪元素-after/">CSS伪元素::after提示用法</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Xiao Jie</a></p>
         <p><span>发布时间:</span>2015-09-05, 19:40:37</p>
-        <p><span>最后更新:</span>2016-10-21, 23:50:47</p>
+        <p><span>最后更新:</span>2016-10-23, 17:55:37</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2015/09/05/CSS伪元素-after/" title="CSS伪元素::after提示用法">http://dearxiaojie.xyz/2015/09/05/CSS伪元素-after/</a>
             <span class="copy-path" data-clipboard-text="原文: http://dearxiaojie.xyz/2015/09/05/CSS伪元素-after/　　作者: Xiao Jie" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -364,7 +356,7 @@ CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素�
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概述"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-number">2.</span> <span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#效果图"><span class="toc-number">3.</span> <span class="toc-text">效果图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器兼容性"><span class="toc-number">4.</span> <span class="toc-text">浏览器兼容性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">5.</span> <span class="toc-text">References</span></a></li></ol>
         
     </div>
     <style>
