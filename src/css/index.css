@@ -14,7 +14,7 @@ body {
 	text-align: center;
 	background: #f1ede3;
 	width: 100%;
-	height: 800px;
+	height: 700px;
 	color: #555;
   
 	-webkit-transition: background 0.5s ease-in-out;
@@ -295,7 +295,7 @@ ul {
 	height: 3em;
 	left: 50%;
 	margin: -1.5em 0 0 -6em;
-	position: absolute;
+	position: fixed;
 	bottom: 20%;
 	width: 12em;
 }
