@@ -295,7 +295,7 @@ ul {
 	height: 3em;
 	left: 50%;
 	margin: -1.5em 0 0 -6em;
-	position: absolute;
+	position: relative;
 	bottom: 30%;
 	width: 12em;
 }
