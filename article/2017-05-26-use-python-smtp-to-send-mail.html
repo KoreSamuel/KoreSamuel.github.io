@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用Python发送HTML邮件 | Sincerly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python,SMTP,mail," />
+  
+
+  <meta name="description" content="这段时间在慢慢学习Python，正巧有个与Python相关的活，借此机会好练练手 为什么要学习Python呢，作为一个前端，为什么不学习nodejs，而选择学习Python，对呀，其实我也这么问自己，但是，有什么影响嘛，爱学啥学啥，我不觉得啥该学不该学。学了如果不用，也慢慢会忘。扯远了，其实我是比较喜欢Python的语法和它的严格缩进，学了一段时间后，发现还是有和es6/es7相似的方法。 SMT">
+<meta name="keywords" content="Python,SMTP,mail">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Python发送HTML邮件">
+<meta property="og:url" content="http://dearxiaojie.top/article/2017-05-26-use-python-smtp-to-send-mail.html">
+<meta property="og:site_name" content="Sincerly">
+<meta property="og:description" content="这段时间在慢慢学习Python，正巧有个与Python相关的活，借此机会好练练手 为什么要学习Python呢，作为一个前端，为什么不学习nodejs，而选择学习Python，对呀，其实我也这么问自己，但是，有什么影响嘛，爱学啥学啥，我不觉得啥该学不该学。学了如果不用，也慢慢会忘。扯远了，其实我是比较喜欢Python的语法和它的严格缩进，学了一段时间后，发现还是有和es6/es7相似的方法。 SMT">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-04T07:03:49.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Python发送HTML邮件">
+<meta name="twitter:description" content="这段时间在慢慢学习Python，正巧有个与Python相关的活，借此机会好练练手 为什么要学习Python呢，作为一个前端，为什么不学习nodejs，而选择学习Python，对呀，其实我也这么问自己，但是，有什么影响嘛，爱学啥学啥，我不觉得啥该学不该学。学了如果不用，也慢慢会忘。扯远了，其实我是比较喜欢Python的语法和它的严格缩进，学了一段时间后，发现还是有和es6/es7相似的方法。 SMT">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cd3bea7d045fc3fdc9952df80e48e5ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SMTP"><span class="toc-text">SMTP</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-use-python-smtp-to-send-mail" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">使用Python发送HTML邮件</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.05.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>xiaojie</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/积累/">积累</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dearxiaojie.top//article/2017-05-26-use-python-smtp-to-send-mail.html#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p><em>这段时间在慢慢学习<code>Python</code>，正巧有个与<code>Python</code>相关的活，借此机会好练练手</em></p>
+<p>为什么要学习<code>Python</code>呢，作为一个前端，为什么不学习<code>nodejs</code>，而选择学习<code>Python</code>，对呀，其实我也这么问自己，但是，有什么影响嘛，爱学啥学啥，我不觉得啥该学不该学。学了如果不用，也慢慢会忘。扯远了，其实我是比较喜欢<code>Python</code>的语法和它的严格缩进，学了一段时间后，发现还是有和<code>es6/es7</code>相似的方法。</p>
+<h2 id="SMTP"><a href="#SMTP" class="headerlink" title="SMTP"></a>SMTP</h2><p><code>SMTP</code>是发送邮件的协议，<code>Python</code>内置对<code>SMTP</code>的支持，可以发送纯文本、HTML邮件。其中有两个用到的模块，<code>email</code>负责邮件构造，<code>smtplib</code>发送邮件。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&apos;&apos;&apos;using python send gmail&apos;&apos;&apos;</span><br><span class="line"># !/usr/bin/env python3</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line"></span><br><span class="line">import smtplib</span><br><span class="line">from email.header import Header</span><br><span class="line">from email.mime.text import MIMEText</span><br><span class="line">from email.mime.multipart import MIMEMultipart</span><br><span class="line">from email.utils import parseaddr, formataddr</span><br><span class="line">class SendGmail(object):</span><br><span class="line">    &apos;&apos;&apos;send mail via gmail&apos;&apos;&apos;</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self._from_addr = input(&apos;From:&apos;)</span><br><span class="line">        self._password = input(&apos;Password:&apos;)</span><br><span class="line">        self._to_addr = input(&apos;To:&apos;)</span><br><span class="line">        self._smtp_server = smtplib.SMTP(&apos;smtp.gmail.com&apos;, 587)</span><br><span class="line">        self._msg = MIMEMultipart(&apos;alternative&apos;)</span><br><span class="line">        self._msg[&apos;From&apos;] = self._format_addrs(&apos;&lt;%s&gt;&apos; % self._from_addr) # 发件人</span><br><span class="line">        self._msg[&apos;To&apos;] = self._format_addrs(&apos;&lt;%s&gt;&apos; % self._to_addr) # 收件人</span><br><span class="line">        subject = &apos;hello python&apos;</span><br><span class="line">        self._msg[&apos;Subject&apos;] = Header(subject, &apos;utf-8&apos;).encode() # 主题</span><br><span class="line"></span><br><span class="line">    def get_content(self, mail_tmp_path=&apos;mail.html&apos;):</span><br><span class="line">        &apos;&apos;&apos;get mail content&apos;&apos;&apos;</span><br><span class="line">        page = mail_tmp_path</span><br><span class="line">        file = open(page, &apos;r&apos;, encoding=&apos;utf8&apos;)</span><br><span class="line">        content = file.read()</span><br><span class="line">        content = content.replace(&apos;&lt;#send_name#&gt;&apos;, self._from_addr)</span><br><span class="line">        content = content.replace(&apos;&lt;#name#&gt;&apos;, self._to_addr)</span><br><span class="line">        self._msg.attach(MIMEText(content, &apos;html&apos;, &apos;utf-8&apos;))</span><br><span class="line"></span><br><span class="line">    def send_mail(self):</span><br><span class="line">        &apos;&apos;&apos;send mail&apos;&apos;&apos;</span><br><span class="line">        server = self._smtp_server</span><br><span class="line">        server.ehlo()</span><br><span class="line">        server.starttls()</span><br><span class="line">        server.login(self._from_addr, self._password)</span><br><span class="line">        server.sendmail(self._from_addr, [self._to_addr], self._msg.as_string())</span><br><span class="line">        print(&apos;success send to %s!&apos; % self._to_addr)</span><br><span class="line">        server.quit()</span><br><span class="line">    @classmethod</span><br><span class="line">    def _replace_tmp(cls, string):</span><br><span class="line">        pass</span><br><span class="line">    @classmethod</span><br><span class="line">    def _format_addrs(cls, string):</span><br><span class="line">        &apos;&apos;&apos;format addr&apos;&apos;&apos;</span><br><span class="line">        name, addr = parseaddr(string)</span><br><span class="line">        return formataddr((Header(name, &apos;utf-8&apos;).encode(), addr))</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    MESSAGE = SendGmail()</span><br><span class="line">    MESSAGE.get_content()</span><br><span class="line">    MESSAGE.send_mail()</span><br></pre></td></tr></table></figure>
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/article/2017-05-04-use-travisci-build-your-hexo-site.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/article/2017-06-03-several-npm-shorthand-or-trick.html">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'xiaojie';
+    
+    var disqus_url = 'http://dearxiaojie.top/article/2017-05-26-use-python-smtp-to-send-mail.html';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//xiaojie.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

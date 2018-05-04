@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用Travis CI自动部署Hexo博客到Github上 | Sincerly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="hexo," />
+  
+
+  <meta name="description" content="写在前面自从在github page上搭建博客以来，都是使用的hexo，每次都是通过hexo命令build生成静态文件，再push到github上，后来找到一个deploy插件，只需要填写好github的repos地址就好。但是源码的保存是个问题，更换电脑想要写博客很不方便，甚至蠢到将源码保存到u盘里面，这样每次提交后又要备份一次，很容易忘记。说到这里那为什么不将源码保存到github上呢。 其实">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Travis CI自动部署Hexo博客到Github上">
+<meta property="og:url" content="http://dearxiaojie.top/article/2017-05-04-use-travisci-build-your-hexo-site.html">
+<meta property="og:site_name" content="Sincerly">
+<meta property="og:description" content="写在前面自从在github page上搭建博客以来，都是使用的hexo，每次都是通过hexo命令build生成静态文件，再push到github上，后来找到一个deploy插件，只需要填写好github的repos地址就好。但是源码的保存是个问题，更换电脑想要写博客很不方便，甚至蠢到将源码保存到u盘里面，这样每次提交后又要备份一次，很容易忘记。说到这里那为什么不将源码保存到github上呢。 其实">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/travis.png">
+<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/list.png">
+<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/new.png">
+<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/config.png">
+<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/token.png">
+<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/success.png">
+<meta property="og:updated_time" content="2018-05-04T07:03:49.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Travis CI自动部署Hexo博客到Github上">
+<meta name="twitter:description" content="写在前面自从在github page上搭建博客以来，都是使用的hexo，每次都是通过hexo命令build生成静态文件，再push到github上，后来找到一个deploy插件，只需要填写好github的repos地址就好。但是源码的保存是个问题，更换电脑想要写博客很不方便，甚至蠢到将源码保存到u盘里面，这样每次提交后又要备份一次，很容易忘记。说到这里那为什么不将源码保存到github上呢。 其实">
+<meta name="twitter:image" content="http://7xjp74.com1.z0.glb.clouddn.com/travis.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cd3bea7d045fc3fdc9952df80e48e5ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#写在前面"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是Travis-CI？"><span class="toc-text">什么是Travis CI？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构建"><span class="toc-text">构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Access-Token"><span class="toc-text">Access Token</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成Access-Token"><span class="toc-text">生成Access Token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置Travis-CI"><span class="toc-text">配置Travis CI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建文章"><span class="toc-text">创建文章</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写在后面"><span class="toc-text">写在后面</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-use-travisci-build-your-hexo-site" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">使用Travis CI自动部署Hexo博客到Github上</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.05.04</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>xiaojie</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/积累/">积累</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dearxiaojie.top//article/2017-05-04-use-travisci-build-your-hexo-site.html#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>自从在<code>github page</code>上搭建博客以来，都是使用的<a href="http://hexo.io/" target="_blank" rel="noopener">hexo</a>，每次都是通过<code>hexo</code>命令<code>build</code>生成静态文件，再<code>push</code>到<code>github</code>上，后来找到一个<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="noopener">deploy</a>插件，只需要填写好<code>github</code>的<code>repos</code>地址就好。但是源码的保存是个问题，更换电脑想要写博客很不方便，甚至蠢到将源码保存到u盘里面，这样每次提交后又要备份一次，很容易忘记。说到这里那为什么不将源码保存到<code>github</code>上呢。</p>
+<p>其实也是因为懒，给博客换了几次主题后，使得博客源码很乱，甚至自己也忘了改了主题的哪些代码，加上主题也是个<code>repos</code>，直接提交博客源码是提不上的，涉及到子模块问题，麻烦。想到自己还喜欢改动别人的主题，索性将主题文件夹<code>.git</code>文件删掉，让他成为一个普通的文件夹，这样就能提交到<code>github</code>了。废话不多说，估计是很久没写博客了，没有重点，下面简单说说使用<code>Travis CI</code>自动部署<code>Hexo</code>博客到<code>github</code>上。</p>
+<h2 id="什么是Travis-CI？"><a href="#什么是Travis-CI？" class="headerlink" title="什么是Travis CI？"></a>什么是Travis CI？</h2><blockquote>
+<p><code>Travis CI</code> 是目前新兴的开源持续集成构建项目，它与<code>jenkins</code>，<code>GO</code>的很明显的特别在于采用<code>yaml</code>格式，简洁清新独树一帜。目前大多数的github项目都已经移入到<code>Travis CI</code>的构建队列中，据说<code>Travis CI</code>每天运行超过<code>4000</code>次完整构建。</p>
+</blockquote>
+<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>首先进入<a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a>官网，使用<code>github</code>账号登录，如下图<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/travis.png" alt="travis"><br>登录成功后进入如下界面，以为我再此之前已经构建过，所以会用红色框内的内容，如果没有使用过是没有的。<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/list.png" alt="list"><br>然后点击<code>My Repositories</code>右边的<code>+</code>，添加需要自动构建的<code>repos</code>，进入如下页面。<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/new.png" alt="new"><br>可以看到这个界面会显示当前<code>github</code>账号的所以项目，如果没有显示，点击右上角的<code>Sync account</code>按钮，就可以同步过来了，点击需要构建的<code>repos</code>前面的按钮为<code>ON</code>，再点击其后的原形设置图标，进入如下界面<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/config.png" alt="config"><br>如图中设置，将<code>Build only if .travis.yml is present</code>及另外两个设置为<code>ON</code>，功能如字面意思不多说。<br>到目前为止，已经将需要构建的<code>repos</code>开启，那么，我们如何在将源码提交到<code>github</code>的时候，它就自动构建并将<code>build</code>后的静态文件<code>push</code>到我的静态文件<code>branch</code>或者<code>repos</code>呢（我是将<code>build</code>后的静态文件放到一个单独的<code>repos</code>了，也可以放在源码<code>repos</code>的另一个<code>branch</code>，例如起名叫<code>hexo</code>），接下来说如何让<code>Travis CI</code>访问<code>github</code>.</p>
+<h2 id="Access-Token"><a href="#Access-Token" class="headerlink" title="Access Token"></a>Access Token</h2><p>我们需要在<code>Travis</code>上配置<code>Access Token</code>，就可以在构建完毕后自动<code>push</code>到<code>github</code>上保存静态文件的<code>repos</code>了。</p>
+<h3 id="生成Access-Token"><a href="#生成Access-Token" class="headerlink" title="生成Access Token"></a>生成Access Token</h3><p>登录<a href="https://github.com/" target="_blank" rel="noopener">github</a>，进入个人主页，点击<code>setting</code>，进入界面后找到下图所指位置。<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/token.png" alt="token"><br>点击<code>Personal access tokens</code>，进入页面后，在点击右上角<code>Generate new token</code>,会再次让输入<code>github</code>密码，然后在<code>Token description</code>下起一个名字，再勾选一些权限，我是全给勾选上了，在点击下面<code>Generate token</code>这里就不多截图了。复制生成的<code>token</code>码。</p>
+<h3 id="配置Travis-CI"><a href="#配置Travis-CI" class="headerlink" title="配置Travis CI"></a>配置Travis CI</h3><p>回到<code>Travis</code>的<code>setting</code>页面，如上面图，在<code>Environment Variables</code>这一栏，点击<code>Add</code>，起一个名字到<code>Name</code>，将复制的<code>token</code>码粘贴到<code>Value</code>框中，到这步为止，已经完成了<code>Travis</code>的设置。到博客源码根目录，创建一个<code>.travis.yml</code>的配置文件，内容如下，附注释，注意缩进<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">language: node_js  #设置语言</span><br><span class="line"></span><br><span class="line">node_js: stable  #设置相应的版本</span><br><span class="line"></span><br><span class="line">install:</span><br><span class="line">  - npm install  #安装hexo及插件</span><br><span class="line"></span><br><span class="line">script:</span><br><span class="line">  - hexo clean  #清除</span><br><span class="line">  - hexo g  #生成</span><br><span class="line"></span><br><span class="line">after_script:</span><br><span class="line">  - cd ./public</span><br><span class="line">  - git init</span><br><span class="line">  - git config user.name &quot;swust-xiaoj&quot;  #修改name</span><br><span class="line">  - git config user.email &quot;swustxiaojie@163.com&quot;  #修改email</span><br><span class="line">  - git add .</span><br><span class="line">  - git commit -m &quot;update site&quot;</span><br><span class="line">  - git push --force  &quot;https://$&#123;travis&#125;@$&#123;GH_REF&#125;&quot; master:master  #travis是在Travis中配置token的名称</span><br><span class="line"></span><br><span class="line">branches:</span><br><span class="line">  only:</span><br><span class="line">    - master  #只监测master，可根据自己情况设置，若是存放同一个仓库，这儿可以选择存放源码的branch，如hexo</span><br><span class="line">env:</span><br><span class="line"> global:</span><br><span class="line">   - GH_REF: github.com/swust-xiaoj/tb.git  #设置GH_REF，注意更改yourname</span><br></pre></td></tr></table></figure></p>
+<p>因为我是新起了一个<code>repos</code>来存放静态文件了，所以上面的<code>GH_REF</code>是对应那个<code>repos</code>地址，若是放同一个<code>repos</code>中，那这儿一般都是<code>yourname.github.io</code>那个仓库。到此，配置已经完成了。</p>
+<h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><p>我们可以创建一篇文章<code>hexo new post use-travis-build-your-hexo-site</code>，添加内容后，并<code>push</code>到<code>github</code>，正常情况下，进入<code>Travis</code>网站就可以看到已经在构建了，如图<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/success.png" alt="success"><br>完成后，<a href="http://dearxiaojie.top/tb/2017-05-04/use-travisci-build-your-hexo-site.html">访问链接</a>就可以看到这篇文章了。</p>
+<h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p>很久没有花时间写点东西了，不管有没有价值，总是一种对知识的积累和总结，输出也意味着输入，所以以后还是将学到的东西和积累总结下，自己可以将知识梳理的同时能帮助到别人是更好的了。</p>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/article/2016-10-23-search-btn.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/article/2017-05-26-use-python-smtp-to-send-mail.html">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'xiaojie';
+    
+    var disqus_url = 'http://dearxiaojie.top/article/2017-05-04-use-travisci-build-your-hexo-site.html';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//xiaojie.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

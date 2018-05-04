@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>javascript性能优化小知识 | Sincerly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="javascript,性能优化," />
+  
+
+  <meta name="description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。">
+<meta name="keywords" content="javascript,性能优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript性能优化小知识">
+<meta property="og:url" content="http://dearxiaojie.top/article/2015-07-27-javascript性能优化小知识.html">
+<meta property="og:site_name" content="Sincerly">
+<meta property="og:description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-04T07:03:49.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript性能优化小知识">
+<meta name="twitter:description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cd3bea7d045fc3fdc9952df80e48e5ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#避免全局查找"><span class="toc-text">避免全局查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串的连接"><span class="toc-text">字符串的连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字转换成字符串"><span class="toc-text">数字转换成字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点数转换成整型"><span class="toc-text">浮点数转换成整型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用DocumentFragment优化多次append"><span class="toc-text">使用DocumentFragment优化多次append</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用一次innerHTML赋值代替构建dom元素"><span class="toc-text">使用一次innerHTML赋值代替构建dom元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用事件代理"><span class="toc-text">使用事件代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩短否定检测"><span class="toc-text">缩短否定检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件分支"><span class="toc-text">条件分支</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-javascript性能优化小知识" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">javascript性能优化小知识</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.07.27</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>xiaojie</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/学习笔记/">学习笔记</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dearxiaojie.top//article/2015-07-27-javascript性能优化小知识.html#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>前面有一篇也是关于<code>javascript</code>性能方面的文章，是看了<a href="http://book.douban.com/subject/5362856/" target="_blank" rel="noopener">《高性能javascript》</a>后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。<br><a id="more"></a></p>
+<h3 id="避免全局查找"><a href="#避免全局查找" class="headerlink" title="避免全局查找"></a>避免全局查找</h3><p>在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些。</p>
+<h3 id="字符串的连接"><a href="#字符串的连接" class="headerlink" title="字符串的连接"></a>字符串的连接</h3><p>如果要连接多个字符串，应该少使用+=，如<br>s+=a;<br>s+=b;<br>s+=c;<br>应该写成s+=a + b + c；<br>而如果是收集字符串，比如多次对同一个字符串进行+=操作的话，最好使用一个缓存，使用<code>JavaScript</code>数组来收集，最后使用<code>join</code>方法连接起来。</p>
+<h3 id="数字转换成字符串"><a href="#数字转换成字符串" class="headerlink" title="数字转换成字符串"></a>数字转换成字符串</h3><p><code>(&quot;&quot; +) &gt; String() &gt; .toString() &gt; new String()</code><br>字符串如’1322’转换成数字的时候可以在前面加’+’,如<code>var str = &#39;123&#39;;var num = +str</code>,那么<code>typeof num</code>为<code>number</code></p>
+<h3 id="浮点数转换成整型"><a href="#浮点数转换成整型" class="headerlink" title="浮点数转换成整型"></a>浮点数转换成整型</h3><p>很多人喜欢使用<code>parseInt()</code>，其实<code>parseInt()</code>是用于将字符串转换成数字，而不是浮点数和整型之间的转换，我们应该使用<code>Math.floor()</code>或者<code>Math.round()</code>。</p>
+<h3 id="使用DocumentFragment优化多次append"><a href="#使用DocumentFragment优化多次append" class="headerlink" title="使用DocumentFragment优化多次append"></a>使用DocumentFragment优化多次append</h3><p>一旦需要更新DOM,请考虑使用文档碎片来构建DOM结构，然后再将其添加到现存的文档中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (var i = 0; i &lt; 1000; i++) &#123;</span><br><span class="line">          var el = document.createElement(&apos;p&apos;);</span><br><span class="line">          el.innerHTML = i;</span><br><span class="line">          document.body.appendChild(el);</span><br><span class="line">      &#125;       </span><br><span class="line">       //可以替换为：</span><br><span class="line">      var frag = document.createDocumentFragment();</span><br><span class="line">          for (var i = 0; i &lt; 1000; i++) &#123;  </span><br><span class="line">              var el = document.createElement(&apos;p&apos;);</span><br><span class="line">          	el.innerHTML = i;</span><br><span class="line">          	frag.appendChild(el);</span><br><span class="line">      	&#125;</span><br><span class="line">      document.body.appendChild(frag);</span><br></pre></td></tr></table></figure>
+<h3 id="使用一次innerHTML赋值代替构建dom元素"><a href="#使用一次innerHTML赋值代替构建dom元素" class="headerlink" title="使用一次innerHTML赋值代替构建dom元素"></a>使用一次innerHTML赋值代替构建dom元素</h3><p>对于大的DOM更改，使用<code>innerHTML</code>要比使用标准的DOM方法创建同样的DOM结构快得多。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var frag = document.createDocumentFragment();</span><br><span class="line">     for (var i = 0; i &lt; 1000; i++) &#123;</span><br><span class="line">         var el = document.createElement(&apos;p&apos;);</span><br><span class="line">         el.innerHTML = i;</span><br><span class="line">         frag.appendChild(el);</span><br><span class="line">     &#125;</span><br><span class="line">     document.body.appendChild(frag);</span><br><span class="line">         //可以替换为：</span><br><span class="line">     var html = [];</span><br><span class="line">         for (var i = 0; i &lt; 1000; i++) &#123;</span><br><span class="line">         html.push(&apos;&lt;p&gt;&apos; + i + &apos;&lt;/p&gt;&apos;);</span><br><span class="line">     &#125;</span><br><span class="line">     document.body.innerHTML = html.join(&apos;&apos;);</span><br></pre></td></tr></table></figure>
+<h3 id="使用事件代理"><a href="#使用事件代理" class="headerlink" title="使用事件代理"></a>使用事件代理</h3><p>任何可以冒泡的事件都不仅仅可以在事件目标上进行处理，目标的任何祖先节点上也能处理，使用这个知识就可以将事件处理程序附加到更高的地方负责多个目标的事件处理，同样，对于内容动态增加并且子节点都需要相同的事件处理函数的情况，可以把事件注册提到父节点上，这样就不需要为每个子节点注册事件监听了。另外，现有的js库都采用<code>observe</code>方式来创建事件监听,其实现上隔离了DOM对象和事件处理函数之间的循环引用,所以应该尽量采用这种方式来创建事件监听</p>
+<h3 id="缩短否定检测"><a href="#缩短否定检测" class="headerlink" title="缩短否定检测"></a>缩短否定检测</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (oTest != &apos;#ff0000&apos;) &#123;</span><br><span class="line">    //do something</span><br><span class="line">&#125;</span><br><span class="line">if (oTest != null) &#123;</span><br><span class="line">    //do something</span><br><span class="line">&#125;</span><br><span class="line">if (oTest != false) &#123;</span><br><span class="line">    //do something</span><br><span class="line">&#125;</span><br><span class="line">    //虽然这些都正确，但用逻辑非操作符来操作也有同样的效果：</span><br><span class="line">if (!oTest) &#123;</span><br><span class="line">    //do something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="条件分支"><a href="#条件分支" class="headerlink" title="条件分支"></a>条件分支</h3><p>将条件分支，按可能性顺序从高到低排列：可以减少解释器对条件的探测次数<br>在同一条件子的多（&gt;2）条件分支时，使用<code>switch</code>优于<code>if</code>：<code>switch</code>分支选择的效率高于if，在IE下尤为明显。4分支的测试，IE下<code>switch</code>的执行时间约为if的一半。<br>使用三目运算符替代条件分支</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (a &gt; b) &#123;</span><br><span class="line">           num = a;</span><br><span class="line">       &#125; else &#123;</span><br><span class="line">           num = b;</span><br><span class="line">       &#125;        //可以替换为：</span><br><span class="line">       num = a &gt; b ? a : b;</span><br></pre></td></tr></table></figure>
+<p><em>续。。。</em></p>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/article/2015-06-27-jQuery常用方法归纳总结.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/article/2015-08-04-图解Javascript上下文与作用域.html">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'xiaojie';
+    
+    var disqus_url = 'http://dearxiaojie.top/article/2015-07-27-javascript性能优化小知识.html';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//xiaojie.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>jQuery常用方法归纳 | Sincerly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="web前端,jQuery," />
+  
+
+  <meta name="description" content="jquery常用方法的归纳总结，不过随着jquery版本的升级，有的方法已经有新的实现方式">
+<meta name="keywords" content="web前端,jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery常用方法归纳">
+<meta property="og:url" content="http://dearxiaojie.top/article/2015-06-27-jQuery常用方法归纳总结.html">
+<meta property="og:site_name" content="Sincerly">
+<meta property="og:description" content="jquery常用方法的归纳总结，不过随着jquery版本的升级，有的方法已经有新的实现方式">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-04T07:03:49.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery常用方法归纳">
+<meta name="twitter:description" content="jquery常用方法的归纳总结，不过随着jquery版本的升级，有的方法已经有新的实现方式">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cd3bea7d045fc3fdc9952df80e48e5ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#grep"><span class="toc-text">$.grep()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#map"><span class="toc-text">$.map()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mouseover-mouserout"><span class="toc-text">mouseover()/mouserout()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mouseenter-mouseleave"><span class="toc-text">mouseenter()/mouseleave()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#focusin-和focusout"><span class="toc-text">focusin()和focusout()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eq-和get"><span class="toc-text">eq()和get()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bind-、-live-和-delegate-方法"><span class="toc-text">.bind()、.live()和.delegate()方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#toggleClass"><span class="toc-text">toggleClass()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#wrap-和wrapInner"><span class="toc-text">wrap()和wrapInner()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#detach、empty和remove方法"><span class="toc-text">detach、empty和remove方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#val-方法"><span class="toc-text">val()方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#each-和map"><span class="toc-text">each()和map()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#each方法："><span class="toc-text">each方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map方法"><span class="toc-text">map方法:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#each"><span class="toc-text">$.each()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数组实例"><span class="toc-text">数组实例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象实例"><span class="toc-text">对象实例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#trigger"><span class="toc-text">.trigger()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#attr-和-prop"><span class="toc-text">.attr()和.prop()</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#after-和-insertAfter"><span class="toc-text">.after()和.insertAfter()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#after"><span class="toc-text">.after()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#insertAfter"><span class="toc-text">insertAfter()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#before-和-insertBefore"><span class="toc-text">.before()和.insertBefore()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#before"><span class="toc-text">before()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#append-和-appendTo"><span class="toc-text">.append()和.appendTo()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#append"><span class="toc-text">append()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#appendTo"><span class="toc-text">appendTo()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#prepend-和-prependTo"><span class="toc-text">.prepend()和.prependTo()</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#prepend"><span class="toc-text">prepend()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prependTo"><span class="toc-text">prependTo()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#data-key-value"><span class="toc-text">.data( key, value )</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#promise-type-target"><span class="toc-text">.promise( [type ] [, target ] )</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-jQuery常用方法归纳总结" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">jQuery常用方法归纳</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.06.27</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>xiaojie</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/前端积累/">前端积累</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dearxiaojie.top//article/2015-06-27-jQuery常用方法归纳总结.html#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="grep"><a href="#grep" class="headerlink" title="$.grep()"></a>$.grep()</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.grep( array, function(elementOfArray, indexInArray) [, invert ] )</span><br></pre></td></tr></table></figure>
+<p>功能：查找满足过滤函数的数组元素：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script src=&quot;js/jquery1.42.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        $(function () &#123;</span><br><span class="line">            var arr = [23,45,5,1,4,67,8,100,-2];</span><br><span class="line">            var arrGrep = $.grep(arr, function (element,index) &#123;</span><br><span class="line">                return (index&lt;5)&amp;&amp;(element != 4);//整体返回一个数组</span><br><span class="line">            &#125;)</span><br><span class="line">            alert(arrGrep);//23,45,5,1</span><br><span class="line">        &#125;)</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="map"><a href="#map" class="headerlink" title="$.map()"></a>$.map()</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.map( array, callback(elementOfArray, indexInArray) )</span><br></pre></td></tr></table></figure>
+<p>功能：将一个数组中的所有元素转换到另一个数组中。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script src=&quot;js/jquery1.42.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(function () &#123;</span><br><span class="line">        var arr = [5,1,4,67,8,100,-2];</span><br><span class="line">        var arrMap = $.map(arr, function (element,index) &#123;</span><br><span class="line">            //  return (index&lt;3)&amp;&amp;(element != 4);这里按布尔值返回</span><br><span class="line">            if(index&lt;3 &amp;&amp; element&lt; 4)&#123;</span><br><span class="line">                return element;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        alert(arrMap);//1</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="mouseover-mouserout"><a href="#mouseover-mouserout" class="headerlink" title="mouseover()/mouserout()"></a>mouseover()/mouserout()</h1><p>当鼠标进入/离开某个元素或它的后代元素时触发<code>mouseover/mouseout</code>事件。<br><code>mouseover</code>事件大多数时候会与 <code>mouseout</code> 事件一起使用。</p>
+<p><code>mouseover/mouserout</code>事件由于冒泡机制，经常在不需要的时候不小心触发，从而导致一些脚本问题。</p>
+<h1 id="mouseenter-mouseleave"><a href="#mouseenter-mouseleave" class="headerlink" title="mouseenter()/mouseleave()"></a>mouseenter()/mouseleave()</h1><p>mouseenter/mouseleave当且仅当鼠标进入被选元素时才触发，当鼠标穿过任何子元素时不会触发。它不关心目标元素是否有子元素。</p>
+<h1 id="focusin-和focusout"><a href="#focusin-和focusout" class="headerlink" title="focusin()和focusout()"></a>focusin()和focusout()</h1><p><code>.focusin()</code>：一个元素或它的子元素得到焦点时触发此事件<br><code>.focusout()</code>：一个元素或它的子元素失去焦点时触发此事件</p>
+<p>与 <code>focus()</code> 方法不同的是，<code>focusin()</code> 方法在任意子元素获得焦点时也会触发。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;p&gt;&lt;input type=&quot;text&quot;&gt; &lt;span&gt;focusin fire&lt;/span&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;&lt;input type=&quot;password&quot;&gt; &lt;span&gt;focusin fire&lt;/span&gt;&lt;/p&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">    $( &quot;p&quot; ).focusin(function() &#123;</span><br><span class="line">        $( this ).find( &quot;span&quot; ).css( &quot;display&quot;, &quot;inline&quot; ).fadeOut( 1000 );</span><br><span class="line">    &#125;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="eq-和get"><a href="#eq-和get" class="headerlink" title="eq()和get()"></a>eq()和get()</h1><p><code>.get()</code>： 通过jQuery对象获取一个对应的DOM元素。<br><code>.eq()</code>：从集合的一个元素中构造新的jQuery对象</p>
+<p><code>eq</code>返回的是一个jQuery对象，<code>get</code>返回的是一个DOM对象。举个例子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$( &quot;li&quot; ).get( 0 ).css(&quot;color&quot;, &quot;red&quot;); //错误</span><br><span class="line">$( &quot;li&quot; ).eq( 0 ).css(&quot;color&quot;, &quot;red&quot;); //正确</span><br></pre></td></tr></table></figure>
+<p>那么，什么是DOM对象，什么又是jQuery对象呢？</p>
+<p>DOM对象就是用js获得的对象，而juqery对象是用jQuery类库的选择器获得的对象。</p>
+<p>如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var $obj = $(&quot;div&quot;);//jQuery对象</span><br></pre></td></tr></table></figure></p>
+<p><code>get</code>方法本质上是把jQuery对象转换成DOM对象，但是css属于jQuery构造器的，DOM是不存在这个方法的，如果需要用jQuery的方法，我们必须这样写：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var li = $(&quot;li&quot;).get(0);</span><br><span class="line">$(li).css(&quot;color&quot;,&quot;black&quot;);//用$包装</span><br><span class="line">filter()</span><br></pre></td></tr></table></figure></p>
+<p><code>filter()</code>方法:筛选出与指定表达式匹配的元素集合。<br>这个方法用于缩小匹配的范围。用逗号分隔多个表达式。</p>
+<p><code>filter(expression)</code>：（字符串|函数）如果参数是字符串，则制定jQuery选择器，用于从包装集里删除所有与选择器不匹配的元素，最后留下与选择器匹配的元素；如果参数是函数，则用于确定筛选条件。为包装集里的每一个元素各调用一次该函数，函数调用返回值为false的任何元素都会从包装集里删除。</p>
+<p>以下代码意为：保留第一个以及带有select类的元素</p>
+<p>HTML 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;Hello&lt;/p&gt;&lt;p&gt;Hello Again&lt;/p&gt;&lt;p class=&quot;selected&quot;&gt;And Again&lt;/p&gt;</span><br></pre></td></tr></table></figure></p>
+<p>jQuery 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).filter(&quot;.selected, :first&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;Hello&lt;/p&gt;, &lt;p class=&quot;selected&quot;&gt;And Again&lt;/p&gt;</span><br></pre></td></tr></table></figure></p>
+<p>再看一个function的例子，一个函数用来作为测试元素的集合。它接受一个参数index，这是元素在jQuery集合的索引。在函数， <code>this</code>指的是当前的DOM元素。</p>
+<p>HTML 代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;&lt;ol&gt;&lt;li&gt;Hello&lt;/li&gt;&lt;/ol&gt;&lt;/p&gt;&lt;p&gt;How are you?&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>jQuery 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).filter(function(index) &#123;</span><br><span class="line">    return $(&quot;ol&quot;, this).length == 0;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;How are you?&lt;/p&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="bind-、-live-和-delegate-方法"><a href="#bind-、-live-和-delegate-方法" class="headerlink" title=".bind()、.live()和.delegate()方法"></a>.bind()、.live()和.delegate()方法</h1><p><code>.bind()</code>：绑定事件处理函数的最基本方式是使用<code>.bind()</code>方法。它和<code>live()</code>方法一样，接受两个参数：</p>
+<p><code>.bind(event type, event handler)</code><br>两种绑定事件处理函数的方法：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(&apos;.mydiv&apos;).bind(&apos;click&apos;,test);</span><br><span class="line">    function test()&#123;</span><br><span class="line">        alert(&quot;￼Hello World!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>事件处理函数也可以使用匿名函数，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(&quot;#mydiv&quot;).bind(&quot;click&quot;,function()&#123;</span><br><span class="line">        alert(&quot;￼Hello World!&quot;);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>.live()</code>：<code>live</code>方法和<code>bind</code>方法的唯一区别在于<code>.live()</code>不仅作用于DOM中当前存在的元素，还作用于将来可能存在（动态生成）的元素<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">$(&apos;.box&apos;).live(&apos;click&apos;,function()&#123;</span><br><span class="line">        $(this).clone().appendTo(&apos;.container&apos;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;box&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>使用<code>live</code>方法绑定事件的缺点在于它无法使用链式调用，那有没有既可以像<code>live</code>方法那样绑定事件，又可以支持链式调用的方法呢？答案就是下面的<code>delegate</code>方法。</p>
+<p><code>delegate()</code>方法：为指定的元素（属于被选元素的子元素）添加一个或多个事件处理程序，<br>并规定当这些事件发生时运行的函数。从jQuery 1.7开始，<code>.delegate()</code>已经被<code>.on()</code>方法取代。<br>语法：</p>
+<p> <code>$(selector).delegate(childSelector,event type,function)</code><br>参数说明：</p>
+<p><code>childSelector</code> 必需。规定要附加事件处理程序的一个或多个子元素。</p>
+<p><code>event</code> 必需。规定附加到元素的一个或多个事件。由空格分隔多个事件值。必须是有效的事件。</p>
+<p><code>function</code> 必需。规定当事件发生时运行的函数。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">    $(&apos;.container&apos;).delegate(&apos;.box&apos;,&apos;click&apos;,function()&#123;</span><br><span class="line">        $(this).clone().appendTo(&apos;.container&apos;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><code>delegate()</code>会在以下两个情况下使用到：</p>
+<p>1、如果你有一个父元素，需要给其下的子元素添加事件，这时你可以使用<code>delegate()</code>了，代码如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;ul&quot;).delegate(&quot;li&quot;, &quot;click&quot;, function()&#123;</span><br><span class="line">    $(this).hide();</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>2、当元素在当前页面中不可用时，可以使用<code>delegate()</code></p>
+<p><code>end()</code>方法</p>
+<p> <code>end()</code>方法：在jquery命令链内调用，以便退回到前一个包装集。<br>每次过滤方法都会被压入栈中。当我们需要返回到前一个状态时，我们可以使用<code>end()</code> 进行出栈操作，来返回栈中的前一个状态。</p>
+<p><code>end()</code> 方法结束当前链条中的最近的筛选操作，并将匹配元素集还原为之前的状态。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html;charset=UTF-8&quot; /&gt;</span><br><span class="line">&lt;title&gt;&lt;/title&gt;</span><br><span class="line">&lt;script src=&quot;http://libs.baidu.com/jquery/1.9.0/jquery.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;ul class=&quot;one&quot;&gt;</span><br><span class="line">&lt;li class=&quot;two&quot;&gt;item 1&lt;/li&gt;</span><br><span class="line">&lt;li&gt;item 2&lt;/li&gt;</span><br><span class="line">&lt;li class=&quot;three&quot;&gt;item 3&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">$(&apos;ul.one&apos;).find(&quot;.two&quot;).css(&quot;color&quot;,&quot;red&quot;).find(&apos;.three&apos;).css(&quot;background&quot;,&quot;blue&quot;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>在上面的代码例子中，我们只会看到item 1的字体颜色改变了，而背景颜色没有改变。这是因为<br>第二个<code>find()</code>方法之前的状态返回的是红色字体的<code>class</code>值为<code>two</code>的对象，因此，第二次<code>find()</code>只会查找<code>&lt;ul class=&quot;one&quot;&gt;</code> 中的<code>.two</code>，使用<code>end()</code>方法修改该链式操作的代码如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(&apos;ul.one&apos;).find(&quot;.two&quot;).css(&quot;color&quot;,&quot;red&quot;).end().find(&apos;.three&apos;).css(&quot;background&quot;,&quot;blue&quot;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p><code>end()</code>方法在这里是 返回调用 <code>find()</code> 之前的状态，也就是<code>$(&#39;ul.one&#39;)</code></p>
+<h1 id="toggleClass"><a href="#toggleClass" class="headerlink" title="toggleClass()"></a>toggleClass()</h1><p><code>toggleClass()</code>方法：如果在元素中指定类名称不存在，则添加指定类名称；如果元素已经拥有指定类名称，则从元素中删除指定类名称。<br><code>css(name,value)</code>方法：设定指定的值到每个已匹配元素的指定的css样式属性</p>
+<h1 id="wrap-和wrapInner"><a href="#wrap-和wrapInner" class="headerlink" title="wrap()和wrapInner()"></a>wrap()和wrapInner()</h1><p><code>wrap()和wrapInner()</code>：前者把所有匹配的元素用其他元素的结构化标记包裹起来；<br>后者将每一个匹配的元素的子内容(包括文本节点)用一个HTML结构包裹起来。<br>看下面一个<code>wrap()</code>的例子：<br>用原先div的内容作为新div的class，并将每一个元素包裹起来</p>
+<p>HTML 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">&lt;div class=&quot;inner&quot;&gt;Hello&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;inner&quot;&gt;Goodbye&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>jQuery 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&apos;.inner&apos;).wrap(function() &#123;</span><br><span class="line">    return &apos;&lt;div class=&quot;&apos; + $(this).text() + &apos;&quot; /&gt;&apos;;</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;Hello&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;inner&quot;&gt;Hello&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;Goodbye&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;inner&quot;&gt;Goodbye&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>接着再看下面一个<code>wrapInner()</code>的例子:</p>
+<p>用原先div的内容作为新div的class，并将每一个元素包裹起来</p>
+<p>HTML 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;Hello&lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;Goodbye&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>jQuery 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&apos;.inner&apos;).wrapInner(function() &#123;</span><br><span class="line">    return &apos;&lt;div class=&quot;&apos; + $(this).text() + &apos;&quot; /&gt;&apos;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;container&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;Hello&quot;&gt;Hello&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div class=&quot;inner&quot;&gt;</span><br><span class="line">        &lt;div class=&quot;Goodbye&quot;&gt;Goodbye&lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="detach、empty和remove方法"><a href="#detach、empty和remove方法" class="headerlink" title="detach、empty和remove方法"></a>detach、empty和remove方法</h1><p><code>.detach( [selector ] )</code>：从DOM中去掉所有匹配的元素。当需要移走一个元素，不久又将该元素插入DOM时，就需要用到detach方法。</p>
+<p><code>.empty()</code>：这个方法不仅移除子元素（和其他后代元素），同样移除元素里的文本。因为，根据说明，元素里任何文本字符串都被看做是该元素的子节点。</p>
+<p><code>.remove( [selector ] )</code>：将元素从DOM中移除，同时移除元素上的事件及 jQuery 数据</p>
+<p><code>empty()</code>的例子：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;ul class=&quot;one&quot;&gt;</span><br><span class="line">    &lt;li class=&quot;two&quot;&gt;item 1&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;item 2&lt;/li&gt;</span><br><span class="line">    &lt;li class=&quot;three&quot;&gt;item 3&lt;/li&gt;</span><br><span class="line">    &lt;/ul&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        $(&quot;.two&quot;).empty();//item 1 文本节点被移除，li的小圆点还在，证明li没有被移除</span><br><span class="line">    &lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<p>看下面一个<code>remove()</code>例子：</p>
+<p>描述：从DOM中把所有段落删除</p>
+<p>HTML 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;Hello&lt;/p&gt; how are &lt;p&gt;you?&lt;/p&gt;</span><br></pre></td></tr></table></figure></p>
+<p>jQuery 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).remove();</span><br></pre></td></tr></table></figure></p>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">how are</span><br></pre></td></tr></table></figure></p>
+<h1 id="val-方法"><a href="#val-方法" class="headerlink" title="val()方法"></a>val()方法</h1><p><code>val()</code>：获得匹配元素的当前值。<br>描述:获取文本框中的值</p>
+<p>jQuery 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;input&quot;).val();</span><br></pre></td></tr></table></figure></p>
+<p>jQuery 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;input&quot;).val(&quot;hello world!&quot;);</span><br></pre></td></tr></table></figure></p>
+<h1 id="each-和map"><a href="#each-和map" class="headerlink" title="each()和map()"></a>each()和map()</h1><p><code>each()</code>和<code>map()</code>方法：<code>each</code>返回的是原来的数组，并不会新创建一个数组。而map方法会返回一个<br>新的数组。如果在没有必要的情况下使用map，则有可能造成内存浪费。</p>
+<h2 id="each方法："><a href="#each方法：" class="headerlink" title="each方法："></a>each方法：</h2><p>定义一个空数组，通过each方法，往数组添加ID值；最后将数组转换成字符串后，alert这个值；<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line">    var arr = [];</span><br><span class="line">    $(&quot;:checkbox&quot;).each(function(index)&#123;</span><br><span class="line">        arr.push(this.id);</span><br><span class="line">    &#125;);</span><br><span class="line">    var str = arr.join(&quot;,&quot;);</span><br><span class="line">    alert(str);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="map方法"><a href="#map方法" class="headerlink" title="map方法:"></a>map方法:</h2><p>将每个<code>:checkbox</code>执行<code>return this.id</code>；并将这些返回值，自动的保存为jQuery对象，然后用get方法将其转换成原生Javascript数组，再使用join方法转换成字符串，最后alert这个值；<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(function()&#123;</span><br><span class="line">    var str = $(&quot;:checkbox&quot;).map(function() &#123;</span><br><span class="line">        return this.id;</span><br><span class="line">    &#125;).get().join();    </span><br><span class="line">    alert(str);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>当有需一个数组的值的时候，用map方法，很方便。</p>
+<h2 id="each"><a href="#each" class="headerlink" title="$.each()"></a>$.each()</h2><p>jQuery的<code>$(selector).each()</code>函数可以遍历循环选中的子元素，而jQuery的$.each()函数则可以遍历任何集合，包括对象和数组，它接收要遍历的集合以及一个回调函数，回调函数每次传递一个数组的下标和这个下标所对应的数组的值。</p>
+<p><code>$.each(array,callback);</code></p>
+<p><code>$.each(object,callback);</code></p>
+<h2 id="数组实例"><a href="#数组实例" class="headerlink" title="数组实例"></a>数组实例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.each( [ &quot;one&quot;, &quot;two&quot;, &quot;three&quot; ], function( i, l )&#123;</span><br><span class="line">    alert( &quot;index #&quot; + i + &quot;: &quot; + l );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>callback</code>(索引,索引值)<br>DEMO：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">index 0: one</span><br><span class="line">index 1: two;</span><br><span class="line">index 2: three</span><br></pre></td></tr></table></figure></p>
+<h2 id="对象实例"><a href="#对象实例" class="headerlink" title="对象实例"></a>对象实例</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.each(&#123; name: &quot;trigkit4&quot;, lang: &quot;JS&quot; &#125;, function( k, v ) &#123;</span><br><span class="line">    alert( &quot;Key: &quot; + k + &quot;, Value: &quot; + v );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>callback</code>(键,值)</p>
+<p>Demo:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Key: name, Value: trigkit4</span><br><span class="line">Key: lang, Value: JS</span><br></pre></td></tr></table></figure></p>
+<h1 id="trigger"><a href="#trigger" class="headerlink" title=".trigger()"></a>.trigger()</h1><p>描述: 根据绑定到匹配元素的给定的事件类型执行所有的处理程序和行为。</p>
+<p>当相应的事件发生时，任何通过.on()、.bind()或一个快捷方法绑定的事件处理程序将被触发。但是，它们可以用.trigger()方法手动触发<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    $(document).bind(&apos;abc&apos;,function()&#123;</span><br><span class="line">        console.log(&apos;hello&apos;);</span><br><span class="line">&#125;);</span><br><span class="line">$(document).trigger(&apos;abc&apos;);</span><br><span class="line">//Output  &apos;hello&apos;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="attr-和-prop"><a href="#attr-和-prop" class="headerlink" title=".attr()和.prop()"></a>.attr()和.prop()</h1><p><code>.attr()</code>：获取匹配的元素集合中的第一个元素的属性的值 或 设置每一个匹配元素的一个或多个属性。</p>
+<p><code>.prop()</code>：同上<br>jQuery 1.6之前 ，<code>.attr()</code>方法在取某些 <code>attribute</code> 的值时，会返回 <code>property</code> 的值，这就导致了结果的不一致。从 jQuery 1.6 开始， <code>.prop()</code>方法 方法返回 <code>property</code> 的值,而 <code>.attr()</code> 方法返回 <code>attributes</code> 的值。</p>
+<p>例如, <code>selectedIndex, tagName, nodeName, nodeType, ownerDocument, defaultChecked</code>, 和 <code>defaultSelected</code> 应使用<code>.prop()</code>方法进行取值或赋值。</p>
+<p>他们没有相应的属性（<code>attributes</code>），只有特性(<code>property</code>)。</p>
+<h1 id="after-和-insertAfter"><a href="#after-和-insertAfter" class="headerlink" title=".after()和.insertAfter()"></a>.after()和.insertAfter()</h1><h2 id="after"><a href="#after" class="headerlink" title=".after()"></a>.after()</h2><p>描述:<br>在所有段落中后插入一个jQuery对象(类似于一个DOM元素数组)。</p>
+<p>HTML 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;b&gt;Hello&lt;/b&gt;&lt;p&gt;I would like to say: &lt;/p&gt;</span><br></pre></td></tr></table></figure></p>
+<p>jQuery 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).after( $(&quot;b&quot;) );</span><br></pre></td></tr></table></figure></p>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;I would like to say: &lt;/p&gt;&lt;b&gt;Hello&lt;/b&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="insertAfter"><a href="#insertAfter" class="headerlink" title="insertAfter()"></a>insertAfter()</h2><p>描述:<br>把所有段落插入到一个元素之后。与 $(“#foo”).after(“p”)相同</p>
+<p>HTML 代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;I would like to say: &lt;/p&gt;&lt;div id=&quot;foo&quot;&gt;Hello&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>jQuery 代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).insertAfter(&quot;#foo&quot;);</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;foo&quot;&gt;Hello&lt;/div&gt;&lt;p&gt;I would like to say: &lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="before-和-insertBefore"><a href="#before-和-insertBefore" class="headerlink" title=".before()和.insertBefore()"></a>.before()和.insertBefore()</h1><h2 id="before"><a href="#before" class="headerlink" title="before()"></a>before()</h2><p>描述:<br>在所有段落中前插入一个jQuery对象(类似于一个DOM元素数组)。</p>
+<p>HTML 代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;I would like to say: &lt;/p&gt;&lt;b&gt;Hello&lt;/b&gt;</span><br></pre></td></tr></table></figure>
+<p>jQuery 代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).before( $(&quot;b&quot;) );</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;b&gt;Hello&lt;/b&gt;&lt;p&gt;I would like to say: &lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="append-和-appendTo"><a href="#append-和-appendTo" class="headerlink" title=".append()和.appendTo()"></a>.append()和.appendTo()</h1><h2 id="append"><a href="#append" class="headerlink" title="append()"></a>append()</h2><p>描述：向所有段落中追加一些HTML标记。</p>
+<p>HTML 代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;I would like to say: &lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>jQuery 代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).append(&quot;&lt;b&gt;Hello&lt;/b&gt;&quot;);</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+ <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;I would like to say: &lt;b&gt;Hello&lt;/b&gt;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="appendTo"><a href="#appendTo" class="headerlink" title="appendTo()"></a>appendTo()</h2><p>描述：新建段落追加div中并加上一个class</p>
+<p>HTML 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<p>jQuery 代码:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;&lt;p/&gt;&quot;)</span><br><span class="line">    .appendTo(&quot;div&quot;)</span><br><span class="line">    .addClass(&quot;test&quot;)</span><br><span class="line">    .end()</span><br><span class="line">    .addClass(&quot;test2&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div&gt;&lt;p class=&quot;test test2&quot;&gt;&lt;/p&gt;&lt;/div&gt;</span><br><span class="line">&lt;div&gt;&lt;p class=&quot;test&quot;&gt;&lt;/p&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="prepend-和-prependTo"><a href="#prepend-和-prependTo" class="headerlink" title=".prepend()和.prependTo()"></a>.prepend()和.prependTo()</h1><h2 id="prepend"><a href="#prepend" class="headerlink" title="prepend()"></a>prepend()</h2><p>描述：向所有段落中前置一个jQuery对象(类似于一个DOM元素数组)。</p>
+<p>HTML 代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;I would like to say: &lt;/p&gt;&lt;b&gt;Hello&lt;/b&gt;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<p>jQuery 代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).prepend( $(&quot;b&quot;) );</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;&lt;b&gt;Hello&lt;/b&gt;I would like to say: &lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="prependTo"><a href="#prependTo" class="headerlink" title="prependTo()"></a>prependTo()</h2><p>描述：把所有段落追加到ID值为foo的元素中。</p>
+<p>HTML 代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;I would like to say: &lt;/p&gt;&lt;div id=&quot;foo&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>jQuery 代码:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;p&quot;).prependTo(&quot;#foo&quot;);</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;foo&quot;&gt;&lt;p&gt;I would like to say: &lt;/p&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. .insertAfter()和.after()：在现存元素的外部，从后面插入元素  </span><br><span class="line">2. .insertBefore()和.before()：在现存元素的外部，从前面插入元素  </span><br><span class="line">3. .appendTo()和.append()：在现存元素的内部，从后面插入元素  </span><br><span class="line">4. .prependTo()和.prepend()  ：在现存元素的内部，从前面插入元素</span><br></pre></td></tr></table></figure>
+<h1 id="data-key-value"><a href="#data-key-value" class="headerlink" title=".data( key, value )"></a>.data( key, value )</h1><p><code>.data()</code>方法允许我们在DOM元素上绑定任意类型的数据,</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$(&quot;div&quot;).data(&quot;test&quot;, &#123; first: 16, last: &quot;pizza!&quot; &#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="promise-type-target"><a href="#promise-type-target" class="headerlink" title=".promise( [type ] [, target ] )"></a>.promise( [type ] [, target ] )</h1><p>在 <code>Javascript</code> 中，有外一种异步处理模式被叫做 <code>Promises</code>， <code>CommonJS</code> 标准委员会于是发布了一个规范，就把这个 <code>API</code> 叫做 <code>Promises</code> 了。</p>
+<p><code>Promise</code> 背后的概念非常简单，有两部分:</p>
+<p><code>Deferreds</code>，定义工作单元，<br><code>Promises</code>，从 <code>Deferreds</code> 返回的数据。<br><code>Promise</code> 不同于回调的很重要的一个点是，你可以在 <code>Promise</code> 状态变成执行(<code>resolved</code>)之后追加处理句柄。这就允许你传输数据，而忽略它是否已经被应用获取，然后缓存它，等等之类的操作，因此你可以对数据执行操作，而不管它是否已经或者即将可用。</p>
+<p>你可以给一个 <code>promise</code> 追加多个处理(<code>then()</code>)。<code>Promise API</code> 好玩的地方在于允许链式处理:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!-- lang: js --&gt;</span><br><span class="line">promise</span><br><span class="line">    .then(doSomething)</span><br><span class="line">    .then(doSomethingElse)</span><br><span class="line">    .then(doSomethingMore)</span><br><span class="line">    .catch(logError);</span><br></pre></td></tr></table></figure></p>
+<p>  <em>原文见</em>：<a href="http://segmentfault.com/a/1190000000660257" target="_blank" rel="noopener">trigkit4</a></p>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/article/2015-05-29-XMLHttpRequest学习笔记.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/article/2015-07-27-javascript性能优化小知识.html">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'xiaojie';
+    
+    var disqus_url = 'http://dearxiaojie.top/article/2015-06-27-jQuery常用方法归纳总结.html';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//xiaojie.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

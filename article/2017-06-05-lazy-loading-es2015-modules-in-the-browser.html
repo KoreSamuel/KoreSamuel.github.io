@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>在浏览器中懒加载ES2015模块 | Sincerly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="ES2015," />
+  
+
+  <meta name="description" content="ES2015模块在浏览器懒加载 在过去的几年里，开发者们已经无情的将服务端网站移动到了客户端，前提是那样能使页面的性能得到提高。 然而，这可能是不够的。你是否考虑过你的网站也许加载更多于它实际用到的东西？遇到懒加载，一个延迟初始化（加载/分配）某个资源(代码/数据/静态资源)直到它需要的时候再加载。 与此同时，ES2015已经能在生产环境中使用了，通过一些transpilers如Babel。现在你">
+<meta name="keywords" content="ES2015">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在浏览器中懒加载ES2015模块">
+<meta property="og:url" content="http://dearxiaojie.top/article/2017-06-05-lazy-loading-es2015-modules-in-the-browser.html">
+<meta property="og:site_name" content="Sincerly">
+<meta property="og:description" content="ES2015模块在浏览器懒加载 在过去的几年里，开发者们已经无情的将服务端网站移动到了客户端，前提是那样能使页面的性能得到提高。 然而，这可能是不够的。你是否考虑过你的网站也许加载更多于它实际用到的东西？遇到懒加载，一个延迟初始化（加载/分配）某个资源(代码/数据/静态资源)直到它需要的时候再加载。 与此同时，ES2015已经能在生产环境中使用了，通过一些transpilers如Babel。现在你">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-04T07:03:49.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在浏览器中懒加载ES2015模块">
+<meta name="twitter:description" content="ES2015模块在浏览器懒加载 在过去的几年里，开发者们已经无情的将服务端网站移动到了客户端，前提是那样能使页面的性能得到提高。 然而，这可能是不够的。你是否考虑过你的网站也许加载更多于它实际用到的东西？遇到懒加载，一个延迟初始化（加载/分配）某个资源(代码/数据/静态资源)直到它需要的时候再加载。 与此同时，ES2015已经能在生产环境中使用了，通过一些transpilers如Babel。现在你">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cd3bea7d045fc3fdc9952df80e48e5ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#页面加载-vs-懒加载"><span class="toc-text">页面加载 vs 懒加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD陷阱"><span class="toc-text">AMD陷阱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES2015模块101"><span class="toc-text">ES2015模块101</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域"><span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导出和导入"><span class="toc-text">导出和导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#默认"><span class="toc-text">默认</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ES2015模块加载器和System-js"><span class="toc-text">ES2015模块加载器和System.js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同步和异步导入模块"><span class="toc-text">同步和异步导入模块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-text">结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-text">reference</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-lazy-loading-es2015-modules-in-the-browser" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">在浏览器中懒加载ES2015模块</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.06.05</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>xiaojie</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/翻译/">翻译</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dearxiaojie.top//article/2017-06-05-lazy-loading-es2015-modules-in-the-browser.html#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>ES2015模块在浏览器懒加载</p>
+<p>在过去的几年里，开发者们已经无情的将服务端网站移动到了客户端，前提是那样能使页面的性能得到提高。</p>
+<p>然而，这可能是不够的。你是否考虑过你的网站也许加载更多于它实际用到的东西？遇到懒加载，一个延迟初始化（加载/分配）某个资源(代码/数据/静态资源)直到它需要的时候再加载。</p>
+<p>与此同时，<code>ES2015</code>已经能在生产环境中使用了，通过一些<code>transpilers</code>如<code>Babel</code>。现在你不用参与到使用<code>AMD</code>还是<code>CommonJS</code>的战争中，参照这篇文章的描述（<a href="https://www.airpair.com/javascript/posts/the-mind-boggling-universe-of-javascript-modules" target="_blank" rel="noopener">The mind-boggling universe of JavaScript Module strategies</a>）,因为你可以写<code>ES2015</code>模块和让他们transpiled并交付给浏览器同时支持现有<code>CommonJS</code>或<code>AMD</code>模块。</p>
+<p>在这篇文章中，我将讨论如何使用<a href="https://github.com/systemjs/systemjs" target="_blank" rel="noopener">System.js</a>同步(在页面加载的时候)和异步(懒加载)加载<code>ES2015</code>模块。</p>
+<h2 id="页面加载-vs-懒加载"><a href="#页面加载-vs-懒加载" class="headerlink" title="页面加载 vs 懒加载"></a>页面加载 vs 懒加载</h2><p>在浏览器上开发<code>JavaScript</code>代码执行时,你必须决定什么时候你让它执行。<br>有一些代码必须在页面加载的同时就执行，比如SPA应用使用了一些框架如<code>Angular</code>，<code>Ember</code>，<code>Backbone</code>，或者<code>React</code>，这些代码可能通过一个或多个<code>&lt;script&gt;</code>标签，必须在一个页面请求返回到浏览器后被引用到<code>HTML</code>文档的主体结构中。</p>
+<p>在另一方面，你可能有更多的代码块在一些特定的触发条件发生的时候在执行。经典的例子如：</p>
+<ul>
+<li>内容折叠。比如一个评论面板，在用户滚动到页底的时候才显示</li>
+<li>事件触发内容显示。比如一个放大的覆盖层，在用户点击图片的时候在显示</li>
+<li>少数内容。比如一个‘免运费’的控件，只只用于一些小的页面上</li>
+<li>有时间间隔的内容显示。比如一个客服聊天框</li>
+</ul>
+<p>这样的话，对于给出一个类似上面的功能，如果他的触发条件未发生，他的代码块就永远不会被执行。因此，那个代码块在页面加载的时候明显是不需要的，是可以延迟加载的。</p>
+<p>为了延迟加载，你只需要将在页面加载期间执行的代码从代码块中提取出来。这样在他的触发条件第一次发生的时候就被执行。</p>
+<p>这种异步加载引用代码的方式，或者叫懒加载，在提升页面性能上扮演了一个重要的角色，从减少页面首屏时间和速度指数上来看的话。</p>
+<p>为了学习更多关于对比页面加载和懒加载对页面性和速度指数的影响的知识，可以阅读这篇文章<a href="https://www.airpair.com/javascript/posts/the-tipping-point-of-clientside-performance" target="_blank" rel="noopener"> Leveling up: Simple steps to optimize the Critical Rendering Path</a></p>
+<h2 id="AMD陷阱"><a href="#AMD陷阱" class="headerlink" title="AMD陷阱"></a>AMD陷阱</h2><p>AMD标准是为在浏览器上异步加载加载创造的，是第一个作为全局<code>JavaScript</code>文件散落在页面的成功替代品。根据<a href="http://requirejs.org/docs/whyamd.html#amd" target="_blank" rel="noopener">Require.js文档</a>:</p>
+<blockquote>
+<p>The AMD format comes from wanting a module format that was better than today’s “write a bunch of script tags with implicit dependencies that you have to manually order” and something that was easy to use directly in the browser.</p>
+</blockquote>
+<p>它是基于模块设计模式<a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript" target="_blank" rel="noopener">Module Design Pattern</a>的授权，有一个模块加载器，依赖注入和异步能力。它的一个主要的作用就是执行模块的懒加载。</p>
+<p>尽管是一个可怕的想法，它带来了一些固有的复杂性：也就是说，之前理解运行时模块的timelines是不那么重要的。这就意味着开发者们需要知道每个异步模块是什么时候做它预期的工作的。</p>
+<p>如果不明白这点，开发者们发现这样的情况：它有时候能正常工作，有时候不能。由于竞态，调试是非常困难的。因为这样的事情，<code>AMD</code>失去了大量的势头和牵引。</p>
+<p>学习更多关于<code>AMD</code>的陷阱，查看<a href="http://benmccormick.org/2015/05/28/moving-past-requirejs/" target="_blank" rel="noopener">Moving Past RequireJS</a></p>
+<h2 id="ES2015模块101"><a href="#ES2015模块101" class="headerlink" title="ES2015模块101"></a>ES2015模块101</h2><p>在继续下去之前，我们回顾一下<code>ES2015</code>模块。如果你已经非常熟悉了，那这是一个快速的复习。<br>在<code>ES2015</code>中，模块已经成为官方<code>JavaScript</code>语言的一部分，它们非常强大而且很容易去掌握，站在<code>CommonJS</code>模块这个巨人的肩膀上的话。</p>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>通常，一个<code>ES2015</code>模块所有的全局变量仅作用于自己这个文件，模块可以导出数据，也可以导入其他的模块。</p>
+<h3 id="导出和导入"><a href="#导出和导入" class="headerlink" title="导出和导入"></a>导出和导入</h3><p>在一个你想导出的项目(如一个变量，函数、类)的前面加上一个关键词<code>export</code>就可以导出，在下面这个例子中，我们导出<code>Dog</code>和<code>Wolf</code>:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// zoo.js</span><br><span class="line">var getBarkStyle = function(isHowler) &#123;  </span><br><span class="line">  return isHowler? &apos;woooooow!&apos;: &apos;woof, woof!&apos;;</span><br><span class="line">&#125;;</span><br><span class="line">export class Dog &#123;  </span><br><span class="line">  constructor(name, breed) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.breed = breed;</span><br><span class="line">  &#125;</span><br><span class="line">  bark() &#123;</span><br><span class="line">    return `$&#123;this.name&#125;: $&#123;getBarkStyle(this.breed === &apos;husky&apos;)&#125;`;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">export class Wolf &#123;  </span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  bark() &#123;</span><br><span class="line">    return `$&#123;this.name&#125;: $&#123;getBarkStyle(true)&#125;`;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>让我们想想如果在一个单元测试（如<code>Mocha/Chai</code>）用引入这个模块。使用语法<code>import &lt;object&gt; from &lt;path&gt;</code>，至于<code>&lt;object&gt;</code>我们可以选择我们想导入的元素–命名导入（<a href="http://www.2ality.com/2014/09/es6-modules-final.html" target="_blank" rel="noopener">named imports</a>）。接下来我们可以从<code>chai</code>中导入<code>expect</code>，同样，从<code>Zoo</code>中导入<code>Dog</code>和<code>Wolf</code>。这种命名导入的语法很像ES2015的另一个方便的特性–<a href="http://www.2ality.com/2015/01/es6-destructuring.html" target="_blank" rel="noopener">解构赋值</a><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// zoo_spec.js</span><br><span class="line">import &#123; expect &#125; from &apos;chai&apos;;  </span><br><span class="line">import &#123; Dog, Wolf &#125; from &apos;../src/zoo&apos;;</span><br><span class="line">describe(&apos;the zoo module&apos;, () =&gt; &#123;  </span><br><span class="line">  it(&apos;should instantiate a regular dog&apos;, () =&gt; &#123;</span><br><span class="line">    var dog = new Dog(&apos;Sherlock&apos;, &apos;beagle&apos;);</span><br><span class="line">    expect(dog.bark()).to.equal(&apos;Sherlock: woof, woof!&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line">  it(&apos;should instantiate a husky dog&apos;, () =&gt; &#123;</span><br><span class="line">    var dog = new Dog(&apos;Whisky&apos;, &apos;husky&apos;);</span><br><span class="line">    expect(dog.bark()).to.equal(&apos;Whisky: woooooow!&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line">  it(&apos;should instantiate a wolf&apos;, () =&gt; &#123;</span><br><span class="line">    var wolf = new Wolf(&apos;Direwolf&apos;);</span><br><span class="line">    expect(wolf.bark()).to.equal(&apos;Direwolf: woooooow!&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="默认"><a href="#默认" class="headerlink" title="默认"></a>默认</h3><p>如果你只有一个项目要导出，你可以使用<code>export default</code>来将你需要导出的项目作为一个对象<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// cat.js</span><br><span class="line">export default class Cat &#123;  </span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  meow() &#123;</span><br><span class="line">    return `$&#123;this.name&#125;: You gotta be kidding that I&apos;ll obey you, right?`;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>导入默认的模块更简单，至于结构赋值就不再用到了，你可以直接从模块中导入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// cat_spec.js</span><br><span class="line">import &#123; expect &#125; from &apos;chai&apos;;  </span><br><span class="line">import Cat from &apos;../src/cat&apos;;</span><br><span class="line">describe(&apos;the cat module&apos;, () =&gt; &#123;  </span><br><span class="line">  it(&apos;should instantiate a cat&apos;, () =&gt; &#123;</span><br><span class="line">    var cat = new Cat(&apos;Bugsy&apos;);</span><br><span class="line">    expect(cat.meow()).to.equal(&apos;Bugsy: You gotta be kidding that I\&apos;ll obey you, right?&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>学习更多关于<code>ES2015</code>模块的知识，查看文章<a href="http://exploringjs.com/es6/ch_modules.html" target="_blank" rel="noopener">Exploring ES6 — Modules.</a></p>
+<h2 id="ES2015模块加载器和System-js"><a href="#ES2015模块加载器和System-js" class="headerlink" title="ES2015模块加载器和System.js"></a>ES2015模块加载器和System.js</h2><p>惊奇的发现，<code>ES2015</code>实际上没有一个模块加载规范。这儿是一个非常受欢迎的对动态模块加载的提议–<a href="https://github.com/ModuleLoader/es6-module-loader" target="_blank" rel="noopener">es6-module-loader</a>–受<a href="https://github.com/systemjs/systemjs" target="_blank" rel="noopener">System.js</a>的启发。这个提议已经被撤回了，但是有个<a href="https://whatwg.github.io/loader/" target="_blank" rel="noopener">WhatWG</a>在讨论阶段的新的加载规范和<a href="https://github.com/tc39/proposal-dynamic-import" target="_blank" rel="noopener">Domenic Denicola</a>提出的动态导入规范。</p>
+<p>然而，<code>System.js</code>目前是最常使用的支持<code>ES2015</code>的模块加载器实现之一，它支持<code>ES2015</code>，<code>AMD</code>，<code>CommonJS</code>和浏览器中的全局脚本，还有<code>NodeJS</code>。它提供了一个异步模块加载器（对比<code>Require.js</code>）和<code>ES2015</code>转换，通过<a href="https://babeljs.io/" target="_blank" rel="noopener">Babel</a>,<a href="https://github.com/google/traceur-compiler" target="_blank" rel="noopener">Traceur</a>或者<a href="http://www.typescriptlang.org/" target="_blank" rel="noopener">Typescript</a>。</p>
+<p><code>System.js</code>使用<code>Promises-based API</code>实现了异步模块加载。自从<code>promises</code>可以被链式调用和组合，这是非常长强大和方便的方法。举个例子，如果你想平行的加载多个模块，你可以使用<code>Promises.all</code>，当所有<code>promises</code>都被解决后，<code>listener</code>就可以被解除了。</p>
+<p>最后，动态导入规范正在得到更多的牵引，而且已经被编入<code>webpack 2</code>。你可以看看它在webpack2指南上是如何工作的<a href="https://webpack.js.org/guides/migrating/#code-splitting-with-es2015" target="_blank" rel="noopener">Code splitting with ES2015</a>，这也是受<code>system.js</code>的启发，所以过度起来也很简单。</p>
+<h2 id="同步和异步导入模块"><a href="#同步和异步导入模块" class="headerlink" title="同步和异步导入模块"></a>同步和异步导入模块</h2><p>为了以同步和异步两种方式说明模块的加载，这里有一个简单的项目，将会在页面加载的时候同步加载我们的<code>Cat</code>模块，在用户点击按钮的时候懒加载<code>Zoo</code>模块。代码的<code>github</code>地址<a href="https://github.com/tiagorg/lazy-load-es2015-systemjs" target="_blank" rel="noopener">lazy-load-es2015-systemjs</a>。</p>
+<p>让我们看一看主要的代码块中在页面加载时加载的代码，我们的<code>main.js</code>。</p>
+<p>首先，注意通过<code>import</code>同步加载<code>Cat</code>时的表现，然后，创建了一个<code>Cat</code>的实例，调用它的方法<code>meow()</code>，然后添加结果到<code>DOM</code>中：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// main.js</span><br><span class="line">// Importing Cat module synchronously</span><br><span class="line">import Cat from &apos;cat&apos;;</span><br><span class="line">// DOM content node</span><br><span class="line">let contentNode = document.getElementById(&apos;content&apos;);</span><br><span class="line">// Rendering cat</span><br><span class="line">let myCat = new Cat(&apos;Bugsy&apos;);  </span><br><span class="line">contentNode.innerHTML += myCat.meow();</span><br></pre></td></tr></table></figure></p>
+<p>最后，注意通过<code>System.import(&#39;zoo&#39;)</code>异步导入<code>Zoo</code>，最后，<code>Dog</code>和<code>Wolf</code>分别调用他们的方法<code>back()</code>，再次将结果添加到<code>DOM</code>中：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// Button to lazy load Zoo</span><br><span class="line">contentNode.innerHTML += `&lt;p&gt;&lt;button id=&apos;loadZoo&apos;&gt;Lazy load &lt;b&gt;Zoo&lt;/b&gt;&lt;/button&gt;&lt;/p&gt;`;</span><br><span class="line">// Listener to lazy load Zoo</span><br><span class="line">document.getElementById(&apos;loadZoo&apos;).addEventListener(&apos;click&apos;, e =&gt; &#123;</span><br><span class="line">  // Importing Zoo module asynchronously</span><br><span class="line">  System.import(&apos;zoo&apos;).then(Zoo =&gt; &#123;</span><br><span class="line">    // Rendering dog</span><br><span class="line">    let myDog = new Zoo.Dog(&apos;Sherlock&apos;, &apos;beagle&apos;);</span><br><span class="line">    contentNode.innerHTML += `$&#123;myDog.bark()&#125;`;</span><br><span class="line">    // Rendering wolf</span><br><span class="line">    let myWolf = new Zoo.Wolf(&apos;Direwolf&apos;);</span><br><span class="line">    contentNode.innerHTML += `&lt;br/&gt;$&#123;myWolf.bark()&#125;`;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>掌握遵守页面加载最少必须加载和懒加载可延迟加载的模块可以明显的提升你的页面性能，<code>AMD</code>和<code>CommonJS</code>为<code>ES2015</code>模块铺路。你可以开始使用<code>System.js</code>加载<code>ES2015</code>模块，或者通过<code>webpack 2</code>使用动态导入规范。但是官方的解决方案至今还未发布。</p>
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><p><a href="https://dzone.com/articles/lazy-loading-es2015-modules-in-the-browser" target="_blank" rel="noopener">lazy-loading-es2015-modules-in-the-browser</a></p>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/article/2017-06-03-several-npm-shorthand-or-trick.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/article/2017-08-29-diy-highcharts.html">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'xiaojie';
+    
+    var disqus_url = 'http://dearxiaojie.top/article/2017-06-05-lazy-loading-es2015-modules-in-the-browser.html';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//xiaojie.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

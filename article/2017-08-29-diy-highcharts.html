@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>highcharts线型图表处理 | Sincerly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="js," />
+  
+
+  <meta name="description" content="问题分析某次需求中，需要使用highcharts展示数据以对比。可是这批数据量级相差较大，如果在同一张图表中展示，会导致线条相隔很远或者没有波动幅度；还需要在点击某根线条的时候改变图表Y轴为当前线条数量级的，并处理他们的样式以区分。 那么，第一个问题，要在同一张表中展示不同量级的数据，且相互具有参考性，有个办法就是将数据统一处理成一个维度的，如数据归一化，将数据映射到0~1之间的小数，那不同量级的">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="highcharts线型图表处理">
+<meta property="og:url" content="http://dearxiaojie.top/article/2017-08-29-diy-highcharts.html">
+<meta property="og:site_name" content="Sincerly">
+<meta property="og:description" content="问题分析某次需求中，需要使用highcharts展示数据以对比。可是这批数据量级相差较大，如果在同一张图表中展示，会导致线条相隔很远或者没有波动幅度；还需要在点击某根线条的时候改变图表Y轴为当前线条数量级的，并处理他们的样式以区分。 那么，第一个问题，要在同一张表中展示不同量级的数据，且相互具有参考性，有个办法就是将数据统一处理成一个维度的，如数据归一化，将数据映射到0~1之间的小数，那不同量级的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-04T07:03:49.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="highcharts线型图表处理">
+<meta name="twitter:description" content="问题分析某次需求中，需要使用highcharts展示数据以对比。可是这批数据量级相差较大，如果在同一张图表中展示，会导致线条相隔很远或者没有波动幅度；还需要在点击某根线条的时候改变图表Y轴为当前线条数量级的，并处理他们的样式以区分。 那么，第一个问题，要在同一张表中展示不同量级的数据，且相互具有参考性，有个办法就是将数据统一处理成一个维度的，如数据归一化，将数据映射到0~1之间的小数，那不同量级的">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cd3bea7d045fc3fdc9952df80e48e5ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题分析"><span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据归一化"><span class="toc-text">数据归一化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#展示真实数据"><span class="toc-text">展示真实数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用到的API"><span class="toc-text">使用到的API</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reference"><span class="toc-text">reference</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-diy-highcharts" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">highcharts线型图表处理</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.08.29</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>xiaojie</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/前端积累/">前端积累</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dearxiaojie.top//article/2017-08-29-diy-highcharts.html#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>某次需求中，需要使用<a href="https://www.highcharts.com/" target="_blank" rel="noopener"><code>highcharts</code></a>展示数据以对比。可是这批数据量级相差较大，如果在同一张图表中展示，会导致线条相隔很远或者没有波动幅度；还需要在点击某根线条的时候改变图表Y轴为当前线条数量级的，并处理他们的样式以区分。</p>
+<p>那么，第一个问题，要在同一张表中展示不同量级的数据，且相互具有参考性，有个办法就是将数据统一处理成一个维度的，如<a href="https://baike.baidu.com/item/%E5%BD%92%E4%B8%80%E5%8C%96%E6%96%B9%E6%B3%95" target="_blank" rel="noopener">数据归一化</a>，将数据映射到<code>0~1</code>之间的小数，那不同量级的数据之间就有一定的参考性了。<br>第二个问题的话本来想过改源码，但是感觉意义不大，使用场景不多，就找<code>highcharts</code>的<code>api</code>文档，各种拼接。差不多实现了需求.</p>
+<h2 id="数据归一化"><a href="#数据归一化" class="headerlink" title="数据归一化"></a>数据归一化</h2><p>采用<code>min-max标准化</code>，也叫离差标准化，对原始数据的线性变化，结果落到<code>[0, 1]</code>之间。将需要处理的数据组，即<code>series</code>数据先处理，找到每组的最大最小，并计算.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function normalizing(arr) &#123;</span><br><span class="line">    var data = [];</span><br><span class="line">    for (var i = 0, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">        var cur = arr[i].data;</span><br><span class="line">        arr[i].visible = false;</span><br><span class="line">        var name = arr[i].name;</span><br><span class="line">        arr[i].showInLegend = false;</span><br><span class="line">        var max = Math.max.apply(null, cur);</span><br><span class="line">        var min = Math.min.apply(null, cur);</span><br><span class="line">        var news = cur.map(function (x) &#123;</span><br><span class="line">            return (x - min) / max;</span><br><span class="line">        &#125;);</span><br><span class="line">        var item = &#123; name: name, data: news &#125;;</span><br><span class="line">        arr.push(item)</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，将原数据的每个线条设置为不显示，再将归一化后的数据<code>push</code>到数组后面。即最终图表上显示的是处理后的数据绘制的线条，这样的操作会引发后面的问题，接下来会提到。</p>
+<h2 id="展示真实数据"><a href="#展示真实数据" class="headerlink" title="展示真实数据"></a>展示真实数据</h2><p>在上面一步中，将所有数据都处理成了[0, 1]之间的数据，那鼠标<code>hover</code>上去显示的就是计算后的数据。这显然不是我们想要的，所以才没有去除原来的数据。查看<code>highcharts</code>的<code>api</code>，发现可以改变<code>hover</code>显示的格式，那我只需要找到计算后与之相对应的原数据就能正确显示了。<br>现在<code>hover</code>能够正确显示数据了，图表里的线条也有了一定的对比性，但是Y轴坐标依然是按照归一化后数据量级来的。在考虑到需要在点击线条的时候显示成其原数据量级的Y轴，所以采用以下办法。<br>取出选中线条数据中的最大最小，按照归一化算法逆回去，那么其实现在图表中的线条已经不是<code>[0, 1]</code>之间的数据了，而是分别乘上点击线条最大值，并加上最小值后的数据。那么，<code>Y</code>轴的自然就变成了当前的数据量级。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function adjustSeries(activeName) &#123;</span><br><span class="line">    var data = chart.series;</span><br><span class="line">    var max, min;</span><br><span class="line">    for (var i = 0, len = 6; i &lt; len; i++) &#123;</span><br><span class="line">        var curName = data[i + 6].name</span><br><span class="line">        var current = data[i];</span><br><span class="line">        if (curName === activeName) &#123;</span><br><span class="line">            max = Math.max.apply(null, current.yData);</span><br><span class="line">            min = Math.min.apply(null, current.yData);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (var i = 6, len = originData.length; i &lt; len; i++) &#123;</span><br><span class="line">        var cur = originData[i].data || [];</span><br><span class="line">        var newc = cur.map(function (item, index) &#123;</span><br><span class="line">            var cnt = Math.round(item * max) + min;</span><br><span class="line">            return cnt;</span><br><span class="line">        &#125;);</span><br><span class="line">        var upObj = &#123; data: newc, lineWidth: 1, dashStyle: &apos;Dash&apos;, dataLabels: &#123; enabled: false &#125;, className: &apos;half-opacity&apos; &#125;;</span><br><span class="line">        if (originData[i].name === activeName) &#123;</span><br><span class="line">            upObj = &#123; data: newc, lineWidth: 4, dashStyle: &apos;Solid&apos;, dataLabels: &#123; enabled: true &#125;, className: &apos;no-opacity&apos; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        chart.series[i].update(upObj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面代码中的<code>originData</code>其实就是归一化后存起来的一个副本，因为后面每次点击都会使用这个数据，所以在存数据的时候一定要保证<code>originData</code>不变，存放的是真实数据，而不是数据引用，<code>javascript</code>基础知识，不清楚的可查看<a href="https://www.zhihu.com/question/23031215" target="_blank" rel="noopener">javascript中的深拷贝和浅拷贝</a>。</p>
+<h2 id="使用到的API"><a href="#使用到的API" class="headerlink" title="使用到的API"></a>使用到的API</h2><ul>
+<li>plotOptions.series.event.click 点击线条的时候处理相关逻辑</li>
+<li>tooltip.formatter 更改鼠标<code>hover</code>的时候显示的数据和样式</li>
+<li>chart.series[i].update 动态更新图表数据，定制线条样式</li>
+<li>其他…</li>
+</ul>
+<h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><ul>
+<li><a href="http://api.highcharts.com/highcharts" target="_blank" rel="noopener">Highcharts API</a></li>
+</ul>
+<p><a href="http://dearxiaojie.top/note/demos/highcharts.html"><em>成品链接</em></a></p>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/article/2017-06-05-lazy-loading-es2015-modules-in-the-browser.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/article/2017-11-30-mutiple-image-upload.html">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'xiaojie';
+    
+    var disqus_url = 'http://dearxiaojie.top/article/2017-08-29-diy-highcharts.html';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//xiaojie.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

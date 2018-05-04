@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>web前端笔试练习 | Sincerly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="web前端,笔试," />
+  
+
+  <meta name="description" content="1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数">
+<meta name="keywords" content="web前端,笔试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="web前端笔试练习">
+<meta property="og:url" content="http://dearxiaojie.top/article/2015-05-28-web前端笔试练习.html">
+<meta property="og:site_name" content="Sincerly">
+<meta property="og:description" content="1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-04T07:03:49.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="web前端笔试练习">
+<meta name="twitter:description" content="1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cd3bea7d045fc3fdc9952df80e48e5ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-web前端笔试练习" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">web前端笔试练习</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.05.28</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>xiaojie</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/笔试-面试/">笔试&面试</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dearxiaojie.top//article/2015-05-28-web前端笔试练习.html#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <blockquote>
+<p>1.将一个32位十进制数组转化成2进制后，翻转这个2进制数，再转换成十进制数<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//res1</span><br><span class="line">function reverseB(num) &#123;</span><br><span class="line">  var bits = num.toString(2);</span><br><span class="line">  var len = 32 - bits.length;</span><br><span class="line">  bits = bits.split(&quot;&quot;).reverse().join(&quot;&quot;);</span><br><span class="line">  while(len--) &#123;</span><br><span class="line">  	bits+=&quot;0&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">  	return parseInt(bits,2);</span><br><span class="line">&#125;</span><br><span class="line">console.log(reverseB(43261596));//964176192  </span><br><span class="line">  //res2</span><br><span class="line">function reverseBs(n)&#123;</span><br><span class="line">  var m = 0;</span><br><span class="line">  for (var i = 0; i &lt; 31; i++) &#123;</span><br><span class="line">    m|=(n&amp;1);</span><br><span class="line">    n &gt;&gt;= 1;</span><br><span class="line">    m &lt;&lt;= 1;</span><br><span class="line">  &#125;</span><br><span class="line">    m|=(n&amp;01);</span><br><span class="line">    return m;</span><br><span class="line">  &#125;</span><br><span class="line">console.log(reverseBs(43261596));//964176192</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<!--more-->
+<blockquote>
+<p>2.罗马数组转换成十进制数字</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var romObj = &#123;I:1, V:5, X:10, L:50, C:100, D:500, M:1000&#125;;</span><br><span class="line">var romanToInt = function(str) &#123;</span><br><span class="line">    var sum = 0;</span><br><span class="line">    for(var i = 0; i &lt; str.length; i++) &#123;</span><br><span class="line">        rom1 = romObj[str.substring(i,i+1)];</span><br><span class="line">        rom2 = romObj[str.substring(i+1,i+2)];</span><br><span class="line">        if(str.substring(i+1,i+2) !== &quot;&quot; &amp;&amp; rom1 &lt; rom2) &#123;</span><br><span class="line">            sum += rom2 - rom1;</span><br><span class="line">            i++;</span><br><span class="line">        &#125; else</span><br><span class="line">            sum += rom1;</span><br><span class="line">    &#125;</span><br><span class="line">    return sum;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(romanToInt(&apos;II&apos;));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>3.总共有n阶楼梯，每次只能上一步或者两部，要到达楼上有多少种方式<br>分析，当列举了当n为1,2,3,4,5时得出有1,2,3,5,8种方式<br>就是一个斐波拉契数列</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var climbStairs = function(n) &#123;</span><br><span class="line">    var a = 1,</span><br><span class="line">        b = 2,</span><br><span class="line">        sum = 1;</span><br><span class="line">        if(n == 1) return a;</span><br><span class="line">        if(n == 2) return b;</span><br><span class="line">        n -= 2;</span><br><span class="line">    while(n--)&#123;</span><br><span class="line">        sum = a + b;</span><br><span class="line">        a = b;</span><br><span class="line">        b = sum;</span><br><span class="line">    &#125;</span><br><span class="line">    return sum;</span><br><span class="line">&#125;;</span><br><span class="line">console.log(climbStairs(3));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>4.给数组增加一种方法，可以去除数组中的重复项并返回数组</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//fun1--hash</span><br><span class="line">Array.prototype.delWeight = function()</span><br><span class="line">&#123;</span><br><span class="line">    var n=[],r=[]; //n为hash表，r为临时数组</span><br><span class="line">    for(var i = 0; i &lt; this.length; i++) //遍历当前数组</span><br><span class="line">    &#123;</span><br><span class="line">        if (!n[this[i]]) //如果hash表中没有当前项</span><br><span class="line">        &#123;</span><br><span class="line">            n[this[i]] = true; //存入hash表</span><br><span class="line">            r.push(this[i]); //把当前数组的当前项push到临时数组里面</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return r;</span><br><span class="line">&#125;</span><br><span class="line">var arr = [1,1,1,1,1,2,2,33,4,5,6,5,6];</span><br><span class="line">console.log(arr.delWeight());</span><br><span class="line">//fun2--利用数组的indexOf方法</span><br><span class="line">function delWeight (arr) &#123;</span><br><span class="line">    var result = [];</span><br><span class="line">    for (var i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">        if (result.indexOf(arr[i]) == -1) result.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>5.对不确定数量的数进行排序</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function mySort() &#123;</span><br><span class="line">    var tags = new Array();//使用数组作为参数存储容器</span><br><span class="line">    for(var i = 0,len = arguments.length;i&lt;len;i++)&#123;</span><br><span class="line">        tags.push(arguments[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    tags.sort(function(a,b)&#123;</span><br><span class="line">        return a - b;</span><br><span class="line">    &#125;);</span><br><span class="line">    return tags;//返回已经排序的数组</span><br><span class="line">&#125;</span><br><span class="line">var result = mySort(50,11,16,32,24,99,57,100);//传入参数个数不确定</span><br><span class="line">console.info(result);//显示结果</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>6.用短路求值的方式求前n项和</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function sumr(n) &#123;</span><br><span class="line">    var ans = n;</span><br><span class="line">    ans &amp;&amp; (ans += sumr(n-1));</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line">console.log(sumr(5));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>7.正则表达式判断一个数是不是素数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function is_prime(x)&#123;</span><br><span class="line">     var r=[],s=&quot;&quot;;</span><br><span class="line">     while(r.length&lt;x)&#123;</span><br><span class="line">         r.push(&quot;1&quot;);</span><br><span class="line">     &#125;</span><br><span class="line">     s=r.join(&quot;&quot;);</span><br><span class="line">     return !/^1?$|^(11+?)\1+$/.test(s);</span><br><span class="line">&#125;</span><br><span class="line">console.log(is_prime(5));</span><br><span class="line">console.log(is_prime(10));</span><br><span class="line">console.log(is_prime(13));</span><br><span class="line">console.log(is_prime(60));</span><br><span class="line">console.log(is_prime(99));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>8.辗转相除求最大公约数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function ff(a,b)&#123;</span><br><span class="line">    if (b&gt;a) ff(b,a);</span><br><span class="line">    return !(a%b)?b:ff(b,a%b);</span><br><span class="line">&#125;</span><br><span class="line">console.log(ff(10,3));</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>9.Json数据按照某一字段排序的方法</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var stuJson = [&#123; name: &quot;daming&quot;, age: 21, weight: 66, sex:&quot;boy&quot; &#125;,</span><br><span class="line">                   &#123; name: &quot;lisa&quot;, age: 19, weight: 45, sex:&quot;girl&quot; &#125;,</span><br><span class="line">                   &#123; name: &quot;lili&quot;, age: 20, weight: 50, sex:&quot;boy&quot;&#125;];</span><br><span class="line">     //按age升序</span><br><span class="line">   stuJson.sort(function(a,b)&#123;</span><br><span class="line">                    return a.age - b.age;</span><br><span class="line">  &#125;);</span><br><span class="line">console.log(stuJson);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>10.求一个数组中的最大最小值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr = [32,42,12,42,21,23,56,75,3,33,53,23,36];</span><br><span class="line">var min =   Math.min.apply(null,arr);</span><br><span class="line">   console.log(min);</span><br><span class="line">var aMax = Math.max.apply(null,arr);</span><br><span class="line">   console.log(aMax);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>11.将一个匿名函数作为函数的一个参数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  function map(f,a) &#123;</span><br><span class="line">  var result = [], // Create a new Array</span><br><span class="line">      i;</span><br><span class="line">  for (i = 0; i != a.length; i++)</span><br><span class="line">    result[i] = f(a[i]);</span><br><span class="line">  return result;</span><br><span class="line">&#125;</span><br><span class="line">   //调用的时候实现这个引用参数函数</span><br><span class="line">  var re = map(function(x) &#123;return x * x * x&#125;, [0, 1, 2, 5, 10]);</span><br><span class="line">  console.log(re);//[0, 1, 8, 125, 1000].</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>12.字符传中的大小写相互转换</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function upperToggleLower(str)&#123;</span><br><span class="line">  var s =&quot;&quot;;</span><br><span class="line">  for(var i = 0,len = str.length;i&lt;len;i++)&#123;</span><br><span class="line">    if (str[i]&lt;=&apos;z&apos;&amp;&amp;str[i]&gt;=&apos;a&apos;||str[i]&lt;=&apos;Z&apos;&amp;&amp;str[i]&gt;=&apos;A&apos;) &#123;</span><br><span class="line">      s+=String.fromCharCode(str.charCodeAt(i)^32);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      s+=str[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return s;</span><br><span class="line">&#125;</span><br><span class="line">var str = &apos;abcdef FEDCBA&apos; ;</span><br><span class="line">console.log(upperToggleLower(str));//&quot;ABCDEF fedcba&quot;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>13.js快排</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function quick_sort(array,l,r)&#123;</span><br><span class="line">  if(l &lt; r)&#123;</span><br><span class="line">    var i = l,j = r,x = array[l];</span><br><span class="line">    while(i &lt; j)&#123;</span><br><span class="line">      while(i &lt; j &amp;&amp; array[j]&gt;=x)&#123;</span><br><span class="line">        j--;</span><br><span class="line">      &#125;</span><br><span class="line">      if(i &lt; j)&#123;</span><br><span class="line">        array[i++] = array[j];</span><br><span class="line">      &#125;</span><br><span class="line">      while(i &lt; j &amp;&amp; array[i] &lt; x)&#123;</span><br><span class="line">        i++;</span><br><span class="line">      &#125;</span><br><span class="line">      if(i &lt; j)&#123;</span><br><span class="line">        array[j--] = array[i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    array[i] = x;</span><br><span class="line">    quick_sort(array,l,i -1 );</span><br><span class="line">    quick_sort(array,i + 1,r);</span><br><span class="line">  &#125;</span><br><span class="line">  return array;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>14.给出2*n + 1 个的数字，除其中一个数字之外其他每个数字均出现两次，找到这个数字</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @param A: Array of integers.</span><br><span class="line"> * @return: The single number.</span><br><span class="line"> */</span><br><span class="line">int singleNumber(vector&lt;int&gt; &amp;A) &#123;</span><br><span class="line">    if (!A.size()) return 0;</span><br><span class="line">    int a = A[0];</span><br><span class="line">    for(int i = 1;i&lt;A.size();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        a^=A[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>15.给出两个整数a和b, 求他们的和, 但不能使用 + 等数学运算符。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @param a: The first integer</span><br><span class="line"> * @param b: The second integer</span><br><span class="line"> * @return: The sum of a and b</span><br><span class="line"> */</span><br><span class="line">    int aplusb(int a, int b) &#123;</span><br><span class="line">        int n1;</span><br><span class="line">        do&#123;</span><br><span class="line">            n1 = a ^ b;</span><br><span class="line">            b = (a &amp; b) &lt;&lt; 1;</span><br><span class="line">            a = n1;</span><br><span class="line">        &#125;while(b != 0);</span><br><span class="line">        return n1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>16.计算在一个 32 位的整数的二进制表式中有多少个 1.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/*</span><br><span class="line"> * @param num: an integer</span><br><span class="line"> * @return: an integer, the number of ones in num</span><br><span class="line"> */</span><br><span class="line">  int countOnes(int num) &#123;</span><br><span class="line">        int count = 0;</span><br><span class="line">        while(num!=0)</span><br><span class="line">        &#123;</span><br><span class="line">             num = num&amp;(num-1);</span><br><span class="line">             count++;</span><br><span class="line">        &#125;</span><br><span class="line">        return count;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>17.找到单链表倒数第n个节点，保证链表中节点的最少数量为n。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Definition of ListNode</span><br><span class="line"> * class ListNode &#123;</span><br><span class="line"> * public:</span><br><span class="line"> *     int val;</span><br><span class="line"> *     ListNode *next;</span><br><span class="line"> *     ListNode(int val) &#123;</span><br><span class="line"> *         this-&gt;val = val;</span><br><span class="line"> *         this-&gt;next = NULL;</span><br><span class="line"> *     &#125;</span><br><span class="line"> * &#125;</span><br><span class="line"> * @param head: The first node of linked list.</span><br><span class="line"> * @param n: An integer.</span><br><span class="line"> * @return: Nth to last node of a singly linked list.</span><br><span class="line"> */</span><br><span class="line">    ListNode *nthToLast(ListNode *head, int n) &#123;</span><br><span class="line">        if (!head) return NULL;</span><br><span class="line">        ListNode *h,*d;</span><br><span class="line">        h = d = head;</span><br><span class="line">        while(--n)</span><br><span class="line">        &#123;</span><br><span class="line">            h = h-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        while(h-&gt;next!=NULL)&#123;</span><br><span class="line">            h = h-&gt;next;</span><br><span class="line">            d = d-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        return d;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>18.写出一个高效的算法来搜索 m × n矩阵中的值。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 这个矩阵具有以下特性：</span><br><span class="line"> * 1.每行中的整数从左到右是排序的。</span><br><span class="line"> * 2.每行的第一个数大于上一行的最后一个整数。</span><br><span class="line"> * @param matrix, a list of lists of integers</span><br><span class="line"> * @param target, an integer</span><br><span class="line"> * @return a boolean, indicate whether matrix contains target</span><br><span class="line"> */</span><br><span class="line">    bool searchMatrix(vector&lt;vector&lt;int&gt; &gt; &amp;matrix, int target) &#123;</span><br><span class="line">        if(!matrix.size()) return false;</span><br><span class="line">        int i,j;</span><br><span class="line">        for(i = 0; i &lt; matrix.size(); i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(target &lt; matrix[i][0])</span><br><span class="line">                break;</span><br><span class="line">            if(target == matrix[i][0])</span><br><span class="line">                return true;</span><br><span class="line">        &#125;</span><br><span class="line">        i--;</span><br><span class="line">        for(j = 0;j &lt; matrix[i].size();j++)</span><br><span class="line">            if(target == matrix[i][j]) return true;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>19.设计一种方法，将一个字符串中的所有空格替换成 %20 。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 你可以假设该字符串有足够的空间来加入新的字符，且你得到的是“真实的”字符长度</span><br><span class="line"> * @param string: An array of Char</span><br><span class="line"> * @param length: The true length of the string</span><br><span class="line"> * @return: The true length of new string</span><br><span class="line"> */</span><br><span class="line">    int replaceBlank(char string[], int length) &#123;</span><br><span class="line">        // Write your code here</span><br><span class="line">      int space_cnt = 0;</span><br><span class="line">      int new_length = 0;</span><br><span class="line">      char *p,*q;</span><br><span class="line">      for(int i = 0; i &lt; length; i++)</span><br><span class="line">      &#123;</span><br><span class="line">        if (string[i] == &apos; &apos;) space_cnt++;</span><br><span class="line">      &#125;</span><br><span class="line">      new_length = space_cnt * 2 +length;</span><br><span class="line">      p = string + (length - 1);</span><br><span class="line">      q = string + (new_length - 1);</span><br><span class="line">      while(p != q)</span><br><span class="line">      &#123;</span><br><span class="line">        if(*p == &apos; &apos;) *q = &apos;0&apos;,q--,*q = &apos;2&apos;,q--,*q = &apos;%&apos;;</span><br><span class="line">        else *q = *p;</span><br><span class="line">        p--;</span><br><span class="line">        q--;</span><br><span class="line">      &#125;</span><br><span class="line">      return new_length;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>20.统计一个字符串中每个单词的个数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line"> *@param &#123;string&#125; str 输入的字符串</span><br><span class="line"> *@return &#123;Object&#125; o 单词及对应数量</span><br><span class="line"> */</span><br><span class="line">function countWordNum(str) &#123;</span><br><span class="line">    if (!str) return ;</span><br><span class="line">    var wordsArr = str.split(&apos; &apos;);</span><br><span class="line">    var o = &#123;&#125;;</span><br><span class="line">    for (var i = 0, len = wordsArr.length; i &lt; len; i++)&#123;</span><br><span class="line">        if (wordsArr[i] in o) &#123; //or if (o[wordsArr[i]]) &#123;   or if (o.hasOwnProperty(wordsArr[i])) &#123;</span><br><span class="line">            o[wordsArr[i]]++;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">          o[wordsArr[i]] = 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>21.给你六种面额 1、5、10、20、50、100 元的纸币，假设每种币值的数量都足够多，编写程序求组成N元（N为0~10000的非负整数）的不同组合的个数</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class changeDP &#123;</span><br><span class="line">  static int v [] = &#123;1, 5, 10, 20, 50, 100&#125;;</span><br><span class="line">  public static int change (int n, int i)&#123;</span><br><span class="line">    if (n &lt; 0) return 0;</span><br><span class="line">    if (n == 0) return 1;</span><br><span class="line">    if (i &lt; 0) return 0;</span><br><span class="line">    return change(n,i-1)+change(n-v[i],i);    </span><br><span class="line">  &#125;</span><br><span class="line">  public static void main (String[] args)&#123;</span><br><span class="line">    System.out.println(change(100,v.length-1));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>22.给定非空整型数组 arr 和整数 limit ，两次从 arr 中随机抽取元素（可能抽到同一个元素），获得整数 x ,y ，得到和 s = x + y 。求所有不超过 limit 的 s 值中的最大数。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function limitedMaxSum(arr, limit) &#123;</span><br><span class="line">    var max = 0;</span><br><span class="line">    for (var i = 0, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">        for(var j = 0; j &lt; len; j++) &#123;</span><br><span class="line">            var sum = arr[i] + arr[j];</span><br><span class="line">            if (sum &lt;= limit &amp;&amp; sum &gt;= max) &#123;</span><br><span class="line">                max = sum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>持续更新ing…</em></p>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/article/2015-05-26-CSS选择器.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/article/2015-05-29-XMLHttpRequest学习笔记.html">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'xiaojie';
+    
+    var disqus_url = 'http://dearxiaojie.top/article/2015-05-28-web前端笔试练习.html';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//xiaojie.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

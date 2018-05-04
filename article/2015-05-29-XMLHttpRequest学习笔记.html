@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>XMLHttpRequest学习笔记 | Sincerly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="XMLHttpRequest," />
+  
+
+  <meta name="description" content="对于xhr的学习后的一个例子">
+<meta name="keywords" content="XMLHttpRequest">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XMLHttpRequest学习笔记">
+<meta property="og:url" content="http://dearxiaojie.top/article/2015-05-29-XMLHttpRequest学习笔记.html">
+<meta property="og:site_name" content="Sincerly">
+<meta property="og:description" content="对于xhr的学习后的一个例子">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-04T07:03:49.067Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XMLHttpRequest学习笔记">
+<meta name="twitter:description" content="对于xhr的学习后的一个例子">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cd3bea7d045fc3fdc9952df80e48e5ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-XMLHttpRequest学习笔记" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">XMLHttpRequest学习笔记</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.05.29</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>xiaojie</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/category/学习笔记/">学习笔记</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dearxiaojie.top//article/2015-05-29-XMLHttpRequest学习笔记.html#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>对于xhr的学习后的一个例子<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;title&gt;first&lt;/title&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;css/bootstrap.min.css&quot; /&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;button id=&quot;btn&quot;&gt;请求数据&lt;/button&gt;</span><br><span class="line">    &lt;div id=&quot;myDiv&quot;&gt;</span><br><span class="line">        &lt;table class=&quot;table table-bordered table-condensed&quot;&gt;</span><br><span class="line">            &lt;thead&gt;</span><br><span class="line">                &lt;tr&gt;</span><br><span class="line">                    &lt;th&gt;number&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;title&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;author&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;year&lt;/th&gt;</span><br><span class="line">                    &lt;th&gt;price&lt;/th&gt;</span><br><span class="line">                &lt;/tr&gt;</span><br><span class="line">            &lt;/thead&gt;</span><br><span class="line">            &lt;tbody id=&quot;mytbody&quot;&gt;&lt;/tbody&gt;</span><br><span class="line">        &lt;/table&gt;</span><br><span class="line">        &lt;p&gt;getAllResponseHeaders()&lt;/p&gt;</span><br><span class="line">        &lt;p id=&quot;pp&quot;&gt;&lt;/p&gt;</span><br><span class="line">        &lt;p&gt;getResponseHeader(&quot;Last-Modified&quot;)&lt;/p&gt;</span><br><span class="line">        &lt;p id=&quot;ppp&quot;&gt;&lt;/p&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.7.2.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot; src=&quot;js/bootstrap.min.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">        function loadXHR() &#123;</span><br><span class="line">            var XHR;</span><br><span class="line">            if (window.XMLHttpRequest) &#123;</span><br><span class="line">                XHR = new XMLHttpRequest();</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                XHR = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            XHR.open(&quot;GET&quot;, &quot;./text/books.xml&quot;, true);</span><br><span class="line">            //通过 XML HTTP 加载 XML 文件</span><br><span class="line">            XHR.send();</span><br><span class="line">            XHR.onreadystatechange = function() &#123;</span><br><span class="line">                if (XHR.readyState == 4 &amp;&amp; XHR.status == 200) &#123;</span><br><span class="line">                // 4 = &quot;loaded&quot; 200 = “OK”</span><br><span class="line">                    var xmlDoc = XHR.responseXML;</span><br><span class="line">                    var txt = &quot;&lt;tr&gt;&quot;;</span><br><span class="line">                    var x = xmlDoc.getElementsByTagName(&quot;book&quot;);</span><br><span class="line">                    for (var i = 0; i &lt; x.length; i++) &#123;</span><br><span class="line">                    //把 XML 文件显示为 HTML 表格</span><br><span class="line">                        txt += &quot;&lt;td&gt;&quot; + i + &quot;&lt;/td&gt;&quot;;</span><br><span class="line">                        xx = x[i].getElementsByTagName(&quot;title&quot;);</span><br><span class="line">                        txt += &quot;&lt;td&gt;&quot; + xx[0].childNodes[0].nodeValue + &quot;&lt;/td&gt;&quot;;</span><br><span class="line">                        xx = x[i].getElementsByTagName(&quot;author&quot;);</span><br><span class="line">                        txt += &quot;&lt;td&gt;&quot; + xx[0].childNodes[0].nodeValue + &quot;&lt;/td&gt;&quot;;</span><br><span class="line">                        xx = x[i].getElementsByTagName(&quot;year&quot;);</span><br><span class="line">                        txt += &quot;&lt;td&gt;&quot; + xx[0].childNodes[0].nodeValue + &quot;&lt;/td&gt;&quot;;</span><br><span class="line">                        xx = x[i].getElementsByTagName(&quot;price&quot;);</span><br><span class="line">                        txt += &quot;&lt;td&gt;&quot; + xx[0].childNodes[0].nodeValue</span><br><span class="line">                                + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;;</span><br><span class="line">                    &#125;</span><br><span class="line">                    document.getElementById(&quot;mytbody&quot;).innerHTML = txt;</span><br><span class="line">                    //通过 XML HTTP 进行一次 HEAD 请求</span><br><span class="line">                    document.getElementById(&quot;pp&quot;).innerHTML = XHR.getAllResponseHeaders();</span><br><span class="line">                    //通过 XML HTTP 进行一次指定的 HEAD 请求</span><br><span class="line">                    document.getElementById(&quot;ppp&quot;).innerHTML = XHR.getResponseHeader(&quot;Last-Modified&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        document.getElementById(&quot;btn&quot;).onclick = function() &#123;</span><br><span class="line">            loadXHR();</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">//books.xml</span><br><span class="line">    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;bookstore&gt;</span><br><span class="line">	&lt;book category=&quot;children&quot;&gt;</span><br><span class="line">		&lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;</span><br><span class="line">		&lt;author&gt;J K. Rowling&lt;/author&gt;</span><br><span class="line">		&lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">		&lt;price&gt;29.99&lt;/price&gt;</span><br><span class="line">	&lt;/book&gt;</span><br><span class="line">	&lt;book category=&quot;cooking&quot;&gt;</span><br><span class="line">		&lt;title lang=&quot;en&quot;&gt;Everyday Italian&lt;/title&gt;</span><br><span class="line">		&lt;author&gt;Giada De Laurentiis&lt;/author&gt;</span><br><span class="line">		&lt;year&gt;2005&lt;/year&gt;</span><br><span class="line">		&lt;price&gt;30.00&lt;/price&gt;</span><br><span class="line">	&lt;/book&gt;</span><br><span class="line">	&lt;book category=&quot;web&quot; cover=&quot;paperback&quot;&gt;</span><br><span class="line">		&lt;title lang=&quot;en&quot;&gt;Learning XML&lt;/title&gt;</span><br><span class="line">		&lt;author&gt;Erik T. Ray&lt;/author&gt;</span><br><span class="line">		&lt;year&gt;2003&lt;/year&gt;</span><br><span class="line">		&lt;price&gt;39.95&lt;/price&gt;</span><br><span class="line">	&lt;/book&gt;</span><br><span class="line">	&lt;book category=&quot;web&quot;&gt;</span><br><span class="line">		&lt;title lang=&quot;en&quot;&gt;XQuery Kick Start&lt;/title&gt;</span><br><span class="line">		&lt;author&gt;James McGovern&lt;/author&gt;</span><br><span class="line">		&lt;author&gt;Per Bothner&lt;/author&gt;</span><br><span class="line">		&lt;author&gt;Kurt Cagle&lt;/author&gt;</span><br><span class="line">		&lt;author&gt;James Linn&lt;/author&gt;</span><br><span class="line">		&lt;author&gt;Vaidyanathan Nagarajan&lt;/author&gt;</span><br><span class="line">		&lt;year&gt;2003&lt;/year&gt;</span><br><span class="line">		&lt;price&gt;49.99&lt;/price&gt;</span><br><span class="line">	&lt;/book&gt;</span><br><span class="line">&lt;/bookstore&gt;</span><br></pre></td></tr></table></figure></p>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/article/2015-05-28-web前端笔试练习.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/article/2015-06-27-jQuery常用方法归纳总结.html">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'xiaojie';
+    
+    var disqus_url = 'http://dearxiaojie.top/article/2015-05-29-XMLHttpRequest学习笔记.html';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//xiaojie.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
