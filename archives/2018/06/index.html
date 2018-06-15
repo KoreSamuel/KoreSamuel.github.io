@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 
 
-  <html class="light page-post">
+  <html class="light page-archives201806">
 
 
 <head>
   <meta charset="utf-8">
   
-  <title>删除node_modules不成功 | Sincerly</title>
+  <title>Archives: 2018/6 | Sincerly</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="nodejs," />
+    <meta name="keywords" content="web,frontend,javascript,html,css,reactnative" />
   
 
-  <meta name="description" content="Question Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：">
-<meta name="keywords" content="nodejs">
-<meta property="og:type" content="article">
-<meta property="og:title" content="删除node_modules不成功">
-<meta property="og:url" content="http://dearxiaojie.top/article/2015-11-23-删除node-modules不成功.html">
+  <meta name="description" content="web frontend javascript html css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sincerly">
+<meta property="og:url" content="http://dearxiaojie.top/archives/2018/06/index.html">
 <meta property="og:site_name" content="Sincerly">
-<meta property="og:description" content="Question Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：">
+<meta property="og:description" content="web frontend javascript html css">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/failed.png">
-<meta property="og:updated_time" content="2018-06-15T10:38:27.092Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="删除node_modules不成功">
-<meta name="twitter:description" content="Question Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：">
-<meta name="twitter:image" content="http://7xjp74.com1.z0.glb.clouddn.com/failed.png">
+<meta name="twitter:title" content="Sincerly">
+<meta name="twitter:description" content="web frontend javascript html css">
 
   
 
@@ -91,8 +87,17 @@
     <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
   
 
-  <div class="post-header CENTER">
-   
+  <div class="content content-archive">
+  <div class="page-header">
+
+  
+    <div class="breadcrumb">
+      <div class="location">博客</div>
+      <i class="icon-location"></i>
+    </div>
+  
+
+  
   <div class="toolbox">
     <a class="toolbox-entry" href="/">
       <span class="toolbox-entry-text">盒子</span>
@@ -182,108 +187,51 @@
   </div>
 
 
-</div>
 
-
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Question"><span class="toc-text">Question</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reason"><span class="toc-text">Reason</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install"><span class="toc-text">install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delete"><span class="toc-text">delete</span></a></li></ol></li></ol>
-  </div>
-
-
-
-<div class="content content-post CENTER">
-   <article id="post-删除node-modules不成功" class="article article-type-post" itemprop="blogPost">
-  <header class="article-header">
-    <h1 class="post-title">删除node_modules不成功</h1>
-
-    <div class="article-meta">
-      <span>
-        <i class="icon-calendar"></i>
-        <span>2015.11.23</span>
-      </span>
-
-      
-        <span class="article-author">
-          <i class="icon-user"></i>
-          <span>xiaojie</span>
-        </span>
-      
-
-      
-  <span class="article-category">
-    <i class="icon-list"></i>
-    <a class="article-category-link" href="/category/积累/">积累</a>
-  </span>
-
-
-
-      
-        <span>
-          <i class="icon-comment"></i>
-          <a href="http://dearxiaojie.top//article/2015-11-23-删除node-modules不成功.html#disqus_thread"></a>
-        </span>
-      
-
-      
-      <i class="fa fa-eye"></i> 
-        <span id="busuanzi_container_page_pv">
-           &nbsp热度 <span id="busuanzi_value_page_pv">
-           <i class="fa fa-spinner fa-spin"></i></span>℃
-        </span>
-      
-      
+  <div class="box-blog-info">
+    <a class="avatar" href="/">
+      <img src="/images/avatar.jpg" alt="" />
+    </a>
+    <div class="info">
+      <h3 class="name" style="font-family: calligraffittiregular">
+        Sincerly
+      </h3>
+      <div class="slogan">
+        我们泪流满面，步步回头，却只能向前走。
+      </div>
     </div>
-  </header>
-
-  <div class="article-content">
-    
-      <h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
-<p>Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：<br><a id="more"></a><br><img src="http://7xjp74.com1.z0.glb.clouddn.com/failed.png" alt="failed"></p>
-</blockquote>
-<h2 id="Reason"><a href="#Reason" class="headerlink" title="Reason"></a>Reason</h2><p>windows 在文件目录的长度有限制，因为node packages 有众多dependencies，每一个dependency又有其他的dependency，这些dependency或许还有其他的dependency，所以导致node_modules有超级复杂的文件目录。比如：</p>
-<blockquote>
-<p>D:\codetest\node_modules\edpx-mobile\node_modules\edp-webserver\node_modules\babel\node_modules\chokidar\node_modules\anymatch\node_modules</p>
-</blockquote>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><blockquote>
-<p>npm install -g rimraf</p>
-</blockquote>
-<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><blockquote>
-<p>rimraf node_modules</p>
-</blockquote>
-<p><em>亲测有效</em></p>
-
-    
   </div>
-
-  
-      <div class="git"></div>
-  
-
-</article>
-
-
-   
-
-   
-  <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/article/2015-10-20-remove-white-space-below-image.html">
-        <i class="icon icon-angle-left"></i>
-    </a>
-    <a class="show pull-right" href="/article/2016-04-10-Gulp Connect发送post请求返回405.html">
-        <i class="icon icon-angle-right"></i>
-    </a>
-  </div>
-
-
-
 
 </div>
 
 
-  <a id="backTop" class="back-top">
-    <i class="icon-angle-up"></i>
-  </a>
+  <div class="post-list-box archive-body">
+    <ul class="list-post">  <li class="item-year item item-title item-title-3">
+    <a href="/archives/2018" class="text-year">
+      2018
+      <i class="icon-gou"></i>
+      
+    </a>
+  </li>
+<li class="item-post item">
+  <span class="post-date">06-15</span>
+
+  
+  <a class="post-title" href="/article/2018-06-15-go-practice-follow-offical-tour.html">go-practice-follow-offical-tour</a>
+
+
+</li>
+</ul>
+  </div>
+
+  <div class="archive-footer">
+    
+
+  </div>
+</div>
+
+
+
 
 
 
@@ -382,45 +330,6 @@
 </div>
 
 
-
-  
-      <div class="fexo-comments comments-post">
-    
-  <section class="disqus-comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-  </section>
-
-  <script>
-    var disqus_shortname = 'xiaojie';
-    
-    var disqus_url = 'http://dearxiaojie.top/article/2015-11-23-删除node-modules不成功.html';
-    
-    (function(){
-      var dsq = document.createElement('script');
-      dsq.type = 'text/javascript';
-      dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-
-  <script id="dsq-count-scr" src="//xiaojie.disqus.com/count.js" async></script>
-
-
-
-    
-
-    
-    
-
-    
-
-    
-    
-
-  </div>
 
   
 
