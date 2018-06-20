@@ -20,9 +20,13 @@
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-  
+
     background: linear-gradient( #1abc9c, transparent), linear-gradient( 90deg, skyblue, transparent), linear-gradient( -90deg, coral, transparent);
     background-blend-mode: screen;
-  
+
     /*background: linear-gradient(to left, #5f2c82, #49a09d);*/
+  }
+  code[class*="language-"],
+  pre[class*="language-"] {
+    font-size: 12px;
   }
