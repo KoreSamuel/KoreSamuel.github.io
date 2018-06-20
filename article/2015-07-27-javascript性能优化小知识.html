@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-15T10:41:40.640Z">
+<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript性能优化小知识">
 <meta name="twitter:description" content="前面有一篇也是关于javascript性能方面的文章，是看了《高性能javascript》后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。">
@@ -80,7 +80,7 @@
   
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
-</head>
+<link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
 <body>
 
@@ -242,14 +242,55 @@
 <h3 id="数字转换成字符串"><a href="#数字转换成字符串" class="headerlink" title="数字转换成字符串"></a>数字转换成字符串</h3><p><code>(&quot;&quot; +) &gt; String() &gt; .toString() &gt; new String()</code><br>字符串如’1322’转换成数字的时候可以在前面加’+’,如<code>var str = &#39;123&#39;;var num = +str</code>,那么<code>typeof num</code>为<code>number</code></p>
 <h3 id="浮点数转换成整型"><a href="#浮点数转换成整型" class="headerlink" title="浮点数转换成整型"></a>浮点数转换成整型</h3><p>很多人喜欢使用<code>parseInt()</code>，其实<code>parseInt()</code>是用于将字符串转换成数字，而不是浮点数和整型之间的转换，我们应该使用<code>Math.floor()</code>或者<code>Math.round()</code>。</p>
 <h3 id="使用DocumentFragment优化多次append"><a href="#使用DocumentFragment优化多次append" class="headerlink" title="使用DocumentFragment优化多次append"></a>使用DocumentFragment优化多次append</h3><p>一旦需要更新DOM,请考虑使用文档碎片来构建DOM结构，然后再将其添加到现存的文档中。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">for (var i = 0; i &lt; 1000; i++) &#123;</span><br><span class="line">          var el = document.createElement(&apos;p&apos;);</span><br><span class="line">          el.innerHTML = i;</span><br><span class="line">          document.body.appendChild(el);</span><br><span class="line">      &#125;       </span><br><span class="line">       //可以替换为：</span><br><span class="line">      var frag = document.createDocumentFragment();</span><br><span class="line">          for (var i = 0; i &lt; 1000; i++) &#123;  </span><br><span class="line">              var el = document.createElement(&apos;p&apos;);</span><br><span class="line">          	el.innerHTML = i;</span><br><span class="line">          	frag.appendChild(el);</span><br><span class="line">      	&#125;</span><br><span class="line">      document.body.appendChild(frag);</span><br></pre></td></tr></table></figure>
-<h3 id="使用一次innerHTML赋值代替构建dom元素"><a href="#使用一次innerHTML赋值代替构建dom元素" class="headerlink" title="使用一次innerHTML赋值代替构建dom元素"></a>使用一次innerHTML赋值代替构建dom元素</h3><p>对于大的DOM更改，使用<code>innerHTML</code>要比使用标准的DOM方法创建同样的DOM结构快得多。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var frag = document.createDocumentFragment();</span><br><span class="line">     for (var i = 0; i &lt; 1000; i++) &#123;</span><br><span class="line">         var el = document.createElement(&apos;p&apos;);</span><br><span class="line">         el.innerHTML = i;</span><br><span class="line">         frag.appendChild(el);</span><br><span class="line">     &#125;</span><br><span class="line">     document.body.appendChild(frag);</span><br><span class="line">         //可以替换为：</span><br><span class="line">     var html = [];</span><br><span class="line">         for (var i = 0; i &lt; 1000; i++) &#123;</span><br><span class="line">         html.push(&apos;&lt;p&gt;&apos; + i + &apos;&lt;/p&gt;&apos;);</span><br><span class="line">     &#125;</span><br><span class="line">     document.body.innerHTML = html.join(&apos;&apos;);</span><br></pre></td></tr></table></figure>
-<h3 id="使用事件代理"><a href="#使用事件代理" class="headerlink" title="使用事件代理"></a>使用事件代理</h3><p>任何可以冒泡的事件都不仅仅可以在事件目标上进行处理，目标的任何祖先节点上也能处理，使用这个知识就可以将事件处理程序附加到更高的地方负责多个目标的事件处理，同样，对于内容动态增加并且子节点都需要相同的事件处理函数的情况，可以把事件注册提到父节点上，这样就不需要为每个子节点注册事件监听了。另外，现有的js库都采用<code>observe</code>方式来创建事件监听,其实现上隔离了DOM对象和事件处理函数之间的循环引用,所以应该尽量采用这种方式来创建事件监听</p>
-<h3 id="缩短否定检测"><a href="#缩短否定检测" class="headerlink" title="缩短否定检测"></a>缩短否定检测</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (oTest != &apos;#ff0000&apos;) &#123;</span><br><span class="line">    //do something</span><br><span class="line">&#125;</span><br><span class="line">if (oTest != null) &#123;</span><br><span class="line">    //do something</span><br><span class="line">&#125;</span><br><span class="line">if (oTest != false) &#123;</span><br><span class="line">    //do something</span><br><span class="line">&#125;</span><br><span class="line">    //虽然这些都正确，但用逻辑非操作符来操作也有同样的效果：</span><br><span class="line">if (!oTest) &#123;</span><br><span class="line">    //do something</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="条件分支"><a href="#条件分支" class="headerlink" title="条件分支"></a>条件分支</h3><p>将条件分支，按可能性顺序从高到低排列：可以减少解释器对条件的探测次数<br>在同一条件子的多（&gt;2）条件分支时，使用<code>switch</code>优于<code>if</code>：<code>switch</code>分支选择的效率高于if，在IE下尤为明显。4分支的测试，IE下<code>switch</code>的执行时间约为if的一半。<br>使用三目运算符替代条件分支</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">if (a &gt; b) &#123;</span><br><span class="line">           num = a;</span><br><span class="line">       &#125; else &#123;</span><br><span class="line">           num = b;</span><br><span class="line">       &#125;        //可以替换为：</span><br><span class="line">       num = a &gt; b ? a : b;</span><br></pre></td></tr></table></figure>
-<p><em>续。。。</em></p>
+<pre><code>        for (var i = 0; i &lt; 1000; i++) {
+            var el = document.createElement(&#39;p&#39;);
+            el.innerHTML = i;
+            document.body.appendChild(el);
+        }       
+         //可以替换为：
+        var frag = document.createDocumentFragment();
+            for (var i = 0; i &lt; 1000; i++) {  
+                var el = document.createElement(&#39;p&#39;);
+                el.innerHTML = i;
+                frag.appendChild(el);
+            }
+        document.body.appendChild(frag);
+</code></pre><h3 id="使用一次innerHTML赋值代替构建dom元素"><a href="#使用一次innerHTML赋值代替构建dom元素" class="headerlink" title="使用一次innerHTML赋值代替构建dom元素"></a>使用一次innerHTML赋值代替构建dom元素</h3><p>对于大的DOM更改，使用<code>innerHTML</code>要比使用标准的DOM方法创建同样的DOM结构快得多。</p>
+<pre><code>         var frag = document.createDocumentFragment();
+        for (var i = 0; i &lt; 1000; i++) {
+            var el = document.createElement(&#39;p&#39;);
+            el.innerHTML = i;
+            frag.appendChild(el);
+        }
+        document.body.appendChild(frag);
+            //可以替换为：
+        var html = [];
+            for (var i = 0; i &lt; 1000; i++) {
+            html.push(&#39;&lt;p&gt;&#39; + i + &#39;&lt;/p&gt;&#39;);
+        }
+        document.body.innerHTML = html.join(&#39;&#39;);
+</code></pre><h3 id="使用事件代理"><a href="#使用事件代理" class="headerlink" title="使用事件代理"></a>使用事件代理</h3><p>任何可以冒泡的事件都不仅仅可以在事件目标上进行处理，目标的任何祖先节点上也能处理，使用这个知识就可以将事件处理程序附加到更高的地方负责多个目标的事件处理，同样，对于内容动态增加并且子节点都需要相同的事件处理函数的情况，可以把事件注册提到父节点上，这样就不需要为每个子节点注册事件监听了。另外，现有的js库都采用<code>observe</code>方式来创建事件监听,其实现上隔离了DOM对象和事件处理函数之间的循环引用,所以应该尽量采用这种方式来创建事件监听</p>
+<h3 id="缩短否定检测"><a href="#缩短否定检测" class="headerlink" title="缩短否定检测"></a>缩短否定检测</h3><pre><code>    if (oTest != &#39;#ff0000&#39;) {
+        //do something
+    }
+    if (oTest != null) {
+        //do something
+    }
+    if (oTest != false) {
+        //do something
+    }
+        //虽然这些都正确，但用逻辑非操作符来操作也有同样的效果：
+    if (!oTest) {
+        //do something
+    }
+</code></pre><h3 id="条件分支"><a href="#条件分支" class="headerlink" title="条件分支"></a>条件分支</h3><p>将条件分支，按可能性顺序从高到低排列：可以减少解释器对条件的探测次数<br>在同一条件子的多（&gt;2）条件分支时，使用<code>switch</code>优于<code>if</code>：<code>switch</code>分支选择的效率高于if，在IE下尤为明显。4分支的测试，IE下<code>switch</code>的执行时间约为if的一半。<br>使用三目运算符替代条件分支</p>
+<pre><code> if (a &gt; b) {
+            num = a;
+        } else {
+            num = b;
+        }        //可以替换为：
+        num = a &gt; b ? a : b;
+</code></pre><p><em>续。。。</em></p>
 
     
   </div>

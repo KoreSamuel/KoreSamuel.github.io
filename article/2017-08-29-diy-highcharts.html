@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="问题分析某次需求中，需要使用highcharts展示数据以对比。可是这批数据量级相差较大，如果在同一张图表中展示，会导致线条相隔很远或者没有波动幅度；还需要在点击某根线条的时候改变图表Y轴为当前线条数量级的，并处理他们的样式以区分。 那么，第一个问题，要在同一张表中展示不同量级的数据，且相互具有参考性，有个办法就是将数据统一处理成一个维度的，如数据归一化，将数据映射到0~1之间的小数，那不同量级的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-15T10:41:40.640Z">
+<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="highcharts线型图表处理">
 <meta name="twitter:description" content="问题分析某次需求中，需要使用highcharts展示数据以对比。可是这批数据量级相差较大，如果在同一张图表中展示，会导致线条相隔很远或者没有波动幅度；还需要在点击某根线条的时候改变图表Y轴为当前线条数量级的，并处理他们的样式以区分。 那么，第一个问题，要在同一张表中展示不同量级的数据，且相互具有参考性，有个办法就是将数据统一处理成一个维度的，如数据归一化，将数据映射到0~1之间的小数，那不同量级的">
@@ -80,7 +80,7 @@
   
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
-</head>
+<link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
 <body>
 
@@ -239,11 +239,50 @@
       <h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>某次需求中，需要使用<a href="https://www.highcharts.com/" target="_blank" rel="noopener"><code>highcharts</code></a>展示数据以对比。可是这批数据量级相差较大，如果在同一张图表中展示，会导致线条相隔很远或者没有波动幅度；还需要在点击某根线条的时候改变图表Y轴为当前线条数量级的，并处理他们的样式以区分。</p>
 <p>那么，第一个问题，要在同一张表中展示不同量级的数据，且相互具有参考性，有个办法就是将数据统一处理成一个维度的，如<a href="https://baike.baidu.com/item/%E5%BD%92%E4%B8%80%E5%8C%96%E6%96%B9%E6%B3%95" target="_blank" rel="noopener">数据归一化</a>，将数据映射到<code>0~1</code>之间的小数，那不同量级的数据之间就有一定的参考性了。<br>第二个问题的话本来想过改源码，但是感觉意义不大，使用场景不多，就找<code>highcharts</code>的<code>api</code>文档，各种拼接。差不多实现了需求.</p>
 <h2 id="数据归一化"><a href="#数据归一化" class="headerlink" title="数据归一化"></a>数据归一化</h2><p>采用<code>min-max标准化</code>，也叫离差标准化，对原始数据的线性变化，结果落到<code>[0, 1]</code>之间。将需要处理的数据组，即<code>series</code>数据先处理，找到每组的最大最小，并计算.</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function normalizing(arr) &#123;</span><br><span class="line">    var data = [];</span><br><span class="line">    for (var i = 0, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">        var cur = arr[i].data;</span><br><span class="line">        arr[i].visible = false;</span><br><span class="line">        var name = arr[i].name;</span><br><span class="line">        arr[i].showInLegend = false;</span><br><span class="line">        var max = Math.max.apply(null, cur);</span><br><span class="line">        var min = Math.min.apply(null, cur);</span><br><span class="line">        var news = cur.map(function (x) &#123;</span><br><span class="line">            return (x - min) / max;</span><br><span class="line">        &#125;);</span><br><span class="line">        var item = &#123; name: name, data: news &#125;;</span><br><span class="line">        arr.push(item)</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>上面代码中，将原数据的每个线条设置为不显示，再将归一化后的数据<code>push</code>到数组后面。即最终图表上显示的是处理后的数据绘制的线条，这样的操作会引发后面的问题，接下来会提到。</p>
+<pre><code>function normalizing(arr) {
+    var data = [];
+    for (var i = 0, len = arr.length; i &lt; len; i++) {
+        var cur = arr[i].data;
+        arr[i].visible = false;
+        var name = arr[i].name;
+        arr[i].showInLegend = false;
+        var max = Math.max.apply(null, cur);
+        var min = Math.min.apply(null, cur);
+        var news = cur.map(function (x) {
+            return (x - min) / max;
+        });
+        var item = { name: name, data: news };
+        arr.push(item)
+    }
+    return arr;
+};
+</code></pre><p>上面代码中，将原数据的每个线条设置为不显示，再将归一化后的数据<code>push</code>到数组后面。即最终图表上显示的是处理后的数据绘制的线条，这样的操作会引发后面的问题，接下来会提到。</p>
 <h2 id="展示真实数据"><a href="#展示真实数据" class="headerlink" title="展示真实数据"></a>展示真实数据</h2><p>在上面一步中，将所有数据都处理成了[0, 1]之间的数据，那鼠标<code>hover</code>上去显示的就是计算后的数据。这显然不是我们想要的，所以才没有去除原来的数据。查看<code>highcharts</code>的<code>api</code>，发现可以改变<code>hover</code>显示的格式，那我只需要找到计算后与之相对应的原数据就能正确显示了。<br>现在<code>hover</code>能够正确显示数据了，图表里的线条也有了一定的对比性，但是Y轴坐标依然是按照归一化后数据量级来的。在考虑到需要在点击线条的时候显示成其原数据量级的Y轴，所以采用以下办法。<br>取出选中线条数据中的最大最小，按照归一化算法逆回去，那么其实现在图表中的线条已经不是<code>[0, 1]</code>之间的数据了，而是分别乘上点击线条最大值，并加上最小值后的数据。那么，<code>Y</code>轴的自然就变成了当前的数据量级。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function adjustSeries(activeName) &#123;</span><br><span class="line">    var data = chart.series;</span><br><span class="line">    var max, min;</span><br><span class="line">    for (var i = 0, len = 6; i &lt; len; i++) &#123;</span><br><span class="line">        var curName = data[i + 6].name</span><br><span class="line">        var current = data[i];</span><br><span class="line">        if (curName === activeName) &#123;</span><br><span class="line">            max = Math.max.apply(null, current.yData);</span><br><span class="line">            min = Math.min.apply(null, current.yData);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    for (var i = 6, len = originData.length; i &lt; len; i++) &#123;</span><br><span class="line">        var cur = originData[i].data || [];</span><br><span class="line">        var newc = cur.map(function (item, index) &#123;</span><br><span class="line">            var cnt = Math.round(item * max) + min;</span><br><span class="line">            return cnt;</span><br><span class="line">        &#125;);</span><br><span class="line">        var upObj = &#123; data: newc, lineWidth: 1, dashStyle: &apos;Dash&apos;, dataLabels: &#123; enabled: false &#125;, className: &apos;half-opacity&apos; &#125;;</span><br><span class="line">        if (originData[i].name === activeName) &#123;</span><br><span class="line">            upObj = &#123; data: newc, lineWidth: 4, dashStyle: &apos;Solid&apos;, dataLabels: &#123; enabled: true &#125;, className: &apos;no-opacity&apos; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        chart.series[i].update(upObj);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>上面代码中的<code>originData</code>其实就是归一化后存起来的一个副本，因为后面每次点击都会使用这个数据，所以在存数据的时候一定要保证<code>originData</code>不变，存放的是真实数据，而不是数据引用，<code>javascript</code>基础知识，不清楚的可查看<a href="https://www.zhihu.com/question/23031215" target="_blank" rel="noopener">javascript中的深拷贝和浅拷贝</a>。</p>
+<pre><code>function adjustSeries(activeName) {
+    var data = chart.series;
+    var max, min;
+    for (var i = 0, len = 6; i &lt; len; i++) {
+        var curName = data[i + 6].name
+        var current = data[i];
+        if (curName === activeName) {
+            max = Math.max.apply(null, current.yData);
+            min = Math.min.apply(null, current.yData);
+        }
+    }
+    for (var i = 6, len = originData.length; i &lt; len; i++) {
+        var cur = originData[i].data || [];
+        var newc = cur.map(function (item, index) {
+            var cnt = Math.round(item * max) + min;
+            return cnt;
+        });
+        var upObj = { data: newc, lineWidth: 1, dashStyle: &#39;Dash&#39;, dataLabels: { enabled: false }, className: &#39;half-opacity&#39; };
+        if (originData[i].name === activeName) {
+            upObj = { data: newc, lineWidth: 4, dashStyle: &#39;Solid&#39;, dataLabels: { enabled: true }, className: &#39;no-opacity&#39; }
+        }
+        chart.series[i].update(upObj);
+    }
+};
+</code></pre><p>上面代码中的<code>originData</code>其实就是归一化后存起来的一个副本，因为后面每次点击都会使用这个数据，所以在存数据的时候一定要保证<code>originData</code>不变，存放的是真实数据，而不是数据引用，<code>javascript</code>基础知识，不清楚的可查看<a href="https://www.zhihu.com/question/23031215" target="_blank" rel="noopener">javascript中的深拷贝和浅拷贝</a>。</p>
 <h2 id="使用到的API"><a href="#使用到的API" class="headerlink" title="使用到的API"></a>使用到的API</h2><ul>
 <li>plotOptions.series.event.click 点击线条的时候处理相关逻辑</li>
 <li>tooltip.formatter 更改鼠标<code>hover</code>的时候显示的数据和样式</li>

@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="ES2015模块在浏览器懒加载 在过去的几年里，开发者们已经无情的将服务端网站移动到了客户端，前提是那样能使页面的性能得到提高。 然而，这可能是不够的。你是否考虑过你的网站也许加载更多于它实际用到的东西？遇到懒加载，一个延迟初始化（加载/分配）某个资源(代码/数据/静态资源)直到它需要的时候再加载。 与此同时，ES2015已经能在生产环境中使用了，通过一些transpilers如Babel。现在你">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-15T10:41:40.640Z">
+<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在浏览器中懒加载ES2015模块">
 <meta name="twitter:description" content="ES2015模块在浏览器懒加载 在过去的几年里，开发者们已经无情的将服务端网站移动到了客户端，前提是那样能使页面的性能得到提高。 然而，这可能是不够的。你是否考虑过你的网站也许加载更多于它实际用到的东西？遇到懒加载，一个延迟初始化（加载/分配）某个资源(代码/数据/静态资源)直到它需要的时候再加载。 与此同时，ES2015已经能在生产环境中使用了，通过一些transpilers如Babel。现在你">
@@ -80,7 +80,7 @@
   
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
-</head>
+<link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
 <body>
 
@@ -263,21 +263,98 @@
 <p>学习更多关于<code>AMD</code>的陷阱，查看<a href="http://benmccormick.org/2015/05/28/moving-past-requirejs/" target="_blank" rel="noopener">Moving Past RequireJS</a></p>
 <h2 id="ES2015模块101"><a href="#ES2015模块101" class="headerlink" title="ES2015模块101"></a>ES2015模块101</h2><p>在继续下去之前，我们回顾一下<code>ES2015</code>模块。如果你已经非常熟悉了，那这是一个快速的复习。<br>在<code>ES2015</code>中，模块已经成为官方<code>JavaScript</code>语言的一部分，它们非常强大而且很容易去掌握，站在<code>CommonJS</code>模块这个巨人的肩膀上的话。</p>
 <h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>通常，一个<code>ES2015</code>模块所有的全局变量仅作用于自己这个文件，模块可以导出数据，也可以导入其他的模块。</p>
-<h3 id="导出和导入"><a href="#导出和导入" class="headerlink" title="导出和导入"></a>导出和导入</h3><p>在一个你想导出的项目(如一个变量，函数、类)的前面加上一个关键词<code>export</code>就可以导出，在下面这个例子中，我们导出<code>Dog</code>和<code>Wolf</code>:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// zoo.js</span><br><span class="line">var getBarkStyle = function(isHowler) &#123;  </span><br><span class="line">  return isHowler? &apos;woooooow!&apos;: &apos;woof, woof!&apos;;</span><br><span class="line">&#125;;</span><br><span class="line">export class Dog &#123;  </span><br><span class="line">  constructor(name, breed) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.breed = breed;</span><br><span class="line">  &#125;</span><br><span class="line">  bark() &#123;</span><br><span class="line">    return `$&#123;this.name&#125;: $&#123;getBarkStyle(this.breed === &apos;husky&apos;)&#125;`;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">export class Wolf &#123;  </span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  bark() &#123;</span><br><span class="line">    return `$&#123;this.name&#125;: $&#123;getBarkStyle(true)&#125;`;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>让我们想想如果在一个单元测试（如<code>Mocha/Chai</code>）用引入这个模块。使用语法<code>import &lt;object&gt; from &lt;path&gt;</code>，至于<code>&lt;object&gt;</code>我们可以选择我们想导入的元素–命名导入（<a href="http://www.2ality.com/2014/09/es6-modules-final.html" target="_blank" rel="noopener">named imports</a>）。接下来我们可以从<code>chai</code>中导入<code>expect</code>，同样，从<code>Zoo</code>中导入<code>Dog</code>和<code>Wolf</code>。这种命名导入的语法很像ES2015的另一个方便的特性–<a href="http://www.2ality.com/2015/01/es6-destructuring.html" target="_blank" rel="noopener">解构赋值</a><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// zoo_spec.js</span><br><span class="line">import &#123; expect &#125; from &apos;chai&apos;;  </span><br><span class="line">import &#123; Dog, Wolf &#125; from &apos;../src/zoo&apos;;</span><br><span class="line">describe(&apos;the zoo module&apos;, () =&gt; &#123;  </span><br><span class="line">  it(&apos;should instantiate a regular dog&apos;, () =&gt; &#123;</span><br><span class="line">    var dog = new Dog(&apos;Sherlock&apos;, &apos;beagle&apos;);</span><br><span class="line">    expect(dog.bark()).to.equal(&apos;Sherlock: woof, woof!&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line">  it(&apos;should instantiate a husky dog&apos;, () =&gt; &#123;</span><br><span class="line">    var dog = new Dog(&apos;Whisky&apos;, &apos;husky&apos;);</span><br><span class="line">    expect(dog.bark()).to.equal(&apos;Whisky: woooooow!&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line">  it(&apos;should instantiate a wolf&apos;, () =&gt; &#123;</span><br><span class="line">    var wolf = new Wolf(&apos;Direwolf&apos;);</span><br><span class="line">    expect(wolf.bark()).to.equal(&apos;Direwolf: woooooow!&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<h3 id="默认"><a href="#默认" class="headerlink" title="默认"></a>默认</h3><p>如果你只有一个项目要导出，你可以使用<code>export default</code>来将你需要导出的项目作为一个对象<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// cat.js</span><br><span class="line">export default class Cat &#123;  </span><br><span class="line">  constructor(name) &#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  meow() &#123;</span><br><span class="line">    return `$&#123;this.name&#125;: You gotta be kidding that I&apos;ll obey you, right?`;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>导入默认的模块更简单，至于结构赋值就不再用到了，你可以直接从模块中导入</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// cat_spec.js</span><br><span class="line">import &#123; expect &#125; from &apos;chai&apos;;  </span><br><span class="line">import Cat from &apos;../src/cat&apos;;</span><br><span class="line">describe(&apos;the cat module&apos;, () =&gt; &#123;  </span><br><span class="line">  it(&apos;should instantiate a cat&apos;, () =&gt; &#123;</span><br><span class="line">    var cat = new Cat(&apos;Bugsy&apos;);</span><br><span class="line">    expect(cat.meow()).to.equal(&apos;Bugsy: You gotta be kidding that I\&apos;ll obey you, right?&apos;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>学习更多关于<code>ES2015</code>模块的知识，查看文章<a href="http://exploringjs.com/es6/ch_modules.html" target="_blank" rel="noopener">Exploring ES6 — Modules.</a></p>
+<h3 id="导出和导入"><a href="#导出和导入" class="headerlink" title="导出和导入"></a>导出和导入</h3><p>在一个你想导出的项目(如一个变量，函数、类)的前面加上一个关键词<code>export</code>就可以导出，在下面这个例子中，我们导出<code>Dog</code>和<code>Wolf</code>:</p>
+<pre><code>// zoo.js
+var getBarkStyle = function(isHowler) {  
+  return isHowler? &#39;woooooow!&#39;: &#39;woof, woof!&#39;;
+};
+export class Dog {  
+  constructor(name, breed) {
+    this.name = name;
+    this.breed = breed;
+  }
+  bark() {
+    return `${this.name}: ${getBarkStyle(this.breed === &#39;husky&#39;)}`;
+  };
+}
+export class Wolf {  
+  constructor(name) {
+    this.name = name;
+  }
+  bark() {
+    return `${this.name}: ${getBarkStyle(true)}`;
+  };
+}
+</code></pre><p>让我们想想如果在一个单元测试（如<code>Mocha/Chai</code>）用引入这个模块。使用语法<code>import &lt;object&gt; from &lt;path&gt;</code>，至于<code>&lt;object&gt;</code>我们可以选择我们想导入的元素–命名导入（<a href="http://www.2ality.com/2014/09/es6-modules-final.html" target="_blank" rel="noopener">named imports</a>）。接下来我们可以从<code>chai</code>中导入<code>expect</code>，同样，从<code>Zoo</code>中导入<code>Dog</code>和<code>Wolf</code>。这种命名导入的语法很像ES2015的另一个方便的特性–<a href="http://www.2ality.com/2015/01/es6-destructuring.html" target="_blank" rel="noopener">解构赋值</a></p>
+<pre><code>// zoo_spec.js
+import { expect } from &#39;chai&#39;;  
+import { Dog, Wolf } from &#39;../src/zoo&#39;;
+describe(&#39;the zoo module&#39;, () =&gt; {  
+  it(&#39;should instantiate a regular dog&#39;, () =&gt; {
+    var dog = new Dog(&#39;Sherlock&#39;, &#39;beagle&#39;);
+    expect(dog.bark()).to.equal(&#39;Sherlock: woof, woof!&#39;);
+  });
+  it(&#39;should instantiate a husky dog&#39;, () =&gt; {
+    var dog = new Dog(&#39;Whisky&#39;, &#39;husky&#39;);
+    expect(dog.bark()).to.equal(&#39;Whisky: woooooow!&#39;);
+  });
+  it(&#39;should instantiate a wolf&#39;, () =&gt; {
+    var wolf = new Wolf(&#39;Direwolf&#39;);
+    expect(wolf.bark()).to.equal(&#39;Direwolf: woooooow!&#39;);
+  });
+});
+</code></pre><h3 id="默认"><a href="#默认" class="headerlink" title="默认"></a>默认</h3><p>如果你只有一个项目要导出，你可以使用<code>export default</code>来将你需要导出的项目作为一个对象</p>
+<pre><code>// cat.js
+export default class Cat {  
+  constructor(name) {
+    this.name = name;
+  }
+  meow() {
+    return `${this.name}: You gotta be kidding that I&#39;ll obey you, right?`;
+  }
+}
+</code></pre><p>导入默认的模块更简单，至于结构赋值就不再用到了，你可以直接从模块中导入</p>
+<pre><code>// cat_spec.js
+import { expect } from &#39;chai&#39;;  
+import Cat from &#39;../src/cat&#39;;
+describe(&#39;the cat module&#39;, () =&gt; {  
+  it(&#39;should instantiate a cat&#39;, () =&gt; {
+    var cat = new Cat(&#39;Bugsy&#39;);
+    expect(cat.meow()).to.equal(&#39;Bugsy: You gotta be kidding that I\&#39;ll obey you, right?&#39;);
+  });
+});
+</code></pre><p>学习更多关于<code>ES2015</code>模块的知识，查看文章<a href="http://exploringjs.com/es6/ch_modules.html" target="_blank" rel="noopener">Exploring ES6 — Modules.</a></p>
 <h2 id="ES2015模块加载器和System-js"><a href="#ES2015模块加载器和System-js" class="headerlink" title="ES2015模块加载器和System.js"></a>ES2015模块加载器和System.js</h2><p>惊奇的发现，<code>ES2015</code>实际上没有一个模块加载规范。这儿是一个非常受欢迎的对动态模块加载的提议–<a href="https://github.com/ModuleLoader/es6-module-loader" target="_blank" rel="noopener">es6-module-loader</a>–受<a href="https://github.com/systemjs/systemjs" target="_blank" rel="noopener">System.js</a>的启发。这个提议已经被撤回了，但是有个<a href="https://whatwg.github.io/loader/" target="_blank" rel="noopener">WhatWG</a>在讨论阶段的新的加载规范和<a href="https://github.com/tc39/proposal-dynamic-import" target="_blank" rel="noopener">Domenic Denicola</a>提出的动态导入规范。</p>
 <p>然而，<code>System.js</code>目前是最常使用的支持<code>ES2015</code>的模块加载器实现之一，它支持<code>ES2015</code>，<code>AMD</code>，<code>CommonJS</code>和浏览器中的全局脚本，还有<code>NodeJS</code>。它提供了一个异步模块加载器（对比<code>Require.js</code>）和<code>ES2015</code>转换，通过<a href="https://babeljs.io/" target="_blank" rel="noopener">Babel</a>,<a href="https://github.com/google/traceur-compiler" target="_blank" rel="noopener">Traceur</a>或者<a href="http://www.typescriptlang.org/" target="_blank" rel="noopener">Typescript</a>。</p>
 <p><code>System.js</code>使用<code>Promises-based API</code>实现了异步模块加载。自从<code>promises</code>可以被链式调用和组合，这是非常长强大和方便的方法。举个例子，如果你想平行的加载多个模块，你可以使用<code>Promises.all</code>，当所有<code>promises</code>都被解决后，<code>listener</code>就可以被解除了。</p>
 <p>最后，动态导入规范正在得到更多的牵引，而且已经被编入<code>webpack 2</code>。你可以看看它在webpack2指南上是如何工作的<a href="https://webpack.js.org/guides/migrating/#code-splitting-with-es2015" target="_blank" rel="noopener">Code splitting with ES2015</a>，这也是受<code>system.js</code>的启发，所以过度起来也很简单。</p>
 <h2 id="同步和异步导入模块"><a href="#同步和异步导入模块" class="headerlink" title="同步和异步导入模块"></a>同步和异步导入模块</h2><p>为了以同步和异步两种方式说明模块的加载，这里有一个简单的项目，将会在页面加载的时候同步加载我们的<code>Cat</code>模块，在用户点击按钮的时候懒加载<code>Zoo</code>模块。代码的<code>github</code>地址<a href="https://github.com/tiagorg/lazy-load-es2015-systemjs" target="_blank" rel="noopener">lazy-load-es2015-systemjs</a>。</p>
 <p>让我们看一看主要的代码块中在页面加载时加载的代码，我们的<code>main.js</code>。</p>
-<p>首先，注意通过<code>import</code>同步加载<code>Cat</code>时的表现，然后，创建了一个<code>Cat</code>的实例，调用它的方法<code>meow()</code>，然后添加结果到<code>DOM</code>中：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// main.js</span><br><span class="line">// Importing Cat module synchronously</span><br><span class="line">import Cat from &apos;cat&apos;;</span><br><span class="line">// DOM content node</span><br><span class="line">let contentNode = document.getElementById(&apos;content&apos;);</span><br><span class="line">// Rendering cat</span><br><span class="line">let myCat = new Cat(&apos;Bugsy&apos;);  </span><br><span class="line">contentNode.innerHTML += myCat.meow();</span><br></pre></td></tr></table></figure></p>
-<p>最后，注意通过<code>System.import(&#39;zoo&#39;)</code>异步导入<code>Zoo</code>，最后，<code>Dog</code>和<code>Wolf</code>分别调用他们的方法<code>back()</code>，再次将结果添加到<code>DOM</code>中：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">// Button to lazy load Zoo</span><br><span class="line">contentNode.innerHTML += `&lt;p&gt;&lt;button id=&apos;loadZoo&apos;&gt;Lazy load &lt;b&gt;Zoo&lt;/b&gt;&lt;/button&gt;&lt;/p&gt;`;</span><br><span class="line">// Listener to lazy load Zoo</span><br><span class="line">document.getElementById(&apos;loadZoo&apos;).addEventListener(&apos;click&apos;, e =&gt; &#123;</span><br><span class="line">  // Importing Zoo module asynchronously</span><br><span class="line">  System.import(&apos;zoo&apos;).then(Zoo =&gt; &#123;</span><br><span class="line">    // Rendering dog</span><br><span class="line">    let myDog = new Zoo.Dog(&apos;Sherlock&apos;, &apos;beagle&apos;);</span><br><span class="line">    contentNode.innerHTML += `$&#123;myDog.bark()&#125;`;</span><br><span class="line">    // Rendering wolf</span><br><span class="line">    let myWolf = new Zoo.Wolf(&apos;Direwolf&apos;);</span><br><span class="line">    contentNode.innerHTML += `&lt;br/&gt;$&#123;myWolf.bark()&#125;`;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>掌握遵守页面加载最少必须加载和懒加载可延迟加载的模块可以明显的提升你的页面性能，<code>AMD</code>和<code>CommonJS</code>为<code>ES2015</code>模块铺路。你可以开始使用<code>System.js</code>加载<code>ES2015</code>模块，或者通过<code>webpack 2</code>使用动态导入规范。但是官方的解决方案至今还未发布。</p>
+<p>首先，注意通过<code>import</code>同步加载<code>Cat</code>时的表现，然后，创建了一个<code>Cat</code>的实例，调用它的方法<code>meow()</code>，然后添加结果到<code>DOM</code>中：</p>
+<pre><code>// main.js
+// Importing Cat module synchronously
+import Cat from &#39;cat&#39;;
+// DOM content node
+let contentNode = document.getElementById(&#39;content&#39;);
+// Rendering cat
+let myCat = new Cat(&#39;Bugsy&#39;);  
+contentNode.innerHTML += myCat.meow();
+</code></pre><p>最后，注意通过<code>System.import(&#39;zoo&#39;)</code>异步导入<code>Zoo</code>，最后，<code>Dog</code>和<code>Wolf</code>分别调用他们的方法<code>back()</code>，再次将结果添加到<code>DOM</code>中：</p>
+<pre><code>// Button to lazy load Zoo
+contentNode.innerHTML += `&lt;p&gt;&lt;button id=&#39;loadZoo&#39;&gt;Lazy load &lt;b&gt;Zoo&lt;/b&gt;&lt;/button&gt;&lt;/p&gt;`;
+// Listener to lazy load Zoo
+document.getElementById(&#39;loadZoo&#39;).addEventListener(&#39;click&#39;, e =&gt; {
+  // Importing Zoo module asynchronously
+  System.import(&#39;zoo&#39;).then(Zoo =&gt; {
+    // Rendering dog
+    let myDog = new Zoo.Dog(&#39;Sherlock&#39;, &#39;beagle&#39;);
+    contentNode.innerHTML += `${myDog.bark()}`;
+    // Rendering wolf
+    let myWolf = new Zoo.Wolf(&#39;Direwolf&#39;);
+    contentNode.innerHTML += `&lt;br/&gt;${myWolf.bark()}`;
+  });
+});
+</code></pre><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>掌握遵守页面加载最少必须加载和懒加载可延迟加载的模块可以明显的提升你的页面性能，<code>AMD</code>和<code>CommonJS</code>为<code>ES2015</code>模块铺路。你可以开始使用<code>System.js</code>加载<code>ES2015</code>模块，或者通过<code>webpack 2</code>使用动态导入规范。但是官方的解决方案至今还未发布。</p>
 <h2 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h2><p><a href="https://dzone.com/articles/lazy-loading-es2015-modules-in-the-browser" target="_blank" rel="noopener">lazy-loading-es2015-modules-in-the-browser</a></p>
 
     

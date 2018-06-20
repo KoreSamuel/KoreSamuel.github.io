@@ -15,17 +15,17 @@
     <meta name="keywords" content="web,frontend,javascript,html,css,reactnative" />
   
 
-  <meta name="description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数  实现一个平方根函数：用牛顿法实现平方根函数 package mainimport (    &quot;fmt&quot;)func Sqrt(x float64) float64 &amp;#123;    z := x / 2    cnt := 10    for cnt &amp;gt; 0 &amp;#123;        z -= (z * z - x)">
+  <meta name="description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数```golangpackage main    import (    “fmt”) func Sqrt(x float64) float64 {    z := x / 2    cnt := 10    for cnt &amp;gt; 0 {        z -= (z  z - x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="go-practice-follow-offical-tour">
 <meta property="og:url" content="http://dearxiaojie.top/article/2018-06-15-go-practice-follow-offical-tour.html">
 <meta property="og:site_name" content="Sincerly">
-<meta property="og:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数  实现一个平方根函数：用牛顿法实现平方根函数 package mainimport (    &quot;fmt&quot;)func Sqrt(x float64) float64 &amp;#123;    z := x / 2    cnt := 10    for cnt &amp;gt; 0 &amp;#123;        z -= (z * z - x)">
+<meta property="og:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数```golangpackage main    import (    “fmt”) func Sqrt(x float64) float64 {    z := x / 2    cnt := 10    for cnt &amp;gt; 0 {        z -= (z  z - x">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-15T10:41:40.640Z">
+<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="go-practice-follow-offical-tour">
-<meta name="twitter:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数  实现一个平方根函数：用牛顿法实现平方根函数 package mainimport (    &quot;fmt&quot;)func Sqrt(x float64) float64 &amp;#123;    z := x / 2    cnt := 10    for cnt &amp;gt; 0 &amp;#123;        z -= (z * z - x)">
+<meta name="twitter:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数```golangpackage main    import (    “fmt”) func Sqrt(x float64) float64 {    z := x / 2    cnt := 10    for cnt &amp;gt; 0 {        z -= (z  z - x">
 
   
 
@@ -79,7 +79,7 @@
   
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
-</head>
+<link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
 <body>
 
@@ -227,32 +227,83 @@
     
       <p>最近在学习go相关的东西，以下为<a href="https://tour.go-zh.org/welcome/1" target="_blank" rel="noopener">Go官方指南</a>中的练习记录</p>
 <ol>
-<li><p>循环与函数</p>
-<blockquote>
-<p>实现一个平方根函数：用<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">牛顿法</a>实现平方根函数</p>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sqrt</span><span class="params">(x <span class="keyword">float64</span>)</span> <span class="title">float64</span></span> &#123;</span><br><span class="line">    z := x / <span class="number">2</span></span><br><span class="line">    cnt := <span class="number">10</span></span><br><span class="line">    <span class="keyword">for</span> cnt &gt; <span class="number">0</span> &#123;</span><br><span class="line">        z -= (z * z - x) / (<span class="number">2</span> * z)</span><br><span class="line">        cnt = cnt - <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> z</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(Sqrt(<span class="number">3</span>)) <span class="comment">// 1.7320508075688772</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>循环与函数<blockquote>
+<p>实现一个平方根函数：用<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">牛顿法</a>实现平方根函数<br>```golang<br>package main</p>
 </blockquote>
 </li>
-<li><p>切片</p>
-<blockquote>
-<p>实现 Pic。它应当返回一个长度为 dy 的切片，其中每个元素是一个长度为 dx，元素类型为 uint8 的切片。<br>当你运行此程序时，它会将每个整数解释为灰度值（好吧，其实是蓝度值）并显示它所对应的图像</p>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"golang.org/x/tour/pic"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Pic</span><span class="params">(dx, dy <span class="keyword">int</span>)</span> [][]<span class="title">uint8</span></span> &#123;</span><br><span class="line">    pic := <span class="built_in">make</span>([][]<span class="keyword">uint8</span>, dy*dx)</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; dy; i++ &#123;</span><br><span class="line">        in := <span class="built_in">make</span>([]<span class="keyword">uint8</span>, dx)</span><br><span class="line">        <span class="keyword">for</span> j := <span class="number">0</span>; j &lt; dx; j++ &#123;</span><br><span class="line">            in[j] = <span class="keyword">uint8</span>(<span class="number">1</span> &lt;&lt; <span class="keyword">uint8</span>(j%<span class="number">8</span>))</span><br><span class="line">        &#125;</span><br><span class="line">        pic[i] = in</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pic</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    pic.Show(Pic)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</ol>
+<p>import (<br>    “fmt”<br>)</p>
+<p>func Sqrt(x float64) float64 {<br>    z := x / 2<br>    cnt := 10<br>    for cnt &gt; 0 {<br>        z -= (z <em> z - x) / (2 </em> z)<br>        cnt = cnt - 1<br>    }<br>    return z<br>}</p>
+<p>func main() {<br>    fmt.Println(Sqrt(3)) // 1.7320508075688772<br>}</p>
+<pre><code>2. 切片
+&gt; 实现 Pic。它应当返回一个长度为 dy 的切片，其中每个元素是一个长度为 dx，元素类型为 uint8 的切片。
+当你运行此程序时，它会将每个整数解释为灰度值（好吧，其实是蓝度值）并显示它所对应的图像
+```golang
+package main
+
+import &quot;golang.org/x/tour/pic&quot;
+
+func Pic(dx, dy int) [][]uint8 {
+    pic := make([][]uint8, dy*dx)
+    for i := 0; i &lt; dy; i++ {
+        in := make([]uint8, dx)
+        for j := 0; j &lt; dx; j++ {
+            in[j] = uint8(1 &lt;&lt; uint8(j%8))
+        }
+        pic[i] = in
+    }
+    return pic
+}
+
+func main() {
+    pic.Show(Pic)
+}
+</code></pre><ol>
+<li>映射<blockquote>
+<p>实现 WordCount。它应当返回一个映射，其中包含字符串 s 中每个“单词”的个数。函数 wc.Test 会对此函数执行一系列测试用例，并输出成功还是失败<br>```golang<br>package main</p>
 </blockquote>
 </li>
-<li><p>映射</p>
-<blockquote>
-<p>实现 WordCount。它应当返回一个映射，其中包含字符串 s 中每个“单词”的个数。函数 wc.Test 会对此函数执行一系列测试用例，并输出成功还是失败</p>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"strings"</span></span><br><span class="line"></span><br><span class="line">    <span class="string">"golang.org/x/tour/wc"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">WordCount</span><span class="params">(s <span class="keyword">string</span>)</span> <span class="title">map</span>[<span class="title">string</span>]<span class="title">int</span></span> &#123;</span><br><span class="line">    m := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">int</span>)</span><br><span class="line">    field := strings.Fields(s)</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(field); i++ &#123;</span><br><span class="line">        <span class="keyword">if</span> m[field[i]] &gt; <span class="number">0</span> &#123;</span><br><span class="line">            m[field[i]] = m[field[i]] + <span class="number">1</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            m[field[i]] = <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* output</span></span><br><span class="line"><span class="comment">func main() &#123;</span></span><br><span class="line"><span class="comment">    wc.Test(WordCount)</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">PASS</span></span><br><span class="line"><span class="comment"> f("I am learning Go!") =</span></span><br><span class="line"><span class="comment">  map[string]int&#123;"I":1, "am":1, "learning":1, "Go!":1&#125;</span></span><br><span class="line"><span class="comment">PASS</span></span><br><span class="line"><span class="comment"> f("The quick brown fox jumped over the lazy dog.") =</span></span><br><span class="line"><span class="comment">  map[string]int&#123;"dog.":1, "The":1, "fox":1, "over":1, "the":1, "quick":1, "brown":1, "jumped":1, "lazy":1&#125;</span></span><br><span class="line"><span class="comment">PASS</span></span><br><span class="line"><span class="comment"> f("I ate a donut. Then I ate another donut.") =</span></span><br><span class="line"><span class="comment">  map[string]int&#123;"another":1, "I":2, "ate":2, "a":1, "donut.":2, "Then":1&#125;</span></span><br><span class="line"><span class="comment">PASS</span></span><br><span class="line"><span class="comment"> f("A man a plan a canal panama.") =</span></span><br><span class="line"><span class="comment">  map[string]int&#123;"plan":1, "canal":1, "panama.":1, "A":1, "man":1, "a":2&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
-<li><p>斐波纳契闭包</p>
-<blockquote>
-<p>实现一个 fibonacci 函数，它返回一个函数（闭包），该闭包返回一个<a href="https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97" target="_blank" rel="noopener">斐波纳契数列</a> <code>(0, 1, 1, 2, 3, 5, ...)</code>。</p>
-<figure class="highlight golang"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">fibonacci</span><span class="params">()</span> <span class="title">func</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    a, b, c := <span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">func</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> a == <span class="number">-1</span> &#123;</span><br><span class="line">            a = <span class="number">0</span></span><br><span class="line">            <span class="keyword">return</span> a</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> a == <span class="number">0</span> &#123;</span><br><span class="line">            a = <span class="number">1</span></span><br><span class="line">            <span class="keyword">return</span> a</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            c = a + b</span><br><span class="line">            b = a</span><br><span class="line">            a = c</span><br><span class="line">            <span class="keyword">return</span> c</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    f := fibonacci()</span><br><span class="line">    <span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">        fmt.Println(f())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34</span></span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
-<li><p>note(方法与指针)</p>
-<blockquote>
+</ol>
+<p>import (<br>    “strings”</p>
+<pre><code>&quot;golang.org/x/tour/wc&quot;
+</code></pre><p>)</p>
+<p>func WordCount(s string) map[string]int {<br>    m := make(map[string]int)<br>    field := strings.Fields(s)<br>    for i := 0; i &lt; len(field); i++ {<br>        if m[field[i]] &gt; 0 {<br>            m[field[i]] = m[field[i]] + 1<br>        } else {<br>            m[field[i]] = 1<br>        }<br>    }<br>    return m<br>}</p>
+<p>/<em> output<br>func main() {<br>    wc.Test(WordCount)<br>}<br>PASS<br> f(“I am learning Go!”) =<br>  map[string]int{“I”:1, “am”:1, “learning”:1, “Go!”:1}<br>PASS<br> f(“The quick brown fox jumped over the lazy dog.”) =<br>  map[string]int{“dog.”:1, “The”:1, “fox”:1, “over”:1, “the”:1, “quick”:1, “brown”:1, “jumped”:1, “lazy”:1}<br>PASS<br> f(“I ate a donut. Then I ate another donut.”) =<br>  map[string]int{“another”:1, “I”:2, “ate”:2, “a”:1, “donut.”:2, “Then”:1}<br>PASS<br> f(“A man a plan a canal panama.”) =<br>  map[string]int{“plan”:1, “canal”:1, “panama.”:1, “A”:1, “man”:1, “a”:2}
+</em>/</p>
+<pre><code>4. 斐波纳契闭包
+&gt; 实现一个 fibonacci 函数，它返回一个函数（闭包），该闭包返回一个[斐波纳契数列](https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97) `(0, 1, 1, 2, 3, 5, ...)`。
+```golang
+package main
+
+import &quot;fmt&quot;
+
+func fibonacci() func() int {
+    a, b, c := -1, 0, 0
+    return func() int {
+        if a == -1 {
+            a = 0
+            return a
+        } else if a == 0 {
+            a = 1
+            return a
+        } else {
+            c = a + b
+            b = a
+            a = c
+            return c
+        }
+    }
+}
+
+func main() {
+    f := fibonacci()
+    for i := 0; i &lt; 10; i++ {
+        fmt.Println(f())
+    }
+}
+// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
+</code></pre><ol>
+<li>note(方法与指针)<blockquote>
 <ol>
 <li>带指针参数的函数必须接受一个指针,而以指针为接收者的方法被调用时，接收者既能为值又能为指针。<br>由于指针参数的函数方法有一个指针接收者，为方便起见，Go 会将语句 v.Scale(5) 解释为 (&amp;v).Scale(5)；</li>
 <li>接受一个值作为参数的函数必须接受一个指定类型的值，而以值为接收者的方法被调用时，接收者既能为值又能为指针，方法调用 p.Abs() 会被解释为 (*p).Abs()</li>

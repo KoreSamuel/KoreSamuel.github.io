@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-15T10:41:40.640Z">
+<meta property="og:updated_time" content="2018-06-20T03:47:28.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两个iframe框滚动条联动以及iframe窗口高宽自适应">
 <meta name="twitter:description" content="由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。">
@@ -80,7 +80,7 @@
   
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
-</head>
+<link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
 <body>
 
@@ -232,8 +232,34 @@
   <div class="article-content">
     
       <p>由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。<br><a id="more"></a></p>
-   <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;div1&quot;  style=&quot;width:620px;height:500px ; float:left;overflow:scroll&quot; onscroll=&quot;funcsrcoll1()&quot;&gt;</span><br><span class="line">	   &lt;iframe name=&quot;left&quot; id=&quot;left&quot; scrolling=&quot;no&quot; width=&quot;600px&quot; height=&quot;500px&quot; src=&quot;2.html&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div id=&quot;div2&quot; style=&quot;width:620px; height:500px ;float:left;overflow:scroll&quot; onscroll=&quot;funcsrcoll2()&quot;&gt;</span><br><span class="line">	&lt;iframe name=&quot;right&quot; id=&quot;right&quot; scrolling=&quot;no&quot; width=&quot;600px&quot; height=&quot;500px&quot; src=&quot;3.html&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">	//控制两个div的滚动条联动，便于页面对比</span><br><span class="line">	function funcsrcoll1()</span><br><span class="line">	  &#123;</span><br><span class="line">	      div2.scrollLeft = div1.scrollLeft;</span><br><span class="line">	      div2.scrollTop = div1.scrollTop;</span><br><span class="line">	  &#125;</span><br><span class="line">	function funcsrcoll2()</span><br><span class="line">	  &#123;</span><br><span class="line">	      div1.scrollLeft = div2.scrollLeft;</span><br><span class="line">	      div1.scrollTop = div2.scrollTop;</span><br><span class="line">	  &#125;</span><br><span class="line">	  //调整iframe窗口大小适应src链接的页面</span><br><span class="line">	  function func()&#123;</span><br><span class="line">	  $(&apos;iframe&apos;).each(function()&#123;</span><br><span class="line">	      this.style.height = this.contentWindow.document.body.scrollHeight+20 + &apos;px&apos;;</span><br><span class="line">	        //为了显示完整，额外加了20px的宽度</span><br><span class="line">	      this.style.width = this.contentWindow.document.body.scrollWidth+20 + &apos;px&apos;;</span><br><span class="line">	  &#125;);    </span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
+<pre><code>   &lt;div id=&quot;div1&quot;  style=&quot;width:620px;height:500px ; float:left;overflow:scroll&quot; onscroll=&quot;funcsrcoll1()&quot;&gt;
+          &lt;iframe name=&quot;left&quot; id=&quot;left&quot; scrolling=&quot;no&quot; width=&quot;600px&quot; height=&quot;500px&quot; src=&quot;2.html&quot;&gt;&lt;/iframe&gt;
+   &lt;/div&gt;
+   &lt;div id=&quot;div2&quot; style=&quot;width:620px; height:500px ;float:left;overflow:scroll&quot; onscroll=&quot;funcsrcoll2()&quot;&gt;
+       &lt;iframe name=&quot;right&quot; id=&quot;right&quot; scrolling=&quot;no&quot; width=&quot;600px&quot; height=&quot;500px&quot; src=&quot;3.html&quot;&gt;&lt;/iframe&gt;
+   &lt;/div&gt;
+   &lt;script&gt;
+       //控制两个div的滚动条联动，便于页面对比
+       function funcsrcoll1()
+         {
+             div2.scrollLeft = div1.scrollLeft;
+             div2.scrollTop = div1.scrollTop;
+         }
+       function funcsrcoll2()
+         {
+             div1.scrollLeft = div2.scrollLeft;
+             div1.scrollTop = div2.scrollTop;
+         }
+         //调整iframe窗口大小适应src链接的页面
+         function func(){
+         $(&#39;iframe&#39;).each(function(){
+             this.style.height = this.contentWindow.document.body.scrollHeight+20 + &#39;px&#39;;
+               //为了显示完整，额外加了20px的宽度
+             this.style.width = this.contentWindow.document.body.scrollWidth+20 + &#39;px&#39;;
+         });    
+       }
+   &lt;/script&gt;
+</code></pre>
     
   </div>
 

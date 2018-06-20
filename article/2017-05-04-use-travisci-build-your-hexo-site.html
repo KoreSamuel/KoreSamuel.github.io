@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/config.png">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/token.png">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/success.png">
-<meta property="og:updated_time" content="2018-06-15T10:41:40.640Z">
+<meta property="og:updated_time" content="2018-06-20T03:47:28.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Travis CI自动部署Hexo博客到Github上">
 <meta name="twitter:description" content="写在前面自从在github page上搭建博客以来，都是使用的hexo，每次都是通过hexo命令build生成静态文件，再push到github上，后来找到一个deploy插件，只需要填写好github的repos地址就好。但是源码的保存是个问题，更换电脑想要写博客很不方便，甚至蠢到将源码保存到u盘里面，这样每次提交后又要备份一次，很容易忘记。说到这里那为什么不将源码保存到github上呢。 其实">
@@ -87,7 +87,7 @@
   
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
-</head>
+<link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
 <body>
 
@@ -251,24 +251,105 @@
 <h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>首先进入<a href="https://travis-ci.org/" target="_blank" rel="noopener">Travis CI</a>官网，使用<code>github</code>账号登录，如下图<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/travis.png" alt="travis"><br>登录成功后进入如下界面，以为我再此之前已经构建过，所以会用红色框内的内容，如果没有使用过是没有的。<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/list.png" alt="list"><br>然后点击<code>My Repositories</code>右边的<code>+</code>，添加需要自动构建的<code>repos</code>，进入如下页面。<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/new.png" alt="new"><br>可以看到这个界面会显示当前<code>github</code>账号的所以项目，如果没有显示，点击右上角的<code>Sync account</code>按钮，就可以同步过来了，点击需要构建的<code>repos</code>前面的按钮为<code>ON</code>，再点击其后的原形设置图标，进入如下界面<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/config.png" alt="config"><br>如图中设置，将<code>Build only if .travis.yml is present</code>及另外两个设置为<code>ON</code>，功能如字面意思不多说。<br>到目前为止，已经将需要构建的<code>repos</code>开启，那么，我们如何在将源码提交到<code>github</code>的时候，它就自动构建并将<code>build</code>后的静态文件<code>push</code>到我的静态文件<code>branch</code>或者<code>repos</code>呢（我是将<code>build</code>后的静态文件放到一个单独的<code>repos</code>了，也可以放在源码<code>repos</code>的另一个<code>branch</code>，例如起名叫<code>hexo</code>），接下来说如何让<code>Travis CI</code>访问<code>github</code>.</p>
 <h2 id="Access-Token"><a href="#Access-Token" class="headerlink" title="Access Token"></a>Access Token</h2><p>我们需要在<code>Travis</code>上配置<code>Access Token</code>，就可以在构建完毕后自动<code>push</code>到<code>github</code>上保存静态文件的<code>repos</code>了。</p>
 <h3 id="生成Access-Token"><a href="#生成Access-Token" class="headerlink" title="生成Access Token"></a>生成Access Token</h3><p>登录<a href="https://github.com/" target="_blank" rel="noopener">github</a>，进入个人主页，点击<code>setting</code>，进入界面后找到下图所指位置。<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/token.png" alt="token"><br>点击<code>Personal access tokens</code>，进入页面后，在点击右上角<code>Generate new token</code>,会再次让输入<code>github</code>密码，然后在<code>Token description</code>下起一个名字，再勾选一些权限，我是全给勾选上了，在点击下面<code>Generate token</code>这里就不多截图了。复制生成的<code>token</code>码。</p>
-<h3 id="配置Travis-CI"><a href="#配置Travis-CI" class="headerlink" title="配置Travis CI"></a>配置Travis CI</h3><p>回到<code>Travis</code>的<code>setting</code>页面，如上面图，在<code>Environment Variables</code>这一栏，点击<code>Add</code>，起一个名字到<code>Name</code>，将复制的<code>token</code>码粘贴到<code>Value</code>框中，到这步为止，已经完成了<code>Travis</code>的设置。到博客源码根目录，创建一个<code>.travis.yml</code>的配置文件，内容如下，附注释，注意缩进<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">language: node_js  #设置语言</span><br><span class="line"></span><br><span class="line">node_js: stable  #设置相应的版本</span><br><span class="line"></span><br><span class="line">install:</span><br><span class="line">  - npm install  #安装hexo及插件</span><br><span class="line"></span><br><span class="line">script:</span><br><span class="line">  - hexo clean  #清除</span><br><span class="line">  - hexo g  #生成</span><br><span class="line"></span><br><span class="line">after_script:</span><br><span class="line">  - cd ./public</span><br><span class="line">  - git init</span><br><span class="line">  - git config user.name &quot;swust-xiaoj&quot;  #修改name</span><br><span class="line">  - git config user.email &quot;swustxiaojie@163.com&quot;  #修改email</span><br><span class="line">  - git add .</span><br><span class="line">  - git commit -m &quot;update site&quot;</span><br><span class="line">  - git push --force  &quot;https://$&#123;travis&#125;@$&#123;GH_REF&#125;&quot; master:master  #travis是在Travis中配置token的名称</span><br><span class="line"></span><br><span class="line">branches:</span><br><span class="line">  only:</span><br><span class="line">    - master  #只监测master，可根据自己情况设置，若是存放同一个仓库，这儿可以选择存放源码的branch，如hexo</span><br><span class="line">env:</span><br><span class="line"> global:</span><br><span class="line">   - GH_REF: github.com/swust-xiaoj/tb.git  #设置GH_REF，注意更改yourname</span><br></pre></td></tr></table></figure></p>
-<p>因为我是新起了一个<code>repos</code>来存放静态文件了，所以上面的<code>GH_REF</code>是对应那个<code>repos</code>地址，若是放同一个<code>repos</code>中，那这儿一般都是<code>yourname.github.io</code>那个仓库。到此，配置已经完成了。</p>
+<h3 id="配置Travis-CI"><a href="#配置Travis-CI" class="headerlink" title="配置Travis CI"></a>配置Travis CI</h3><p>回到<code>Travis</code>的<code>setting</code>页面，如上面图，在<code>Environment Variables</code>这一栏，点击<code>Add</code>，起一个名字到<code>Name</code>，将复制的<code>token</code>码粘贴到<code>Value</code>框中，到这步为止，已经完成了<code>Travis</code>的设置。到博客源码根目录，创建一个<code>.travis.yml</code>的配置文件，内容如下，附注释，注意缩进</p>
+<pre><code>language: node_js  #设置语言
+
+node_js: stable  #设置相应的版本
+
+install:
+  - npm install  #安装hexo及插件
+
+script:
+  - hexo clean  #清除
+  - hexo g  #生成
+
+after_script:
+  - cd ./public
+  - git init
+  - git config user.name &quot;swust-xiaoj&quot;  #修改name
+  - git config user.email &quot;swustxiaojie@163.com&quot;  #修改email
+  - git add .
+  - git commit -m &quot;update site&quot;
+  - git push --force  &quot;https://${travis}@${GH_REF}&quot; master:master  #travis是在Travis中配置token的名称
+
+branches:
+  only:
+    - master  #只监测master，可根据自己情况设置，若是存放同一个仓库，这儿可以选择存放源码的branch，如hexo
+env:
+ global:
+   - GH_REF: github.com/swust-xiaoj/tb.git  #设置GH_REF，注意更改yourname
+</code></pre><p>因为我是新起了一个<code>repos</code>来存放静态文件了，所以上面的<code>GH_REF</code>是对应那个<code>repos</code>地址，若是放同一个<code>repos</code>中，那这儿一般都是<code>yourname.github.io</code>那个仓库。到此，配置已经完成了。</p>
 <h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><p>我们可以创建一篇文章<code>hexo new post use-travis-build-your-hexo-site</code>，添加内容后，并<code>push</code>到<code>github</code>，正常情况下，进入<code>Travis</code>网站就可以看到已经在构建了，如图<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/success.png" alt="success"><br>完成后，<a href="https://dearxiaojie.top/article/2017-05-04-use-travisci-build-your-hexo-site.html">访问链接</a>就可以看到这篇文章了。</p>
 <h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p>很久没有花时间写点东西了，不管有没有价值，总是一种对知识的积累和总结，输出也意味着输入，所以以后还是将学到的东西和积累总结下，自己可以将知识梳理的同时能帮助到别人是更好的了。</p>
 <h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><h3 id="master-commit-树被清空"><a href="#master-commit-树被清空" class="headerlink" title="master commit 树被清空"></a>master commit 树被清空</h3><p>仔细查看上面的配置文件，我们发现每次都是将 public 目录下的文件重新生成了一个git项目，然后强制覆盖提交到了 master 分支下，这就是问题的所在。<br>为了解决这个问题，我将配置文件改为了如下的内容：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">after_script:</span><br><span class="line">  - git clone https://$&#123;GH_REF&#125; .deploy_git</span><br><span class="line">  - cd .deploy_git</span><br><span class="line">  - git checkout master</span><br><span class="line">  - cd ../</span><br><span class="line">  - mv .deploy_git/.git/ ./public/</span><br><span class="line">  - cd ./public</span><br><span class="line">  - git config user.name &quot;swust-xiaoj&quot;  #修改name</span><br><span class="line">  - git config user.email &quot;swustxiaojie@163.com&quot;  #修改email</span><br><span class="line">  - git add .</span><br><span class="line">  - git commit -m &quot;Travis CI Auto Builder&quot;</span><br><span class="line">  - git push --force --quiet &quot;https://$&#123;travis&#125;@$&#123;GH_REF&#125;&quot; master:master  #travis是在Travis中配置token的名称</span><br></pre></td></tr></table></figure>
-<p>在 after_script 部分，我先将博客项目 clone 到本地的 .deploy_git 目录下（目录名可自定义）,然后切换到 master 分支，将 master 分支下的 .git 目录拷贝到了 public 目录下，接着继续后面的 commit 操作。</p>
-<h3 id="添加-commit-时间戳"><a href="#添加-commit-时间戳" class="headerlink" title="添加 commit 时间戳"></a>添加 commit 时间戳</h3><p>按照前面的方法配置 <code>travis.yml</code> 的内容，在 <code>master</code> 分支下的提交记录是这样的：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Travis CI Auto Builder</span><br><span class="line">Travis CI Auto Builder</span><br><span class="line">Travis CI Auto Builder</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>看到每次的提交记录中没有提交的时间戳，所以考虑着要把 <code>commit</code> 的时间戳给加上。<br><code>script</code> 命令下是可以执行 <code>shell</code> 命令的，所以对 <code>travis.yml</code> 文件进行了修改。<br>在 <code>shell</code> 中获取当前的时间戳，可以这样:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#/bin/bash</span><br><span class="line">&gt; date +&quot;%Y-%m-%d %H:%M&quot;</span><br><span class="line">2018-05-05 12:13</span><br></pre></td></tr></table></figure></p>
-<p><code>Travis CI</code> 中使用的<code>linux</code>系统在编译生成时使用的是<code>UTC</code>时间，这样我们在<code>github</code>中的提交列表中看到的提交时间就会晚8小时。我们需要在执行时将时区改为东八区。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">before_install:</span><br><span class="line">  - export TZ=&apos;Asia/Shanghai&apos;</span><br></pre></td></tr></table></figure></p>
-<p>然后将<code>after_script</code>中的命令移到单独的<code>shell</code>文件中。最终的两个文件内容如下</p>
+<pre><code>after_script:
+  - git clone https://${GH_REF} .deploy_git
+  - cd .deploy_git
+  - git checkout master
+  - cd ../
+  - mv .deploy_git/.git/ ./public/
+  - cd ./public
+  - git config user.name &quot;swust-xiaoj&quot;  #修改name
+  - git config user.email &quot;swustxiaojie@163.com&quot;  #修改email
+  - git add .
+  - git commit -m &quot;Travis CI Auto Builder&quot;
+  - git push --force --quiet &quot;https://${travis}@${GH_REF}&quot; master:master  #travis是在Travis中配置token的名称
+</code></pre><p>在 after_script 部分，我先将博客项目 clone 到本地的 .deploy_git 目录下（目录名可自定义）,然后切换到 master 分支，将 master 分支下的 .git 目录拷贝到了 public 目录下，接着继续后面的 commit 操作。</p>
+<h3 id="添加-commit-时间戳"><a href="#添加-commit-时间戳" class="headerlink" title="添加 commit 时间戳"></a>添加 commit 时间戳</h3><p>按照前面的方法配置 <code>travis.yml</code> 的内容，在 <code>master</code> 分支下的提交记录是这样的：</p>
+<pre><code>Travis CI Auto Builder
+Travis CI Auto Builder
+Travis CI Auto Builder
+...
+</code></pre><p>看到每次的提交记录中没有提交的时间戳，所以考虑着要把 <code>commit</code> 的时间戳给加上。<br><code>script</code> 命令下是可以执行 <code>shell</code> 命令的，所以对 <code>travis.yml</code> 文件进行了修改。<br>在 <code>shell</code> 中获取当前的时间戳，可以这样:</p>
+<pre><code>#/bin/bash
+&gt; date +&quot;%Y-%m-%d %H:%M&quot;
+2018-05-05 12:13
+</code></pre><p><code>Travis CI</code> 中使用的<code>linux</code>系统在编译生成时使用的是<code>UTC</code>时间，这样我们在<code>github</code>中的提交列表中看到的提交时间就会晚8小时。我们需要在执行时将时区改为东八区。</p>
+<pre><code>before_install:
+  - export TZ=&#39;Asia/Shanghai&#39;
+</code></pre><p>然后将<code>after_script</code>中的命令移到单独的<code>shell</code>文件中。最终的两个文件内容如下</p>
 <blockquote>
-<p>build.sh<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">set -ev</span><br><span class="line"></span><br><span class="line">git clone https://$&#123;GH_REF&#125; .deploy_git</span><br><span class="line">cd .deploy_git</span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line">cd ../</span><br><span class="line">mv .deploy_git/.git/ ./public/</span><br><span class="line"></span><br><span class="line">cd ./public</span><br><span class="line"></span><br><span class="line">git config user.name &quot;swust-xiaoj&quot;  #修改name</span><br><span class="line">git config user.email &quot;swustxiaojie@163.com&quot;  #修改email</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;Travis CI Auto Builder at `date +&quot;%Y-%m-%d %H:%M&quot;`&quot;</span><br><span class="line"></span><br><span class="line">git push --force --quiet &quot;https://$&#123;travis&#125;@$&#123;GH_REF&#125;&quot; master:master  #travis是在Travis中配置token的名称</span><br></pre></td></tr></table></figure></p>
-<p>.travis.yml<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">language: node_js</span><br><span class="line"></span><br><span class="line">node_js: stable</span><br><span class="line"></span><br><span class="line">cache:</span><br><span class="line">  apt: true</span><br><span class="line">  directories:</span><br><span class="line">    - node_modules</span><br><span class="line">before_install:</span><br><span class="line">  - export TZ=&apos;Asia/Shanghai&apos; # 更改时区</span><br><span class="line">  - npm install hexo-cli -g</span><br><span class="line">  - chmod +x ./build.sh  # 为shell文件添加可执行权限</span><br><span class="line"></span><br><span class="line">install:</span><br><span class="line">  - npm install</span><br><span class="line"></span><br><span class="line">script:</span><br><span class="line">  - hexo clean</span><br><span class="line">  - hexo g</span><br><span class="line"></span><br><span class="line">after_script:</span><br><span class="line">  - ./build.sh</span><br><span class="line"></span><br><span class="line">branches:</span><br><span class="line">  only:</span><br><span class="line">    - master</span><br><span class="line">env:</span><br><span class="line"> global:</span><br><span class="line">   - GH_REF: github.com/swust-xiaoj/swust-xiaoj.github.io.git</span><br></pre></td></tr></table></figure></p>
+<p>build.sh<br>```</p>
+<p>#!/bin/bash<br>set -ev</p>
 </blockquote>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<p>git clone <a href="https://${GH_REF}" target="_blank" rel="noopener">https://${GH_REF}</a> .deploy_git<br>cd .deploy_git<br>git checkout master</p>
+<p>cd ../<br>mv .deploy_git/.git/ ./public/</p>
+<p>cd ./public</p>
+<p>git config user.name “swust-xiaoj”  #修改name<br>git config user.email “swustxiaojie@163.com”  #修改email<br>git add .<br>git commit -m “Travis CI Auto Builder at <code>date +&quot;%Y-%m-%d %H:%M&quot;</code>“</p>
+<p>git push –force –quiet “<a href="https://${travis}@${GH_REF}" target="_blank" rel="noopener">https://${travis}@${GH_REF}</a>“ master:master  #travis是在Travis中配置token的名称</p>
+<pre><code>&gt; .travis.yml
+</code></pre><p>language: node_js</p>
+<p>node_js: stable</p>
+<p>cache:<br>  apt: true<br>  directories:</p>
+<pre><code>- node_modules
+</code></pre><p>before_install:</p>
+<ul>
+<li>export TZ=’Asia/Shanghai’ # 更改时区</li>
+<li>npm install hexo-cli -g</li>
+<li>chmod +x ./build.sh  # 为shell文件添加可执行权限</li>
+</ul>
+<p>install:</p>
+<ul>
+<li>npm install</li>
+</ul>
+<p>script:</p>
+<ul>
+<li>hexo clean</li>
+<li>hexo g</li>
+</ul>
+<p>after_script:</p>
+<ul>
+<li>./build.sh</li>
+</ul>
+<p>branches:<br>  only:</p>
+<pre><code>- master
+</code></pre><p>env:<br> global:</p>
+<ul>
+<li>GH_REF: github.com/swust-xiaoj/swust-xiaoj.github.io.git<br>```<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
 <li><a href="https://docs.travis-ci.com/user/customizing-the-build/" target="_blank" rel="noopener">Customizing the Build</a></li>
 <li><a href="http://www.itfanr.cc/2017/08/09/using-travis-ci-automatic-deploy-hexo-blogs/" target="_blank" rel="noopener">IT 范儿 | 使用Travis CI自动部署Hexo博客</a></li>
+</ul>
+</li>
 </ul>
 
     

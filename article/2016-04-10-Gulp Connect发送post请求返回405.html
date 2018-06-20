@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="问题在使用gulp过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-15T10:41:40.640Z">
+<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gulp Connect发送post请求返回405">
 <meta name="twitter:description" content="问题在使用gulp过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:">
@@ -80,7 +80,7 @@
   
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
-</head>
+<link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
 <body>
 
@@ -236,12 +236,33 @@
 
   <div class="article-content">
     
-      <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在使用<code>gulp</code>过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">405 Method Not Allowed</span><br></pre></td></tr></table></figure></p>
-<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>通过自定义一个中间件来完成<code>POST</code>、<code>PUT</code>、<code>DELETE</code> 请求。<br>首先，引入<code>fs</code>、<code>path</code>和<code>connect</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var fs = require(&apos;fs&apos;),</span><br><span class="line">path = require(&apos;path&apos;),</span><br><span class="line">connect = require(&apos;gulp-connect&apos;);</span><br></pre></td></tr></table></figure>
-<p>接着，在配置中增加自己的中间件。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">gulp.task(&apos;server&apos;,function()&#123;</span><br><span class="line">    connect.server(&#123;</span><br><span class="line">        middleware: function(connect, options) &#123;</span><br><span class="line">        return [</span><br><span class="line">            function(req, res, next) &#123;</span><br><span class="line">                var filepath = path.join(options.root, req.url);</span><br><span class="line">                if (&apos;POSTPUTDELETE&apos;.indexOf(req.method.toUpperCase()) &gt; -1</span><br><span class="line">                    &amp;&amp; fs.existsSync(filepath) &amp;&amp; fs.statSync(filepath).isFile()) &#123;</span><br><span class="line">                    return res.end(fs.readFileSync(filepath));</span><br><span class="line">                &#125;</span><br><span class="line">                return next();</span><br><span class="line">               &#125;</span><br><span class="line">            ];</span><br><span class="line">        &#125;,</span><br><span class="line">        hostname: &apos;127.0.0.1&apos;,</span><br><span class="line">        port: 8090,</span><br><span class="line">        livereload: true</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a href="http://cweili.gitcafe.io/gulp-connect-post-put-delete/" target="_blank" rel="noopener">让 Gulp Connect 支持 POST、PUT、DELETE 请求</a></p>
+      <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在使用<code>gulp</code>过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:<br><a id="more"></a></p>
+<pre><code>405 Method Not Allowed
+</code></pre><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>通过自定义一个中间件来完成<code>POST</code>、<code>PUT</code>、<code>DELETE</code> 请求。<br>首先，引入<code>fs</code>、<code>path</code>和<code>connect</code></p>
+<pre><code>    var fs = require(&#39;fs&#39;),
+    path = require(&#39;path&#39;),
+    connect = require(&#39;gulp-connect&#39;);
+</code></pre><p>接着，在配置中增加自己的中间件。</p>
+<pre><code>gulp.task(&#39;server&#39;,function(){
+    connect.server({
+        middleware: function(connect, options) {
+        return [
+            function(req, res, next) {
+                var filepath = path.join(options.root, req.url);
+                if (&#39;POSTPUTDELETE&#39;.indexOf(req.method.toUpperCase()) &gt; -1
+                    &amp;&amp; fs.existsSync(filepath) &amp;&amp; fs.statSync(filepath).isFile()) {
+                    return res.end(fs.readFileSync(filepath));
+                }
+                return next();
+               }
+            ];
+        },
+        hostname: &#39;127.0.0.1&#39;,
+        port: 8090,
+        livereload: true
+    });
+});
+</code></pre><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a href="http://cweili.gitcafe.io/gulp-connect-post-put-delete/" target="_blank" rel="noopener">让 Gulp Connect 支持 POST、PUT、DELETE 请求</a></p>
 
     
   </div>

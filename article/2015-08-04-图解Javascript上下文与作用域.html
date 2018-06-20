@@ -27,7 +27,7 @@
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai2.jpg">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai3.jpg">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai4.jpg">
-<meta property="og:updated_time" content="2018-06-15T10:41:40.640Z">
+<meta property="og:updated_time" content="2018-06-20T03:47:28.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图解Javascript上下文与作用域">
 <meta name="twitter:description" content="本文尝试阐述Javascript中的上下文与作用域背后的机制，主要涉及到执行上下文（execution context）、作用域链（scope chain）、闭包（closure）、this等概念。">
@@ -85,7 +85,7 @@
   
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
-</head>
+<link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
 <body>
 
@@ -244,24 +244,111 @@
       <p>本文尝试阐述Javascript中的上下文与作用域背后的机制，主要涉及到执行上下文（<code>execution context</code>）、作用域链（<code>scope chain</code>）、闭包（<code>closure</code>）、<code>this</code>等概念。<br><a id="more"></a></p>
 <h2 id="Execution-context"><a href="#Execution-context" class="headerlink" title="Execution context"></a>Execution context</h2><p>执行上下文（简称上下文）决定了Js执行过程中可以获取哪些变量、函数、数据，一段程序可能被分割成许多不同的上下文，每一个上下文都会绑定一个变量对象（<code>variable object</code>），它就像一个容器，用来存储当前上下文中所有已定义或可获取的变量、函数等。位于最顶端或最外层的上下文称为全局上下文（<code>global context</code>），全局上下文取决于执行环境，如Node中的<code>global</code>和Browser中的<code>window</code>：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai1.jpg" alt=""><br>需要注意的是，上下文与作用域（<code>scope</code>）是不同的概念。Js本身是单线程的，每当有<code>function</code>被执行时，就会产生一个新的上下文，这一上下文会被压入Js的上下文堆栈（<code>context stack</code>）中，<code>function</code>执行结束后则被弹出，因此Js解释器总是在栈顶上下文中执行。在生成新的上下文时，首先会绑定该上下文的变量对象，其中包括<code>arguments</code>和该函数中定义的变量；之后会创建属于该上下文的作用域链（<code>scope chain</code>），最后将<code>this</code>赋予这一<code>function</code>所属的<code>Object</code>，这一过程可以通过下图表示：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai2.jpg" alt=""></p>
 <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>上文提到<code>this</code>被赋予<code>function</code>所属的<code>Object</code>，具体来说，当<code>function</code>是定义在<code>global</code>对中时，<code>this</code>指向<code>global</code>；当<code>function</code>作为<code>Object</code>的方法时，<code>this</code>指向该<code>Object</code>：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var x = 1;  </span><br><span class="line">var f = function()&#123;  </span><br><span class="line">    console.log(this.x);</span><br><span class="line">&#125;</span><br><span class="line">f();  // -&gt; 1</span><br><span class="line">var ff = function()&#123;  </span><br><span class="line">    this.x = 2;</span><br><span class="line">    console.log(this.x);</span><br><span class="line">&#125;</span><br><span class="line">ff(); // -&gt; 2  </span><br><span class="line">x     // -&gt; 2</span><br><span class="line">var o = &#123;x: &quot;o&apos;s x&quot;, f: f&#125;;  </span><br><span class="line">o.f(); // &quot;o&apos;s x&quot;</span><br></pre></td></tr></table></figure>
-<h2 id="Scope-chain"><a href="#Scope-chain" class="headerlink" title="Scope chain"></a>Scope chain</h2><p>上文提到，在<code>function</code>被执行时生成新的上下文时会先绑定当前上下文的变量对象，再创建作用域链。我们知道<code>function</code>的定义是可以嵌套在其他<code>function</code>所创建的上下文中，也可以并列地定义在同一个上下文中（如<code>global</code>）。作用域链实际上就是自下而上地将所有嵌套定义的上下文所绑定的变量对象串接到一起，使嵌套的<code>function</code>可以“继承”上层上下文的变量，而并列的<code>function</code>之间互不干扰：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai3.jpg" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var x = &apos;global&apos;;  </span><br><span class="line">function a()&#123;  </span><br><span class="line">    var x = &quot;a&apos;s x&quot;;</span><br><span class="line">    function b()&#123;</span><br><span class="line">        var y = &quot;b&apos;s y&quot;;</span><br><span class="line">        console.log(x);</span><br><span class="line">    &#125;;</span><br><span class="line">    b();</span><br><span class="line">&#125;</span><br><span class="line">function c()&#123;  </span><br><span class="line">    var x = &quot;c&apos;s x&quot;;</span><br><span class="line">    function d()&#123;</span><br><span class="line">	    console.log(y);</span><br><span class="line">    &#125;;</span><br><span class="line">    d();</span><br><span class="line">&#125;</span><br><span class="line">a();  // -&gt; &quot;a&apos;s x&quot;  </span><br><span class="line">c();  // -&gt; ReferenceError: y is not defined  </span><br><span class="line">x     // -&gt; &quot;global&quot;  </span><br><span class="line">y     // -&gt; ReferenceError: y is not defined</span><br></pre></td></tr></table></figure>
-<h2 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h2><p>如果理解了上文中提到的上下文与作用域链的机制，再来看闭包的概念就很清楚了。每个<code>function</code>在调用时会创建新的上下文及作用域链，而作用域链就是将外层（上层）上下文所绑定的变量对象逐一串连起来，使当前<code>function</code>可以获取外层上下文的变量、数据等。如果我们在<code>function</code>中定义新的<code>function</code>，同时将内层<code>function</code>作为值返回，那么内层<code>function</code>所包含的作用域链将会一起返回，即使内层<code>function</code>在其他上下文中执行，其内部的作用域链仍然保持着原有的数据，而当前的上下文可能无法获取原先外层<code>function</code>中的数据，使得<code>function</code>内部的作用域链被保护起来，从而形成“闭包”。看下面的例子：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var x = 100;  </span><br><span class="line">var inc = function()&#123;  </span><br><span class="line">    var x = 0;</span><br><span class="line">    return function()&#123;</span><br><span class="line">        console.log(x++);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">var inc1 = inc();  </span><br><span class="line">var inc2 = inc();</span><br><span class="line">inc1();  // -&gt; 0  </span><br><span class="line">inc1();  // -&gt; 1  </span><br><span class="line">inc2();  // -&gt; 0  </span><br><span class="line">inc1();  // -&gt; 2  </span><br><span class="line">inc2();  // -&gt; 1  </span><br><span class="line">x;       // -&gt; 100</span><br></pre></td></tr></table></figure>
-<p>执行过程如下图所示，<code>inc</code>内部返回的匿名<code>function</code>在创建时生成的作用域链包括了<code>inc</code>中的<code>x</code>，即使后来赋值给<code>inc1</code>和<code>inc2</code>之后，直接在<code>global context</code>下调用，它们的作用域链仍然是由定义中所处的上下文环境决定，而且由于<code>x</code>是在<code>function inc</code>中定义的，无法被外层的<code>global context</code>所改变，从而实现了闭包的效果：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai4.jpg" alt=""></p>
+<pre><code>var x = 1;  
+var f = function(){  
+    console.log(this.x);
+}
+f();  // -&gt; 1
+var ff = function(){  
+    this.x = 2;
+    console.log(this.x);
+}
+ff(); // -&gt; 2  
+x     // -&gt; 2
+var o = {x: &quot;o&#39;s x&quot;, f: f};  
+o.f(); // &quot;o&#39;s x&quot;
+</code></pre><h2 id="Scope-chain"><a href="#Scope-chain" class="headerlink" title="Scope chain"></a>Scope chain</h2><p>上文提到，在<code>function</code>被执行时生成新的上下文时会先绑定当前上下文的变量对象，再创建作用域链。我们知道<code>function</code>的定义是可以嵌套在其他<code>function</code>所创建的上下文中，也可以并列地定义在同一个上下文中（如<code>global</code>）。作用域链实际上就是自下而上地将所有嵌套定义的上下文所绑定的变量对象串接到一起，使嵌套的<code>function</code>可以“继承”上层上下文的变量，而并列的<code>function</code>之间互不干扰：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai3.jpg" alt=""></p>
+<pre><code>var x = &#39;global&#39;;  
+function a(){  
+    var x = &quot;a&#39;s x&quot;;
+    function b(){
+        var y = &quot;b&#39;s y&quot;;
+        console.log(x);
+    };
+    b();
+}
+function c(){  
+    var x = &quot;c&#39;s x&quot;;
+    function d(){
+        console.log(y);
+    };
+    d();
+}
+a();  // -&gt; &quot;a&#39;s x&quot;  
+c();  // -&gt; ReferenceError: y is not defined  
+x     // -&gt; &quot;global&quot;  
+y     // -&gt; ReferenceError: y is not defined
+</code></pre><h2 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h2><p>如果理解了上文中提到的上下文与作用域链的机制，再来看闭包的概念就很清楚了。每个<code>function</code>在调用时会创建新的上下文及作用域链，而作用域链就是将外层（上层）上下文所绑定的变量对象逐一串连起来，使当前<code>function</code>可以获取外层上下文的变量、数据等。如果我们在<code>function</code>中定义新的<code>function</code>，同时将内层<code>function</code>作为值返回，那么内层<code>function</code>所包含的作用域链将会一起返回，即使内层<code>function</code>在其他上下文中执行，其内部的作用域链仍然保持着原有的数据，而当前的上下文可能无法获取原先外层<code>function</code>中的数据，使得<code>function</code>内部的作用域链被保护起来，从而形成“闭包”。看下面的例子：</p>
+<pre><code>var x = 100;  
+var inc = function(){  
+    var x = 0;
+    return function(){
+        console.log(x++);
+    };
+};
+var inc1 = inc();  
+var inc2 = inc();
+inc1();  // -&gt; 0  
+inc1();  // -&gt; 1  
+inc2();  // -&gt; 0  
+inc1();  // -&gt; 2  
+inc2();  // -&gt; 1  
+x;       // -&gt; 100
+</code></pre><p>执行过程如下图所示，<code>inc</code>内部返回的匿名<code>function</code>在创建时生成的作用域链包括了<code>inc</code>中的<code>x</code>，即使后来赋值给<code>inc1</code>和<code>inc2</code>之后，直接在<code>global context</code>下调用，它们的作用域链仍然是由定义中所处的上下文环境决定，而且由于<code>x</code>是在<code>function inc</code>中定义的，无法被外层的<code>global context</code>所改变，从而实现了闭包的效果：<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/zhuanzai4.jpg" alt=""></p>
 <h2 id="this-in-closure"><a href="#this-in-closure" class="headerlink" title="this in closure"></a>this in closure</h2><p>我们已经反复提到执行上下文和作用域实际上是通过<code>function</code>创建、分割的，而<code>function</code>中的<code>this</code>与作用域链不同，它是由执行该<code>function</code>时当前所处的<code>Object</code>环境所决定的，这也是<code>this</code>最容易被混淆用错的一点。一般情况下的例子如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name = &quot;global&quot;;  </span><br><span class="line">var o = &#123;  </span><br><span class="line">    name: &quot;o&quot;,</span><br><span class="line">    getName: function()&#123;</span><br><span class="line">        return this.name</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">o.getName();  // -&gt; &quot;o&quot;</span><br></pre></td></tr></table></figure>
-<p>由于执行<code>o.getName()</code>时<code>getName</code>所绑定的<code>this</code>是调用它的<code>o</code>，所以此时<code>this == o</code>；更容易搞混的是在<code>closure</code>条件下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name = &quot;global&quot;;  </span><br><span class="line">var oo = &#123;  </span><br><span class="line">    name: &quot;oo&quot;,</span><br><span class="line">    getNameFunc: function()&#123;</span><br><span class="line">        return function()&#123;</span><br><span class="line">            return this.name;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">oo.getNameFunc()();  // -&gt; &quot;global&quot;</span><br></pre></td></tr></table></figure>
-<p>此时闭包函数被<code>return</code>后调用相当于：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">getName = oo.getNameFunc();  </span><br><span class="line">getName();  // -&gt; &quot;global&quot;</span><br></pre></td></tr></table></figure>
-<p>换一个更明显的例子：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var ooo = &#123;  </span><br><span class="line">    name: &quot;ooo&quot;,</span><br><span class="line">    getName: oo.getNameFunc() // 此时闭包函数的this被绑定到新的Object</span><br><span class="line">&#125;;</span><br><span class="line">ooo.getName();  // -&gt; &quot;ooo&quot;</span><br></pre></td></tr></table></figure>
-<p>当然，有时候为了避免闭包中的<code>this</code>在执行时被替换，可以采取下面的方法：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name = &quot;global&quot;;  </span><br><span class="line">var oooo = &#123;  </span><br><span class="line">    name: &quot;ox4&quot;,</span><br><span class="line">    getNameFunc: function()&#123;</span><br><span class="line">        var self = this;</span><br><span class="line">        return function()&#123;</span><br><span class="line">            return self.name;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">oooo.getNameFunc()(); // -&gt; &quot;ox4&quot;</span><br></pre></td></tr></table></figure>
-<p>或者是在调用时强行定义执行的<code>Object</code>：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name = &quot;global&quot;;  </span><br><span class="line">var oo = &#123;  </span><br><span class="line">    name: &quot;oo&quot;,</span><br><span class="line">    getNameFunc: function()&#123;</span><br><span class="line">        return function()&#123;</span><br><span class="line">            return this.name;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">oo.getNameFunc()();  // -&gt; &quot;global&quot;  </span><br><span class="line">oo.getNameFunc().bind(oo)(); // -&gt; &quot;oo&quot;</span><br></pre></td></tr></table></figure></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Js是一门很有趣的语言，由于它的很多特性是针对HTML中DOM的操作，因而显得随意而略失严谨，但随着前端的不断繁荣发展和Node的兴起，Js已经不再是”toy language”或是jQuery时代的”CSS扩展”，本文提到的这些概念无论是对新手还是从传统Web开发中过度过来的Js开发人员来说，都很容易被混淆或误解，希望本文可以有所帮助。</p>
+<pre><code>var name = &quot;global&quot;;  
+var o = {  
+    name: &quot;o&quot;,
+    getName: function(){
+        return this.name
+    }
+};
+o.getName();  // -&gt; &quot;o&quot;
+</code></pre><p>由于执行<code>o.getName()</code>时<code>getName</code>所绑定的<code>this</code>是调用它的<code>o</code>，所以此时<code>this == o</code>；更容易搞混的是在<code>closure</code>条件下：</p>
+<pre><code>var name = &quot;global&quot;;  
+var oo = {  
+    name: &quot;oo&quot;,
+    getNameFunc: function(){
+        return function(){
+            return this.name;
+        };
+    }
+}
+oo.getNameFunc()();  // -&gt; &quot;global&quot;
+</code></pre><p>此时闭包函数被<code>return</code>后调用相当于：</p>
+<pre><code>getName = oo.getNameFunc();  
+getName();  // -&gt; &quot;global&quot;
+</code></pre><p>换一个更明显的例子：</p>
+<pre><code>var ooo = {  
+    name: &quot;ooo&quot;,
+    getName: oo.getNameFunc() // 此时闭包函数的this被绑定到新的Object
+};
+ooo.getName();  // -&gt; &quot;ooo&quot;
+</code></pre><p>当然，有时候为了避免闭包中的<code>this</code>在执行时被替换，可以采取下面的方法：</p>
+<pre><code>var name = &quot;global&quot;;  
+var oooo = {  
+    name: &quot;ox4&quot;,
+    getNameFunc: function(){
+        var self = this;
+        return function(){
+            return self.name;
+        };
+    }
+};
+oooo.getNameFunc()(); // -&gt; &quot;ox4&quot;
+</code></pre><p>或者是在调用时强行定义执行的<code>Object</code>：</p>
+<pre><code>var name = &quot;global&quot;;  
+var oo = {  
+    name: &quot;oo&quot;,
+    getNameFunc: function(){
+        return function(){
+            return this.name;
+        };
+    }
+}
+oo.getNameFunc()();  // -&gt; &quot;global&quot;  
+oo.getNameFunc().bind(oo)(); // -&gt; &quot;oo&quot;
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Js是一门很有趣的语言，由于它的很多特性是针对HTML中DOM的操作，因而显得随意而略失严谨，但随着前端的不断繁荣发展和Node的兴起，Js已经不再是”toy language”或是jQuery时代的”CSS扩展”，本文提到的这些概念无论是对新手还是从传统Web开发中过度过来的Js开发人员来说，都很容易被混淆或误解，希望本文可以有所帮助。</p>
 <p>写这篇总结的原因是我在Github上分享的<a href="https://github.com/coodict/javascript-in-one-pic" target="_blank" rel="noopener">Learn javascript in one picture</a>，刚开始有人质疑这只能算是一张语法表（syntax cheat sheet），根本不会涉及更深层的闭包、作用域等内容，但是出乎意料的是这个项目竟然获得3000多个star，所以不能虎头蛇尾，以上。</p>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a href="http://ryanmorr.com/understanding-scope-and-context-in-javascript/" target="_blank" rel="noopener">Understanding Scope and Context in JavaScript</a></li>
