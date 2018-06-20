@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/table.png">
-<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
+<meta property="og:updated_time" content="2018-06-20T05:20:30.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS伪元素::after提示用法">
 <meta name="twitter:description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素">
@@ -246,36 +246,38 @@
 <p><code>::after</code>表示法是在CSS 3中引入的,::符号是用来区分伪类和伪元素的.支持CSS3的浏览器同时也都支持CSS2中引入的表示法<code>:after</code>.</p>
 <p>##例子</p>
 <p>用<code>::after</code>伪元素，<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/attr" target="_blank" rel="noopener">attr()</a>CSS表达式和一个<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes" target="_blank" rel="noopener">自定义数据属性</a> <code>data-descr</code> 创建一个纯CSS, 词汇表提示工具</p>
-<pre><code>&lt;body&gt;
-    &lt;p&gt;这是一段并没有什么用的
-            &lt;span data-descr=&#39;collection of words and punctuation&#39;&gt;文字&lt;/span&gt;
+<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>这是一段并没有什么用的
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">data-descr</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>collection of words and punctuation<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>文字<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
             ，完全是为了凑数才出现的文字，实现一个
-            &lt;span data-descr=&#39;small popups which also hide again&#39;&gt;提示&lt;/span&gt;
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">data-descr</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>small popups which also hide again<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>提示<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
             功能，可以吧鼠标放上去
-            &lt;span data-descr=&#39;not to be taken literrlly&#39;&gt;看看&lt;/span&gt;
-    &lt;/p&gt;
-&lt;/body&gt;
-</code></pre><pre><code> span[data-descr] {
-        position: relative;
-        text-decoration: underline;
-        color: #00F;
-        cursor: help;
-    }
-    span[data-descr]:hover::after {
-      content: attr(data-descr);
-      position: absolute;
-      left: 0;
-      top: 24px;
-      min-width: 200px;
-      border: 1px #aaaaaa solid;
-      border-radius: 10px;
-      background-color: #ffffcc;
-      padding: 12px;
-      color: #000000;
-      font-size: 14px;
-      z-index: 1;
-    }
-</code></pre><p><a href="http://runjs.cn/code/hkmnji2p" target="_blank" rel="noopener">在线演示</a></p>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">data-descr</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>not to be taken literrlly<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>看看<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+</code></pre>
+<pre class=" language-css"><code class="language-css"><span class="token selector">span<span class="token attribute">[data-descr]</span> </span><span class="token punctuation">{</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
+    <span class="token property">text-decoration</span><span class="token punctuation">:</span> underline<span class="token punctuation">;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token hexcode">#00F</span><span class="token punctuation">;</span>
+    <span class="token property">cursor</span><span class="token punctuation">:</span> help<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">span<span class="token attribute">[data-descr]</span><span class="token pseudo-class">:hover</span><span class="token pseudo-element">::after</span> </span><span class="token punctuation">{</span>
+    <span class="token property">content</span><span class="token punctuation">:</span> <span class="token function">attr</span><span class="token punctuation">(</span>data-descr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+    <span class="token property">left</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token property">top</span><span class="token punctuation">:</span> <span class="token number">24</span>px<span class="token punctuation">;</span>
+    <span class="token property">min-width</span><span class="token punctuation">:</span> <span class="token number">200</span>px<span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span> <span class="token number">1</span>px <span class="token hexcode">#aaaaaa</span> solid<span class="token punctuation">;</span>
+    <span class="token property">border-radius</span><span class="token punctuation">:</span> <span class="token number">10</span>px<span class="token punctuation">;</span>
+    <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token hexcode">#ffffcc</span><span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">12</span>px<span class="token punctuation">;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> <span class="token hexcode">#000000</span><span class="token punctuation">;</span>
+    <span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">14</span>px<span class="token punctuation">;</span>
+    <span class="token property">z-index</span><span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><a href="http://runjs.cn/code/hkmnji2p" target="_blank" rel="noopener">在线演示</a></p>
 <h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png" alt="css-after"></p>
 <h2 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h2><p><img src="http://7xjp74.com1.z0.glb.clouddn.com/table.png" alt="兼容性"></p>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>

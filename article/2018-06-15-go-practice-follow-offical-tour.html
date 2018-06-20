@@ -15,17 +15,17 @@
     <meta name="keywords" content="web,frontend,javascript,html,css,reactnative" />
   
 
-  <meta name="description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数```golangpackage main    import (    “fmt”) func Sqrt(x float64) float64 {    z := x / 2    cnt := 10    for cnt &amp;gt; 0 {        z -= (z  z - x">
+  <meta name="description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数    package main  import (     &quot;fmt&quot; )  func Sqrt(x float64) float64 {     z := x / 2     cnt := 10     for cnt &amp;gt; 0 {         z -= (z * z - x)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="go-practice-follow-offical-tour">
 <meta property="og:url" content="http://dearxiaojie.top/article/2018-06-15-go-practice-follow-offical-tour.html">
 <meta property="og:site_name" content="Sincerly">
-<meta property="og:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数```golangpackage main    import (    “fmt”) func Sqrt(x float64) float64 {    z := x / 2    cnt := 10    for cnt &amp;gt; 0 {        z -= (z  z - x">
+<meta property="og:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数    package main  import (     &quot;fmt&quot; )  func Sqrt(x float64) float64 {     z := x / 2     cnt := 10     for cnt &amp;gt; 0 {         z -= (z * z - x)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
+<meta property="og:updated_time" content="2018-06-20T05:20:30.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="go-practice-follow-offical-tour">
-<meta name="twitter:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数```golangpackage main    import (    “fmt”) func Sqrt(x float64) float64 {    z := x / 2    cnt := 10    for cnt &amp;gt; 0 {        z -= (z  z - x">
+<meta name="twitter:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数    package main  import (     &quot;fmt&quot; )  func Sqrt(x float64) float64 {     z := x / 2     cnt := 10     for cnt &amp;gt; 0 {         z -= (z * z - x)">
 
   
 
@@ -228,87 +228,140 @@
       <p>最近在学习go相关的东西，以下为<a href="https://tour.go-zh.org/welcome/1" target="_blank" rel="noopener">Go官方指南</a>中的练习记录</p>
 <ol>
 <li>循环与函数<blockquote>
-<p>实现一个平方根函数：用<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">牛顿法</a>实现平方根函数<br>```golang<br>package main</p>
+<p>实现一个平方根函数：用<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">牛顿法</a>实现平方根函数</p>
 </blockquote>
 </li>
 </ol>
-<p>import (<br>    “fmt”<br>)</p>
-<p>func Sqrt(x float64) float64 {<br>    z := x / 2<br>    cnt := 10<br>    for cnt &gt; 0 {<br>        z -= (z <em> z - x) / (2 </em> z)<br>        cnt = cnt - 1<br>    }<br>    return z<br>}</p>
-<p>func main() {<br>    fmt.Println(Sqrt(3)) // 1.7320508075688772<br>}</p>
-<pre><code>2. 切片
-&gt; 实现 Pic。它应当返回一个长度为 dy 的切片，其中每个元素是一个长度为 dx，元素类型为 uint8 的切片。
-当你运行此程序时，它会将每个整数解释为灰度值（好吧，其实是蓝度值）并显示它所对应的图像
-```golang
-package main
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
 
-import &quot;golang.org/x/tour/pic&quot;
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+<span class="token punctuation">)</span>
 
-func Pic(dx, dy int) [][]uint8 {
-    pic := make([][]uint8, dy*dx)
-    for i := 0; i &lt; dy; i++ {
-        in := make([]uint8, dx)
-        for j := 0; j &lt; dx; j++ {
-            in[j] = uint8(1 &lt;&lt; uint8(j%8))
-        }
-        pic[i] = in
-    }
-    return pic
-}
+<span class="token keyword">func</span> <span class="token function">Sqrt</span><span class="token punctuation">(</span>x <span class="token builtin">float64</span><span class="token punctuation">)</span> <span class="token builtin">float64</span> <span class="token punctuation">{</span>
+    z <span class="token operator">:=</span> x <span class="token operator">/</span> <span class="token number">2</span>
+    cnt <span class="token operator">:=</span> <span class="token number">10</span>
+    <span class="token keyword">for</span> cnt <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">{</span>
+        z <span class="token operator">-=</span> <span class="token punctuation">(</span>z <span class="token operator">*</span> z <span class="token operator">-</span> x<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> z<span class="token punctuation">)</span>
+        cnt <span class="token operator">=</span> cnt <span class="token operator">-</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> z
+<span class="token punctuation">}</span>
 
-func main() {
-    pic.Show(Pic)
-}
-</code></pre><ol>
-<li>映射<blockquote>
-<p>实现 WordCount。它应当返回一个映射，其中包含字符串 s 中每个“单词”的个数。函数 wc.Test 会对此函数执行一系列测试用例，并输出成功还是失败<br>```golang<br>package main</p>
-</blockquote>
-</li>
-</ol>
-<p>import (<br>    “strings”</p>
-<pre><code>&quot;golang.org/x/tour/wc&quot;
-</code></pre><p>)</p>
-<p>func WordCount(s string) map[string]int {<br>    m := make(map[string]int)<br>    field := strings.Fields(s)<br>    for i := 0; i &lt; len(field); i++ {<br>        if m[field[i]] &gt; 0 {<br>            m[field[i]] = m[field[i]] + 1<br>        } else {<br>            m[field[i]] = 1<br>        }<br>    }<br>    return m<br>}</p>
-<p>/<em> output<br>func main() {<br>    wc.Test(WordCount)<br>}<br>PASS<br> f(“I am learning Go!”) =<br>  map[string]int{“I”:1, “am”:1, “learning”:1, “Go!”:1}<br>PASS<br> f(“The quick brown fox jumped over the lazy dog.”) =<br>  map[string]int{“dog.”:1, “The”:1, “fox”:1, “over”:1, “the”:1, “quick”:1, “brown”:1, “jumped”:1, “lazy”:1}<br>PASS<br> f(“I ate a donut. Then I ate another donut.”) =<br>  map[string]int{“another”:1, “I”:2, “ate”:2, “a”:1, “donut.”:2, “Then”:1}<br>PASS<br> f(“A man a plan a canal panama.”) =<br>  map[string]int{“plan”:1, “canal”:1, “panama.”:1, “A”:1, “man”:1, “a”:2}
-</em>/</p>
-<pre><code>4. 斐波纳契闭包
-&gt; 实现一个 fibonacci 函数，它返回一个函数（闭包），该闭包返回一个[斐波纳契数列](https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97) `(0, 1, 1, 2, 3, 5, ...)`。
-```golang
-package main
-
-import &quot;fmt&quot;
-
-func fibonacci() func() int {
-    a, b, c := -1, 0, 0
-    return func() int {
-        if a == -1 {
-            a = 0
-            return a
-        } else if a == 0 {
-            a = 1
-            return a
-        } else {
-            c = a + b
-            b = a
-            a = c
-            return c
-        }
-    }
-}
-
-func main() {
-    f := fibonacci()
-    for i := 0; i &lt; 10; i++ {
-        fmt.Println(f())
-    }
-}
-// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34
-</code></pre><ol>
-<li>note(方法与指针)<blockquote>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">Sqrt</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 1.7320508075688772</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <ol>
-<li>带指针参数的函数必须接受一个指针,而以指针为接收者的方法被调用时，接收者既能为值又能为指针。<br>由于指针参数的函数方法有一个指针接收者，为方便起见，Go 会将语句 v.Scale(5) 解释为 (&amp;v).Scale(5)；</li>
-<li>接受一个值作为参数的函数必须接受一个指定类型的值，而以值为接收者的方法被调用时，接收者既能为值又能为指针，方法调用 p.Abs() 会被解释为 (*p).Abs()</li>
-<li>使用指针接收者的原因有二：<br>首先，方法能够修改其接收者指向的值。<br>其次，这样可以避免在每次调用方法时复制该值。若值的类型为大型结构体时，这样做会更加高效。</li>
+<li>切片<blockquote>
+<p>实现 Pic。它应当返回一个长度为 dy 的切片，其中每个元素是一个长度为 dx，元素类型为 uint8 的切片。<br>当你运行此程序时，它会将每个整数解释为灰度值（好吧，其实是蓝度值）并显示它所对应的图像</p>
+</blockquote>
+</li>
 </ol>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"golang.org/x/tour/pic"</span>
+
+<span class="token keyword">func</span> <span class="token function">Pic</span><span class="token punctuation">(</span>dx<span class="token punctuation">,</span> dy <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">uint8</span> <span class="token punctuation">{</span>
+    pic <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">uint8</span><span class="token punctuation">,</span> dy<span class="token operator">*</span>dx<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> dy<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        in <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">uint8</span><span class="token punctuation">,</span> dx<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> dx<span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">{</span>
+            in<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">uint8</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token function">uint8</span><span class="token punctuation">(</span>j<span class="token operator">%</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+        pic<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> in
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> pic
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    pic<span class="token punctuation">.</span><span class="token function">Show</span><span class="token punctuation">(</span>Pic<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ol>
+<li>映射<blockquote>
+<p>实现 WordCount。它应当返回一个映射，其中包含字符串 s 中每个“单词”的个数。函数 wc.Test 会对此函数执行一系列测试用例，并输出成功还是失败</p>
+</blockquote>
+</li>
+</ol>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"strings"</span>
+
+    <span class="token string">"golang.org/x/tour/wc"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">WordCount</span><span class="token punctuation">(</span>s <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span> <span class="token punctuation">{</span>
+    m <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span>
+    field <span class="token operator">:=</span> strings<span class="token punctuation">.</span><span class="token function">Fields</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>field<span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> m<span class="token punctuation">[</span>field<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">{</span>
+            m<span class="token punctuation">[</span>field<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> m<span class="token punctuation">[</span>field<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            m<span class="token punctuation">[</span>field<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> m
+<span class="token punctuation">}</span>
+
+<span class="token comment" spellcheck="true">/* output
+func main() {
+    wc.Test(WordCount)
+}
+PASS
+ f("I am learning Go!") =
+  map[string]int{"I":1, "am":1, "learning":1, "Go!":1}
+PASS
+ f("The quick brown fox jumped over the lazy dog.") =
+  map[string]int{"dog.":1, "The":1, "fox":1, "over":1, "the":1, "quick":1, "brown":1, "jumped":1, "lazy":1}
+PASS
+ f("I ate a donut. Then I ate another donut.") =
+  map[string]int{"another":1, "I":2, "ate":2, "a":1, "donut.":2, "Then":1}
+PASS
+ f("A man a plan a canal panama.") =
+  map[string]int{"plan":1, "canal":1, "panama.":1, "A":1, "man":1, "a":2}
+*/</span>
+</code></pre>
+<ol>
+<li>斐波纳契闭包<blockquote>
+<p>实现一个 fibonacci 函数，它返回一个函数（闭包），该闭包返回一个<a href="https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97" target="_blank" rel="noopener">斐波纳契数列</a> <code>(0, 1, 1, 2, 3, 5, ...)</code>。</p>
+</blockquote>
+</li>
+</ol>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">func</span> <span class="token function">fibonacci</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+    a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c <span class="token operator">:=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span>
+    <span class="token keyword">return</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">int</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> a <span class="token operator">==</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">{</span>
+            a <span class="token operator">=</span> <span class="token number">0</span>
+            <span class="token keyword">return</span> a
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> a <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">{</span>
+            a <span class="token operator">=</span> <span class="token number">1</span>
+            <span class="token keyword">return</span> a
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            c <span class="token operator">=</span> a <span class="token operator">+</span> b
+            b <span class="token operator">=</span> a
+            a <span class="token operator">=</span> c
+            <span class="token keyword">return</span> c
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    f <span class="token operator">:=</span> <span class="token function">fibonacci</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34</span>
+</code></pre>
+<ol>
+<li>note(方法与指针)<blockquote>
+<p>带指针参数的函数必须接受一个指针,而以指针为接收者的方法被调用时，接收者既能为值又能为指针。<br>由于指针参数的函数方法有一个指针接收者，为方便起见，Go 会将语句 v.Scale(5) 解释为 (&amp;v).Scale(5)；<br>接受一个值作为参数的函数必须接受一个指定类型的值，而以值为接收者的方法被调用时，接收者既能为值又能为指针，方法调用 p.Abs() 会被解释为 (*p).Abs()<br>使用指针接收者的原因有二：<br>首先，方法能够修改其接收者指向的值。<br>其次，这样可以避免在每次调用方法时复制该值。若值的类型为大型结构体时，这样做会更加高效。</p>
 </blockquote>
 </li>
 </ol>

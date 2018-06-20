@@ -24,7 +24,7 @@
 <meta property="og:description" content="Question Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/failed.png">
-<meta property="og:updated_time" content="2018-06-20T03:47:28.841Z">
+<meta property="og:updated_time" content="2018-06-20T05:20:30.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="删除node_modules不成功">
 <meta name="twitter:description" content="Question Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：">
@@ -239,18 +239,15 @@
   <div class="article-content">
     
       <h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
-<p>Windows做Node.js开发的你或许碰到过无法删除node_modules文件夹的情况,如下图：<br><a id="more"></a><br><img src="http://7xjp74.com1.z0.glb.clouddn.com/failed.png" alt="failed"></p>
+<p><code>Windows</code>做<code>Node.js</code>开发的你或许碰到过无法删除<code>node_modules</code>文件夹的情况,如下图：<br><a id="more"></a><br><img src="http://7xjp74.com1.z0.glb.clouddn.com/failed.png" alt="failed"></p>
 </blockquote>
-<h2 id="Reason"><a href="#Reason" class="headerlink" title="Reason"></a>Reason</h2><p>windows 在文件目录的长度有限制，因为node packages 有众多dependencies，每一个dependency又有其他的dependency，这些dependency或许还有其他的dependency，所以导致node_modules有超级复杂的文件目录。比如：</p>
-<blockquote>
-<p>D:\codetest\node_modules\edpx-mobile\node_modules\edp-webserver\node_modules\babel\node_modules\chokidar\node_modules\anymatch\node_modules</p>
-</blockquote>
-<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><blockquote>
-<p>npm install -g rimraf</p>
-</blockquote>
-<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><blockquote>
-<p>rimraf node_modules</p>
-</blockquote>
+<h2 id="Reason"><a href="#Reason" class="headerlink" title="Reason"></a>Reason</h2><p><code>windows</code> 在文件目录的长度有限制，因为<code>node packages</code> 有众多<code>dependencies</code>，每一个<code>dependency</code>又有其他的<code>dependency</code>，这些<code>dependency</code>或许还有其他的<code>dependency</code>，所以导致<code>node_modules</code>有超级复杂的文件目录。比如：</p>
+<pre class=" language-bash"><code class="language-bash">D:\codetest\node_modules\edpx-mobile\node_modules\edp-webserver\node_modules\babel\node_modules\chokidar\node_modules\anymatch\node_modules
+</code></pre>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><pre class=" language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g rimraf
+</code></pre>
+<h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><pre class=" language-bash"><code class="language-bash">rimraf node_modules
+</code></pre>
 <p><em>亲测有效</em></p>
 
     

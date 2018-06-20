@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-20T03:47:28.841Z">
+<meta property="og:updated_time" content="2018-06-20T05:20:30.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两个iframe框滚动条联动以及iframe窗口高宽自适应">
 <meta name="twitter:description" content="由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。">
@@ -232,13 +232,13 @@
   <div class="article-content">
     
       <p>由于iframe没有onsccoll方法，所以采用把iframe放进固定大小且带有滑动条的div中，然后先给iframe一个适合的宽度，页面加载后再让iframe窗口自适应src链接的页面。<br><a id="more"></a></p>
-<pre><code>   &lt;div id=&quot;div1&quot;  style=&quot;width:620px;height:500px ; float:left;overflow:scroll&quot; onscroll=&quot;funcsrcoll1()&quot;&gt;
-          &lt;iframe name=&quot;left&quot; id=&quot;left&quot; scrolling=&quot;no&quot; width=&quot;600px&quot; height=&quot;500px&quot; src=&quot;2.html&quot;&gt;&lt;/iframe&gt;
-   &lt;/div&gt;
-   &lt;div id=&quot;div2&quot; style=&quot;width:620px; height:500px ;float:left;overflow:scroll&quot; onscroll=&quot;funcsrcoll2()&quot;&gt;
-       &lt;iframe name=&quot;right&quot; id=&quot;right&quot; scrolling=&quot;no&quot; width=&quot;600px&quot; height=&quot;500px&quot; src=&quot;3.html&quot;&gt;&lt;/iframe&gt;
-   &lt;/div&gt;
-   &lt;script&gt;
+<pre class=" language-html"><code class="language-html">   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>div1<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name">  <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span class="token punctuation">:</span><span class="token number">620</span>px<span class="token punctuation">;</span><span class="token property">height</span><span class="token punctuation">:</span><span class="token number">500</span>px <span class="token punctuation">;</span> <span class="token property">float</span><span class="token punctuation">:</span>left<span class="token punctuation">;</span><span class="token property">overflow</span><span class="token punctuation">:</span>scroll</span><span class="token punctuation">"</span></span> <span class="token attr-name">onscroll</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>funcsrcoll1()<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>left<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>left<span class="token punctuation">"</span></span> <span class="token attr-name">scrolling</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>no<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>600px<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>500px<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>div2<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">width</span><span class="token punctuation">:</span><span class="token number">620</span>px<span class="token punctuation">;</span> <span class="token property">height</span><span class="token punctuation">:</span><span class="token number">500</span>px <span class="token punctuation">;</span><span class="token property">float</span><span class="token punctuation">:</span>left<span class="token punctuation">;</span><span class="token property">overflow</span><span class="token punctuation">:</span>scroll</span><span class="token punctuation">"</span></span> <span class="token attr-name">onscroll</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>funcsrcoll2()<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>right<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>right<span class="token punctuation">"</span></span> <span class="token attr-name">scrolling</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>no<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>600px<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>500px<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>3.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span>
        //控制两个div的滚动条联动，便于页面对比
        function funcsrcoll1()
          {
@@ -252,14 +252,15 @@
          }
          //调整iframe窗口大小适应src链接的页面
          function func(){
-         $(&#39;iframe&#39;).each(function(){
-             this.style.height = this.contentWindow.document.body.scrollHeight+20 + &#39;px&#39;;
+         $('iframe').each(function(){
+             this.style.height = this.contentWindow.document.body.scrollHeight+20 + 'px';
                //为了显示完整，额外加了20px的宽度
-             this.style.width = this.contentWindow.document.body.scrollWidth+20 + &#39;px&#39;;
-         });    
+             this.style.width = this.contentWindow.document.body.scrollWidth+20 + 'px';
+         });
        }
-   &lt;/script&gt;
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 </code></pre>
+
     
   </div>
 

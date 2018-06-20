@@ -15,18 +15,18 @@
     <meta name="keywords" content="js," />
   
 
-  <meta name="description" content="在web开发中常会遇到图片预览的场景，比如在图片上传的情况下，一个办法是将图片上传到服务器之后，服务端将存储的URL返回来，然后异步通过URL加载刚上传的图片，达到图片的预览。但是在这个过程中会有两次web请求，一次是发送文件，一次是下载文件。我们可以在图片上传前就进行图片的预览，这样可以避免不必要的网络请求和等待。 图片添加&amp;lt;input type=&amp;quot;file&amp;quot; id=&amp;">
+  <meta name="description" content="在web开发中常会遇到图片预览的场景，比如在图片上传的情况下，一个办法是将图片上传到服务器之后，服务端将存储的URL返回来，然后异步通过URL加载刚上传的图片，达到图片的预览。但是在这个过程中会有两次web请求，一次是发送文件，一次是下载文件。我们可以在图片上传前就进行图片的预览，这样可以避免不必要的网络请求和等待。 图片添加&amp;lt;input type=&quot;file&quot; id=&quot;uploadcont">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一次多图上传+本地预览中遇到的问题">
 <meta property="og:url" content="http://dearxiaojie.top/article/2017-11-30-mutiple-image-upload.html">
 <meta property="og:site_name" content="Sincerly">
-<meta property="og:description" content="在web开发中常会遇到图片预览的场景，比如在图片上传的情况下，一个办法是将图片上传到服务器之后，服务端将存储的URL返回来，然后异步通过URL加载刚上传的图片，达到图片的预览。但是在这个过程中会有两次web请求，一次是发送文件，一次是下载文件。我们可以在图片上传前就进行图片的预览，这样可以避免不必要的网络请求和等待。 图片添加&amp;lt;input type=&amp;quot;file&amp;quot; id=&amp;">
+<meta property="og:description" content="在web开发中常会遇到图片预览的场景，比如在图片上传的情况下，一个办法是将图片上传到服务器之后，服务端将存储的URL返回来，然后异步通过URL加载刚上传的图片，达到图片的预览。但是在这个过程中会有两次web请求，一次是发送文件，一次是下载文件。我们可以在图片上传前就进行图片的预览，这样可以避免不必要的网络请求和等待。 图片添加&amp;lt;input type=&quot;file&quot; id=&quot;uploadcont">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
+<meta property="og:updated_time" content="2018-06-20T05:20:30.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一次多图上传+本地预览中遇到的问题">
-<meta name="twitter:description" content="在web开发中常会遇到图片预览的场景，比如在图片上传的情况下，一个办法是将图片上传到服务器之后，服务端将存储的URL返回来，然后异步通过URL加载刚上传的图片，达到图片的预览。但是在这个过程中会有两次web请求，一次是发送文件，一次是下载文件。我们可以在图片上传前就进行图片的预览，这样可以避免不必要的网络请求和等待。 图片添加&amp;lt;input type=&amp;quot;file&amp;quot; id=&amp;">
+<meta name="twitter:description" content="在web开发中常会遇到图片预览的场景，比如在图片上传的情况下，一个办法是将图片上传到服务器之后，服务端将存储的URL返回来，然后异步通过URL加载刚上传的图片，达到图片的预览。但是在这个过程中会有两次web请求，一次是发送文件，一次是下载文件。我们可以在图片上传前就进行图片的预览，这样可以避免不必要的网络请求和等待。 图片添加&amp;lt;input type=&quot;file&quot; id=&quot;uploadcont">
 
   
 
@@ -237,68 +237,71 @@
   <div class="article-content">
     
       <p>在web开发中常会遇到图片预览的场景，比如在图片上传的情况下，一个办法是将图片上传到服务器之后，服务端将存储的URL返回来，然后异步通过URL加载刚上传的图片，达到图片的预览。但是在这个过程中会有两次web请求，一次是发送文件，一次是下载文件。我们可以在图片上传前就进行图片的预览，这样可以避免不必要的网络请求和等待。</p>
-<h2 id="图片添加"><a href="#图片添加" class="headerlink" title="图片添加"></a>图片添加</h2><pre><code>&lt;input type=&quot;file&quot; id=&quot;uploadcontainer&quot; name=&quot;images&quot; multiple=&quot;multiple&quot; accept=&quot;image/*&quot;&gt;
-</code></pre><p>如上，<code>input</code>将<code>type</code>设置为<code>file</code>即可以上传文件，<code>accept</code>可以设置接收文件类型，这里是上传图片，所以设置成了<code>image/*</code>,<code>multiple</code>属性可以支持多文件上传。</p>
+<h2 id="图片添加"><a href="#图片添加" class="headerlink" title="图片添加"></a>图片添加</h2><pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>file<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>uploadcontainer<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>images<span class="token punctuation">"</span></span> <span class="token attr-name">multiple</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>multiple<span class="token punctuation">"</span></span> <span class="token attr-name">accept</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>image/*<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+</code></pre>
+<p>如上，<code>input</code>将<code>type</code>设置为<code>file</code>即可以上传文件，<code>accept</code>可以设置接收文件类型，这里是上传图片，所以设置成了<code>image/*</code>, <code>multiple</code> 属性可以支持多文件上传。</p>
 <h2 id="图片预览"><a href="#图片预览" class="headerlink" title="图片预览"></a>图片预览</h2><blockquote>
 <p>以下代码默认加载了jquery</p>
 </blockquote>
-<pre><code>// 监听图片添加
-$(&#39;#uploadcontainer&#39;).on(&#39;change&#39;, function() {
-    let files = $(this).prop(&#39;files&#39;);
-    that.preview(files);
-});
-preview: function(files) {
-    let that = this;
-    // 遍历预览
-    $.each(files, function(index, item) {
-        let fileReader = new FileReader();
-        let tpl = new Template($(&#39;#tpl&#39;).html());
-        fileReader.readAsDataURL(item);
-        fileReader.onload = function(e) {
-            that.FILES.push(item); // *** 图片onload过程中将图片存在一个全局的数组中,因为在预览过程中还会有分类等处理，会在真正上传的时候添加更多参数
-            html = tpl.render({
-                cover_url: e.currentTarget.result,
-                title: item.name.split(&#39;.&#39;)[0],
-            });
-            // ... 将html放到页面
-        };
-    });
-}
-</code></pre><h2 id="图片上传"><a href="#图片上传" class="headerlink" title="图片上传"></a>图片上传</h2><blockquote>
+<pre class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 监听图片添加</span>
+<span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#uploadcontainer'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">'change'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> files <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prop</span><span class="token punctuation">(</span><span class="token string">'files'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    that<span class="token punctuation">.</span><span class="token function">preview</span><span class="token punctuation">(</span>files<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+preview<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>files<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> that <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 遍历预览</span>
+    $<span class="token punctuation">.</span><span class="token function">each</span><span class="token punctuation">(</span>files<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> item<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> fileReader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> tpl <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Template</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#tpl'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fileReader<span class="token punctuation">.</span><span class="token function">readAsDataURL</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        fileReader<span class="token punctuation">.</span>onload <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            that<span class="token punctuation">.</span>FILES<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// *** 图片onload过程中将图片存在一个全局的数组中,因为在预览过程中还会有分类等处理，会在真正上传的时候添加更多参数</span>
+            html <span class="token operator">=</span> tpl<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                cover_url<span class="token punctuation">:</span> e<span class="token punctuation">.</span>currentTarget<span class="token punctuation">.</span>result<span class="token punctuation">,</span>
+                title<span class="token punctuation">:</span> item<span class="token punctuation">.</span>name<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">'.'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">// ... 将html放到页面</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="图片上传"><a href="#图片上传" class="headerlink" title="图片上传"></a>图片上传</h2><blockquote>
 <p>假定我们的接口只支持每次只能上传一张图片</p>
 </blockquote>
-<pre><code>upload: function(f, cb) {
-    // 递归
-    (function uploads() {
-        let file = f.shift();
-        if (file) {
-            // 避免重名导致上传混乱，每次都重新创建新的对象
-            let formData = new FormData();
-            formData.append(&#39;image&#39;, file.image);
-            formData.append(&#39;title&#39;, file.title);
-            formData.append(&#39;category&#39;, file.category);
-            $.ajax({
-                type: &#39;POST&#39;,
-                url: &#39;****&#39;,
-                data: formData,
-                contentType: false,// *
-                cache: false,
-                processData: false // *
-            }).always(function(rst) {
-                if (rst.ret == 1) {
-                    console.log(file.title + &#39; 上传中...&#39;)
-                } else {
-                    console.log(ret.msg || file.title + &#39; 上传失败...&#39;)
-                }
-                uploads();
-            });
-        } else {
-            console.log(&#39;上传完成...&#39;);
-            cb();
-        }
-    })();
-},
-</code></pre><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ul>
+<pre class=" language-js"><code class="language-js">upload<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span> cb<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// 递归</span>
+    <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">uploads</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> file <span class="token operator">=</span> f<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>file<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// 避免重名导致上传混乱，每次都重新创建新的对象</span>
+            <span class="token keyword">let</span> formData <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FormData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'image'</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span>image<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'title'</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'category'</span><span class="token punctuation">,</span> file<span class="token punctuation">.</span>category<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            $<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                type<span class="token punctuation">:</span> <span class="token string">'POST'</span><span class="token punctuation">,</span>
+                url<span class="token punctuation">:</span> <span class="token string">'****'</span><span class="token punctuation">,</span>
+                data<span class="token punctuation">:</span> formData<span class="token punctuation">,</span>
+                contentType<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true">// *</span>
+                cache<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                processData<span class="token punctuation">:</span> <span class="token boolean">false</span> <span class="token comment" spellcheck="true">// *</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">always</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>rst<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>rst<span class="token punctuation">.</span>ret <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span>title <span class="token operator">+</span> <span class="token string">' 上传中...'</span><span class="token punctuation">)</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ret<span class="token punctuation">.</span>msg <span class="token operator">||</span> file<span class="token punctuation">.</span>title <span class="token operator">+</span> <span class="token string">' 上传失败...'</span><span class="token punctuation">)</span>
+                <span class="token punctuation">}</span>
+                <span class="token function">uploads</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'上传完成...'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">cb</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><ul>
 <li>使用<code>FormData</code>对象，设置<code>contentType</code>为<code>false</code>, <code>processData</code>为<code>false</code></li>
 <li><code>fileReader.onload</code>的时候缓存图片，不然不能对应图片及增加的参数，导致图片和参数对应混乱</li>
 <li>递归上传，每次创建<code>FormData</code>对象，避免重复上传和重名混乱</li>

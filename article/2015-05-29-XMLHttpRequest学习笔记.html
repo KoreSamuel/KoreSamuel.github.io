@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="对于xhr的学习后的一个例子">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
+<meta property="og:updated_time" content="2018-06-20T05:20:30.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XMLHttpRequest学习笔记">
 <meta name="twitter:description" content="对于xhr的学习后的一个例子">
@@ -232,112 +232,113 @@
   <div class="article-content">
     
       <p>对于xhr的学习后的一个例子<br><a id="more"></a></p>
-<pre><code>    &lt;!DOCTYPE html&gt;
-    &lt;html&gt;
-    &lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;first&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;css/bootstrap.min.css&quot; /&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;button id=&quot;btn&quot;&gt;请求数据&lt;/button&gt;
-        &lt;div id=&quot;myDiv&quot;&gt;
-            &lt;table class=&quot;table table-bordered table-condensed&quot;&gt;
-                &lt;thead&gt;
-                    &lt;tr&gt;
-                        &lt;th&gt;number&lt;/th&gt;
-                        &lt;th&gt;title&lt;/th&gt;
-                        &lt;th&gt;author&lt;/th&gt;
-                        &lt;th&gt;year&lt;/th&gt;
-                        &lt;th&gt;price&lt;/th&gt;
-                    &lt;/tr&gt;
-                &lt;/thead&gt;
-                &lt;tbody id=&quot;mytbody&quot;&gt;&lt;/tbody&gt;
-            &lt;/table&gt;
-            &lt;p&gt;getAllResponseHeaders()&lt;/p&gt;
-            &lt;p id=&quot;pp&quot;&gt;&lt;/p&gt;
-            &lt;p&gt;getResponseHeader(&quot;Last-Modified&quot;)&lt;/p&gt;
-            &lt;p id=&quot;ppp&quot;&gt;&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery-1.7.2.js&quot;&gt;&lt;/script&gt;
-        &lt;script type=&quot;text/javascript&quot; src=&quot;js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
-        &lt;script type=&quot;text/javascript&quot;&gt;
-            function loadXHR() {
-                var XHR;
-                if (window.XMLHttpRequest) {
-                    XHR = new XMLHttpRequest();
-                } else {
-                    XHR = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
-                }
-                XHR.open(&quot;GET&quot;, &quot;./text/books.xml&quot;, true);
-                //通过 XML HTTP 加载 XML 文件
-                XHR.send();
-                XHR.onreadystatechange = function() {
-                    if (XHR.readyState == 4 &amp;&amp; XHR.status == 200) {
-                    // 4 = &quot;loaded&quot; 200 = “OK”
-                        var xmlDoc = XHR.responseXML;
-                        var txt = &quot;&lt;tr&gt;&quot;;
-                        var x = xmlDoc.getElementsByTagName(&quot;book&quot;);
-                        for (var i = 0; i &lt; x.length; i++) {
-                        //把 XML 文件显示为 HTML 表格
-                            txt += &quot;&lt;td&gt;&quot; + i + &quot;&lt;/td&gt;&quot;;
-                            xx = x[i].getElementsByTagName(&quot;title&quot;);
-                            txt += &quot;&lt;td&gt;&quot; + xx[0].childNodes[0].nodeValue + &quot;&lt;/td&gt;&quot;;
-                            xx = x[i].getElementsByTagName(&quot;author&quot;);
-                            txt += &quot;&lt;td&gt;&quot; + xx[0].childNodes[0].nodeValue + &quot;&lt;/td&gt;&quot;;
-                            xx = x[i].getElementsByTagName(&quot;year&quot;);
-                            txt += &quot;&lt;td&gt;&quot; + xx[0].childNodes[0].nodeValue + &quot;&lt;/td&gt;&quot;;
-                            xx = x[i].getElementsByTagName(&quot;price&quot;);
-                            txt += &quot;&lt;td&gt;&quot; + xx[0].childNodes[0].nodeValue
-                                    + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;;
-                        }
-                        document.getElementById(&quot;mytbody&quot;).innerHTML = txt;
-                        //通过 XML HTTP 进行一次 HEAD 请求
-                        document.getElementById(&quot;pp&quot;).innerHTML = XHR.getAllResponseHeaders();
-                        //通过 XML HTTP 进行一次指定的 HEAD 请求
-                        document.getElementById(&quot;ppp&quot;).innerHTML = XHR.getResponseHeader(&quot;Last-Modified&quot;);
+<pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>first<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>css/bootstrap.min.css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>请求数据<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myDiv<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>table table-bordered table-condensed<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>thead</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>author<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>year<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>th</span><span class="token punctuation">></span></span>price<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>th</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>thead</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tbody</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mytbody<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tbody</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>getAllResponseHeaders()<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>pp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>getResponseHeader("Last-Modified")<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ppp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>js/jquery-1.7.2.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>js/bootstrap.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        function loadXHR() {
+            var XHR;
+            if (window.XMLHttpRequest) {
+                XHR = new XMLHttpRequest();
+            } else {
+                XHR = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            XHR.open("GET", "./text/books.xml", true);
+            //通过 XML HTTP 加载 XML 文件
+            XHR.send();
+            XHR.onreadystatechange = function() {
+                if (XHR.readyState == 4 &amp;&amp; XHR.status == 200) {
+                // 4 = "loaded" 200 = “OK”
+                    var xmlDoc = XHR.responseXML;
+                    var txt = "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>";
+                    var x = xmlDoc.getElementsByTagName("book");
+                    for (var i = 0; i &lt; x.length; i++) {
+                    //把 XML 文件显示为 HTML 表格
+                        txt += "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>" + i + "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>";
+                        xx = x[i].getElementsByTagName("title");
+                        txt += "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>" + xx[0].childNodes[0].nodeValue + "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>";
+                        xx = x[i].getElementsByTagName("author");
+                        txt += "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>" + xx[0].childNodes[0].nodeValue + "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>";
+                        xx = x[i].getElementsByTagName("year");
+                        txt += "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>" + xx[0].childNodes[0].nodeValue + "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>";
+                        xx = x[i].getElementsByTagName("price");
+                        txt += "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>" + xx[0].childNodes[0].nodeValue
+                                + "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>";
                     }
+                    document.getElementById("mytbody").innerHTML = txt;
+                    //通过 XML HTTP 进行一次 HEAD 请求
+                    document.getElementById("pp").innerHTML = XHR.getAllResponseHeaders();
+                    //通过 XML HTTP 进行一次指定的 HEAD 请求
+                    document.getElementById("ppp").innerHTML = XHR.getResponseHeader("Last-Modified");
                 }
             }
-            document.getElementById(&quot;btn&quot;).onclick = function() {
-                loadXHR();
-            }
-        &lt;/script&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;
-    //books.xml
-        &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-    &lt;bookstore&gt;
-        &lt;book category=&quot;children&quot;&gt;
-            &lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;
-            &lt;author&gt;J K. Rowling&lt;/author&gt;
-            &lt;year&gt;2005&lt;/year&gt;
-            &lt;price&gt;29.99&lt;/price&gt;
-        &lt;/book&gt;
-        &lt;book category=&quot;cooking&quot;&gt;
-            &lt;title lang=&quot;en&quot;&gt;Everyday Italian&lt;/title&gt;
-            &lt;author&gt;Giada De Laurentiis&lt;/author&gt;
-            &lt;year&gt;2005&lt;/year&gt;
-            &lt;price&gt;30.00&lt;/price&gt;
-        &lt;/book&gt;
-        &lt;book category=&quot;web&quot; cover=&quot;paperback&quot;&gt;
-            &lt;title lang=&quot;en&quot;&gt;Learning XML&lt;/title&gt;
-            &lt;author&gt;Erik T. Ray&lt;/author&gt;
-            &lt;year&gt;2003&lt;/year&gt;
-            &lt;price&gt;39.95&lt;/price&gt;
-        &lt;/book&gt;
-        &lt;book category=&quot;web&quot;&gt;
-            &lt;title lang=&quot;en&quot;&gt;XQuery Kick Start&lt;/title&gt;
-            &lt;author&gt;James McGovern&lt;/author&gt;
-            &lt;author&gt;Per Bothner&lt;/author&gt;
-            &lt;author&gt;Kurt Cagle&lt;/author&gt;
-            &lt;author&gt;James Linn&lt;/author&gt;
-            &lt;author&gt;Vaidyanathan Nagarajan&lt;/author&gt;
-            &lt;year&gt;2003&lt;/year&gt;
-            &lt;price&gt;49.99&lt;/price&gt;
-        &lt;/book&gt;
-    &lt;/bookstore&gt;
+        }
+        document.getElementById("btn").onclick = function() {
+            loadXHR();
+        }
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
+//books.xml
+    <span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bookstore</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>book</span> <span class="token attr-name">category</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>children<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Harry Potter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>author</span><span class="token punctuation">></span></span>J K. Rowling<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>author</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>year</span><span class="token punctuation">></span></span>2005<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>year</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>price</span><span class="token punctuation">></span></span>29.99<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>price</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>book</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>book</span> <span class="token attr-name">category</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>cooking<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Everyday Italian<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>author</span><span class="token punctuation">></span></span>Giada De Laurentiis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>author</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>year</span><span class="token punctuation">></span></span>2005<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>year</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>price</span><span class="token punctuation">></span></span>30.00<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>price</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>book</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>book</span> <span class="token attr-name">category</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>web<span class="token punctuation">"</span></span> <span class="token attr-name">cover</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>paperback<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Learning XML<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>author</span><span class="token punctuation">></span></span>Erik T. Ray<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>author</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>year</span><span class="token punctuation">></span></span>2003<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>year</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>price</span><span class="token punctuation">></span></span>39.95<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>price</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>book</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>book</span> <span class="token attr-name">category</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>web<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>XQuery Kick Start<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>author</span><span class="token punctuation">></span></span>James McGovern<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>author</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>author</span><span class="token punctuation">></span></span>Per Bothner<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>author</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>author</span><span class="token punctuation">></span></span>Kurt Cagle<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>author</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>author</span><span class="token punctuation">></span></span>James Linn<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>author</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>author</span><span class="token punctuation">></span></span>Vaidyanathan Nagarajan<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>author</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>year</span><span class="token punctuation">></span></span>2003<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>year</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>price</span><span class="token punctuation">></span></span>49.99<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>price</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>book</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>bookstore</span><span class="token punctuation">></span></span>
 </code></pre>
+
     
   </div>
 

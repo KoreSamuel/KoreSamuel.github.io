@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="实习之前找工作，参加了各种面试笔试，在此过程中将遇到的笔试题整理记录下来，便于查阅和分享">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
+<meta property="og:updated_time" content="2018-06-20T05:20:30.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2015阿里web前端笔试题（部分）">
 <meta name="twitter:description" content="实习之前找工作，参加了各种面试笔试，在此过程中将遇到的笔试题整理记录下来，便于查阅和分享">
@@ -234,7 +234,7 @@
       <blockquote>
 <p>1.给定一个随机数组，数组可能包含数组（也就是说数组元素可能为数组）。要求用js实现一个函数，返回该数组中所有元素。例如，例如：数组[2,3,[4,6,[1,8]],12,10]，返回结果为：[2,3,4,6,1,8,12,10]</p>
 </blockquote>
-<pre class=" language-JavaScript"><code class="language-JavaScript">  function getArray(arr) {
+<pre class=" language-JavaScript"><code class="language-JavaScript">function getArray(arr) {
     var arrs = [];
     for(var i=0,l=arr.length;i < l;i++) {
         if(!Array.isArray(arr[i])) arrs.push(arr[i]);
@@ -247,116 +247,120 @@
 <blockquote>
 <p>2.用js实现随机选取10–100之间的不同的10个数字，存入一个数组，并降序排序</p>
 </blockquote>
-<pre><code>        var aArray = [];
-        var i = 0;
-        for (i = 0; i &lt; 10; i++) {
-          randomNub();
-        }
-        aArray.sort(function (a, b) {
-           return b - a
-        });
-        document.write(aArray)
-        function randomNub() {
-          var nowNub = parseInt(Math.random() * 100);
-          if (nowNub &lt; 10) {
-            randomNub();
-            return;
-          }
-          for (var j = 0; j &lt; aArray.length; j++) {
-            if (nowNub == aArray[j]) {
-              randomNub();
-              return;
-            }
-          }
-          aArray.push(nowNub);
-    }
-</code></pre><blockquote>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> aArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">randomNub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+aArray<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> b <span class="token operator">-</span> a
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>aArray<span class="token punctuation">)</span>
+<span class="token keyword">function</span> <span class="token function">randomNub</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> nowNub <span class="token operator">=</span> <span class="token function">parseInt</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>nowNub <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">randomNub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> aArray<span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>nowNub <span class="token operator">==</span> aArray<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">randomNub</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    aArray<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>nowNub<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
 <p>3.下面代码希望在点击每段内容的时候给它加个灰色背景，可是下面这段代码好像没有满足需求，请帮忙修改下。</p>
 </blockquote>
-<pre><code>    for (var i = 0; i &lt; document.getElementsByTagName(&#39;p&#39;).length; i++) {
-      var item = document.getElementsByTagName(&#39;p&#39;) [i];
-      (function (j) {
-        document.getElementsByTagName(&#39;p&#39;) [i].onclick = function () {
-          item.style.backgroundColor = &#39;#eee&#39;;
-        }
-      }(i))
-    }
-    //修改后
-    for (var i = 0; i &lt; document.getElementsByTagName(&#39;p&#39;).length; i++) {
-      var item = document.getElementsByTagName(&#39;p&#39;) [i];
-      (function (j) {
-        document.getElementsByTagName(&#39;p&#39;) [i].onclick = function () {
-          this.style.backgroundColor = &#39;#eee&#39;;
-        }
-      }(i))
-    }
-</code></pre><blockquote>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> item <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            item<span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">'#eee'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//修改后</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> item <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span> <span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">'#eee'</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
 <p>4.为字符串实现一个render方法，实现下面的变量替换功能</p>
 </blockquote>
-<pre><code>    var greeting = &#39;my name is ${name}, age ${age}&#39;;
-    var result = greeting.render({name: &#39;XiaoMing&#39;, age: 11});
-    console.log(result);  //my name is XiaoMing, age 11
-    String.prototype.render = function (Object) {
-      var _$this = this;
-      var keys = new Array();
-      for (var p in Object)
-      if (Object.hasOwnProperty(p))
-      keys.push(p);
-      for (i = 0; i &lt; keys.length; i++) {
-        (function (index) {
-          var s = &#39;${&#39; + keys[index] + &#39;}&#39;;
-          str = _$this.replace(s, Object[keys[index]]);
-          _$this = str;
-        }) (i);
-      }
-      return str
-    }
-    var greeting = &#39;my name is ${name}, age ${age}&#39;;
-    var result = greeting.render({
-      name: &#39;XiaoMing&#39;,
-      age: 11
-    });
-    console.log(result);//my name is XiaoMing, age 11
-   other:
-    String.prototype.render = function (Object) {
-      var _this = this;
-      for (var p in Object)
-      if (Object.hasOwnProperty(p))
-      {
-        var s = &#39;${&#39; + p + &#39;}&#39;;
-        str = _this.replace(s, Object[p]);
-        _this = str;
-      }
-      return str
-    }
-    var greeting = &#39;my name is ${name}, age ${age}&#39;;
-    var result = greeting.render({
-      name: &#39;XiaoMing&#39;,
-      age: 11
-    });
-    console.log(result); //my name is XiaoMing, age 11
-</code></pre><blockquote>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> greeting <span class="token operator">=</span> <span class="token string">'my name is ${name}, age ${age}'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> result <span class="token operator">=</span> greeting<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">'XiaoMing'</span><span class="token punctuation">,</span> age<span class="token punctuation">:</span> <span class="token number">11</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//my name is XiaoMing, age 11</span>
+String<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>render <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>Object<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> _$<span class="token keyword">this</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> keys <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> p <span class="token keyword">in</span> Object<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            keys<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> keys<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> s <span class="token operator">=</span> <span class="token string">'${'</span> <span class="token operator">+</span> keys<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">'}'</span><span class="token punctuation">;</span>
+            str <span class="token operator">=</span> _$<span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> Object<span class="token punctuation">[</span>keys<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            _$<span class="token keyword">this</span> <span class="token operator">=</span> str<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> str
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> greeting <span class="token operator">=</span> <span class="token string">'my name is ${name}, age ${age}'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> result <span class="token operator">=</span> greeting<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'XiaoMing'</span><span class="token punctuation">,</span>
+    age<span class="token punctuation">:</span> <span class="token number">11</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//my name is XiaoMing, age 11</span>
+<span class="token comment" spellcheck="true">// other:</span>
+String<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>render <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>Object<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> _this <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> p <span class="token keyword">in</span> Object<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> s <span class="token operator">=</span> <span class="token string">'${'</span> <span class="token operator">+</span> p <span class="token operator">+</span> <span class="token string">'}'</span><span class="token punctuation">;</span>
+            str <span class="token operator">=</span> _this<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span> Object<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            _this <span class="token operator">=</span> str<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> str
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> greeting <span class="token operator">=</span> <span class="token string">'my name is ${name}, age ${age}'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> result <span class="token operator">=</span> greeting<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'XiaoMing'</span><span class="token punctuation">,</span>
+    age<span class="token punctuation">:</span> <span class="token number">11</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//my name is XiaoMing, age 11</span>
+</code></pre>
+<blockquote>
 <p>5.对json格式中的某一字段进行排序</p>
 </blockquote>
-<pre><code>  eg：var stuJson = [{ name: &quot;daming&quot;, age: 21, weight: 66, sex:&quot;boy&quot; },
-                   { name: &quot;lisa&quot;, age: 19, weight: 45, sex:&quot;girl&quot; },
-                   { name: &quot;lili&quot;, age: 20, weight: 50, sex:&quot;boy&quot;}];
-     //eg:按age升序
-  stuJson.sort(function(a,b){
-                    return a.age - b.age;
-  });
-  console.log(stuJson);//[ { name: &#39;lisa&#39;, age: 19, weight: 45, sex: &#39;girl&#39; },
-                     //{ name: &#39;lili&#39;, age: 20, weight: 50, sex: &#39;boy&#39; },
-                     //{ name: &#39;daming&#39;, age: 21, weight: 66, sex: &#39;boy&#39; } ]
-</code></pre><blockquote>
+<pre class=" language-js"><code class="language-js">eg：<span class="token keyword">var</span> stuJson <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">"daming"</span><span class="token punctuation">,</span> age<span class="token punctuation">:</span> <span class="token number">21</span><span class="token punctuation">,</span> weight<span class="token punctuation">:</span> <span class="token number">66</span><span class="token punctuation">,</span> sex<span class="token punctuation">:</span><span class="token string">"boy"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">"lisa"</span><span class="token punctuation">,</span> age<span class="token punctuation">:</span> <span class="token number">19</span><span class="token punctuation">,</span> weight<span class="token punctuation">:</span> <span class="token number">45</span><span class="token punctuation">,</span> sex<span class="token punctuation">:</span><span class="token string">"girl"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                   <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">"lili"</span><span class="token punctuation">,</span> age<span class="token punctuation">:</span> <span class="token number">20</span><span class="token punctuation">,</span> weight<span class="token punctuation">:</span> <span class="token number">50</span><span class="token punctuation">,</span> sex<span class="token punctuation">:</span><span class="token string">"boy"</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+     <span class="token comment" spellcheck="true">//eg:按age升序</span>
+stuJson<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> a<span class="token punctuation">.</span>age <span class="token operator">-</span> b<span class="token punctuation">.</span>age<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>stuJson<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//[ { name: 'lisa', age: 19, weight: 45, sex: 'girl' },</span>
+                     <span class="token comment" spellcheck="true">//{ name: 'lili', age: 20, weight: 50, sex: 'boy' },</span>
+                     <span class="token comment" spellcheck="true">//{ name: 'daming', age: 21, weight: 66, sex: 'boy' } ]</span>
+</code></pre>
+<blockquote>
 <p>6.用一句语句对数组去最小或最大值</p>
 </blockquote>
-<pre><code>  eg:var arr = [32,42,12,42,21,23,56,75,3,33,53,23,36];
-     var aMin = Math.min.apply(null,arr);
-     console.log(min);//3
-     var aMax = Math.max.apply(null,arr);//75
-     console.log(aMax);
+<pre class=" language-js"><code class="language-js">eg<span class="token punctuation">:</span><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">32</span><span class="token punctuation">,</span><span class="token number">42</span><span class="token punctuation">,</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">42</span><span class="token punctuation">,</span><span class="token number">21</span><span class="token punctuation">,</span><span class="token number">23</span><span class="token punctuation">,</span><span class="token number">56</span><span class="token punctuation">,</span><span class="token number">75</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">33</span><span class="token punctuation">,</span><span class="token number">53</span><span class="token punctuation">,</span><span class="token number">23</span><span class="token punctuation">,</span><span class="token number">36</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> aMin <span class="token operator">=</span> Math<span class="token punctuation">.</span>min<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>min<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//3</span>
+<span class="token keyword">var</span> aMax <span class="token operator">=</span> Math<span class="token punctuation">.</span>max<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//75</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>aMax<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
+
     
   </div>
 

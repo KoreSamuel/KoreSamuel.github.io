@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="问题在使用gulp过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
+<meta property="og:updated_time" content="2018-06-20T05:20:30.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gulp Connect发送post请求返回405">
 <meta name="twitter:description" content="问题在使用gulp过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:">
@@ -237,32 +237,35 @@
   <div class="article-content">
     
       <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在使用<code>gulp</code>过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:<br><a id="more"></a></p>
-<pre><code>405 Method Not Allowed
-</code></pre><h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>通过自定义一个中间件来完成<code>POST</code>、<code>PUT</code>、<code>DELETE</code> 请求。<br>首先，引入<code>fs</code>、<code>path</code>和<code>connect</code></p>
-<pre><code>    var fs = require(&#39;fs&#39;),
-    path = require(&#39;path&#39;),
-    connect = require(&#39;gulp-connect&#39;);
-</code></pre><p>接着，在配置中增加自己的中间件。</p>
-<pre><code>gulp.task(&#39;server&#39;,function(){
-    connect.server({
-        middleware: function(connect, options) {
-        return [
-            function(req, res, next) {
-                var filepath = path.join(options.root, req.url);
-                if (&#39;POSTPUTDELETE&#39;.indexOf(req.method.toUpperCase()) &gt; -1
-                    &amp;&amp; fs.existsSync(filepath) &amp;&amp; fs.statSync(filepath).isFile()) {
-                    return res.end(fs.readFileSync(filepath));
-                }
-                return next();
-               }
-            ];
-        },
-        hostname: &#39;127.0.0.1&#39;,
-        port: 8090,
-        livereload: true
-    });
-});
-</code></pre><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a href="http://cweili.gitcafe.io/gulp-connect-post-put-delete/" target="_blank" rel="noopener">让 Gulp Connect 支持 POST、PUT、DELETE 请求</a></p>
+<pre class=" language-bash"><code class="language-bash">405 Method Not Allowed
+</code></pre>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>通过自定义一个中间件来完成<code>POST</code>、<code>PUT</code>、<code>DELETE</code> 请求。<br>首先，引入<code>fs</code>、<code>path</code>和<code>connect</code></p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+connect <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-connect'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>接着，在配置中增加自己的中间件。</p>
+<pre class=" language-js"><code class="language-js">gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'server'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    connect<span class="token punctuation">.</span><span class="token function">server</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        middleware<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>connect<span class="token punctuation">,</span> options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span>
+            <span class="token keyword">function</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">var</span> filepath <span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>options<span class="token punctuation">.</span>root<span class="token punctuation">,</span> req<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'POSTPUTDELETE'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>req<span class="token punctuation">.</span>method<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token operator">-</span><span class="token number">1</span>
+                    <span class="token operator">&amp;&amp;</span> fs<span class="token punctuation">.</span><span class="token function">existsSync</span><span class="token punctuation">(</span>filepath<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> fs<span class="token punctuation">.</span><span class="token function">statSync</span><span class="token punctuation">(</span>filepath<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> res<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span>fs<span class="token punctuation">.</span><span class="token function">readFileSync</span><span class="token punctuation">(</span>filepath<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">return</span> <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+               <span class="token punctuation">}</span>
+            <span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        hostname<span class="token punctuation">:</span> <span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span>
+        port<span class="token punctuation">:</span> <span class="token number">8090</span><span class="token punctuation">,</span>
+        livereload<span class="token punctuation">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a href="http://cweili.gitcafe.io/gulp-connect-post-put-delete/" target="_blank" rel="noopener">让 Gulp Connect 支持 POST、PUT、DELETE 请求</a></p>
 
     
   </div>

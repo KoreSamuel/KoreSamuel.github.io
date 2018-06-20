@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="javascript加载和运行脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-20T03:47:28.841Z">
+<meta property="og:updated_time" content="2018-06-20T05:20:30.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高性能JavaScript">
 <meta name="twitter:description" content="javascript加载和运行脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)">
@@ -242,60 +242,62 @@
 <h3 id="无阻塞的脚本"><a href="#无阻塞的脚本" class="headerlink" title="无阻塞的脚本"></a>无阻塞的脚本</h3><ul>
 <li>延迟的脚本：带有defer属性的<code>&lt;script&gt;</code>标签，需要浏览器支持</li>
 <li>动态脚本元素:在跨浏览器兼容性和易用的优势，是最通用的无阻塞加载解决方案</li>
-<li><p>XMLHttpRequest注入：先创建一个XHR对象，然后用她下载javascript文件，最后通过创建动态<code>&lt;script&gt;</code>元素将代码注入页面中</p>
-<pre><code>   var xhr = new XMLHttpRequest();
-   xhr.open(&quot;get&quot;,&quot;file.js&quot;,true);
-   xhr.onreadystatechange = funtion(){
-        if(xhr.readyState == 4){
-             if(xhr.status&gt;=200&amp;&amp;xhr.status&lt;300||xhr.status==304){
-                  var script = document.creatElement(&quot;script&quot;);
-                  script.type=&quot;text/javascript&quot;;
-                  script.text=xhr.responseText;
-                  document.body.appendChild(script);
-                  }
-             }    
-   };
-   xhr.send(null);
-   //由于代码是在&lt;script&gt;标签之前返回的，因此它下载后不会自动执行。
-   //同样的代码在所有主流浏览器中无一例外都能正常工作
-   //局限性在于：javascript文件必须与请求的页面处于相同的域，即javascript不能从CDN下载
-</code></pre></li>
+<li>XMLHttpRequest注入：先创建一个XHR对象，然后用她下载javascript文件，最后通过创建动态<code>&lt;script&gt;</code>元素将代码注入页面中</li>
 </ul>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"get"</span><span class="token punctuation">,</span><span class="token string">"file.js"</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span>onreadystatechange <span class="token operator">=</span> <span class="token function">funtion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>readyState <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>status<span class="token operator">>=</span><span class="token number">200</span><span class="token operator">&amp;&amp;</span>xhr<span class="token punctuation">.</span>status<span class="token operator">&lt;</span><span class="token number">300</span><span class="token operator">||</span>xhr<span class="token punctuation">.</span>status<span class="token operator">==</span><span class="token number">304</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            <span class="token keyword">var</span> script <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">creatElement</span><span class="token punctuation">(</span><span class="token string">"script"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            script<span class="token punctuation">.</span>type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token punctuation">;</span>
+            script<span class="token punctuation">.</span>text<span class="token operator">=</span>xhr<span class="token punctuation">.</span>responseText<span class="token punctuation">;</span>
+            document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>script<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//由于代码是在&lt;script>标签之前返回的，因此它下载后不会自动执行。</span>
+<span class="token comment" spellcheck="true">//同样的代码在所有主流浏览器中无一例外都能正常工作</span>
+<span class="token comment" spellcheck="true">//局限性在于：javascript文件必须与请求的页面处于相同的域，即javascript不能从CDN下载</span>
+</code></pre>
 <h3 id="无阻塞脚本加载工具"><a href="#无阻塞脚本加载工具" class="headerlink" title="无阻塞脚本加载工具"></a>无阻塞脚本加载工具</h3><p>lazyLoad类库、LABjs等等</p>
 <p>##管理作用域</p>
 <h3 id="作用域链和标识符解析"><a href="#作用域链和标识符解析" class="headerlink" title="作用域链和标识符解析"></a>作用域链和标识符解析</h3><p>在函数执行的过程中，没遇到一个变量，都会经历一次标识符解析过程以决定从哪里获取或存储数据。该过程搜索运行期上下文的作用域链，查找同名的标识符。搜索过程从作用域链头部开始也就是当前运行函数的活动对象，如果找到了，就使用这个标示符对应的变量；如果没有找到，继续搜索作用域链中的下一个对象，直到标识符被找到，或者没有可用于搜索的对象为止，这种情况下标识符被认为是未定义的。正是这个搜索过程影响了性能。</p>
 <h3 id="标识符解析的性能"><a href="#标识符解析的性能" class="headerlink" title="标识符解析的性能"></a>标识符解析的性能</h3><p>一个标识符所在的位置越深，他的读写速度就越慢，因此读写局部变量总是最快的，而读写全局变量通常是最慢的。全局变量总是存在于运行期上下文作用域链的最末端，因此是最远的。在没有优化javascript引擎的浏览器中，尽量使用局部变量，如果某个跨作用域的值在函数中被引用了多次，就把他存储到局部变量里。</p>
-<pre><code>function initUI() {
-  var doc = document,
-      bd = doc.body,
-      links = doc.getElementByTagName(&#39;a&#39;);
-  var i = 0,
-      len = links.length;
-  while (i &lt; len) {
-      update(links[i++]);
-  }
-  doc.getElementById(&#39;btn&#39;).onclick = function() {
-      start();
-  };
-     bd.className = &#39;active&#39;
-}
-    //首先将document对象引用存储到局部变量doc中，全局变量的访问减少，当有很多全局变量
-    //被反复访问时，这种方法对性能的改善是很明显的。
-</code></pre><h3 id="闭包，作用域和内存"><a href="#闭包，作用域和内存" class="headerlink" title="闭包，作用域和内存"></a>闭包，作用域和内存</h3><p>将常用的跨作用域变量存储在局部变量中，然后访问局部变量嵌套的对象成员会明显影响性能，尽量少用<br>通常来说，把常用的对象成员、数组元素、跨域变量保存在局部变量中来改善javascript性能，因为局部变量访问速度更快。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">initUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> doc <span class="token operator">=</span> document<span class="token punctuation">,</span>
+        bd <span class="token operator">=</span> doc<span class="token punctuation">.</span>body<span class="token punctuation">,</span>
+        links <span class="token operator">=</span> doc<span class="token punctuation">.</span><span class="token function">getElementByTagName</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+        len <span class="token operator">=</span> links<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&lt;</span> len<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">update</span><span class="token punctuation">(</span>links<span class="token punctuation">[</span>i<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    doc<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'btn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    bd<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'active'</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//首先将document对象引用存储到局部变量doc中，全局变量的访问减少，当有很多全局变量</span>
+<span class="token comment" spellcheck="true">//被反复访问时，这种方法对性能的改善是很明显的。</span>
+</code></pre>
+<h3 id="闭包，作用域和内存"><a href="#闭包，作用域和内存" class="headerlink" title="闭包，作用域和内存"></a>闭包，作用域和内存</h3><p>将常用的跨作用域变量存储在局部变量中，然后访问局部变量嵌套的对象成员会明显影响性能，尽量少用<br>通常来说，把常用的对象成员、数组元素、跨域变量保存在局部变量中来改善javascript性能，因为局部变量访问速度更快。</p>
 <p>DOM</p>
-<pre><code>    function initHtml1(){
-         for(var i = 0;i&lt;15000;i++){
-         document.getElementById(&#39;here&#39;).innerHTML+=&#39;a&#39;;
-         }
-    }
-    function initHtml2(){
-         var html = &quot;&quot;;
-         for(var i=0;i&lt;15000;i++){
-         html+=&#39;a&#39;;
-         }
-         document.getElementById(&#39;here&#39;).innerHTML = html;
-    }
-</code></pre><p>initHtml1()比initHtml2()速度慢很多，initHtml2()使用局部变量存储更新后的内容，减少了DOM访问，因此，减少DOM访问次数，讲运算尽量留在ECMAScript这端处理。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">initHtml1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">15000</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'here'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">+</span><span class="token operator">=</span><span class="token string">'a'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">initHtml2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">var</span> html <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">15000</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        html<span class="token operator">+</span><span class="token operator">=</span><span class="token string">'a'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'here'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> html<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>initHtml1()比initHtml2()速度慢很多，initHtml2()使用局部变量存储更新后的内容，减少了DOM访问，因此，减少DOM访问次数，讲运算尽量留在ECMAScript这端处理。</p>
 
     
   </div>

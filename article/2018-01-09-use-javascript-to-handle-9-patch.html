@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="前言在前端开发中，常会将图片作为某个元素的背景图，但是背景图的大小和比例和元素有偏差，所以一般要使元素有全背景的话，只能将图片拉伸。这里不考虑background-repeat。最好的办法还是将图片修改为比例和元素相同以等比缩放。使用微信或者QQ的人应该会发现聊天气泡，气泡会随着内容多少的改变而去适应它，但是并没有使气泡图片有拉伸的效果，这里就用到了点九图 点九图关于点九图这里不做过多介绍，简单来">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-20T03:47:28.837Z">
+<meta property="og:updated_time" content="2018-06-20T05:20:30.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用JavaScript处理点九图">
 <meta name="twitter:description" content="前言在前端开发中，常会将图片作为某个元素的背景图，但是背景图的大小和比例和元素有偏差，所以一般要使元素有全背景的话，只能将图片拉伸。这里不考虑background-repeat。最好的办法还是将图片修改为比例和元素相同以等比缩放。使用微信或者QQ的人应该会发现聊天气泡，气泡会随着内容多少的改变而去适应它，但是并没有使气泡图片有拉伸的效果，这里就用到了点九图 点九图关于点九图这里不做过多介绍，简单来">
@@ -239,62 +239,66 @@
       <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在前端开发中，常会将图片作为某个元素的背景图，但是背景图的大小和比例和元素有偏差，所以一般要使元素有全背景的话，只能将图片拉伸。这里不考虑<code>background-repeat</code>。最好的办法还是将图片修改为比例和元素相同以等比缩放。<br>使用微信或者QQ的人应该会发现聊天气泡，气泡会随着内容多少的改变而去适应它，但是并没有使气泡图片有拉伸的效果，这里就用到了<a href="https://developer.android.com/guide/topics/graphics/2d-graphics.html#nine-patch" target="_blank" rel="noopener">点九图</a></p>
 <h2 id="点九图"><a href="#点九图" class="headerlink" title="点九图"></a>点九图</h2><p>关于点九图这里不做过多介绍，简单来说，它是<code>andriod</code>平台的应用软件开发里的一种特殊的图片形式，扩展名为<code>.9.png</code>。它有两个重要的特点是：四周必须要有四条一像素纯黑的线或点；左上两条线控制拉伸区，右下两条线控制内容区。<br>这里我们需要将上传的点九图片拉伸成指定的或者自适应的比例，在没有接触点九图之前根本没有任何想法，于是上<code>github</code>上找到一个在web端处理点九图的<a href="https://github.com/chrislondon/9-Patch-Image-for-Websites" target="_blank" rel="noopener">库</a>，将代码拉取到本地即可看到<code>demo</code>。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>阅读源码发现主要使用<code>border-image</code>和用<code>canvas</code>绘制两种方式实现。首先先取出点九图左边和上边<code>1px</code>，这里以水平方向为例：</p>
-<pre><code>let tempCtx, tempCanvas;
-tempCanvas = document.createElement(&#39;canvas&#39;);
-tempCtx = tempCanvas.getContext(&#39;2d&#39;);
-tempCtx.drawImage(this.bgImage, 0, 0);
-let data = tempCtx.getImageData(0, 0, this.bgImage.width, 1).data;
-</code></pre><p>上面的<code>data</code>存放的为只读的<code>ImageData.data</code>属性，返回<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray" target="_blank" rel="noopener"><code>Uint8ClampedArray</code></a>,描述一个一维数组，包含以 <code>RGBA</code> 顺序的数据，数据使用 <code>0</code> 至 <code>255</code>（包含）的整数表示。然后遍历这个一维数组，每<code>4</code>位一个<code>step</code>，找到可拉伸的区间数量和区域。</p>
-<pre><code>NinePatch.prototype.getPieces = function(data, staticColor, repeatColor) {
-    var tempDS, tempPosition, tempWidth, tempColor, tempType;
-    var tempArray = new Array();
+<pre class=" language-js"><code class="language-js"><span class="token keyword">let</span> tempCtx<span class="token punctuation">,</span> tempCanvas<span class="token punctuation">;</span>
+tempCanvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tempCtx <span class="token operator">=</span> tempCanvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+tempCtx<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>bgImage<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> data <span class="token operator">=</span> tempCtx<span class="token punctuation">.</span><span class="token function">getImageData</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>bgImage<span class="token punctuation">.</span>width<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+</code></pre>
+<p>上面的<code>data</code>存放的为只读的<code>ImageData.data</code>属性，返回<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray" target="_blank" rel="noopener"><code>Uint8ClampedArray</code></a>,描述一个一维数组，包含以 <code>RGBA</code> 顺序的数据，数据使用 <code>0</code> 至 <code>255</code>（包含）的整数表示。然后遍历这个一维数组，每<code>4</code>位一个<code>step</code>，找到可拉伸的区间数量和区域。</p>
+<pre class=" language-js"><code class="language-js">NinePatch<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>getPieces <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> staticColor<span class="token punctuation">,</span> repeatColor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> tempDS<span class="token punctuation">,</span> tempPosition<span class="token punctuation">,</span> tempWidth<span class="token punctuation">,</span> tempColor<span class="token punctuation">,</span> tempType<span class="token punctuation">;</span>
+    <span class="token keyword">var</span> tempArray <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    tempColor = data[4] + &#39;,&#39; + data[5] + &#39;,&#39; + data[6] + &#39;,&#39; + data[7];
-    tempDS = (tempColor == staticColor ? &#39;s&#39; : (tempColor == repeatColor ? &#39;r&#39; : &#39;d&#39;));
-    tempPosition = 1;
+    tempColor <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">','</span> <span class="token operator">+</span> data<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">','</span> <span class="token operator">+</span> data<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">','</span> <span class="token operator">+</span> data<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    tempDS <span class="token operator">=</span> <span class="token punctuation">(</span>tempColor <span class="token operator">==</span> staticColor <span class="token operator">?</span> <span class="token string">'s'</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>tempColor <span class="token operator">==</span> repeatColor <span class="token operator">?</span> <span class="token string">'r'</span> <span class="token punctuation">:</span> <span class="token string">'d'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tempPosition <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
 
-    for (var i = 4, n = data.length - 4; i &lt; n; i += 4) {
-        tempColor = data[i] + &#39;,&#39; + data[i + 1] + &#39;,&#39; + data[i + 2] + &#39;,&#39; + data[i + 3];
-        tempType = (tempColor == staticColor ? &#39;s&#39; : (tempColor == repeatColor ? &#39;r&#39; : &#39;d&#39;));
-        if (tempDS != tempType) {
-            // box changed colors
-            tempWidth = (i / 4) - tempPosition;
-            tempArray.push(new Array(tempDS, tempPosition, tempWidth));
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">,</span> n <span class="token operator">=</span> data<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">4</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        tempColor <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">','</span> <span class="token operator">+</span> data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">','</span> <span class="token operator">+</span> data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">','</span> <span class="token operator">+</span> data<span class="token punctuation">[</span>i <span class="token operator">+</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        tempType <span class="token operator">=</span> <span class="token punctuation">(</span>tempColor <span class="token operator">==</span> staticColor <span class="token operator">?</span> <span class="token string">'s'</span> <span class="token punctuation">:</span> <span class="token punctuation">(</span>tempColor <span class="token operator">==</span> repeatColor <span class="token operator">?</span> <span class="token string">'r'</span> <span class="token punctuation">:</span> <span class="token string">'d'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>tempDS <span class="token operator">!=</span> tempType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">// box changed colors</span>
+            tempWidth <span class="token operator">=</span> <span class="token punctuation">(</span>i <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">-</span> tempPosition<span class="token punctuation">;</span>
+            tempArray<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span>tempDS<span class="token punctuation">,</span> tempPosition<span class="token punctuation">,</span> tempWidth<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-            tempDS = tempType;
-            tempPosition = i / 4;
-            tempWidth = 1
-        }
-    }
+            tempDS <span class="token operator">=</span> tempType<span class="token punctuation">;</span>
+            tempPosition <span class="token operator">=</span> i <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">;</span>
+            tempWidth <span class="token operator">=</span> <span class="token number">1</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    // push end
-    tempWidth = (i / 4) - tempPosition;
-    tempArray.push(new Array(tempDS, tempPosition, tempWidth));
+    <span class="token comment" spellcheck="true">// push end</span>
+    tempWidth <span class="token operator">=</span> <span class="token punctuation">(</span>i <span class="token operator">/</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">-</span> tempPosition<span class="token punctuation">;</span>
+    tempArray<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span>tempDS<span class="token punctuation">,</span> tempPosition<span class="token punctuation">,</span> tempWidth<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    return tempArray;
-}
-</code></pre><p>上面的<code>getPieces</code>方法存放了可用于判断拉伸区间数量和可拉伸范围的数组。在将其传入绘制函数中。</p>
-<pre><code>for (var i = 0, n = this.horizontalPieces.length; i &lt; n; i++) {
-    if (this.horizontalPieces[i][0] == &#39;s&#39;) {
-        tempStaticWidth += this.horizontalPieces[i][2];
-    } else {
-        tempDynamicCount++; // 拉伸区间数量
-    }
-}
+    <span class="token keyword">return</span> tempArray<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>上面的<code>getPieces</code>方法存放了可用于判断拉伸区间数量和可拉伸范围的数组。在将其传入绘制函数中。</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> n <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>horizontalPieces<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>horizontalPieces<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'s'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        tempStaticWidth <span class="token operator">+</span><span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>horizontalPieces<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        tempDynamicCount<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 拉伸区间数量</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-fillWidth = (dWidth - tempStaticWidth) / tempDynamicCount;  // 可拉伸区间
-</code></pre><p>再将取得的水平和垂直的<code>1px</code>获取到的数组进行嵌套循环，去填充拉伸图片，这里就不贴代码了，可以查阅源码理解。</p>
+fillWidth <span class="token operator">=</span> <span class="token punctuation">(</span>dWidth <span class="token operator">-</span> tempStaticWidth<span class="token punctuation">)</span> <span class="token operator">/</span> tempDynamicCount<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 可拉伸区间</span>
+</code></pre>
+<p>再将取得的水平和垂直的<code>1px</code>获取到的数组进行嵌套循环，去填充拉伸图片，这里就不贴代码了，可以查阅源码理解。</p>
 <h2 id="新问题"><a href="#新问题" class="headerlink" title="新问题"></a>新问题</h2><p>找到的这种方式只能将图片进行放大，如果点九图比需要预览的图大，那就不适用了，还有个新问题是，点九图的宽或高跟预览图相比，有个的值大，有一个的值小，如：W点九 &gt; W预览，H点九 &lt; H预览。这种情景也不适用，所以考虑处理点九图。<br>这里只说最终的解决办法，当点九图的宽或高其中一个大于预览图的对应值时，将对应边缩小到预览图的值，再将另一边等比缩小，产生新的点九图片，这样新的点九图肯定比预览图小，可以正常拉伸了。</p>
-<pre><code>if (this.div.offsetWidth &lt; this.bgImage.width &amp;&amp; this.div.offsetHeight &gt; this.bgImage.height) {
-    tmpCanvas.width = this.div.offsetWidth;
-    tmpCanvas.height = Math.floor(this.bgImage.height * this.div.offsetWidth / this.bgImage.width);
-    tmpCtx.drawImage(this.bgImage, 0, 0, this.div.offsetWidth, Math.floor(this.bgImage.height * this.div.offsetWidth / this.bgImage.width));
-    let tmpImage = new Image();
-    tmpImage.src = tmpCanvas.toDataURL(&quot;image/png&quot;);
-    this.bakImage = this.bgImage;
-    this.bgImage = tmpImage;
-}
-</code></pre><h2 id="遗留的问题"><a href="#遗留的问题" class="headerlink" title="遗留的问题"></a>遗留的问题</h2><p>按照上面的缩放方式，不论是宽还是高缩小，都会影响原点九图左边或者上面的<code>1px</code>的边界，导致在 <code>getPieces</code>方法中误取可拉伸区间值，这种情况一般发生在边界线离点九图非透明色边界距离较近时发生，暂时没有想到解决方案。<br>想到其实这也是种模拟实现的方式，在实际的产品中不可能多用。不过这个过程收获也是挺大。<br>有好的解决方案欢迎轻敲~~</p>
+<pre class=" language-js"><code class="language-js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>div<span class="token punctuation">.</span>offsetWidth <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>bgImage<span class="token punctuation">.</span>width <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>div<span class="token punctuation">.</span>offsetHeight <span class="token operator">></span> <span class="token keyword">this</span><span class="token punctuation">.</span>bgImage<span class="token punctuation">.</span>height<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    tmpCanvas<span class="token punctuation">.</span>width <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>div<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
+    tmpCanvas<span class="token punctuation">.</span>height <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>bgImage<span class="token punctuation">.</span>height <span class="token operator">*</span> <span class="token keyword">this</span><span class="token punctuation">.</span>div<span class="token punctuation">.</span>offsetWidth <span class="token operator">/</span> <span class="token keyword">this</span><span class="token punctuation">.</span>bgImage<span class="token punctuation">.</span>width<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmpCtx<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>bgImage<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>div<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>bgImage<span class="token punctuation">.</span>height <span class="token operator">*</span> <span class="token keyword">this</span><span class="token punctuation">.</span>div<span class="token punctuation">.</span>offsetWidth <span class="token operator">/</span> <span class="token keyword">this</span><span class="token punctuation">.</span>bgImage<span class="token punctuation">.</span>width<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> tmpImage <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    tmpImage<span class="token punctuation">.</span>src <span class="token operator">=</span> tmpCanvas<span class="token punctuation">.</span><span class="token function">toDataURL</span><span class="token punctuation">(</span><span class="token string">"image/png"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>bakImage <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>bgImage<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>bgImage <span class="token operator">=</span> tmpImage<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="遗留的问题"><a href="#遗留的问题" class="headerlink" title="遗留的问题"></a>遗留的问题</h2><p>按照上面的缩放方式，不论是宽还是高缩小，都会影响原点九图左边或者上面的<code>1px</code>的边界，导致在 <code>getPieces</code>方法中误取可拉伸区间值，这种情况一般发生在边界线离点九图非透明色边界距离较近时发生，暂时没有想到解决方案。<br>想到其实这也是种模拟实现的方式，在实际的产品中不可能多用。不过这个过程收获也是挺大。<br>有好的解决方案欢迎轻敲~~</p>
 
     
   </div>
