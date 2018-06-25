@@ -15,17 +15,17 @@
     <meta name="keywords" content="web,frontend,javascript,html,css,reactnative" />
   
 
-  <meta name="description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数    package main  import (     &quot;fmt&quot; )  func Sqrt(x float64) float64 {     z := x / 2     cnt := 10     for cnt &amp;gt; 0 {         z -= (z * z - x)">
+  <meta name="description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数实现一个平方根函数：用牛顿法实现平方根函数  package main  import (     &quot;fmt&quot; )  func Sqrt(x float64) float64 {     z := x / 2     cnt := 10     for cnt &amp;gt; 0 {         z -= (z * z - x) / (">
 <meta property="og:type" content="article">
 <meta property="og:title" content="go-practice-follow-offical-tour">
 <meta property="og:url" content="http://dearxiaojie.top/article/2018-06-15-go-practice-follow-offical-tour.html">
 <meta property="og:site_name" content="Sincerly">
-<meta property="og:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数    package main  import (     &quot;fmt&quot; )  func Sqrt(x float64) float64 {     z := x / 2     cnt := 10     for cnt &amp;gt; 0 {         z -= (z * z - x)">
+<meta property="og:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数实现一个平方根函数：用牛顿法实现平方根函数  package main  import (     &quot;fmt&quot; )  func Sqrt(x float64) float64 {     z := x / 2     cnt := 10     for cnt &amp;gt; 0 {         z -= (z * z - x) / (">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-20T09:29:06.623Z">
+<meta property="og:updated_time" content="2018-06-25T02:24:28.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="go-practice-follow-offical-tour">
-<meta name="twitter:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数 实现一个平方根函数：用牛顿法实现平方根函数    package main  import (     &quot;fmt&quot; )  func Sqrt(x float64) float64 {     z := x / 2     cnt := 10     for cnt &amp;gt; 0 {         z -= (z * z - x)">
+<meta name="twitter:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数实现一个平方根函数：用牛顿法实现平方根函数  package main  import (     &quot;fmt&quot; )  func Sqrt(x float64) float64 {     z := x / 2     cnt := 10     for cnt &amp;gt; 0 {         z -= (z * z - x) / (">
 
   
 
@@ -227,10 +227,7 @@
     
       <p>最近在学习go相关的东西，以下为<a href="https://tour.go-zh.org/welcome/1" target="_blank" rel="noopener">Go官方指南</a>中的练习记录</p>
 <ol>
-<li>循环与函数<blockquote>
-<p>实现一个平方根函数：用<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">牛顿法</a>实现平方根函数</p>
-</blockquote>
-</li>
+<li>循环与函数<br>实现一个平方根函数：用<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="noopener">牛顿法</a>实现平方根函数</li>
 </ol>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
 
@@ -253,10 +250,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <ol>
-<li>切片<blockquote>
-<p>实现 Pic。它应当返回一个长度为 dy 的切片，其中每个元素是一个长度为 dx，元素类型为 uint8 的切片。<br>当你运行此程序时，它会将每个整数解释为灰度值（好吧，其实是蓝度值）并显示它所对应的图像</p>
-</blockquote>
-</li>
+<li>切片<br>实现 Pic。它应当返回一个长度为 dy 的切片，其中每个元素是一个长度为 dx，元素类型为 uint8 的切片。<br>当你运行此程序时，它会将每个整数解释为灰度值（好吧，其实是蓝度值）并显示它所对应的图像</li>
 </ol>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
 
@@ -279,10 +273,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <ol>
-<li>映射<blockquote>
-<p>实现 WordCount。它应当返回一个映射，其中包含字符串 s 中每个“单词”的个数。函数 wc.Test 会对此函数执行一系列测试用例，并输出成功还是失败</p>
-</blockquote>
-</li>
+<li>映射<br>实现 WordCount。它应当返回一个映射，其中包含字符串 s 中每个“单词”的个数。函数 wc.Test 会对此函数执行一系列测试用例，并输出成功还是失败</li>
 </ol>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
 
@@ -324,10 +315,7 @@ PASS
 */</span>
 </code></pre>
 <ol>
-<li>斐波纳契闭包<blockquote>
-<p>实现一个 fibonacci 函数，它返回一个函数（闭包），该闭包返回一个<a href="https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97" target="_blank" rel="noopener">斐波纳契数列</a> <code>(0, 1, 1, 2, 3, 5, ...)</code>。</p>
-</blockquote>
-</li>
+<li>斐波纳契闭包<br>实现一个 fibonacci 函数，它返回一个函数（闭包），该闭包返回一个<a href="https://zh.wikipedia.org/wiki/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97" target="_blank" rel="noopener">斐波纳契数列</a> <code>(0, 1, 1, 2, 3, 5, ...)</code>。</li>
 </ol>
 <pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
 
@@ -359,13 +347,24 @@ PASS
 <span class="token punctuation">}</span>
 <span class="token comment" spellcheck="true">// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34</span>
 </code></pre>
-<ol>
-<li>note(方法与指针)<blockquote>
-<p>带指针参数的函数必须接受一个指针,而以指针为接收者的方法被调用时，接收者既能为值又能为指针。<br>由于指针参数的函数方法有一个指针接收者，为方便起见，Go 会将语句 v.Scale(5) 解释为 (&amp;v).Scale(5)；<br>接受一个值作为参数的函数必须接受一个指定类型的值，而以值为接收者的方法被调用时，接收者既能为值又能为指针，方法调用 p.Abs() 会被解释为 (*p).Abs()<br>使用指针接收者的原因有二：<br>首先，方法能够修改其接收者指向的值。<br>其次，这样可以避免在每次调用方法时复制该值。若值的类型为大型结构体时，这样做会更加高效。</p>
-</blockquote>
-</li>
-</ol>
 <!-- next start https://tour.go-zh.org/methods/9 -->
+<ol>
+<li>Stringer<br>通过让 IPAddr 类型实现 fmt.Stringer 来打印点号分隔的地址。<br>例如，IPAddr{1, 2, 3, 4} 应当打印为 “1.2.3.4”。<br>```go<br>package main</li>
+</ol>
+<p>import “fmt”</p>
+<p>type IPAddr [4]byte</p>
+<p>func (ip IPAddr) String() string {<br>    var result string<br>    for i, v := range ip {<br>        result += fmt.Sprintf(“%v”, v)<br>        if i &lt; len(ip) - 1 {<br>            result += “.”<br>        }<br>    }<br>    return result<br>}</p>
+<p>func main() {<br>    hosts := map[string]IPAddr{<br>        “loopback”:  {127, 0, 0, 1},<br>        “googleDNS”: {8, 8, 8, 8},<br>    }<br>    for name, ip := range hosts {<br>        fmt.Printf(“%v: %v\n”, name, ip)<br>    }<br>}<br>// loopback: 127.0.0.1<br>// googleDNS: 8.8.8.8<br>```<br><em>note(方法与指针)</em></p>
+<ul>
+<li>带指针参数的函数必须接受一个指针,而以指针为接收者的方法被调用时，接收者既能为值又能为指针。</li>
+<li>由于指针参数的函数方法有一个指针接收者，为方便起见，Go 会将语句 v.Scale(5) 解释为 (&amp;v).Scale(5)；</li>
+<li>接受一个值作为参数的函数必须接受一个指定类型的值，而以值为接收者的方法被调用时，接收者既能为值又能为指针，方法调用 p.Abs() 会被解释为 (*p).Abs()</li>
+<li>使用指针接收者的原因有二：<ul>
+<li>首先，方法能够修改其接收者指向的值。</li>
+<li>其次，这样可以避免在每次调用方法时复制该值。若值的类型为大型结构体时，这样做会更加高效。</li>
+</ul>
+</li>
+</ul>
 
     
   </div>
