@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数实现一个平方根函数：用牛顿法实现平方根函数  package main  import (     &quot;fmt&quot; )  func Sqrt(x float64) float64 {     z := x / 2     cnt := 10     for cnt &amp;gt; 0 {         z -= (z * z - x) / (">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-25T02:24:28.670Z">
+<meta property="og:updated_time" content="2018-07-03T12:04:00.095Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="go-practice-follow-offical-tour">
 <meta name="twitter:description" content="最近在学习go相关的东西，以下为Go官方指南中的练习记录  循环与函数实现一个平方根函数：用牛顿法实现平方根函数  package main  import (     &quot;fmt&quot; )  func Sqrt(x float64) float64 {     z := x / 2     cnt := 10     for cnt &amp;gt; 0 {         z -= (z * z - x) / (">
@@ -349,12 +349,38 @@ PASS
 </code></pre>
 <!-- next start https://tour.go-zh.org/methods/9 -->
 <ol>
-<li>Stringer<br>通过让 IPAddr 类型实现 fmt.Stringer 来打印点号分隔的地址。<br>例如，IPAddr{1, 2, 3, 4} 应当打印为 “1.2.3.4”。<br>```go<br>package main</li>
+<li>Stringer<br>通过让 IPAddr 类型实现 fmt.Stringer 来打印点号分隔的地址。<br>例如，IPAddr{1, 2, 3, 4} 应当打印为 “1.2.3.4”。</li>
 </ol>
-<p>import “fmt”</p>
-<p>type IPAddr [4]byte</p>
-<p>func (ip IPAddr) String() string {<br>    var result string<br>    for i, v := range ip {<br>        result += fmt.Sprintf(“%v”, v)<br>        if i &lt; len(ip) - 1 {<br>            result += “.”<br>        }<br>    }<br>    return result<br>}</p>
-<p>func main() {<br>    hosts := map[string]IPAddr{<br>        “loopback”:  {127, 0, 0, 1},<br>        “googleDNS”: {8, 8, 8, 8},<br>    }<br>    for name, ip := range hosts {<br>        fmt.Printf(“%v: %v\n”, name, ip)<br>    }<br>}<br>// loopback: 127.0.0.1<br>// googleDNS: 8.8.8.8<br>```<br><em>note(方法与指针)</em></p>
+<pre class=" language-go"><code class="language-go"><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">type</span> IPAddr <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token builtin">byte</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>ip IPAddr<span class="token punctuation">)</span> <span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">string</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> result <span class="token builtin">string</span>
+    <span class="token keyword">for</span> i<span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> ip <span class="token punctuation">{</span>
+        result <span class="token operator">+=</span> fmt<span class="token punctuation">.</span><span class="token function">Sprintf</span><span class="token punctuation">(</span><span class="token string">"%v"</span><span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> i <span class="token operator">&lt;</span> <span class="token function">len</span><span class="token punctuation">(</span>ip<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span> <span class="token punctuation">{</span>
+            result <span class="token operator">+=</span> <span class="token string">"."</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> result
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    hosts <span class="token operator">:=</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span>IPAddr<span class="token punctuation">{</span>
+        <span class="token string">"loopback"</span><span class="token punctuation">:</span>  <span class="token punctuation">{</span><span class="token number">127</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">"googleDNS"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> name<span class="token punctuation">,</span> ip <span class="token operator">:=</span> <span class="token keyword">range</span> hosts <span class="token punctuation">{</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%v: %v\n"</span><span class="token punctuation">,</span> name<span class="token punctuation">,</span> ip<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// loopback: 127.0.0.1</span>
+<span class="token comment" spellcheck="true">// googleDNS: 8.8.8.8</span>
+</code></pre>
+<p><em>note(方法与指针)</em></p>
 <ul>
 <li>带指针参数的函数必须接受一个指针,而以指针为接收者的方法被调用时，接收者既能为值又能为指针。</li>
 <li>由于指针参数的函数方法有一个指针接收者，为方便起见，Go 会将语句 v.Scale(5) 解释为 (&amp;v).Scale(5)；</li>
@@ -383,7 +409,7 @@ PASS
     <a class="show pull-left" href="/article/2018-05-04-陌与墨语.html">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="hide pull-right" href="/">
+    <a class="show pull-right" href="/article/2018-07-03-javascirpt-common-method.html">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
