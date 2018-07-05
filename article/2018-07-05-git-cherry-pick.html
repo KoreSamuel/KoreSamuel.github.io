@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用git-cherry-pick | Sincerly</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="git," />
+  
+
+  <meta name="description" content="前言在一个项目中可能有多个功能并行开发着，开发完的代码通常就合到develop分支进行测试，即测试环境中会有多个功能在测试，而先后进入测试并不一定先后上线，很有可能因为某些原因，先开发的功能需要延期上线，后开发的功能测试完后得先上线。这时候需要将后开发的功能代码抽出来，git cherry-pick就派上用场 什么是 cherry-pickcherry-pick是git中的一个命令，像pull，p">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用git-cherry-pick">
+<meta property="og:url" content="http://dearxiaojie.top/article/2018-07-05-git-cherry-pick.html">
+<meta property="og:site_name" content="Sincerly">
+<meta property="og:description" content="前言在一个项目中可能有多个功能并行开发着，开发完的代码通常就合到develop分支进行测试，即测试环境中会有多个功能在测试，而先后进入测试并不一定先后上线，很有可能因为某些原因，先开发的功能需要延期上线，后开发的功能测试完后得先上线。这时候需要将后开发的功能代码抽出来，git cherry-pick就派上用场 什么是 cherry-pickcherry-pick是git中的一个命令，像pull，p">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-05T07:41:50.186Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用git-cherry-pick">
+<meta name="twitter:description" content="前言在一个项目中可能有多个功能并行开发着，开发完的代码通常就合到develop分支进行测试，即测试环境中会有多个功能在测试，而先后进入测试并不一定先后上线，很有可能因为某些原因，先开发的功能需要延期上线，后开发的功能测试完后得先上线。这时候需要将后开发的功能代码抽出来，git cherry-pick就派上用场 什么是 cherry-pickcherry-pick是git中的一个命令，像pull，p">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?cd3bea7d045fc3fdc9952df80e48e5ec";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+<link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-cherry-pick"><span class="toc-text">什么是 cherry-pick</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用-cherry-pick"><span class="toc-text">如何使用 cherry-pick</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-git-cherry-pick" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">使用git-cherry-pick</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.07.05</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>xiaojie</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://dearxiaojie.top//article/2018-07-05-git-cherry-pick.html#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在一个项目中可能有多个功能并行开发着，开发完的代码通常就合到develop分支进行测试，即测试环境中会有多个功能在测试，而先后进入测试并不一定先后上线，很有可能因为某些原因，先开发的功能需要延期上线，后开发的功能测试完后得先上线。这时候需要将后开发的功能代码抽出来，<code>git cherry-pick</code>就派上用场</p>
+<h2 id="什么是-cherry-pick"><a href="#什么是-cherry-pick" class="headerlink" title="什么是 cherry-pick"></a>什么是 cherry-pick</h2><p><code>cherry-pick</code>是git中的一个命令，像<code>pull，push，commit</code>一样。<br>它可以用于将在其他分支上的 <code>commit</code> 修改，移植到当前的分支。<br>如之前所说场景，就可以使用 <code>cherry-pick</code> 命令，将这个功能相关的 <code>commit</code> 提取出来，合入稳定版本的分支上。</p>
+<h2 id="如何使用-cherry-pick"><a href="#如何使用-cherry-pick" class="headerlink" title="如何使用 cherry-pick"></a>如何使用 cherry-pick</h2><pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick <span class="token punctuation">[</span>--edit<span class="token punctuation">]</span> <span class="token punctuation">[</span>-n<span class="token punctuation">]</span> <span class="token punctuation">[</span>-m parent-number<span class="token punctuation">]</span> <span class="token punctuation">[</span>-s<span class="token punctuation">]</span> <span class="token punctuation">[</span>-x<span class="token punctuation">]</span> <span class="token punctuation">[</span>--ff<span class="token punctuation">]</span>
+      <span class="token punctuation">[</span>-S<span class="token punctuation">[</span><span class="token operator">&lt;</span>keyid<span class="token operator">></span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span>commit<span class="token operator">></span>…​
+<span class="token function">git</span> cherry-pick --continue
+<span class="token function">git</span> cherry-pick --quit
+<span class="token function">git</span> cherry-pick --abort
+</code></pre>
+<p>常用的使用方式是</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick commit-id
+</code></pre>
+<p>执行 <code>git log --graph --oneline --all</code>可以看到类似下面的log</p>
+<pre class=" language-bash"><code class="language-bash">* f07407f <span class="token punctuation">(</span>origin/develop, develop<span class="token punctuation">)</span> feat: 这是第三个功能
+* 948fa63 feat: 这是第二个功能
+* ba09a70 feat: 这是第一个功能
+* e6d4aef <span class="token punctuation">(</span>HEAD -<span class="token operator">></span> master, origin/master, origin/HEAD<span class="token punctuation">)</span> Initial commit
+</code></pre>
+<p>如果我们需要将<code>第二个功能</code>摘取出来，即<code>commit-id</code>为<code>948fa63</code></p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick 948fa630
+</code></pre>
+<p>执行完之后会产生一个新的commitid,如果遇到有冲突，<code>git diff</code>或者用<code>diff</code>工具修改就行，顺利的话就可以正常提交了。<br>此时执行 <code>git log --graph --oneline --all</code></p>
+<pre class=" language-bash"><code class="language-bash">* 762491f <span class="token punctuation">(</span>HEAD -<span class="token operator">></span> develop, origin/develop<span class="token punctuation">)</span> feat: 这是第二个功能
+* f07407f feat: 这是第三个功能
+* 948fa63 feat: 这是第二个功能
+* ba09a70 feat: 这是第一个功能
+* e6d4aef <span class="token punctuation">(</span>origin/master, origin/HEAD, master<span class="token punctuation">)</span> Initial commit
+</code></pre>
+<p>而当前的代码也是<code>第二个功能</code>时的代码。<br>这时候<code>第三个功能</code>也要上线了,那就将它也摘出来吧</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick -x f07407f
+</code></pre>
+<p>上面命令多了 <code>-x</code> 参数，这是更高级一点的用法，表示保留原提交的作者信息进行提交。<br>当然，如果需要摘出多个<code>commit-id</code>,首先可以重复执行<code>git cherry-pick</code>，另外可以使用下面的方式</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>start-commit-id<span class="token operator">></span><span class="token operator">&lt;</span>end-commit-id<span class="token operator">></span>
+</code></pre>
+<p>它的范围就是 <code>start-commit-id</code> 到 <code>end-commit-id</code> 之间所有的 <code>commit-id</code>，但是它这是一个 (前开，后闭] 的区间，也就是说，它将不会包含 <code>start-commit-id</code> 的 <code>commit-id</code>。<br>而如果想要包含 <code>start-commit-id</code> 的话，就需要使用 <code>^</code> 标记一下，就会变成一个 [前闭，后闭] 的区间</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://git-scm.com/docs/git-cherry-pick" target="_blank" rel="noopener">https://git-scm.com/docs/git-cherry-pick</a></li>
+<li><a href="https://www.codementor.io/olatundegaruba/how-to-git-cherry-pick-dyrp9pnmc" target="_blank" rel="noopener">Understanding Git Cherry-pick: How to Use</a></li>
+</ul>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/article/2018-07-03-javascirpt-common-method.html">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'xiaojie';
+    
+    var disqus_url = 'http://dearxiaojie.top/article/2018-07-05-git-cherry-pick.html';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//xiaojie.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
