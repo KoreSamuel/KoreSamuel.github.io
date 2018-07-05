@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/table.png">
-<meta property="og:updated_time" content="2018-07-05T07:41:50.186Z">
+<meta property="og:updated_time" content="2018-07-05T09:09:42.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS伪元素::after提示用法">
 <meta name="twitter:description" content="概述CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素">
@@ -246,7 +246,7 @@
 <p><code>::after</code>表示法是在CSS 3中引入的,::符号是用来区分伪类和伪元素的.支持CSS3的浏览器同时也都支持CSS2中引入的表示法<code>:after</code>.</p>
 <p>##例子</p>
 <p>用<code>::after</code>伪元素，<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/attr" target="_blank" rel="noopener">attr()</a>CSS表达式和一个<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes" target="_blank" rel="noopener">自定义数据属性</a> <code>data-descr</code> 创建一个纯CSS, 词汇表提示工具</p>
-<pre class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+<pre lang="html" class=" language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>这是一段并没有什么用的
             <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">data-descr</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">'</span>collection of words and punctuation<span class="token punctuation">'</span></span><span class="token punctuation">></span></span>文字<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">></span></span>
             ，完全是为了凑数才出现的文字，实现一个
@@ -256,7 +256,7 @@
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 </code></pre>
-<pre class=" language-css"><code class="language-css"><span class="token selector">span<span class="token attribute">[data-descr]</span> </span><span class="token punctuation">{</span>
+<pre lang="css" class=" language-css"><code class="language-css"><span class="token selector">span<span class="token attribute">[data-descr]</span> </span><span class="token punctuation">{</span>
     <span class="token property">position</span><span class="token punctuation">:</span> relative<span class="token punctuation">;</span>
     <span class="token property">text-decoration</span><span class="token punctuation">:</span> underline<span class="token punctuation">;</span>
     <span class="token property">color</span><span class="token punctuation">:</span> <span class="token hexcode">#00F</span><span class="token punctuation">;</span>

@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="javascript加载和运行脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-05T07:41:50.198Z">
+<meta property="og:updated_time" content="2018-07-05T09:09:42.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高性能JavaScript">
 <meta name="twitter:description" content="javascript加载和运行脚本位置尽管浏览器已经允许并行下载javascript文件，但是javascript下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有javascript代码下载并执行完成才能继续所以优化javascript的首要原则：将脚本放在底部（&amp;lt;/body&amp;gt;之前)">
@@ -244,7 +244,7 @@
 <li>动态脚本元素:在跨浏览器兼容性和易用的优势，是最通用的无阻塞加载解决方案</li>
 <li>XMLHttpRequest注入：先创建一个XHR对象，然后用她下载javascript文件，最后通过创建动态<code>&lt;script&gt;</code>元素将代码注入页面中</li>
 </ul>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre lang="js" class=" language-js"><code class="language-js"><span class="token keyword">var</span> xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"get"</span><span class="token punctuation">,</span><span class="token string">"file.js"</span><span class="token punctuation">,</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 xhr<span class="token punctuation">.</span>onreadystatechange <span class="token operator">=</span> <span class="token function">funtion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">if</span><span class="token punctuation">(</span>xhr<span class="token punctuation">.</span>readyState <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -265,7 +265,7 @@ xhr<span class="token punctuation">.</span><span class="token function">send</sp
 <p>##管理作用域</p>
 <h3 id="作用域链和标识符解析"><a href="#作用域链和标识符解析" class="headerlink" title="作用域链和标识符解析"></a>作用域链和标识符解析</h3><p>在函数执行的过程中，没遇到一个变量，都会经历一次标识符解析过程以决定从哪里获取或存储数据。该过程搜索运行期上下文的作用域链，查找同名的标识符。搜索过程从作用域链头部开始也就是当前运行函数的活动对象，如果找到了，就使用这个标示符对应的变量；如果没有找到，继续搜索作用域链中的下一个对象，直到标识符被找到，或者没有可用于搜索的对象为止，这种情况下标识符被认为是未定义的。正是这个搜索过程影响了性能。</p>
 <h3 id="标识符解析的性能"><a href="#标识符解析的性能" class="headerlink" title="标识符解析的性能"></a>标识符解析的性能</h3><p>一个标识符所在的位置越深，他的读写速度就越慢，因此读写局部变量总是最快的，而读写全局变量通常是最慢的。全局变量总是存在于运行期上下文作用域链的最末端，因此是最远的。在没有优化javascript引擎的浏览器中，尽量使用局部变量，如果某个跨作用域的值在函数中被引用了多次，就把他存储到局部变量里。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">initUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre lang="js" class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">initUI</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> doc <span class="token operator">=</span> document<span class="token punctuation">,</span>
         bd <span class="token operator">=</span> doc<span class="token punctuation">.</span>body<span class="token punctuation">,</span>
         links <span class="token operator">=</span> doc<span class="token punctuation">.</span><span class="token function">getElementByTagName</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -284,7 +284,7 @@ xhr<span class="token punctuation">.</span><span class="token function">send</sp
 </code></pre>
 <h3 id="闭包，作用域和内存"><a href="#闭包，作用域和内存" class="headerlink" title="闭包，作用域和内存"></a>闭包，作用域和内存</h3><p>将常用的跨作用域变量存储在局部变量中，然后访问局部变量嵌套的对象成员会明显影响性能，尽量少用<br>通常来说，把常用的对象成员、数组元素、跨域变量保存在局部变量中来改善javascript性能，因为局部变量访问速度更快。</p>
 <p>DOM</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">initHtml1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre lang="js" class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">initHtml1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span><span class="token number">15000</span><span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
         document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'here'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token operator">+</span><span class="token operator">=</span><span class="token string">'a'</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>

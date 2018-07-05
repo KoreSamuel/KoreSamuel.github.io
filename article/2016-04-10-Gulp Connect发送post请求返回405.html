@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="问题在使用gulp过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-05T07:41:50.186Z">
+<meta property="og:updated_time" content="2018-07-05T09:09:42.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gulp Connect发送post请求返回405">
 <meta name="twitter:description" content="问题在使用gulp过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:">
@@ -237,15 +237,15 @@
   <div class="article-content">
     
       <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在使用<code>gulp</code>过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:<br><a id="more"></a></p>
-<pre class=" language-bash"><code class="language-bash">405 Method Not Allowed
+<pre lang="bash" class=" language-bash"><code class="language-bash">405 Method Not Allowed
 </code></pre>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>通过自定义一个中间件来完成<code>POST</code>、<code>PUT</code>、<code>DELETE</code> 请求。<br>首先，引入<code>fs</code>、<code>path</code>和<code>connect</code></p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">var</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<pre lang="js" class=" language-js"><code class="language-js"><span class="token keyword">var</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 path <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 connect <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'gulp-connect'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <p>接着，在配置中增加自己的中间件。</p>
-<pre class=" language-js"><code class="language-js">gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'server'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<pre lang="js" class=" language-js"><code class="language-js">gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">'server'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
     connect<span class="token punctuation">.</span><span class="token function">server</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
         middleware<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>connect<span class="token punctuation">,</span> options<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token punctuation">[</span>

@@ -28,5 +28,14 @@
   }
   code[class*="language-"],
   pre[class*="language-"] {
+    position: relative;
     font-size: 12px;
+  }
+  pre[class*="language-"]::before {
+    content: attr(lang);
+    position: absolute;
+    right: 15px;
+    font-size: 12px;
+    top: 2px;
+    color: hsla(0,0%,55%,.8);
   }

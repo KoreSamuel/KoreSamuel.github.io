@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/config.png">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/token.png">
 <meta property="og:image" content="http://7xjp74.com1.z0.glb.clouddn.com/success.png">
-<meta property="og:updated_time" content="2018-07-05T07:41:50.198Z">
+<meta property="og:updated_time" content="2018-07-05T09:09:42.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Travis CI自动部署Hexo博客到Github上">
 <meta name="twitter:description" content="写在前面自从在github page上搭建博客以来，都是使用的hexo，每次都是通过hexo命令build生成静态文件，再push到github上，后来找到一个deploy插件，只需要填写好github的repos地址就好。但是源码的保存是个问题，更换电脑想要写博客很不方便，甚至蠢到将源码保存到u盘里面，这样每次提交后又要备份一次，很容易忘记。说到这里那为什么不将源码保存到github上呢。 其实">
@@ -252,7 +252,7 @@
 <h2 id="Access-Token"><a href="#Access-Token" class="headerlink" title="Access Token"></a>Access Token</h2><p>我们需要在<code>Travis</code>上配置<code>Access Token</code>，就可以在构建完毕后自动<code>push</code>到<code>github</code>上保存静态文件的<code>repos</code>了。</p>
 <h3 id="生成Access-Token"><a href="#生成Access-Token" class="headerlink" title="生成Access Token"></a>生成Access Token</h3><p>登录<a href="https://github.com/" target="_blank" rel="noopener">github</a>，进入个人主页，点击<code>setting</code>，进入界面后找到下图所指位置。<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/token.png" alt="token"><br>点击<code>Personal access tokens</code>，进入页面后，在点击右上角<code>Generate new token</code>,会再次让输入<code>github</code>密码，然后在<code>Token description</code>下起一个名字，再勾选一些权限，我是全给勾选上了，在点击下面<code>Generate token</code>这里就不多截图了。复制生成的<code>token</code>码。</p>
 <h3 id="配置Travis-CI"><a href="#配置Travis-CI" class="headerlink" title="配置Travis CI"></a>配置Travis CI</h3><p>回到<code>Travis</code>的<code>setting</code>页面，如上面图，在<code>Environment Variables</code>这一栏，点击<code>Add</code>，起一个名字到<code>Name</code>，将复制的<code>token</code>码粘贴到<code>Value</code>框中，到这步为止，已经完成了<code>Travis</code>的设置。到博客源码根目录，创建一个<code>.travis.yml</code>的配置文件，内容如下，附注释，注意缩进</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">language</span><span class="token punctuation">:</span> node_js  <span class="token comment" spellcheck="true">#设置语言</span>
+<pre lang="yaml" class=" language-yaml"><code class="language-yaml"><span class="token key atrule">language</span><span class="token punctuation">:</span> node_js  <span class="token comment" spellcheck="true">#设置语言</span>
 
 <span class="token key atrule">node_js</span><span class="token punctuation">:</span> stable  <span class="token comment" spellcheck="true">#设置相应的版本</span>
 
@@ -283,7 +283,7 @@
 <h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><p>我们可以创建一篇文章<code>hexo new post use-travis-build-your-hexo-site</code>，添加内容后，并<code>push</code>到<code>github</code>，正常情况下，进入<code>Travis</code>网站就可以看到已经在构建了，如图<br><img src="http://7xjp74.com1.z0.glb.clouddn.com/success.png" alt="success"><br>完成后，<a href="https://dearxiaojie.top/article/2017-05-04-use-travisci-build-your-hexo-site.html">访问链接</a>就可以看到这篇文章了。</p>
 <h2 id="写在后面"><a href="#写在后面" class="headerlink" title="写在后面"></a>写在后面</h2><p>很久没有花时间写点东西了，不管有没有价值，总是一种对知识的积累和总结，输出也意味着输入，所以以后还是将学到的东西和积累总结下，自己可以将知识梳理的同时能帮助到别人是更好的了。</p>
 <h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><h3 id="master-commit-树被清空"><a href="#master-commit-树被清空" class="headerlink" title="master commit 树被清空"></a>master commit 树被清空</h3><p>仔细查看上面的配置文件，我们发现每次都是将 public 目录下的文件重新生成了一个git项目，然后强制覆盖提交到了 master 分支下，这就是问题的所在。<br>为了解决这个问题，我将配置文件改为了如下的内容：</p>
-<pre class=" language-bash"><code class="language-bash">after_script:
+<pre lang="bash" class=" language-bash"><code class="language-bash">after_script:
   - <span class="token function">git</span> clone https://<span class="token variable">${GH_REF}</span> .deploy_git
   - <span class="token function">cd</span> .deploy_git
   - <span class="token function">git</span> checkout master
@@ -298,22 +298,22 @@
 </code></pre>
 <p>在 after_script 部分，我先将博客项目 clone 到本地的 .deploy_git 目录下（目录名可自定义）,然后切换到 master 分支，将 master 分支下的 .git 目录拷贝到了 public 目录下，接着继续后面的 commit 操作。</p>
 <h3 id="添加-commit-时间戳"><a href="#添加-commit-时间戳" class="headerlink" title="添加 commit 时间戳"></a>添加 commit 时间戳</h3><p>按照前面的方法配置 <code>travis.yml</code> 的内容，在 <code>master</code> 分支下的提交记录是这样的：</p>
-<pre class=" language-bash"><code class="language-bash">Travis CI Auto Builder
+<pre lang="bash" class=" language-bash"><code class="language-bash">Travis CI Auto Builder
 Travis CI Auto Builder
 Travis CI Auto Builder
 <span class="token punctuation">..</span>.
 </code></pre>
 <p>看到每次的提交记录中没有提交的时间戳，所以考虑着要把 <code>commit</code> 的时间戳给加上。<br><code>script</code> 命令下是可以执行 <code>shell</code> 命令的，所以对 <code>travis.yml</code> 文件进行了修改。<br>在 <code>shell</code> 中获取当前的时间戳，可以这样:</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#/bin/bash</span>
+<pre lang="bash" class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#/bin/bash</span>
 <span class="token operator">></span> <span class="token function">date</span> +<span class="token string">"%Y-%m-%d %H:%M"</span>
 2018-05-05 12:13
 </code></pre>
 <p><code>Travis CI</code> 中使用的<code>linux</code>系统在编译生成时使用的是<code>UTC</code>时间，这样我们在<code>github</code>中的提交列表中看到的提交时间就会晚8小时。我们需要在执行时将时区改为东八区。</p>
-<pre class=" language-bash"><code class="language-bash">before_install:
+<pre lang="bash" class=" language-bash"><code class="language-bash">before_install:
   - <span class="token function">export</span> TZ<span class="token operator">=</span><span class="token string">'Asia/Shanghai'</span>
 </code></pre>
 <p>然后将<code>after_script</code>中的命令移到单独的<code>shell</code>文件中。最终的两个文件内容如下</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token operator">></span> build.sh
+<pre lang="bash" class=" language-bash"><code class="language-bash"><span class="token operator">></span> build.sh
 <span class="token comment" spellcheck="true">#!/bin/bash</span>
 <span class="token keyword">set</span> -ev
 
@@ -333,7 +333,7 @@ Travis CI Auto Builder
 
 <span class="token function">git</span> push --force --quiet <span class="token string">"https://<span class="token variable">${travis}</span>@<span class="token variable">${GH_REF}</span>"</span> master:master  <span class="token comment" spellcheck="true">#travis是在Travis中配置token的名称</span>
 </code></pre>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token punctuation">></span> .travis.yml
+<pre lang="yaml" class=" language-yaml"><code class="language-yaml"><span class="token punctuation">></span> .travis.yml
 <span class="token key atrule">language</span><span class="token punctuation">:</span> node_js
 
 <span class="token key atrule">node_js</span><span class="token punctuation">:</span> stable

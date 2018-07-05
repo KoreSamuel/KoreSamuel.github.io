@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="对于xhr的学习后的一个例子">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-05T07:41:50.186Z">
+<meta property="og:updated_time" content="2018-07-05T09:09:42.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="XMLHttpRequest学习笔记">
 <meta name="twitter:description" content="对于xhr的学习后的一个例子">
@@ -232,7 +232,7 @@
   <div class="article-content">
     
       <p>对于xhr的学习后的一个例子<br><a id="more"></a></p>
-<pre class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
+<pre lang="html" class=" language-html"><code class="language-html"><span class="token doctype">&lt;!DOCTYPE html></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -259,50 +259,50 @@
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>getResponseHeader("Last-Modified")<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>ppp<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>js/jquery-1.7.2.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>js/bootstrap.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-        function loadXHR() {
-            var XHR;
-            if (window.XMLHttpRequest) {
-                XHR = new XMLHttpRequest();
-            } else {
-                XHR = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            XHR.open("GET", "./text/books.xml", true);
-            //通过 XML HTTP 加载 XML 文件
-            XHR.send();
-            XHR.onreadystatechange = function() {
-                if (XHR.readyState == 4 &amp;&amp; XHR.status == 200) {
-                // 4 = "loaded" 200 = “OK”
-                    var xmlDoc = XHR.responseXML;
-                    var txt = "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">></span></span>";
-                    var x = xmlDoc.getElementsByTagName("book");
-                    for (var i = 0; i &lt; x.length; i++) {
-                    //把 XML 文件显示为 HTML 表格
-                        txt += "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>" + i + "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>";
-                        xx = x[i].getElementsByTagName("title");
-                        txt += "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>" + xx[0].childNodes[0].nodeValue + "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>";
-                        xx = x[i].getElementsByTagName("author");
-                        txt += "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>" + xx[0].childNodes[0].nodeValue + "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>";
-                        xx = x[i].getElementsByTagName("year");
-                        txt += "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>" + xx[0].childNodes[0].nodeValue + "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span>";
-                        xx = x[i].getElementsByTagName("price");
-                        txt += "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">></span></span>" + xx[0].childNodes[0].nodeValue
-                                + "<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">></span></span>";
-                    }
-                    document.getElementById("mytbody").innerHTML = txt;
-                    //通过 XML HTTP 进行一次 HEAD 请求
-                    document.getElementById("pp").innerHTML = XHR.getAllResponseHeaders();
-                    //通过 XML HTTP 进行一次指定的 HEAD 请求
-                    document.getElementById("ppp").innerHTML = XHR.getResponseHeader("Last-Modified");
-                }
-            }
-        }
-        document.getElementById("btn").onclick = function() {
-            loadXHR();
-        }
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>js/jquery-1.7.2.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>js/bootstrap.min.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script language-javascript">
+        <span class="token keyword">function</span> <span class="token function">loadXHR</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> XHR<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>XMLHttpRequest<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                XHR <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                XHR <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ActiveXObject</span><span class="token punctuation">(</span><span class="token string">"Microsoft.XMLHTTP"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            XHR<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">,</span> <span class="token string">"./text/books.xml"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment" spellcheck="true">//通过 XML HTTP 加载 XML 文件</span>
+            XHR<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            XHR<span class="token punctuation">.</span>onreadystatechange <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>XHR<span class="token punctuation">.</span>readyState <span class="token operator">==</span> <span class="token number">4</span> <span class="token operator">&amp;&amp;</span> XHR<span class="token punctuation">.</span>status <span class="token operator">==</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment" spellcheck="true">// 4 = "loaded" 200 = “OK”</span>
+                    <span class="token keyword">var</span> xmlDoc <span class="token operator">=</span> XHR<span class="token punctuation">.</span>responseXML<span class="token punctuation">;</span>
+                    <span class="token keyword">var</span> txt <span class="token operator">=</span> <span class="token string">"&lt;tr>"</span><span class="token punctuation">;</span>
+                    <span class="token keyword">var</span> x <span class="token operator">=</span> xmlDoc<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"book"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> x<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token comment" spellcheck="true">//把 XML 文件显示为 HTML 表格</span>
+                        txt <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">"&lt;td>"</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">"&lt;/td>"</span><span class="token punctuation">;</span>
+                        xx <span class="token operator">=</span> x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"title"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        txt <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">"&lt;td>"</span> <span class="token operator">+</span> xx<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>nodeValue <span class="token operator">+</span> <span class="token string">"&lt;/td>"</span><span class="token punctuation">;</span>
+                        xx <span class="token operator">=</span> x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"author"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        txt <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">"&lt;td>"</span> <span class="token operator">+</span> xx<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>nodeValue <span class="token operator">+</span> <span class="token string">"&lt;/td>"</span><span class="token punctuation">;</span>
+                        xx <span class="token operator">=</span> x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"year"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        txt <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">"&lt;td>"</span> <span class="token operator">+</span> xx<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>nodeValue <span class="token operator">+</span> <span class="token string">"&lt;/td>"</span><span class="token punctuation">;</span>
+                        xx <span class="token operator">=</span> x<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"price"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        txt <span class="token operator">+</span><span class="token operator">=</span> <span class="token string">"&lt;td>"</span> <span class="token operator">+</span> xx<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>childNodes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>nodeValue
+                                <span class="token operator">+</span> <span class="token string">"&lt;/td>&lt;/tr>"</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"mytbody"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> txt<span class="token punctuation">;</span>
+                    <span class="token comment" spellcheck="true">//通过 XML HTTP 进行一次 HEAD 请求</span>
+                    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"pp"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> XHR<span class="token punctuation">.</span><span class="token function">getAllResponseHeaders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token comment" spellcheck="true">//通过 XML HTTP 进行一次指定的 HEAD 请求</span>
+                    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"ppp"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> XHR<span class="token punctuation">.</span><span class="token function">getResponseHeader</span><span class="token punctuation">(</span><span class="token string">"Last-Modified"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"btn"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>onclick <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">loadXHR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span>
 //books.xml

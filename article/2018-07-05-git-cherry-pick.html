@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="前言在一个项目中可能有多个功能并行开发着，开发完的代码通常就合到develop分支进行测试，即测试环境中会有多个功能在测试，而先后进入测试并不一定先后上线，很有可能因为某些原因，先开发的功能需要延期上线，后开发的功能测试完后得先上线。这时候需要将后开发的功能代码抽出来，git cherry-pick就派上用场 什么是 cherry-pickcherry-pick是git中的一个命令，像pull，p">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-05T07:41:50.186Z">
+<meta property="og:updated_time" content="2018-07-05T09:09:42.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用git-cherry-pick">
 <meta name="twitter:description" content="前言在一个项目中可能有多个功能并行开发着，开发完的代码通常就合到develop分支进行测试，即测试环境中会有多个功能在测试，而先后进入测试并不一定先后上线，很有可能因为某些原因，先开发的功能需要延期上线，后开发的功能测试完后得先上线。这时候需要将后开发的功能代码抽出来，git cherry-pick就派上用场 什么是 cherry-pickcherry-pick是git中的一个命令，像pull，p">
@@ -233,36 +233,36 @@
     
       <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在一个项目中可能有多个功能并行开发着，开发完的代码通常就合到develop分支进行测试，即测试环境中会有多个功能在测试，而先后进入测试并不一定先后上线，很有可能因为某些原因，先开发的功能需要延期上线，后开发的功能测试完后得先上线。这时候需要将后开发的功能代码抽出来，<code>git cherry-pick</code>就派上用场</p>
 <h2 id="什么是-cherry-pick"><a href="#什么是-cherry-pick" class="headerlink" title="什么是 cherry-pick"></a>什么是 cherry-pick</h2><p><code>cherry-pick</code>是git中的一个命令，像<code>pull，push，commit</code>一样。<br>它可以用于将在其他分支上的 <code>commit</code> 修改，移植到当前的分支。<br>如之前所说场景，就可以使用 <code>cherry-pick</code> 命令，将这个功能相关的 <code>commit</code> 提取出来，合入稳定版本的分支上。</p>
-<h2 id="如何使用-cherry-pick"><a href="#如何使用-cherry-pick" class="headerlink" title="如何使用 cherry-pick"></a>如何使用 cherry-pick</h2><pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick <span class="token punctuation">[</span>--edit<span class="token punctuation">]</span> <span class="token punctuation">[</span>-n<span class="token punctuation">]</span> <span class="token punctuation">[</span>-m parent-number<span class="token punctuation">]</span> <span class="token punctuation">[</span>-s<span class="token punctuation">]</span> <span class="token punctuation">[</span>-x<span class="token punctuation">]</span> <span class="token punctuation">[</span>--ff<span class="token punctuation">]</span>
+<h2 id="如何使用-cherry-pick"><a href="#如何使用-cherry-pick" class="headerlink" title="如何使用 cherry-pick"></a>如何使用 cherry-pick</h2><pre lang="bash" class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick <span class="token punctuation">[</span>--edit<span class="token punctuation">]</span> <span class="token punctuation">[</span>-n<span class="token punctuation">]</span> <span class="token punctuation">[</span>-m parent-number<span class="token punctuation">]</span> <span class="token punctuation">[</span>-s<span class="token punctuation">]</span> <span class="token punctuation">[</span>-x<span class="token punctuation">]</span> <span class="token punctuation">[</span>--ff<span class="token punctuation">]</span>
       <span class="token punctuation">[</span>-S<span class="token punctuation">[</span><span class="token operator">&lt;</span>keyid<span class="token operator">></span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span>commit<span class="token operator">></span>…​
 <span class="token function">git</span> cherry-pick --continue
 <span class="token function">git</span> cherry-pick --quit
 <span class="token function">git</span> cherry-pick --abort
 </code></pre>
 <p>常用的使用方式是</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick commit-id
+<pre lang="bash" class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick commit-id
 </code></pre>
 <p>执行 <code>git log --graph --oneline --all</code>可以看到类似下面的log</p>
-<pre class=" language-bash"><code class="language-bash">* f07407f <span class="token punctuation">(</span>origin/develop, develop<span class="token punctuation">)</span> feat: 这是第三个功能
+<pre lang="bash" class=" language-bash"><code class="language-bash">* f07407f <span class="token punctuation">(</span>origin/develop, develop<span class="token punctuation">)</span> feat: 这是第三个功能
 * 948fa63 feat: 这是第二个功能
 * ba09a70 feat: 这是第一个功能
 * e6d4aef <span class="token punctuation">(</span>HEAD -<span class="token operator">></span> master, origin/master, origin/HEAD<span class="token punctuation">)</span> Initial commit
 </code></pre>
 <p>如果我们需要将<code>第二个功能</code>摘取出来，即<code>commit-id</code>为<code>948fa63</code></p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick 948fa630
+<pre lang="bash" class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick 948fa630
 </code></pre>
 <p>执行完之后会产生一个新的commitid,如果遇到有冲突，<code>git diff</code>或者用<code>diff</code>工具修改就行，顺利的话就可以正常提交了。<br>此时执行 <code>git log --graph --oneline --all</code></p>
-<pre class=" language-bash"><code class="language-bash">* 762491f <span class="token punctuation">(</span>HEAD -<span class="token operator">></span> develop, origin/develop<span class="token punctuation">)</span> feat: 这是第二个功能
+<pre lang="bash" class=" language-bash"><code class="language-bash">* 762491f <span class="token punctuation">(</span>HEAD -<span class="token operator">></span> develop, origin/develop<span class="token punctuation">)</span> feat: 这是第二个功能
 * f07407f feat: 这是第三个功能
 * 948fa63 feat: 这是第二个功能
 * ba09a70 feat: 这是第一个功能
 * e6d4aef <span class="token punctuation">(</span>origin/master, origin/HEAD, master<span class="token punctuation">)</span> Initial commit
 </code></pre>
 <p>而当前的代码也是<code>第二个功能</code>时的代码。<br>这时候<code>第三个功能</code>也要上线了,那就将它也摘出来吧</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick -x f07407f
+<pre lang="bash" class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick -x f07407f
 </code></pre>
 <p>上面命令多了 <code>-x</code> 参数，这是更高级一点的用法，表示保留原提交的作者信息进行提交。<br>当然，如果需要摘出多个<code>commit-id</code>,首先可以重复执行<code>git cherry-pick</code>，另外可以使用下面的方式</p>
-<pre class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>start-commit-id<span class="token operator">></span><span class="token operator">&lt;</span>end-commit-id<span class="token operator">></span>
+<pre lang="bash" class=" language-bash"><code class="language-bash"><span class="token function">git</span> cherry-pick <span class="token operator">&lt;</span>start-commit-id<span class="token operator">></span><span class="token operator">&lt;</span>end-commit-id<span class="token operator">></span>
 </code></pre>
 <p>它的范围就是 <code>start-commit-id</code> 到 <code>end-commit-id</code> 之间所有的 <code>commit-id</code>，但是它这是一个 (前开，后闭] 的区间，也就是说，它将不会包含 <code>start-commit-id</code> 的 <code>commit-id</code>。<br>而如果想要包含 <code>start-commit-id</code> 的话，就需要使用 <code>^</code> 标记一下，就会变成一个 [前闭，后闭] 的区间</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>

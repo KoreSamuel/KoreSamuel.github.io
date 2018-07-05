@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="问题分析某次需求中，需要使用highcharts展示数据以对比。可是这批数据量级相差较大，如果在同一张图表中展示，会导致线条相隔很远或者没有波动幅度；还需要在点击某根线条的时候改变图表Y轴为当前线条数量级的，并处理他们的样式以区分。 那么，第一个问题，要在同一张表中展示不同量级的数据，且相互具有参考性，有个办法就是将数据统一处理成一个维度的，如数据归一化，将数据映射到0~1之间的小数，那不同量级的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-05T07:41:50.186Z">
+<meta property="og:updated_time" content="2018-07-05T09:09:42.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="highcharts线型图表处理">
 <meta name="twitter:description" content="问题分析某次需求中，需要使用highcharts展示数据以对比。可是这批数据量级相差较大，如果在同一张图表中展示，会导致线条相隔很远或者没有波动幅度；还需要在点击某根线条的时候改变图表Y轴为当前线条数量级的，并处理他们的样式以区分。 那么，第一个问题，要在同一张表中展示不同量级的数据，且相互具有参考性，有个办法就是将数据统一处理成一个维度的，如数据归一化，将数据映射到0~1之间的小数，那不同量级的">
@@ -239,7 +239,7 @@
       <h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>某次需求中，需要使用<a href="https://www.highcharts.com/" target="_blank" rel="noopener"><code>highcharts</code></a>展示数据以对比。可是这批数据量级相差较大，如果在同一张图表中展示，会导致线条相隔很远或者没有波动幅度；还需要在点击某根线条的时候改变图表Y轴为当前线条数量级的，并处理他们的样式以区分。</p>
 <p>那么，第一个问题，要在同一张表中展示不同量级的数据，且相互具有参考性，有个办法就是将数据统一处理成一个维度的，如<a href="https://baike.baidu.com/item/%E5%BD%92%E4%B8%80%E5%8C%96%E6%96%B9%E6%B3%95" target="_blank" rel="noopener">数据归一化</a>，将数据映射到<code>0~1</code>之间的小数，那不同量级的数据之间就有一定的参考性了。<br>第二个问题的话本来想过改源码，但是感觉意义不大，使用场景不多，就找<code>highcharts</code>的<code>api</code>文档，各种拼接。差不多实现了需求.</p>
 <h2 id="数据归一化"><a href="#数据归一化" class="headerlink" title="数据归一化"></a>数据归一化</h2><p>采用<code>min-max标准化</code>，也叫离差标准化，对原始数据的线性变化，结果落到<code>[0, 1]</code>之间。将需要处理的数据组，即<code>series</code>数据先处理，找到每组的最大最小，并计算.</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">normalizing</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre lang="js" class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">normalizing</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> data <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> len <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">var</span> cur <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>data<span class="token punctuation">;</span>
@@ -259,7 +259,7 @@
 </code></pre>
 <p>上面代码中，将原数据的每个线条设置为不显示，再将归一化后的数据<code>push</code>到数组后面。即最终图表上显示的是处理后的数据绘制的线条，这样的操作会引发后面的问题，接下来会提到。</p>
 <h2 id="展示真实数据"><a href="#展示真实数据" class="headerlink" title="展示真实数据"></a>展示真实数据</h2><p>在上面一步中，将所有数据都处理成了[0, 1]之间的数据，那鼠标<code>hover</code>上去显示的就是计算后的数据。这显然不是我们想要的，所以才没有去除原来的数据。查看<code>highcharts</code>的<code>api</code>，发现可以改变<code>hover</code>显示的格式，那我只需要找到计算后与之相对应的原数据就能正确显示了。<br>现在<code>hover</code>能够正确显示数据了，图表里的线条也有了一定的对比性，但是Y轴坐标依然是按照归一化后数据量级来的。在考虑到需要在点击线条的时候显示成其原数据量级的Y轴，所以采用以下办法。<br>取出选中线条数据中的最大最小，按照归一化算法逆回去，那么其实现在图表中的线条已经不是<code>[0, 1]</code>之间的数据了，而是分别乘上点击线条最大值，并加上最小值后的数据。那么，<code>Y</code>轴的自然就变成了当前的数据量级。</p>
-<pre class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">adjustSeries</span><span class="token punctuation">(</span>activeName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<pre lang="js" class=" language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">adjustSeries</span><span class="token punctuation">(</span>activeName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">var</span> data <span class="token operator">=</span> chart<span class="token punctuation">.</span>series<span class="token punctuation">;</span>
     <span class="token keyword">var</span> max<span class="token punctuation">,</span> min<span class="token punctuation">;</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> len <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
