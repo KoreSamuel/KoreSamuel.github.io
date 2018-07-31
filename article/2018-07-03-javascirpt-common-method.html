@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="随手记录点好玩的东西 实现一个sleep函数// promise const sleep = time =&amp;gt; {   return new Promise(resolve =&amp;gt; {     setTimeout(resolve, time);   }); }; const t1 = +new Date(); sleep(1000).then(() =&amp;gt; {   const t2 = +new Da">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-31T08:16:54.024Z">
+<meta property="og:updated_time" content="2018-07-31T09:22:09.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascirpt常用函数实现">
 <meta name="twitter:description" content="随手记录点好玩的东西 实现一个sleep函数// promise const sleep = time =&amp;gt; {   return new Promise(resolve =&amp;gt; {     setTimeout(resolve, time);   }); }; const t1 = +new Date(); sleep(1000).then(() =&amp;gt; {   const t2 = +new Da">
@@ -184,7 +184,7 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现一个sleep函数"><span class="toc-text">实现一个sleep函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组去重"><span class="toc-text">数组去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array-like-转成-array"><span class="toc-text">array-like 转成 array</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现一个sleep函数"><span class="toc-text">实现一个sleep函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组去重"><span class="toc-text">数组去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array-like-转成-array"><span class="toc-text">array-like 转成 array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用数组reduce方法实现map"><span class="toc-text">用数组reduce方法实现map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防抖函数debounce的实现"><span class="toc-text">防抖函数debounce的实现</span></a></li></ol>
   </div>
 
 
@@ -348,6 +348,60 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <pre lang="js" class=" language-js"><code class="language-js"><span class="token keyword">const</span> arr <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token keyword">from</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">// and</span>
 <span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>arguments<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 适用于arguments</span>
+</code></pre>
+<h3 id="用数组reduce方法实现map"><a href="#用数组reduce方法实现map" class="headerlink" title="用数组reduce方法实现map"></a>用数组reduce方法实现map</h3><pre lang="js" class=" language-js"><code class="language-js">Array<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>map2 <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> arr<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>acc<span class="token punctuation">,</span> curr<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        prev<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token function">callback</span><span class="token punctuation">(</span>acc<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> prev<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// test</span>
+<span class="token keyword">const</span> testarr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">23</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> aftermap2 <span class="token operator">=</span> testarr<span class="token punctuation">.</span><span class="token function">map2</span><span class="token punctuation">(</span><span class="token punctuation">(</span>item<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">[</span>index <span class="token operator">+</span> <span class="token string">'-'</span> <span class="token operator">+</span> item<span class="token punctuation">]</span><span class="token punctuation">:</span> item
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>aftermap2<span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true">//[{"0-1":1},{"1-2":2},{"2-23":23},{"3-4":4},{"4-5":5},{"5-5":5}]</span>
+<span class="token comment" spellcheck="true">// 实现filter同理</span>
+</code></pre>
+<h3 id="防抖函数debounce的实现"><a href="#防抖函数debounce的实现" class="headerlink" title="防抖函数debounce的实现"></a>防抖函数debounce的实现</h3><blockquote>
+<p>多次触发事件，在事件触发n秒后执行，如果在一个事件触发的n秒内又触发这个事件，那就以新的事件事件为准，继续等n秒后执行。常见window的resise，scroll，mousemove等</p>
+</blockquote>
+<pre lang="js" class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">//第一版， 最简版</span>
+<span class="token keyword">function</span> <span class="token function">debounce</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> wait<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> timeout <span class="token operator">=</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    timeout <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> wait<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 第二版，处理this</span>
+<span class="token keyword">function</span> <span class="token function">debounce</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> wait<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> timeout <span class="token operator">=</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> ctx <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timeout<span class="token punctuation">)</span>
+    timeout <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      fn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> wait<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 第三版 event对象，</span>
+<span class="token comment" spellcheck="true">// 在事件处理函数中会提供事件对象event，如果不传，获取会是undefined</span>
+<span class="token keyword">function</span> <span class="token function">debounce</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> wait<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> timeout <span class="token operator">=</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> ctx <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> args <span class="token operator">=</span> arguments<span class="token punctuation">;</span>
+    <span class="token function">clearTimeout</span><span class="token punctuation">(</span>timeout<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    timeout <span class="token operator">=</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      fn<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> wait<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p><em>待续</em></p>
 
