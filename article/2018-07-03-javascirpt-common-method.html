@@ -22,7 +22,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="随手记录点好玩的东西 实现一个sleep函数// promise const sleep = time =&amp;gt; {   return new Promise(resolve =&amp;gt; {     setTimeout(resolve, time);   }); }; const t1 = +new Date(); sleep(1000).then(() =&amp;gt; {   const t2 = +new Da">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-31T09:22:09.807Z">
+<meta property="og:updated_time" content="2018-07-31T10:59:29.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascirpt常用函数实现">
 <meta name="twitter:description" content="随手记录点好玩的东西 实现一个sleep函数// promise const sleep = time =&amp;gt; {   return new Promise(resolve =&amp;gt; {     setTimeout(resolve, time);   }); }; const t1 = +new Date(); sleep(1000).then(() =&amp;gt; {   const t2 = +new Da">
@@ -184,7 +184,7 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现一个sleep函数"><span class="toc-text">实现一个sleep函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组去重"><span class="toc-text">数组去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array-like-转成-array"><span class="toc-text">array-like 转成 array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用数组reduce方法实现map"><span class="toc-text">用数组reduce方法实现map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防抖函数debounce的实现"><span class="toc-text">防抖函数debounce的实现</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#实现一个sleep函数"><span class="toc-text">实现一个sleep函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组去重"><span class="toc-text">数组去重</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array-like-转成-array"><span class="toc-text">array-like 转成 array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用数组reduce方法实现map"><span class="toc-text">用数组reduce方法实现map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防抖函数debounce的实现"><span class="toc-text">防抖函数debounce的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组扁平化，实现一个flatten函数"><span class="toc-text">数组扁平化，实现一个flatten函数</span></a></li></ol>
   </div>
 
 
@@ -291,6 +291,14 @@ console<span class="token punctuation">.</span><span class="token function">log<
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">unique</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [ 1, 2, 3, '4' ]</span>
+</code></pre>
+<pre lang="js" class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// reduce 类似hash</span>
+<span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">'4'</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> unique <span class="token operator">=</span> arr <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> arr<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>acc<span class="token punctuation">,</span> cur<span class="token punctuation">,</span> index<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token operator">!</span>acc<span class="token punctuation">[</span>cur<span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> acc<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>cur<span class="token punctuation">)</span><span class="token punctuation">,</span> acc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <pre lang="js" class=" language-js"><code class="language-js"><span class="token comment" spellcheck="true">// hash</span>
 <span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">'4'</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -402,6 +410,12 @@ console<span class="token punctuation">.</span><span class="token function">log<
     <span class="token punctuation">}</span><span class="token punctuation">,</span> wait<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
+</code></pre>
+<h3 id="数组扁平化，实现一个flatten函数"><a href="#数组扁平化，实现一个flatten函数" class="headerlink" title="数组扁平化，实现一个flatten函数"></a>数组扁平化，实现一个flatten函数</h3><pre lang="js" class=" language-js"><code class="language-js"><span class="token keyword">const</span> flatten <span class="token operator">=</span> arr <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span>
+  <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token operator">...</span>arr<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>item <span class="token operator">=</span><span class="token operator">></span> Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token function">flatten</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span> <span class="token punctuation">:</span> item<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">flatten</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [1,2,3,4,5]</span>
 </code></pre>
 <p><em>待续</em></p>
 
