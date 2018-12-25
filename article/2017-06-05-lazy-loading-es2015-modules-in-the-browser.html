@@ -4,7 +4,7 @@
   <html class="light page-post">
 
 
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <title>在浏览器中懒加载ES2015模块 | Sincerly</title>
@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="ES2015," />
+    <meta name="keywords" content="ES2015,">
   
 
   <meta name="description" content="ES2015模块在浏览器懒加载 在过去的几年里，开发者们已经无情的将服务端网站移动到了客户端，前提是那样能使页面的性能得到提高。 然而，这可能是不够的。你是否考虑过你的网站也许加载更多于它实际用到的东西？遇到懒加载，一个延迟初始化（加载/分配）某个资源(代码/数据/静态资源)直到它需要的时候再加载。 与此同时，ES2015已经能在生产环境中使用了，通过一些transpilers如Babel。现在你">
@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="ES2015模块在浏览器懒加载 在过去的几年里，开发者们已经无情的将服务端网站移动到了客户端，前提是那样能使页面的性能得到提高。 然而，这可能是不够的。你是否考虑过你的网站也许加载更多于它实际用到的东西？遇到懒加载，一个延迟初始化（加载/分配）某个资源(代码/数据/静态资源)直到它需要的时候再加载。 与此同时，ES2015已经能在生产环境中使用了，通过一些transpilers如Babel。现在你">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-11T05:28:31.210Z">
+<meta property="og:updated_time" content="2018-12-25T09:32:31.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在浏览器中懒加载ES2015模块">
 <meta name="twitter:description" content="ES2015模块在浏览器懒加载 在过去的几年里，开发者们已经无情的将服务端网站移动到了客户端，前提是那样能使页面的性能得到提高。 然而，这可能是不够的。你是否考虑过你的网站也许加载更多于它实际用到的东西？遇到懒加载，一个延迟初始化（加载/分配）某个资源(代码/数据/静态资源)直到它需要的时候再加载。 与此同时，ES2015已经能在生产环境中使用了，通过一些transpilers如Babel。现在你">
@@ -81,7 +81,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
 <link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
-
+</html>
 <body>
 
 
@@ -100,78 +100,43 @@
     <ul class="list-toolbox">
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/archives/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
             博客
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/category/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
             分类
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/tag/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
             标签
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/link/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
             友链
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/about/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
             关于
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/atom.xml"
-            rel="noopener noreferrer"
-            target="_blank"
-            >
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
             RSS
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/search/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
             搜索
           </a>
         </li>
@@ -409,78 +374,43 @@ document<span class="token punctuation">.</span><span class="token function">get
       <ul class="list-toolbox">
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/archives/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
               博客
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/category/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
               分类
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/tag/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
               标签
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/link/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
               友链
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/about/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
               关于
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/atom.xml"
-              rel="noopener noreferrer"
-              target="_blank"
-              >
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
               RSS
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/search/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
               搜索
             </a>
           </li>

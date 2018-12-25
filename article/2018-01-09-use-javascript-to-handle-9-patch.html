@@ -4,7 +4,7 @@
   <html class="light page-post">
 
 
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
   <title>使用JavaScript处理点九图 | Sincerly</title>
@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="javascript,canvas,9-patch," />
+    <meta name="keywords" content="javascript,canvas,9-patch,">
   
 
   <meta name="description" content="前言在前端开发中，常会将图片作为某个元素的背景图，但是背景图的大小和比例和元素有偏差，所以一般要使元素有全背景的话，只能将图片拉伸。这里不考虑background-repeat。最好的办法还是将图片修改为比例和元素相同以等比缩放。使用微信或者QQ的人应该会发现聊天气泡，气泡会随着内容多少的改变而去适应它，但是并没有使气泡图片有拉伸的效果，这里就用到了点九图 点九图关于点九图这里不做过多介绍，简单来">
@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="Sincerly">
 <meta property="og:description" content="前言在前端开发中，常会将图片作为某个元素的背景图，但是背景图的大小和比例和元素有偏差，所以一般要使元素有全背景的话，只能将图片拉伸。这里不考虑background-repeat。最好的办法还是将图片修改为比例和元素相同以等比缩放。使用微信或者QQ的人应该会发现聊天气泡，气泡会随着内容多少的改变而去适应它，但是并没有使气泡图片有拉伸的效果，这里就用到了点九图 点九图关于点九图这里不做过多介绍，简单来">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-11T05:28:31.210Z">
+<meta property="og:updated_time" content="2018-12-25T09:32:31.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用JavaScript处理点九图">
 <meta name="twitter:description" content="前言在前端开发中，常会将图片作为某个元素的背景图，但是背景图的大小和比例和元素有偏差，所以一般要使元素有全背景的话，只能将图片拉伸。这里不考虑background-repeat。最好的办法还是将图片修改为比例和元素相同以等比缩放。使用微信或者QQ的人应该会发现聊天气泡，气泡会随着内容多少的改变而去适应它，但是并没有使气泡图片有拉伸的效果，这里就用到了点九图 点九图关于点九图这里不做过多介绍，简单来">
@@ -81,7 +81,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
   
 <link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
-
+</html>
 <body>
 
 
@@ -100,78 +100,43 @@
     <ul class="list-toolbox">
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/archives/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
             博客
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/category/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
             分类
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/tag/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
             标签
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/link/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
             友链
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/about/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
             关于
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/atom.xml"
-            rel="noopener noreferrer"
-            target="_blank"
-            >
+          <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
             RSS
           </a>
         </li>
       
         <li class="item-toolbox">
-          <a
-            class="CIRCLE"
-            href="/search/"
-            rel="noopener noreferrer"
-            target="_self"
-            >
+          <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
             搜索
           </a>
         </li>
@@ -346,78 +311,43 @@ fillWidth <span class="token operator">=</span> <span class="token punctuation">
       <ul class="list-toolbox">
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/archives/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/archives/" rel="noopener noreferrer" target="_self">
               博客
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/category/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/category/" rel="noopener noreferrer" target="_self">
               分类
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/tag/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/tag/" rel="noopener noreferrer" target="_self">
               标签
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/link/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/link/" rel="noopener noreferrer" target="_self">
               友链
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/about/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/about/" rel="noopener noreferrer" target="_self">
               关于
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/atom.xml"
-              rel="noopener noreferrer"
-              target="_blank"
-              >
+            <a class="CIRCLE" href="/atom.xml" rel="noopener noreferrer" target="_blank">
               RSS
             </a>
           </li>
         
           <li class="item-toolbox">
-            <a
-              class="CIRCLE"
-              href="/search/"
-              rel="noopener noreferrer"
-              target="_self"
-              >
+            <a class="CIRCLE" href="/search/" rel="noopener noreferrer" target="_self">
               搜索
             </a>
           </li>
