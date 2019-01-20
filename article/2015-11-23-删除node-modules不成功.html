@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="删除node_modules不成功">
+  <meta name="description" content="删除 node_modules 不成功">
 
 
 
@@ -100,7 +100,7 @@
   window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true};
 </script>
 
-    <title> 删除node_modules不成功 - Sincerly </title>
+    <title> 删除 node_modules 不成功 - Sincerly </title>
   <link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -234,7 +234,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          删除node_modules不成功
+          删除 node_modules 不成功
         
       </h1>
 
@@ -267,9 +267,12 @@
     <div class="post-content">
       
         <h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><blockquote>
-<p><code>Windows</code>做<code>Node.js</code>开发的你或许碰到过无法删除<code>node_modules</code>文件夹的情况,如下图：<br><a id="more"></a><br><img src="http://7xjp74.com1.z0.glb.clouddn.com/failed.png" alt="failed"></p>
+<p><code>Windows</code>做<code>Node.js</code>开发的你或许碰到过无法删除<code>node_modules</code>文件夹的情况,如下图：</p>
 </blockquote>
-<h2 id="Reason"><a href="#Reason" class="headerlink" title="Reason"></a>Reason</h2><p><code>windows</code> 在文件目录的长度有限制，因为<code>node packages</code> 有众多<code>dependencies</code>，每一个<code>dependency</code>又有其他的<code>dependency</code>，这些<code>dependency</code>或许还有其他的<code>dependency</code>，所以导致<code>node_modules</code>有超级复杂的文件目录。比如：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\codetest\node_modules\edpx-mobile\node_modules\edp-webserver\node_modules\babel\node_modules\chokidar\node_modules\anymatch\node_modules</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p><img src="/images/failed.png" alt="failed"></p>
+<h2 id="Reason"><a href="#Reason" class="headerlink" title="Reason"></a>Reason</h2><p><code>windows</code> 在文件目录的长度有限制，因为<code>node packages</code> 有众多<code>dependencies</code>，每一个<code>dependency</code>又有其他的<code>dependency</code>，这些<code>dependency</code>或许还有其他的<code>dependency</code>，所以导致<code>node_modules</code>有超级复杂的文件目录。比如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\codetest\node_modules\edpx-mobile\node_modules\edp-webserver\node_modules\babel\node_modules\chokidar\node_modules\anymatch\node_modules</span><br></pre></td></tr></table></figure>
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g rimraf</span><br></pre></td></tr></table></figure>
 <h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rimraf node_modules</span><br></pre></td></tr></table></figure>
 <p><em>亲测有效</em></p>
@@ -318,7 +321,7 @@
     
       <a class="prev" href="/article/2016-04-10-Gulp Connect发送post请求返回405.html">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Gulp Connect发送post请求返回405</span>
+        <span class="prev-text nav-default">Gulp Connect 发送 post 请求返回 405</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
@@ -361,7 +364,7 @@
     
       
         
-          <a href="mailto:hexy.xiaojie@email.com" class="iconfont icon-email" title="email"></a>
+          <a href="mailto:hexy.xiaojie@gmail.com" class="iconfont icon-email" title="email"></a>
         
       
     
@@ -381,6 +384,10 @@
         
       
     
+      
+        
+          <a href="https://www.weibo.com/xiaojie0428" class="iconfont icon-weibo" title="weibo"></a>
+        
       
     
       
@@ -439,7 +446,7 @@
     var disqus_config = function () {
         this.page.url = 'http://dearxiaojie.top/article/2015-11-23-删除node-modules不成功.html';
         this.page.identifier = 'article/2015-11-23-删除node-modules不成功.html';
-        this.page.title = '删除node_modules不成功';
+        this.page.title = '删除 node_modules 不成功';
     };
     (function() {
     var d = document, s = d.createElement('script');

@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="javascript性能优化小知识">
+  <meta name="description" content="javascript 性能优化小知识">
 
 
 
@@ -100,7 +100,7 @@
   window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true};
 </script>
 
-    <title> javascript性能优化小知识 - Sincerly </title>
+    <title> javascript 性能优化小知识 - Sincerly </title>
   <link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -234,7 +234,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          javascript性能优化小知识
+          javascript 性能优化小知识
         
       </h1>
 
@@ -258,7 +258,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#避免全局查找"><span class="toc-text">避免全局查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串的连接"><span class="toc-text">字符串的连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字转换成字符串"><span class="toc-text">数字转换成字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点数转换成整型"><span class="toc-text">浮点数转换成整型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用DocumentFragment优化多次append"><span class="toc-text">使用DocumentFragment优化多次append</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用一次innerHTML赋值代替构建dom元素"><span class="toc-text">使用一次innerHTML赋值代替构建dom元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用事件代理"><span class="toc-text">使用事件代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩短否定检测"><span class="toc-text">缩短否定检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件分支"><span class="toc-text">条件分支</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#避免全局查找"><span class="toc-text">避免全局查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符串的连接"><span class="toc-text">字符串的连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字转换成字符串"><span class="toc-text">数字转换成字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点数转换成整型"><span class="toc-text">浮点数转换成整型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-DocumentFragment-优化多次-append"><span class="toc-text">使用 DocumentFragment 优化多次 append</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用一次-innerHTML-赋值代替构建-dom-元素"><span class="toc-text">使用一次 innerHTML 赋值代替构建 dom 元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用事件代理"><span class="toc-text">使用事件代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缩短否定检测"><span class="toc-text">缩短否定检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#条件分支"><span class="toc-text">条件分支</span></a></li></ol>
     </div>
   </div>
 
@@ -266,20 +266,22 @@
 
     <div class="post-content">
       
-        <p>前面有一篇也是关于<code>javascript</code>性能方面的文章，是看了<a href="http://book.douban.com/subject/5362856/" target="_blank" rel="noopener">《高性能javascript》</a>后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。<br><a id="more"></a></p>
+        <p>前面有一篇也是关于<code>javascript</code>性能方面的文章，是看了<a href="http://book.douban.com/subject/5362856/" target="_blank" rel="noopener">《高性能 javascript》</a>后的笔记，这是一篇自己在项目和学习过程中的积累，部分参考了一些学习博客。对面试和代码的编写都有帮助。</p>
+<a id="more"></a>
 <h3 id="避免全局查找"><a href="#避免全局查找" class="headerlink" title="避免全局查找"></a>避免全局查找</h3><p>在一个函数中会用到全局对象存储为局部变量来减少全局查找，因为访问局部变量的速度要比访问全局变量的速度更快些。</p>
-<h3 id="字符串的连接"><a href="#字符串的连接" class="headerlink" title="字符串的连接"></a>字符串的连接</h3><p>如果要连接多个字符串，应该少使用+=，如<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s+=a;</span><br><span class="line">s+=b;</span><br><span class="line">s+=c;</span><br></pre></td></tr></table></figure></p>
-<p>应该写成s+=a + b + c；<br>而如果是收集字符串，比如多次对同一个字符串进行+=操作的话，最好使用一个缓存，使用<code>JavaScript</code>数组来收集，最后使用<code>join</code>方法连接起来。</p>
+<h3 id="字符串的连接"><a href="#字符串的连接" class="headerlink" title="字符串的连接"></a>字符串的连接</h3><p>如果要连接多个字符串，应该少使用+=，如</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s += a;</span><br><span class="line">s += b;</span><br><span class="line">s += c;</span><br></pre></td></tr></table></figure>
+<p>应该写成 s+=a + b + c；<br>而如果是收集字符串，比如多次对同一个字符串进行+=操作的话，最好使用一个缓存，使用<code>JavaScript</code>数组来收集，最后使用<code>join</code>方法连接起来。</p>
 <h3 id="数字转换成字符串"><a href="#数字转换成字符串" class="headerlink" title="数字转换成字符串"></a>数字转换成字符串</h3><p><code>(&quot;&quot; +) &gt; String() &gt; .toString() &gt; new String()</code><br>字符串如’1322’转换成数字的时候可以在前面加’+’,如<code>var str = &#39;123&#39;;var num = +str</code>,那么<code>typeof num</code>为<code>number</code></p>
 <h3 id="浮点数转换成整型"><a href="#浮点数转换成整型" class="headerlink" title="浮点数转换成整型"></a>浮点数转换成整型</h3><p>很多人喜欢使用<code>parseInt()</code>，其实<code>parseInt()</code>是用于将字符串转换成数字，而不是浮点数和整型之间的转换，我们应该使用<code>Math.floor()</code>或者<code>Math.round()</code>。</p>
-<h3 id="使用DocumentFragment优化多次append"><a href="#使用DocumentFragment优化多次append" class="headerlink" title="使用DocumentFragment优化多次append"></a>使用DocumentFragment优化多次append</h3><p>一旦需要更新DOM,请考虑使用文档碎片来构建DOM结构，然后再将其添加到现存的文档中。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">    el.innerHTML = i;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(el);</span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//可以替换为：</span></span><br><span class="line"><span class="keyword">var</span> frag = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">        el.innerHTML = i;</span><br><span class="line">        frag.appendChild(el);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(frag);</span><br></pre></td></tr></table></figure>
-<h3 id="使用一次innerHTML赋值代替构建dom元素"><a href="#使用一次innerHTML赋值代替构建dom元素" class="headerlink" title="使用一次innerHTML赋值代替构建dom元素"></a>使用一次innerHTML赋值代替构建dom元素</h3><p>对于大的DOM更改，使用<code>innerHTML</code>要比使用标准的DOM方法创建同样的DOM结构快得多。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> frag = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">    el.innerHTML = i;</span><br><span class="line">    frag.appendChild(el);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(frag);</span><br><span class="line">    <span class="comment">//可以替换为：</span></span><br><span class="line"><span class="keyword">var</span> html = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">    html.push(<span class="string">'&lt;p&gt;'</span> + i + <span class="string">'&lt;/p&gt;'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.innerHTML = html.join(<span class="string">''</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="使用事件代理"><a href="#使用事件代理" class="headerlink" title="使用事件代理"></a>使用事件代理</h3><p>任何可以冒泡的事件都不仅仅可以在事件目标上进行处理，目标的任何祖先节点上也能处理，使用这个知识就可以将事件处理程序附加到更高的地方负责多个目标的事件处理，同样，对于内容动态增加并且子节点都需要相同的事件处理函数的情况，可以把事件注册提到父节点上，这样就不需要为每个子节点注册事件监听了。另外，现有的js库都采用<code>observe</code>方式来创建事件监听,其实现上隔离了DOM对象和事件处理函数之间的循环引用,所以应该尽量采用这种方式来创建事件监听</p>
-<h3 id="缩短否定检测"><a href="#缩短否定检测" class="headerlink" title="缩短否定检测"></a>缩短否定检测</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (oTest != <span class="string">'#ff0000'</span>) &#123;</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (oTest != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (oTest != <span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//虽然这些都正确，但用逻辑非操作符来操作也有同样的效果：</span></span><br><span class="line"><span class="keyword">if</span> (!oTest) &#123;</span><br><span class="line">    <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="条件分支"><a href="#条件分支" class="headerlink" title="条件分支"></a>条件分支</h3><p>将条件分支，按可能性顺序从高到低排列：可以减少解释器对条件的探测次数<br>在同一条件子的多（&gt;2）条件分支时，使用<code>switch</code>优于<code>if</code>：<code>switch</code>分支选择的效率高于if，在IE下尤为明显。4分支的测试，IE下<code>switch</code>的执行时间约为if的一半。<br>使用三目运算符替代条件分支</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">    num = a;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    num = b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以替换为：</span></span><br><span class="line">num = a &gt; b ? a : b;</span><br></pre></td></tr></table></figure>
+<h3 id="使用-DocumentFragment-优化多次-append"><a href="#使用-DocumentFragment-优化多次-append" class="headerlink" title="使用 DocumentFragment 优化多次 append"></a>使用 DocumentFragment 优化多次 append</h3><p>一旦需要更新 DOM,请考虑使用文档碎片来构建 DOM 结构，然后再将其添加到现存的文档中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">  el.innerHTML = i;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(el);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以替换为：</span></span><br><span class="line"><span class="keyword">var</span> frag = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">  el.innerHTML = i;</span><br><span class="line">  frag.appendChild(el);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(frag);</span><br></pre></td></tr></table></figure>
+<h3 id="使用一次-innerHTML-赋值代替构建-dom-元素"><a href="#使用一次-innerHTML-赋值代替构建-dom-元素" class="headerlink" title="使用一次 innerHTML 赋值代替构建 dom 元素"></a>使用一次 innerHTML 赋值代替构建 dom 元素</h3><p>对于大的 DOM 更改，使用<code>innerHTML</code>要比使用标准的 DOM 方法创建同样的 DOM 结构快得多。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> frag = <span class="built_in">document</span>.createDocumentFragment();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">  <span class="keyword">var</span> el = <span class="built_in">document</span>.createElement(<span class="string">'p'</span>);</span><br><span class="line">  el.innerHTML = i;</span><br><span class="line">  frag.appendChild(el);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(frag);</span><br><span class="line"><span class="comment">//可以替换为：</span></span><br><span class="line"><span class="keyword">var</span> html = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">  html.push(<span class="string">'&lt;p&gt;'</span> + i + <span class="string">'&lt;/p&gt;'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.body.innerHTML = html.join(<span class="string">''</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="使用事件代理"><a href="#使用事件代理" class="headerlink" title="使用事件代理"></a>使用事件代理</h3><p>任何可以冒泡的事件都不仅仅可以在事件目标上进行处理，目标的任何祖先节点上也能处理，使用这个知识就可以将事件处理程序附加到更高的地方负责多个目标的事件处理，同样，对于内容动态增加并且子节点都需要相同的事件处理函数的情况，可以把事件注册提到父节点上，这样就不需要为每个子节点注册事件监听了。另外，现有的 js 库都采用<code>observe</code>方式来创建事件监听,其实现上隔离了 DOM 对象和事件处理函数之间的循环引用,所以应该尽量采用这种方式来创建事件监听</p>
+<h3 id="缩短否定检测"><a href="#缩短否定检测" class="headerlink" title="缩短否定检测"></a>缩短否定检测</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (oTest != <span class="string">'#ff0000'</span>) &#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (oTest != <span class="literal">null</span>) &#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (oTest != <span class="literal">false</span>) &#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//虽然这些都正确，但用逻辑非操作符来操作也有同样的效果：</span></span><br><span class="line"><span class="keyword">if</span> (!oTest) &#123;</span><br><span class="line">  <span class="comment">//do something</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="条件分支"><a href="#条件分支" class="headerlink" title="条件分支"></a>条件分支</h3><p>将条件分支，按可能性顺序从高到低排列：可以减少解释器对条件的探测次数<br>在同一条件子的多（&gt;2）条件分支时，使用<code>switch</code>优于<code>if</code>：<code>switch</code>分支选择的效率高于 if，在 IE 下尤为明显。4 分支的测试，IE 下<code>switch</code>的执行时间约为 if 的一半。<br>使用三目运算符替代条件分支</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a &gt; b) &#123;</span><br><span class="line">  num = a;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  num = b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以替换为：</span></span><br><span class="line">num = a &gt; b ? a : b;</span><br></pre></td></tr></table></figure>
 <p><em>续。。。</em></p>
 
       
@@ -328,13 +330,13 @@
     
       <a class="prev" href="/article/2015-08-04-图解Javascript上下文与作用域.html">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">图解Javascript上下文与作用域</span>
+        <span class="prev-text nav-default">图解 Javascript 上下文与作用域</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
       <a class="next" href="/article/2015-05-24-高性能JavaScript.html">
-        <span class="next-text nav-default">高性能JavaScript</span>
+        <span class="next-text nav-default">高性能 JavaScript</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
@@ -371,7 +373,7 @@
     
       
         
-          <a href="mailto:hexy.xiaojie@email.com" class="iconfont icon-email" title="email"></a>
+          <a href="mailto:hexy.xiaojie@gmail.com" class="iconfont icon-email" title="email"></a>
         
       
     
@@ -391,6 +393,10 @@
         
       
     
+      
+        
+          <a href="https://www.weibo.com/xiaojie0428" class="iconfont icon-weibo" title="weibo"></a>
+        
       
     
       
@@ -449,7 +455,7 @@
     var disqus_config = function () {
         this.page.url = 'http://dearxiaojie.top/article/2015-07-27-javascript性能优化小知识.html';
         this.page.identifier = 'article/2015-07-27-javascript性能优化小知识.html';
-        this.page.title = 'javascript性能优化小知识';
+        this.page.title = 'javascript 性能优化小知识';
     };
     (function() {
     var d = document, s = d.createElement('script');

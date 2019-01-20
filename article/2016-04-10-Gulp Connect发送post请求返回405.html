@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Gulp Connect发送post请求返回405">
+  <meta name="description" content="Gulp Connect 发送 post 请求返回 405">
 
 
 
@@ -100,7 +100,7 @@
   window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true};
 </script>
 
-    <title> Gulp Connect发送post请求返回405 - Sincerly </title>
+    <title> Gulp Connect 发送 post 请求返回 405 - Sincerly </title>
   <link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -234,7 +234,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Gulp Connect发送post请求返回405
+          Gulp Connect 发送 post 请求返回 405
         
       </h1>
 
@@ -266,11 +266,13 @@
 
     <div class="post-content">
       
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在使用<code>gulp</code>过程中，遇到了在使用gulp-connect启动服务的时候，发送ajax请求不能发送post，返回错误:<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">405 Method Not Allowed</span><br></pre></td></tr></table></figure></p>
+        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>在使用<code>gulp</code>过程中，遇到了在使用 gulp-connect 启动服务的时候，发送 ajax 请求不能发送 post，返回错误:</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">405 Method Not Allowed</span><br></pre></td></tr></table></figure>
 <h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>通过自定义一个中间件来完成<code>POST</code>、<code>PUT</code>、<code>DELETE</code> 请求。<br>首先，引入<code>fs</code>、<code>path</code>和<code>connect</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</span><br><span class="line">path = <span class="built_in">require</span>(<span class="string">'path'</span>),</span><br><span class="line">connect = <span class="built_in">require</span>(<span class="string">'gulp-connect'</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</span><br><span class="line">  path = <span class="built_in">require</span>(<span class="string">'path'</span>),</span><br><span class="line">  connect = <span class="built_in">require</span>(<span class="string">'gulp-connect'</span>);</span><br></pre></td></tr></table></figure>
 <p>接着，在配置中增加自己的中间件。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'server'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    connect.server(&#123;</span><br><span class="line">        middleware: <span class="function"><span class="keyword">function</span>(<span class="params">connect, options</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">var</span> filepath = path.join(options.root, req.url);</span><br><span class="line">                <span class="keyword">if</span> (<span class="string">'POSTPUTDELETE'</span>.indexOf(req.method.toUpperCase()) &gt; <span class="number">-1</span></span><br><span class="line">                    &amp;&amp; fs.existsSync(filepath) &amp;&amp; fs.statSync(filepath).isFile()) &#123;</span><br><span class="line">                    <span class="keyword">return</span> res.end(fs.readFileSync(filepath));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> next();</span><br><span class="line">               &#125;</span><br><span class="line">            ];</span><br><span class="line">        &#125;,</span><br><span class="line">        hostname: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">        port: <span class="number">8090</span>,</span><br><span class="line">        livereload: <span class="literal">true</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'server'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  connect.server(&#123;</span><br><span class="line">    middleware: <span class="function"><span class="keyword">function</span>(<span class="params">connect, options</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> [</span><br><span class="line">        <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">var</span> filepath = path.join(options.root, req.url);</span><br><span class="line">          <span class="keyword">if</span> (</span><br><span class="line">            <span class="string">'POSTPUTDELETE'</span>.indexOf(req.method.toUpperCase()) &gt; <span class="number">-1</span> &amp;&amp;</span><br><span class="line">            fs.existsSync(filepath) &amp;&amp;</span><br><span class="line">            fs.statSync(filepath).isFile()</span><br><span class="line">          ) &#123;</span><br><span class="line">            <span class="keyword">return</span> res.end(fs.readFileSync(filepath));</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> next();</span><br><span class="line">        &#125;</span><br><span class="line">      ];</span><br><span class="line">    &#125;,</span><br><span class="line">    hostname: <span class="string">'127.0.0.1'</span>,</span><br><span class="line">    port: <span class="number">8090</span>,</span><br><span class="line">    livereload: <span class="literal">true</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a href="http://cweili.gitcafe.io/gulp-connect-post-put-delete/" target="_blank" rel="noopener">让 Gulp Connect 支持 POST、PUT、DELETE 请求</a></p>
 
       
@@ -323,7 +325,7 @@
     
     
       <a class="next" href="/article/2015-11-23-删除node-modules不成功.html">
-        <span class="next-text nav-default">删除node_modules不成功</span>
+        <span class="next-text nav-default">删除 node_modules 不成功</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
@@ -360,7 +362,7 @@
     
       
         
-          <a href="mailto:hexy.xiaojie@email.com" class="iconfont icon-email" title="email"></a>
+          <a href="mailto:hexy.xiaojie@gmail.com" class="iconfont icon-email" title="email"></a>
         
       
     
@@ -380,6 +382,10 @@
         
       
     
+      
+        
+          <a href="https://www.weibo.com/xiaojie0428" class="iconfont icon-weibo" title="weibo"></a>
+        
       
     
       
@@ -438,7 +444,7 @@
     var disqus_config = function () {
         this.page.url = 'http://dearxiaojie.top/article/2016-04-10-Gulp Connect发送post请求返回405.html';
         this.page.identifier = 'article/2016-04-10-Gulp Connect发送post请求返回405.html';
-        this.page.title = 'Gulp Connect发送post请求返回405';
+        this.page.title = 'Gulp Connect 发送 post 请求返回 405';
     };
     (function() {
     var d = document, s = d.createElement('script');

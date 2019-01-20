@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="CSS伪元素::after提示用法">
+  <meta name="description" content="CSS 伪元素::after 提示用法">
 
 
 
@@ -100,7 +100,7 @@
   window.config = {"leancloud":{"app_id":null,"app_key":null},"toc":true,"fancybox":true,"pjax":true};
 </script>
 
-    <title> CSS伪元素::after提示用法 - Sincerly </title>
+    <title> CSS 伪元素::after 提示用法 - Sincerly </title>
   <link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -234,7 +234,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          CSS伪元素::after提示用法
+          CSS 伪元素::after 提示用法
         
       </h1>
 
@@ -266,18 +266,19 @@
 
     <div class="post-content">
       
-        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>CSS伪元素::after用来匹配已选中元素的一个虚拟的最后子元素，通常会配合content属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素<br><a id="more"></a></p>
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>CSS 伪元素::after 用来匹配已选中元素的一个虚拟的最后子元素，通常会配合 content 属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素</p>
+<a id="more"></a>
 <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><blockquote>
-<p><code>element:after  { style properties }</code>  /<em> CSS2 语法 </em>/<br><code>element::after { style properties }</code>  /<em> CSS3 语法 </em>/</p>
+<p><code>element:after { style properties }</code> /_ CSS2 语法 <em>/<br><code>element::after { style properties }</code> /</em> CSS3 语法 _/</p>
 </blockquote>
-<p><code>::after</code>表示法是在CSS 3中引入的,::符号是用来区分伪类和伪元素的.支持CSS3的浏览器同时也都支持CSS2中引入的表示法<code>:after</code>.</p>
+<p><code>::after</code>表示法是在 CSS 3 中引入的,::符号是用来区分伪类和伪元素的.支持 CSS3 的浏览器同时也都支持 CSS2 中引入的表示法<code>:after</code>.</p>
 <p>##例子</p>
-<p>用<code>::after</code>伪元素，<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/attr" target="_blank" rel="noopener">attr()</a>CSS表达式和一个<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes" target="_blank" rel="noopener">自定义数据属性</a> <code>data-descr</code> 创建一个纯CSS, 词汇表提示工具</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一段并没有什么用的</span><br><span class="line">			<span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'collection of words and punctuation'</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">			，完全是为了凑数才出现的文字，实现一个</span><br><span class="line">			<span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'small popups which also hide again'</span>&gt;</span>提示<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">			功能，可以吧鼠标放上去</span><br><span class="line">			<span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">'not to be taken literrlly'</span>&gt;</span>看看<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">text-decoration</span>: underline;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#00F</span>;</span><br><span class="line">    <span class="attribute">cursor</span>: help;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span><span class="selector-pseudo">:hover</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="built_in">attr</span>(data-descr);</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">24px</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#aaaaaa</span> solid;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#ffffcc</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#000000</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用<code>::after</code>伪元素，<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/attr" target="_blank" rel="noopener">attr()</a>CSS 表达式和一个<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes" target="_blank" rel="noopener">自定义数据属性</a> <code>data-descr</code> 创建一个纯 CSS, 词汇表提示工具</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    这是一段并没有什么用的</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">"collection of words and punctuation"</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    ，完全是为了凑数才出现的文字，实现一个</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">"small popups which also hide again"</span>&gt;</span>提示<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    功能，可以吧鼠标放上去</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">"not to be taken literrlly"</span>&gt;</span>看看<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">text-decoration</span>: underline;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#00f</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: help;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span><span class="selector-pseudo">:hover</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="built_in">attr</span>(data-descr);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">24px</span>;</span><br><span class="line">  <span class="attribute">min-width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#aaaaaa</span> solid;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ffffcc</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#000000</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="http://runjs.cn/code/hkmnji2p" target="_blank" rel="noopener">在线演示</a></p>
-<h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="http://7xjp74.com1.z0.glb.clouddn.com/css%20after.png" alt="css-after"></p>
-<h2 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h2><p><img src="http://7xjp74.com1.z0.glb.clouddn.com/table.png" alt="兼容性"></p>
+<h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="/images/css%20after.png" alt="css-after"></p>
+<h2 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h2><p><img src="/images/table.png" alt="兼容性"></p>
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/%3A%3Aafter" target="_blank" rel="noopener">::after (:after)</a></li>
 </ul>
@@ -332,7 +333,7 @@
     
     
       <a class="next" href="/article/2015-08-04-图解Javascript上下文与作用域.html">
-        <span class="next-text nav-default">图解Javascript上下文与作用域</span>
+        <span class="next-text nav-default">图解 Javascript 上下文与作用域</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
@@ -369,7 +370,7 @@
     
       
         
-          <a href="mailto:hexy.xiaojie@email.com" class="iconfont icon-email" title="email"></a>
+          <a href="mailto:hexy.xiaojie@gmail.com" class="iconfont icon-email" title="email"></a>
         
       
     
@@ -389,6 +390,10 @@
         
       
     
+      
+        
+          <a href="https://www.weibo.com/xiaojie0428" class="iconfont icon-weibo" title="weibo"></a>
+        
       
     
       
@@ -447,7 +452,7 @@
     var disqus_config = function () {
         this.page.url = 'http://dearxiaojie.top/article/2015-09-05-CSS伪元素-after.html';
         this.page.identifier = 'article/2015-09-05-CSS伪元素-after.html';
-        this.page.title = 'CSS伪元素::after提示用法';
+        this.page.title = 'CSS 伪元素::after 提示用法';
     };
     (function() {
     var d = document, s = d.createElement('script');
