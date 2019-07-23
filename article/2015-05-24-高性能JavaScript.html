@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head><meta name="generator" content="Hexo 3.8.0">
+  <head><meta name="generator" content="Hexo 3.9.0">
     
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -258,22 +258,27 @@
       
         <h2 id="javascript-加载和运行"><a href="#javascript-加载和运行" class="headerlink" title="javascript 加载和运行"></a>javascript 加载和运行</h2><h3 id="脚本位置"><a href="#脚本位置" class="headerlink" title="脚本位置"></a>脚本位置</h3><p>尽管浏览器已经允许并行下载 javascript 文件，但是 javascript 下载过程仍然会阻塞其他资源的下载，如图片。页面仍然需要等待所有 javascript 代码下载并执行完成才能继续所以优化 javascript 的首要原则：将脚本放在底部（<code>&lt;/body&gt;</code>之前)</p>
 <a id="more"></a>
+
 <h3 id="组织脚本"><a href="#组织脚本" class="headerlink" title="组织脚本"></a>组织脚本</h3><p>每个<code>&lt;script&gt;</code>标签初始下载都会阻塞页面渲染，所以减少页面包含的<code>&lt;script&gt;</code>标签数量有助于改善这一情况。考虑到到 HTTP 请求会额外带来性能的开销。下载单个 100B 的文件比下载 4 个 25B 的文件更快。所以，减少页面中外链脚本文件的数量会改善性能。</p>
 <!--more-->
+
 <h3 id="无阻塞的脚本"><a href="#无阻塞的脚本" class="headerlink" title="无阻塞的脚本"></a>无阻塞的脚本</h3><ul>
 <li>延迟的脚本：带有 defer 属性的<code>&lt;script&gt;</code>标签，需要浏览器支持</li>
 <li>动态脚本元素:在跨浏览器兼容性和易用的优势，是最通用的无阻塞加载解决方案</li>
 <li>XMLHttpRequest 注入：先创建一个 XHR 对象，然后用她下载 javascript 文件，最后通过创建动态<code>&lt;script&gt;</code>元素将代码注入页面中</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">xhr.open(<span class="string">"get"</span>,<span class="string">"file.js"</span>,<span class="literal">true</span>);</span><br><span class="line">xhr.onreadystatechange = funtion()&#123;</span><br><span class="line">    <span class="keyword">if</span>(xhr.readyState == <span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(xhr.status&gt;=<span class="number">200</span>&amp;&amp;xhr.status&lt;<span class="number">300</span>||xhr.status==<span class="number">304</span>)&#123;</span><br><span class="line">            <span class="keyword">var</span> script = <span class="built_in">document</span>.creatElement(<span class="string">"script"</span>);</span><br><span class="line">            script.type=<span class="string">"text/javascript"</span>;</span><br><span class="line">            script.text=xhr.responseText;</span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(script);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">xhr.send(<span class="literal">null</span>);</span><br><span class="line"><span class="comment">//由于代码是在&lt;script&gt;标签之前返回的，因此它下载后不会自动执行。</span></span><br><span class="line"><span class="comment">//同样的代码在所有主流浏览器中无一例外都能正常工作</span></span><br><span class="line"><span class="comment">//局限性在于：javascript文件必须与请求的页面处于相同的域，即javascript不能从CDN下载</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="无阻塞脚本加载工具"><a href="#无阻塞脚本加载工具" class="headerlink" title="无阻塞脚本加载工具"></a>无阻塞脚本加载工具</h3><p>lazyLoad 类库、LABjs 等等</p>
 <p>##管理作用域</p>
 <h3 id="作用域链和标识符解析"><a href="#作用域链和标识符解析" class="headerlink" title="作用域链和标识符解析"></a>作用域链和标识符解析</h3><p>在函数执行的过程中，没遇到一个变量，都会经历一次标识符解析过程以决定从哪里获取或存储数据。该过程搜索运行期上下文的作用域链，查找同名的标识符。搜索过程从作用域链头部开始也就是当前运行函数的活动对象，如果找到了，就使用这个标示符对应的变量；如果没有找到，继续搜索作用域链中的下一个对象，直到标识符被找到，或者没有可用于搜索的对象为止，这种情况下标识符被认为是未定义的。正是这个搜索过程影响了性能。</p>
 <h3 id="标识符解析的性能"><a href="#标识符解析的性能" class="headerlink" title="标识符解析的性能"></a>标识符解析的性能</h3><p>一个标识符所在的位置越深，他的读写速度就越慢，因此读写局部变量总是最快的，而读写全局变量通常是最慢的。全局变量总是存在于运行期上下文作用域链的最末端，因此是最远的。在没有优化 javascript 引擎的浏览器中，尽量使用局部变量，如果某个跨作用域的值在函数中被引用了多次，就把他存储到局部变量里。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initUI</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> doc = <span class="built_in">document</span>,</span><br><span class="line">    bd = doc.body,</span><br><span class="line">    links = doc.getElementByTagName(<span class="string">'a'</span>);</span><br><span class="line">  <span class="keyword">var</span> i = <span class="number">0</span>,</span><br><span class="line">    len = links.length;</span><br><span class="line">  <span class="keyword">while</span> (i &lt; len) &#123;</span><br><span class="line">    update(links[i++]);</span><br><span class="line">  &#125;</span><br><span class="line">  doc.getElementById(<span class="string">'btn'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    start();</span><br><span class="line">  &#125;;</span><br><span class="line">  bd.className = <span class="string">'active'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//首先将document对象引用存储到局部变量doc中，全局变量的访问减少，当有很多全局变量</span></span><br><span class="line"><span class="comment">//被反复访问时，这种方法对性能的改善是很明显的。</span></span><br></pre></td></tr></table></figure>
+
 <h3 id="闭包，作用域和内存"><a href="#闭包，作用域和内存" class="headerlink" title="闭包，作用域和内存"></a>闭包，作用域和内存</h3><p>将常用的跨作用域变量存储在局部变量中，然后访问局部变量嵌套的对象成员会明显影响性能，尽量少用<br>通常来说，把常用的对象成员、数组元素、跨域变量保存在局部变量中来改善 javascript 性能，因为局部变量访问速度更快。</p>
 <p>DOM</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initHtml1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15000</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML += <span class="string">'a'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initHtml2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> html = <span class="string">''</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">15000</span>; i++) &#123;</span><br><span class="line">    html += <span class="string">'a'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'here'</span>).innerHTML = html;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>initHtml1()比 initHtml2()速度慢很多，initHtml2()使用局部变量存储更新后的内容，减少了 DOM 访问，因此，减少 DOM 访问次数，讲运算尽量留在 ECMAScript 这端处理。</p>
 
       
@@ -375,7 +380,7 @@
     
       
         
-          <a href="https://github.com/swust-xiaoj" class="iconfont icon-github" title="github"></a>
+          <a href="https://github.com/KoreSamuel" class="iconfont icon-github" title="github"></a>
         
       
     

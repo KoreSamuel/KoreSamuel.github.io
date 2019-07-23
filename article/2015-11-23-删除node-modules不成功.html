@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head><meta name="generator" content="Hexo 3.8.0">
+  <head><meta name="generator" content="Hexo 3.9.0">
     
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -260,11 +260,15 @@
 <p><code>Windows</code>做<code>Node.js</code>开发的你或许碰到过无法删除<code>node_modules</code>文件夹的情况,如下图：</p>
 </blockquote>
 <a id="more"></a>
+
 <p><img src="/images/failed.png" alt="failed"></p>
 <h2 id="Reason"><a href="#Reason" class="headerlink" title="Reason"></a>Reason</h2><p><code>windows</code> 在文件目录的长度有限制，因为<code>node packages</code> 有众多<code>dependencies</code>，每一个<code>dependency</code>又有其他的<code>dependency</code>，这些<code>dependency</code>或许还有其他的<code>dependency</code>，所以导致<code>node_modules</code>有超级复杂的文件目录。比如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:\codetest\node_modules\edpx-mobile\node_modules\edp-webserver\node_modules\babel\node_modules\chokidar\node_modules\anymatch\node_modules</span><br></pre></td></tr></table></figure>
+
 <h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><h3 id="install"><a href="#install" class="headerlink" title="install"></a>install</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g rimraf</span><br></pre></td></tr></table></figure>
+
 <h3 id="delete"><a href="#delete" class="headerlink" title="delete"></a>delete</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rimraf node_modules</span><br></pre></td></tr></table></figure>
+
 <p><em>亲测有效</em></p>
 
       
@@ -370,7 +374,7 @@
     
       
         
-          <a href="https://github.com/swust-xiaoj" class="iconfont icon-github" title="github"></a>
+          <a href="https://github.com/KoreSamuel" class="iconfont icon-github" title="github"></a>
         
       
     

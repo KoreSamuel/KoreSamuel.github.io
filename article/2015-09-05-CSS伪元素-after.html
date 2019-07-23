@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head><meta name="generator" content="Hexo 3.8.0">
+  <head><meta name="generator" content="Hexo 3.9.0">
     
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -258,6 +258,7 @@
       
         <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>CSS 伪元素::after 用来匹配已选中元素的一个虚拟的最后子元素，通常会配合 content 属性来为该元素添加装饰内容.这个虚拟元素默认是行内元素</p>
 <a id="more"></a>
+
 <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><blockquote>
 <p><code>element:after { style properties }</code> /_ CSS2 语法 <em>/<br><code>element::after { style properties }</code> /</em> CSS3 语法 _/</p>
 </blockquote>
@@ -265,7 +266,9 @@
 <p>##例子</p>
 <p>用<code>::after</code>伪元素，<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/attr" target="_blank" rel="noopener">attr()</a>CSS 表达式和一个<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes" target="_blank" rel="noopener">自定义数据属性</a> <code>data-descr</code> 创建一个纯 CSS, 词汇表提示工具</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    这是一段并没有什么用的</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">"collection of words and punctuation"</span>&gt;</span>文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    ，完全是为了凑数才出现的文字，实现一个</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">"small popups which also hide again"</span>&gt;</span>提示<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    功能，可以吧鼠标放上去</span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">data-descr</span>=<span class="string">"not to be taken literrlly"</span>&gt;</span>看看<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">text-decoration</span>: underline;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#00f</span>;</span><br><span class="line">  <span class="attribute">cursor</span>: help;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-attr">[data-descr]</span><span class="selector-pseudo">:hover</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="built_in">attr</span>(data-descr);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">24px</span>;</span><br><span class="line">  <span class="attribute">min-width</span>: <span class="number">200px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> <span class="number">#aaaaaa</span> solid;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#ffffcc</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">12px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#000000</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><a href="http://runjs.cn/code/hkmnji2p" target="_blank" rel="noopener">在线演示</a></p>
 <h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img src="/images/css%20after.png" alt="css-after"></p>
 <h2 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h2><p><img src="/images/table.png" alt="兼容性"></p>
@@ -376,7 +379,7 @@
     
       
         
-          <a href="https://github.com/swust-xiaoj" class="iconfont icon-github" title="github"></a>
+          <a href="https://github.com/KoreSamuel" class="iconfont icon-github" title="github"></a>
         
       
     
